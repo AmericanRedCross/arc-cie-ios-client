@@ -10,6 +10,9 @@
 		496E5D3E1F41E31900E4B90A /* ARCDM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4914C1F61F41E13300ECD1D6 /* ARCDM.framework */; };
 		496E5D3F1F41E31900E4B90A /* ARCDM.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4914C1F61F41E13300ECD1D6 /* ARCDM.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49BCFFEC1F4455BD00F68A40 /* structure.json in Resources */ = {isa = PBXBuildFile; fileRef = 49BCFFEB1F4455A900F68A40 /* structure.json */; };
+		49BCFFEE1F4479B600F68A40 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49BCFFED1F4479B600F68A40 /* Onboarding.storyboard */; };
+		49BCFFF21F4487EB00F68A40 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BCFFF11F4487EB00F68A40 /* OnboardingViewController.swift */; };
+		49BCFFF31F44895500F68A40 /* onboarding_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 49BCFFF01F4487A100F68A40 /* onboarding_video.mp4 */; };
 		49FE8D831F419F6900B73731 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE8D821F419F6900B73731 /* AppDelegate.swift */; };
 		49FE8D851F419F6900B73731 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE8D841F419F6900B73731 /* ViewController.swift */; };
 		49FE8D881F419F6900B73731 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49FE8D861F419F6900B73731 /* Main.storyboard */; };
@@ -58,6 +61,9 @@
 /* Begin PBXFileReference section */
 		4914C1F01F41E13200ECD1D6 /* ARCDM.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ARCDM.xcodeproj; path = ARCDM/ARCDM.xcodeproj; sourceTree = SOURCE_ROOT; };
 		49BCFFEB1F4455A900F68A40 /* structure.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = structure.json; sourceTree = "<group>"; };
+		49BCFFED1F4479B600F68A40 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		49BCFFF01F4487A100F68A40 /* onboarding_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = onboarding_video.mp4; sourceTree = "<group>"; };
+		49BCFFF11F4487EB00F68A40 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		49FE8D7F1F419F6900B73731 /* Cash In Emergencies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cash In Emergencies.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49FE8D821F419F6900B73731 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49FE8D841F419F6900B73731 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +94,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		49BCFFEF1F44879600F68A40 /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				49BCFFF01F4487A100F68A40 /* onboarding_video.mp4 */,
+				49BCFFEB1F4455A900F68A40 /* structure.json */,
+			);
+			path = Files;
+			sourceTree = "<group>";
+		};
 		49FE8D761F419F6800B73731 = {
 			isa = PBXGroup;
 			children = (
@@ -107,12 +122,14 @@
 		49FE8D811F419F6900B73731 /* Cash In Emergencies */ = {
 			isa = PBXGroup;
 			children = (
-				49BCFFEB1F4455A900F68A40 /* structure.json */,
+				49BCFFF11F4487EB00F68A40 /* OnboardingViewController.swift */,
 				49FE8D821F419F6900B73731 /* AppDelegate.swift */,
 				49FE8D841F419F6900B73731 /* ViewController.swift */,
 				49FE8D861F419F6900B73731 /* Main.storyboard */,
 				49FE8D891F419F6900B73731 /* Assets.xcassets */,
 				49FE8D8B1F419F6900B73731 /* LaunchScreen.storyboard */,
+				49BCFFED1F4479B600F68A40 /* Onboarding.storyboard */,
+				49BCFFEF1F44879600F68A40 /* Files */,
 				4914C1F01F41E13200ECD1D6 /* ARCDM.xcodeproj */,
 				49FE8D8E1F419F6900B73731 /* Info.plist */,
 			);
@@ -204,7 +221,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49BCFFF31F44895500F68A40 /* onboarding_video.mp4 in Resources */,
 				49BCFFEC1F4455BD00F68A40 /* structure.json in Resources */,
+				49BCFFEE1F4479B600F68A40 /* Onboarding.storyboard in Resources */,
 				49FE8D8D1F419F6900B73731 /* LaunchScreen.storyboard in Resources */,
 				49FE8D8A1F419F6900B73731 /* Assets.xcassets in Resources */,
 				49FE8D881F419F6900B73731 /* Main.storyboard in Resources */,
@@ -219,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49FE8D851F419F6900B73731 /* ViewController.swift in Sources */,
+				49BCFFF21F4487EB00F68A40 /* OnboardingViewController.swift in Sources */,
 				49FE8D831F419F6900B73731 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
