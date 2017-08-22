@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		491640821F4C38230084CEE2 /* ARCNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491640811F4C38230084CEE2 /* ARCNavigationController.swift */; };
+		4916408E1F4C5C3A0084CEE2 /* ModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4916408C1F4C5C3A0084CEE2 /* ModuleTableViewCell.swift */; };
+		4916408F1F4C5C3A0084CEE2 /* ModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4916408D1F4C5C3A0084CEE2 /* ModuleTableViewCell.xib */; };
 		496E5D3E1F41E31900E4B90A /* ARCDM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4914C1F61F41E13300ECD1D6 /* ARCDM.framework */; };
 		496E5D3F1F41E31900E4B90A /* ARCDM.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4914C1F61F41E13300ECD1D6 /* ARCDM.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		497122211F4C21A5000786AE /* ThunderTable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4987DB851F4C201A00466297 /* ThunderTable.framework */; };
@@ -113,6 +115,8 @@
 /* Begin PBXFileReference section */
 		4914C1F01F41E13200ECD1D6 /* ARCDM.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ARCDM.xcodeproj; path = ARCDM/ARCDM.xcodeproj; sourceTree = SOURCE_ROOT; };
 		491640811F4C38230084CEE2 /* ARCNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARCNavigationController.swift; sourceTree = "<group>"; };
+		4916408C1F4C5C3A0084CEE2 /* ModuleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTableViewCell.swift; sourceTree = "<group>"; };
+		4916408D1F4C5C3A0084CEE2 /* ModuleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModuleTableViewCell.xib; sourceTree = "<group>"; };
 		497122271F4C23A1000786AE /* ToolkitTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolkitTableViewController.swift; sourceTree = "<group>"; };
 		497122291F4C2844000786AE /* ModuleDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleDisplayable.swift; sourceTree = "<group>"; };
 		4971222B1F4C2CF3000786AE /* WorkflowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowViewController.swift; sourceTree = "<group>"; };
@@ -207,6 +211,8 @@
 				49FE8D821F419F6900B73731 /* AppDelegate.swift */,
 				49FE8D841F419F6900B73731 /* ViewController.swift */,
 				49FE8D861F419F6900B73731 /* Main.storyboard */,
+				4916408C1F4C5C3A0084CEE2 /* ModuleTableViewCell.swift */,
+				4916408D1F4C5C3A0084CEE2 /* ModuleTableViewCell.xib */,
 				4971222B1F4C2CF3000786AE /* WorkflowViewController.swift */,
 				49FE8D891F419F6900B73731 /* Assets.xcassets */,
 				49FE8D8B1F419F6900B73731 /* LaunchScreen.storyboard */,
@@ -344,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49BCFFF31F44895500F68A40 /* onboarding_video.mp4 in Resources */,
+				4916408F1F4C5C3A0084CEE2 /* ModuleTableViewCell.xib in Resources */,
 				49BCFFEC1F4455BD00F68A40 /* structure.json in Resources */,
 				49BCFFEE1F4479B600F68A40 /* Onboarding.storyboard in Resources */,
 				49FE8D8D1F419F6900B73731 /* LaunchScreen.storyboard in Resources */,
@@ -364,6 +371,7 @@
 				49BCFFF21F4487EB00F68A40 /* OnboardingViewController.swift in Sources */,
 				4971222A1F4C2844000786AE /* ModuleDisplayable.swift in Sources */,
 				4971222C1F4C2CF3000786AE /* WorkflowViewController.swift in Sources */,
+				4916408E1F4C5C3A0084CEE2 /* ModuleTableViewCell.swift in Sources */,
 				49FE8D831F419F6900B73731 /* AppDelegate.swift in Sources */,
 				497122281F4C23A1000786AE /* ToolkitTableViewController.swift in Sources */,
 			);

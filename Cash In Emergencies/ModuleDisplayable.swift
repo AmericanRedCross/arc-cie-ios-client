@@ -12,4 +12,18 @@ import ThunderTable
 
 extension Module: Row {
 
+    public var cellClass: AnyClass? {
+        return ModuleTableViewCell.self
+    }
+    
+    public var accessoryType: UITableViewCellAccessoryType? {
+        get {
+            return UITableViewCellAccessoryType.none
+        }
+        set {}
+    }
+    
+    public func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
+        
+    }
 }
