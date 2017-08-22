@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -83,7 +84,7 @@
         <!--Workflow-->
         <scene sceneID="cOn-F8-2EU">
             <objects>
-                <navigationController id="JT4-cn-WFf" sceneMemberID="viewController">
+                <navigationController id="JT4-cn-WFf" customClass="ARCNavigationController" customModule="Cash_In_Emergencies" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Workflow" image="tab-workflow" id="efV-Tz-YYj"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="CUQ-qI-4ZT">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
@@ -109,7 +110,7 @@
         <!--Workflow-->
         <scene sceneID="RU6-05-nZ9">
             <objects>
-                <viewController id="bx8-Rk-bsx" sceneMemberID="viewController">
+                <viewController id="bx8-Rk-bsx" customClass="WorkflowViewController" customModule="Cash_In_Emergencies" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aVE-iT-KHj"/>
                         <viewControllerLayoutGuide type="bottom" id="OW8-iI-GgD"/>
@@ -118,22 +119,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tlN-5a-8Cj">
+                                <rect key="frame" x="0.0" y="70" width="375" height="432"/>
+                                <connections>
+                                    <segue destination="11B-N2-lw4" kind="embed" id="v2h-1b-0TD"/>
+                                </connections>
+                            </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vml-cS-1h9">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="okP-kn-HC9">
-                                        <rect key="frame" x="58.5" y="0.0" width="258" height="75"/>
+                                        <rect key="frame" x="27.5" y="0.0" width="320" height="70"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PYH-kj-Ky8">
-                                                <rect key="frame" x="0.0" y="15.5" width="90" height="44"/>
+                                                <rect key="frame" x="0.0" y="17.5" width="120" height="35"/>
                                                 <color key="backgroundColor" red="0.93998771910000001" green="0.080797113480000002" blue="0.14344987270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="44" id="kQC-a3-ZjW"/>
+                                                    <constraint firstAttribute="width" constant="120" id="hs3-tv-Aq7"/>
+                                                    <constraint firstAttribute="height" constant="35" id="kQC-a3-ZjW"/>
                                                 </constraints>
                                                 <state key="normal" title="TOOLKIT" image="segmented-toolkit"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="22"/>
+                                                        <real key="value" value="17.5"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="size" keyPath="edgeInsets">
                                                         <size key="value" width="10" height="0.0"/>
@@ -141,15 +149,16 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G9l-Yt-E1C">
-                                                <rect key="frame" x="110" y="15.5" width="148" height="44"/>
+                                                <rect key="frame" x="140" y="17.5" width="180" height="35"/>
                                                 <color key="backgroundColor" red="0.93998771910000001" green="0.080797113480000002" blue="0.14344987270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="44" id="BS9-W0-Zd2"/>
+                                                    <constraint firstAttribute="height" constant="35" id="BS9-W0-Zd2"/>
+                                                    <constraint firstAttribute="width" constant="180" id="jSO-yI-kSc"/>
                                                 </constraints>
                                                 <state key="normal" title="CRITICAL TOOLS" image="segmented-critical-tools"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="22"/>
+                                                        <real key="value" value="17.5"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </button>
@@ -162,30 +171,76 @@
                                     <constraint firstItem="okP-kn-HC9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Vml-cS-1h9" secondAttribute="leading" id="chh-CP-n6v"/>
                                     <constraint firstItem="okP-kn-HC9" firstAttribute="centerX" secondItem="Vml-cS-1h9" secondAttribute="centerX" id="gzT-DO-n7W"/>
                                     <constraint firstItem="okP-kn-HC9" firstAttribute="top" secondItem="Vml-cS-1h9" secondAttribute="top" id="q56-vA-yeW"/>
-                                    <constraint firstAttribute="height" constant="75" id="qPh-Cd-1Fo"/>
+                                    <constraint firstAttribute="height" constant="70" id="qPh-Cd-1Fo"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" red="0.39995324609999999" green="0.40002685789999998" blue="0.39994865660000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="point" keyPath="shadowOffset">
+                                        <point key="value" x="0.0" y="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Kt-60-1Zc">
-                                <rect key="frame" x="0.0" y="75" width="375" height="427"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Vml-cS-1h9" firstAttribute="leading" secondItem="i1U-Sp-OEV" secondAttribute="leading" id="2qx-dC-ua2"/>
-                            <constraint firstAttribute="trailing" secondItem="3Kt-60-1Zc" secondAttribute="trailing" id="Ekw-Jr-dOr"/>
-                            <constraint firstItem="OW8-iI-GgD" firstAttribute="top" secondItem="3Kt-60-1Zc" secondAttribute="bottom" id="FHl-Nf-7io"/>
-                            <constraint firstItem="3Kt-60-1Zc" firstAttribute="top" secondItem="Vml-cS-1h9" secondAttribute="bottom" id="M9W-le-qk7"/>
+                            <constraint firstAttribute="trailing" secondItem="tlN-5a-8Cj" secondAttribute="trailing" id="Cpl-ur-Img"/>
                             <constraint firstItem="Vml-cS-1h9" firstAttribute="top" secondItem="aVE-iT-KHj" secondAttribute="bottom" id="Riy-3t-MaR"/>
+                            <constraint firstItem="tlN-5a-8Cj" firstAttribute="top" secondItem="Vml-cS-1h9" secondAttribute="bottom" id="dhN-3i-kbh"/>
+                            <constraint firstItem="tlN-5a-8Cj" firstAttribute="leading" secondItem="i1U-Sp-OEV" secondAttribute="leading" id="dja-S1-FIx"/>
                             <constraint firstAttribute="trailing" secondItem="Vml-cS-1h9" secondAttribute="trailing" id="kao-iB-6zK"/>
-                            <constraint firstItem="3Kt-60-1Zc" firstAttribute="leading" secondItem="i1U-Sp-OEV" secondAttribute="leading" id="xGA-Vb-PUo"/>
+                            <constraint firstItem="OW8-iI-GgD" firstAttribute="top" secondItem="tlN-5a-8Cj" secondAttribute="bottom" id="ppH-ff-nHa"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Workflow" id="vCI-t3-zvu"/>
+                    <navigationItem key="navigationItem" title="Workflow" id="vCI-t3-zvu">
+                        <rightBarButtonItems>
+                            <barButtonItem title="Item" image="workflow-navigation-settings-icon" id="Bvl-tv-82s">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="workflow-navigation-download-icon" id="XOV-lp-qCA">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="criticalToolsButton" destination="G9l-Yt-E1C" id="DKd-Pz-8Q7"/>
+                        <outlet property="toolkitButton" destination="PYH-kj-Ky8" id="kCc-2s-PBJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nMf-wW-W4e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="929" y="-322"/>
+            <point key="canvasLocation" x="929" y="-919"/>
+        </scene>
+        <!--Toolkit Table View Controller-->
+        <scene sceneID="hjX-UX-qq0">
+            <objects>
+                <tableViewController id="11B-N2-lw4" customClass="ToolkitTableViewController" customModule="Cash_In_Emergencies" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="YMd-Op-Mdy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="432"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="TrE-1u-wCQ">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
+                        <connections>
+                            <outlet property="dataSource" destination="11B-N2-lw4" id="jgM-DF-JW0"/>
+                            <outlet property="delegate" destination="11B-N2-lw4" id="VXe-Af-qoW"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lVU-k9-oK1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="929" y="-243"/>
         </scene>
     </scenes>
     <resources>
@@ -193,5 +248,7 @@
         <image name="segmented-toolkit" width="16" height="14"/>
         <image name="tab-progress" width="22" height="21"/>
         <image name="tab-workflow" width="20" height="20"/>
+        <image name="workflow-navigation-download-icon" width="32" height="32"/>
+        <image name="workflow-navigation-settings-icon" width="32" height="32"/>
     </resources>
 </document>
