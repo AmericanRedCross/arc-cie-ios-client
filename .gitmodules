@@ -5,3 +5,7 @@
 	path = ThunderBasics
 	url = https://github.com/3sidedcube/iOS-ThunderBasics.git
 	branch = develop
+[submodule "ThunderTable"]
+	path = ThunderTable
+	url = https://github.com/3sidedcube/iOS-ThunderTable.git
+	branch = feature/swift
