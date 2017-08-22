@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		496E5D3E1F41E31900E4B90A /* ARCDM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4914C1F61F41E13300ECD1D6 /* ARCDM.framework */; };
 		496E5D3F1F41E31900E4B90A /* ARCDM.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4914C1F61F41E13300ECD1D6 /* ARCDM.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		498BAD701F4AE45F00F49660 /* ThunderBasics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49DA86611F4AE3B600BB49B4 /* ThunderBasics.framework */; };
+		498BAD711F4AE45F00F49660 /* ThunderBasics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49DA86611F4AE3B600BB49B4 /* ThunderBasics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49BCFFEC1F4455BD00F68A40 /* structure.json in Resources */ = {isa = PBXBuildFile; fileRef = 49BCFFEB1F4455A900F68A40 /* structure.json */; };
 		49BCFFEE1F4479B600F68A40 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49BCFFED1F4479B600F68A40 /* Onboarding.storyboard */; };
 		49BCFFF21F4487EB00F68A40 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BCFFF11F4487EB00F68A40 /* OnboardingViewController.swift */; };
@@ -42,6 +44,27 @@
 			remoteGlobalIDString = 49A7C9BF1F41BD54006AB66E;
 			remoteInfo = ARCDM;
 		};
+		498BAD721F4AE45F00F49660 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 49DA865A1F4AE3B600BB49B4 /* ThunderBasics.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = C272EF8319C831AB004BD339;
+			remoteInfo = ThunderBasics;
+		};
+		49DA86601F4AE3B600BB49B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 49DA865A1F4AE3B600BB49B4 /* ThunderBasics.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C272EF8419C831AB004BD339;
+			remoteInfo = ThunderBasics;
+		};
+		49DA86621F4AE3B600BB49B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 49DA865A1F4AE3B600BB49B4 /* ThunderBasics.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C272EF8F19C831AC004BD339;
+			remoteInfo = ThunderBasicsTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,6 +74,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				498BAD711F4AE45F00F49660 /* ThunderBasics.framework in Embed Frameworks */,
 				496E5D3F1F41E31900E4B90A /* ARCDM.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -64,6 +88,7 @@
 		49BCFFED1F4479B600F68A40 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		49BCFFF01F4487A100F68A40 /* onboarding_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = onboarding_video.mp4; sourceTree = "<group>"; };
 		49BCFFF11F4487EB00F68A40 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		49DA865A1F4AE3B600BB49B4 /* ThunderBasics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ThunderBasics.xcodeproj; path = ThunderBasics/ThunderBasics.xcodeproj; sourceTree = SOURCE_ROOT; };
 		49FE8D7F1F419F6900B73731 /* Cash In Emergencies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cash In Emergencies.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49FE8D821F419F6900B73731 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49FE8D841F419F6900B73731 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				498BAD701F4AE45F00F49660 /* ThunderBasics.framework in Frameworks */,
 				496E5D3E1F41E31900E4B90A /* ARCDM.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -101,6 +127,15 @@
 				49BCFFEB1F4455A900F68A40 /* structure.json */,
 			);
 			path = Files;
+			sourceTree = "<group>";
+		};
+		49DA865B1F4AE3B600BB49B4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				49DA86611F4AE3B600BB49B4 /* ThunderBasics.framework */,
+				49DA86631F4AE3B600BB49B4 /* ThunderBasicsTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		49FE8D761F419F6800B73731 = {
@@ -130,6 +165,7 @@
 				49FE8D8B1F419F6900B73731 /* LaunchScreen.storyboard */,
 				49BCFFED1F4479B600F68A40 /* Onboarding.storyboard */,
 				49BCFFEF1F44879600F68A40 /* Files */,
+				49DA865A1F4AE3B600BB49B4 /* ThunderBasics.xcodeproj */,
 				4914C1F01F41E13200ECD1D6 /* ARCDM.xcodeproj */,
 				49FE8D8E1F419F6900B73731 /* Info.plist */,
 			);
@@ -152,6 +188,7 @@
 			);
 			dependencies = (
 				496E5D411F41E31900E4B90A /* PBXTargetDependency */,
+				498BAD731F4AE45F00F49660 /* PBXTargetDependency */,
 			);
 			name = "Cash In Emergencies";
 			productName = "Cash In Emergencies";
@@ -191,6 +228,10 @@
 					ProductGroup = 4914C1F11F41E13200ECD1D6 /* Products */;
 					ProjectRef = 4914C1F01F41E13200ECD1D6 /* ARCDM.xcodeproj */;
 				},
+				{
+					ProductGroup = 49DA865B1F4AE3B600BB49B4 /* Products */;
+					ProjectRef = 49DA865A1F4AE3B600BB49B4 /* ThunderBasics.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -212,6 +253,20 @@
 			fileType = wrapper.cfbundle;
 			path = ARCDMTests.xctest;
 			remoteRef = 4914C1F71F41E13300ECD1D6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		49DA86611F4AE3B600BB49B4 /* ThunderBasics.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ThunderBasics.framework;
+			remoteRef = 49DA86601F4AE3B600BB49B4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		49DA86631F4AE3B600BB49B4 /* ThunderBasicsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ThunderBasicsTests.xctest;
+			remoteRef = 49DA86621F4AE3B600BB49B4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -250,6 +305,11 @@
 			isa = PBXTargetDependency;
 			name = ARCDM;
 			targetProxy = 496E5D401F41E31900E4B90A /* PBXContainerItemProxy */;
+		};
+		498BAD731F4AE45F00F49660 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ThunderBasics;
+			targetProxy = 498BAD721F4AE45F00F49660 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -381,6 +441,7 @@
 		49FE8D921F419F6900B73731 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = UPSZGU42YP;
 				INFOPLIST_FILE = "Cash In Emergencies/Info.plist";
@@ -395,6 +456,7 @@
 		49FE8D931F419F6900B73731 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = UPSZGU42YP;
 				INFOPLIST_FILE = "Cash In Emergencies/Info.plist";
