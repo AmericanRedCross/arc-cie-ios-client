@@ -25,5 +25,10 @@ extension Module: Row {
     
     public func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
         
+        if let _cell = cell as? ModuleTableViewCell {
+           
+            _cell.moduleBackgroundImageView.image = UIImage(named: "module-backdrop-\(hierarchy)")
+            _cell.moduleIdentifierLabel.text = String(describing: hierarchy)
+        }
     }
 }

@@ -10,6 +10,9 @@ import UIKit
 
 class ModuleTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var moduleIdentifierLabel: UILabel!
+    @IBOutlet weak var moduleBackgroundImageView: GradientImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

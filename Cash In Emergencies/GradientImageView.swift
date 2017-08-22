@@ -17,7 +17,7 @@ class GradientImageView: UIImageView {
     @IBInspectable var leftColor: UIColor = .clear
     
     @IBInspectable var rightColor: UIColor = .clear
-    
+        
     @IBInspectable var topToBottomGradient: Bool = false
     
     @IBInspectable var topColor: UIColor = .clear
@@ -36,7 +36,7 @@ class GradientImageView: UIImageView {
             rightToLeftLayer.startPoint = CGPoint(x: 0, y: 0.5)
             rightToLeftLayer.endPoint = CGPoint(x: 1, y: 0.5)
             
-            layer.insertSublayer(rightToLeftLayer, above: layer)
+            layer.addSublayer(rightToLeftLayer)
             rightToLeftLayer.frame = frame
         }
         
@@ -48,7 +48,7 @@ class GradientImageView: UIImageView {
             topToBottomLayer.startPoint = CGPoint(x: 0.5, y: 0)
             topToBottomLayer.endPoint = CGPoint(x: 0.5, y: 1)
             
-            layer.insertSublayer(topToBottomLayer, above: layer)
+            layer.addSublayer(topToBottomLayer)
             topToBottomLayer.frame = frame
         }
     }

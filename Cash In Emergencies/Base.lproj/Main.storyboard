@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,6 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" name="mainRedColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="JT4-cn-WFf" kind="relationship" relationship="viewControllers" id="J4J-2c-JJK"/>
@@ -65,7 +67,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="bRH-wB-pEK">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.91620498900000003" green="0.077383629979999993" blue="0.1409552395" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" name="mainRedColor"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </textAttributes>
@@ -89,7 +91,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="CUQ-qI-4ZT">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.91620498895645142" green="0.077383629977703094" blue="0.14095523953437805" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" name="mainRedColor"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -133,7 +135,7 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PYH-kj-Ky8">
                                                 <rect key="frame" x="0.0" y="17.5" width="120" height="35"/>
-                                                <color key="backgroundColor" red="0.93998771910000001" green="0.080797113480000002" blue="0.14344987270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" name="mainRedColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="120" id="hs3-tv-Aq7"/>
                                                     <constraint firstAttribute="height" constant="35" id="kQC-a3-ZjW"/>
@@ -150,7 +152,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G9l-Yt-E1C">
                                                 <rect key="frame" x="140" y="17.5" width="180" height="35"/>
-                                                <color key="backgroundColor" red="0.93998771910000001" green="0.080797113480000002" blue="0.14344987270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" name="mainRedColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="BS9-W0-Zd2"/>
                                                     <constraint firstAttribute="width" constant="180" id="jSO-yI-kSc"/>
@@ -250,5 +252,8 @@
         <image name="tab-workflow" width="20" height="20"/>
         <image name="workflow-navigation-download-icon" width="32" height="32"/>
         <image name="workflow-navigation-settings-icon" width="32" height="32"/>
+        <namedColor name="mainRedColor">
+            <color red="0.87800002098083496" green="0.11599999666213989" blue="0.18199999630451202" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

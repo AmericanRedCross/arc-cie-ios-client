@@ -19,11 +19,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="500" height="111.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="04P-HM-M7O">
-                        <rect key="frame" x="0.0" y="-40" width="500" height="151.5"/>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="04P-HM-M7O">
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="111.5"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="module-backdrop-1" translatesAutoresizingMaskIntoConstraints="NO" id="VHZ-Ge-Htj" customClass="GradientImageView" customModule="Cash_In_Emergencies" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="500" height="151"/>
+                                <rect key="frame" x="0.0" y="0.0" width="500" height="111"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rightToLeftGradient" value="YES"/>
                                     <userDefinedRuntimeAttribute type="color" keyPath="leftColor">
@@ -99,10 +99,14 @@
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4ag-iM-Ug1" secondAttribute="trailing" id="eOZ-9D-o1e"/>
                     <constraint firstItem="w3j-3T-oJh" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="rFx-pa-BZi"/>
                     <constraint firstAttribute="trailing" secondItem="w3j-3T-oJh" secondAttribute="trailing" constant="8" id="vch-8X-4xZ"/>
-                    <constraint firstItem="04P-HM-M7O" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="-40" id="x2B-kx-ZlR"/>
+                    <constraint firstItem="04P-HM-M7O" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="x2B-kx-ZlR"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="moduleBackgroundImageView" destination="VHZ-Ge-Htj" id="X7h-oT-iTD"/>
+                <outlet property="moduleIdentifierLabel" destination="lK2-9s-FEd" id="dtN-5b-Ppu"/>
+            </connections>
             <point key="canvasLocation" x="124" y="138.5"/>
         </tableViewCell>
     </objects>
