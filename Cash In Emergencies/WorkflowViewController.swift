@@ -15,6 +15,25 @@ class WorkflowViewController: UIViewController {
     @IBOutlet weak var toolkitButton: UIButton!
     @IBOutlet weak var criticalToolsButton: UIButton!
     
+    var expandedModuleIndexes = [Int]()
+//    var expandedSubmoduleIndexes = 
+    
+    /// A compiled array of sections to display. This computed variable works out which sections are collapsed or expanded and arranges the views appropriately
+    var displayableModuleObjects: [TableSection]? {
+        
+        var displayableRows = [Row]()
+    
+        let moduleManager = ModuleManager()
+        
+        if let _modules = moduleManager.modules {
+            let section = TableSection(rows: _modules)
+            
+            return [section]
+        }
+        return nil
+        
+    }
+    
     //    override var childViewControllerForStatusBarStyle: UIViewController? {
 //        return toolkitTableViewController
 //    }
@@ -46,17 +65,10 @@ class WorkflowViewController: UIViewController {
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         }
-        
-        let moduleManager = ModuleManager()
-        
-        if let _modules = moduleManager.modules {
-            let section = TableSection(rows: _modules)
-            
-            toolkitTableViewController?.data = [section]
+
+        if let _displayableObjects = displayableModuleObjects {
+            toolkitTableViewController?.data = _displayableObjects
         }
-
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

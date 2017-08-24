@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13178.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hx0-YB-2FM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hx0-YB-2FM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -206,6 +206,9 @@
                         <rightBarButtonItems>
                             <barButtonItem title="Item" image="workflow-navigation-settings-icon" id="Bvl-tv-82s">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="m7G-Fw-HpD" kind="show" id="Q3L-RX-xVv"/>
+                                </connections>
                             </barButtonItem>
                             <barButtonItem title="Item" image="workflow-navigation-download-icon" id="XOV-lp-qCA">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -220,6 +223,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nMf-wW-W4e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="929" y="-919"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="cdy-Gi-2jE">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="m7G-Fw-HpD" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lTv-bv-3sc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1596" y="-1345"/>
         </scene>
         <!--Toolkit Table View Controller-->
         <scene sceneID="hjX-UX-qq0">
@@ -253,7 +264,7 @@
         <image name="workflow-navigation-download-icon" width="32" height="32"/>
         <image name="workflow-navigation-settings-icon" width="32" height="32"/>
         <namedColor name="mainRedColor">
-            <color red="0.87800002098083496" green="0.11599999666213989" blue="0.18199999630451202" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.92941176470588238" green="0.10588235294117647" blue="0.1803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
