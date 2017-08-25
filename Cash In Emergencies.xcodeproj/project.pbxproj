@@ -26,6 +26,8 @@
 		49BCFFEE1F4479B600F68A40 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49BCFFED1F4479B600F68A40 /* Onboarding.storyboard */; };
 		49BCFFF21F4487EB00F68A40 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BCFFF11F4487EB00F68A40 /* OnboardingViewController.swift */; };
 		49BCFFF31F44895500F68A40 /* onboarding_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 49BCFFF01F4487A100F68A40 /* onboarding_video.mp4 */; };
+		49C2DE7D1F502B5E00DCFBB5 /* ContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C2DE7C1F502B5E00DCFBB5 /* ContentController.swift */; };
+		49C2DE8B1F502C7000DCFBB5 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C2DE8A1F502C7000DCFBB5 /* Utilities.swift */; };
 		49FE8D831F419F6900B73731 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE8D821F419F6900B73731 /* AppDelegate.swift */; };
 		49FE8D851F419F6900B73731 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE8D841F419F6900B73731 /* ViewController.swift */; };
 		49FE8D881F419F6900B73731 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49FE8D861F419F6900B73731 /* Main.storyboard */; };
@@ -131,6 +133,8 @@
 		49BCFFED1F4479B600F68A40 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		49BCFFF01F4487A100F68A40 /* onboarding_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = onboarding_video.mp4; sourceTree = "<group>"; };
 		49BCFFF11F4487EB00F68A40 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		49C2DE7C1F502B5E00DCFBB5 /* ContentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentController.swift; sourceTree = "<group>"; };
+		49C2DE8A1F502C7000DCFBB5 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		49DA865A1F4AE3B600BB49B4 /* ThunderBasics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ThunderBasics.xcodeproj; path = ThunderBasics/ThunderBasics.xcodeproj; sourceTree = SOURCE_ROOT; };
 		49FE8D7F1F419F6900B73731 /* Cash In Emergencies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cash In Emergencies.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49FE8D821F419F6900B73731 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -210,6 +214,8 @@
 		49FE8D811F419F6900B73731 /* Cash In Emergencies */ = {
 			isa = PBXGroup;
 			children = (
+				49C2DE7C1F502B5E00DCFBB5 /* ContentController.swift */,
+				49C2DE8A1F502C7000DCFBB5 /* Utilities.swift */,
 				491640991F4C71CA0084CEE2 /* GradientImageView.swift */,
 				491640811F4C38230084CEE2 /* ARCNavigationController.swift */,
 				497122271F4C23A1000786AE /* ToolkitTableViewController.swift */,
@@ -381,6 +387,8 @@
 				49BCFFF21F4487EB00F68A40 /* OnboardingViewController.swift in Sources */,
 				4971222A1F4C2844000786AE /* ModuleDisplayable.swift in Sources */,
 				4971222C1F4C2CF3000786AE /* WorkflowViewController.swift in Sources */,
+				49C2DE7D1F502B5E00DCFBB5 /* ContentController.swift in Sources */,
+				49C2DE8B1F502C7000DCFBB5 /* Utilities.swift in Sources */,
 				4916408E1F4C5C3A0084CEE2 /* ModuleTableViewCell.swift in Sources */,
 				496C49D11F4EEDA300AD05D1 /* SettingsTableViewController.swift in Sources */,
 				49FE8D831F419F6900B73731 /* AppDelegate.swift in Sources */,
