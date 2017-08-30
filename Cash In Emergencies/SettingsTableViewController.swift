@@ -52,6 +52,12 @@ class SettingsTableViewController: UITableViewController {
             switch indexPath.row {
             case 0:
                 //Play video
+                let onboarding = UIStoryboard(name: "Onboarding", bundle: Bundle.main).instantiateInitialViewController()
+                
+                if let _onboarding = onboarding {
+                    present(_onboarding, animated: true, completion: nil)
+                }
+                
                 return
             case 1:
                 handleResetData()
