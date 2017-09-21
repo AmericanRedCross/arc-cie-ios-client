@@ -1,19 +1,15 @@
 //
-//  ModuleTableViewCell.swift
+//  ModuleStepTableViewCell.swift
 //  Cash In Emergencies
 //
-//  Created by Matthew Cheetham on 22/08/2017.
+//  Created by Matthew Cheetham on 21/09/2017.
 //  Copyright © 2017 3 SIDED CUBE. All rights reserved.
 //
 
 import UIKit
 
-class ModuleTableViewCell: UITableViewCell {
+class ModuleStepTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var moduleTitleLabel: UILabel!
-    @IBOutlet weak var moduleIdentifierLabel: UILabel!
-    @IBOutlet weak var moduleBackgroundImageView: GradientImageView!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "module_2_backdrop-2.png",
+      "filename" : "check off.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "module_2_backdrop-1.png",
+      "filename" : "check off@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "module_2_backdrop.png",
+      "filename" : "check off@3x.png",
       "scale" : "3x"
     }
   ],

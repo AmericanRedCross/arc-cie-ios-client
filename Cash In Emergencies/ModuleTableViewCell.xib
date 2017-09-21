@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13178.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,7 +23,7 @@
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="04P-HM-M7O">
                         <rect key="frame" x="0.0" y="0.0" width="500" height="111.5"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="module-backdrop-1" translatesAutoresizingMaskIntoConstraints="NO" id="VHZ-Ge-Htj" customClass="GradientImageView" customModule="Cash_In_Emergencies" customModuleProvider="target">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="module-backdrop-0" translatesAutoresizingMaskIntoConstraints="NO" id="VHZ-Ge-Htj" customClass="GradientImageView" customModule="Cash_In_Emergencies" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="500" height="111"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rightToLeftGradient" value="YES"/>
@@ -93,7 +94,7 @@
                     <constraint firstItem="04P-HM-M7O" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Eva-mV-KqH"/>
                     <constraint firstAttribute="trailing" secondItem="04P-HM-M7O" secondAttribute="trailing" id="Lki-Hz-28x"/>
                     <constraint firstAttribute="bottom" secondItem="04P-HM-M7O" secondAttribute="bottom" id="OIO-v0-0pr"/>
-                    <constraint firstItem="4ag-iM-Ug1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="PFs-R1-iXW"/>
+                    <constraint firstItem="4ag-iM-Ug1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="PFs-R1-iXW"/>
                     <constraint firstItem="4ag-iM-Ug1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="UGV-Lr-2DC"/>
                     <constraint firstAttribute="bottom" secondItem="4ag-iM-Ug1" secondAttribute="bottom" id="b5C-jB-7Zz"/>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4ag-iM-Ug1" secondAttribute="trailing" id="eOZ-9D-o1e"/>
@@ -106,12 +107,13 @@
             <connections>
                 <outlet property="moduleBackgroundImageView" destination="VHZ-Ge-Htj" id="X7h-oT-iTD"/>
                 <outlet property="moduleIdentifierLabel" destination="lK2-9s-FEd" id="dtN-5b-Ppu"/>
+                <outlet property="moduleTitleLabel" destination="eJ5-zh-HiW" id="kBb-fx-Wcu"/>
             </connections>
             <point key="canvasLocation" x="124" y="138.5"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="module-backdrop-1" width="360" height="155"/>
+        <image name="module-backdrop-0" width="360" height="155"/>
         <image name="workflow-cell-accessory" width="32" height="32"/>
     </resources>
 </document>

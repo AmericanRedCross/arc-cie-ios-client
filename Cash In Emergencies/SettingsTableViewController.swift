@@ -7,14 +7,61 @@
 //
 
 import UIKit
+import AVKit
+import ARCDM
+import ThunderBasics
 
 class SettingsTableViewController: UITableViewController {
-
+    
+    @IBOutlet weak var contentAvailableLabel: UILabel!
+    
+    @IBOutlet weak var downloadButton: UIButton!
+    
+    let contentController = ContentController()
+    
+    var bundleInformation: BundleInformation?
+    
+    func redraw() {
+        
+        //        contentAvailableLabel?.text = bundleInformation?.identifier
+        
+        if let publishDate = bundleInformation?.publishDate, publishDate.timeIntervalSince1970 > 0 {
+            
+            downloadButton.isHidden = false
+            contentAvailableLabel.text = "New Content Available"
+        }
+        //        tableView.red
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        }
+        
+        contentController.getBundleInformation(for: "1") { (result) in
+            
+            switch result {
+            case .success(let information):
+                
+                self.bundleInformation = information
+                self.redraw()
+                //                if let _url = information.downloadURL {
+                //
+                //                    self.contentController.downloadBundle(from: _url, progress: { (progress, bytesDownloaded, totalBytes) in
+                //                        print(progress)
+                //                    }, completion: { (result) in
+                //                        print(result)
+                //
+                //
+                //                    })
+                //                }
+                
+            case .failure(let error):
+                print(error)
+            }
+            
         }
     }
     
@@ -52,11 +99,7 @@ class SettingsTableViewController: UITableViewController {
             switch indexPath.row {
             case 0:
                 //Play video
-                let onboarding = UIStoryboard(name: "Onboarding", bundle: Bundle.main).instantiateInitialViewController()
-                
-                if let _onboarding = onboarding {
-                    present(_onboarding, animated: true, completion: nil)
-                }
+                handlePlayVideo()
                 
                 return
             case 1:
@@ -64,6 +107,7 @@ class SettingsTableViewController: UITableViewController {
                 return
             case 2:
                 //Change language
+                handleLanguagePicker()
                 return
             default:
                 return
@@ -72,5 +116,70 @@ class SettingsTableViewController: UITableViewController {
             return
         }
         
+    }
+    @IBAction func handleDownloadButton(_ sender: UIButton) {
+        
+        MDCHUDActivityView.start(in: view.window)
+        sender.isEnabled = false
+        
+        if let _url = bundleInformation?.downloadURL {
+            
+            self.contentController.downloadBundle(from: _url, progress: { (progress, bytesDownloaded, totalBytes) in
+                print(progress)
+            }, completion: { (result) in
+                print(result)
+                
+                OperationQueue.main.addOperation({
+                    sender.isEnabled = true
+                    MDCHUDActivityView.finish(in: self.view.window)
+                })
+            })
+        }
+        
+    }
+    
+    func handlePlayVideo() {
+        
+        if let _fileURL = Bundle.main.url(forResource: "onboarding_video", withExtension: "mp4") {
+            
+            let player = AVPlayer(url: _fileURL)
+            
+            let playerView = AVPlayerViewController()
+            playerView.showsPlaybackControls = true
+            if #available(iOS 11.0, *) {
+                playerView.exitsFullScreenWhenPlaybackEnds = true
+            } else {
+                
+                NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying(note:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player.currentItem)
+            }
+            
+            playerView.player = player
+            
+            present(playerView, animated: true, completion: nil)
+            
+            player.play()
+        }
+    }
+    
+    @objc func playerDidFinishPlaying(note: NSNotification) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func handleLanguagePicker() {
+    
+        let languagePicker = UIAlertController(title: "Select Language", message: nil, preferredStyle: .actionSheet)
+        
+        if let languageOptions = bundleInformation?.availableLanguages {
+            
+            for language in languageOptions {
+                languagePicker.addAction(UIAlertAction(title: language, style: .default, handler: { (action) in
+                    
+                }))
+            }
+            
+            languagePicker.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        }
+        
+        showDetailViewController(languagePicker, sender: self)
     }
 }

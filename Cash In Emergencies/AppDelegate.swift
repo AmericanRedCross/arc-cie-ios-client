@@ -7,15 +7,40 @@
 //
 
 import UIKit
+import ARCDM
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+//    let contentController = ContentController()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+//        contentController.getBundleInformation(for: "2") { (result) in
+//
+//            switch result {
+//            case .success(let information):
+//
+//                if let _url = information.downloadURL {
+//
+//                    self.contentController.downloadBundle(from: _url, progress: { (progress, bytesDownloaded, totalBytes) in
+//                        print(progress)
+//                    }, completion: { (result) in
+//                        print(result)
+//
+//
+//                    })
+//                }
+//
+//            case .failure(let error):
+//                print(error)
+//            }
+//
+//
+//        }
         return true
     }
 
