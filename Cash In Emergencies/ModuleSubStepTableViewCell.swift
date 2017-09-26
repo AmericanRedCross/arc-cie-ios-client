@@ -9,7 +9,10 @@
 import UIKit
 
 class ModuleSubStepTableViewCell: UITableViewCell {
-
+    
+    @IBOutlet weak var substepHierarchyLabel: UILabel!
+    @IBOutlet weak var substepTitleLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

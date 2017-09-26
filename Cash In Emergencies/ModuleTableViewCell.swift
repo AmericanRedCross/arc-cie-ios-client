@@ -13,6 +13,7 @@ class ModuleTableViewCell: UITableViewCell {
     @IBOutlet weak var moduleTitleLabel: UILabel!
     @IBOutlet weak var moduleIdentifierLabel: UILabel!
     @IBOutlet weak var moduleBackgroundImageView: GradientImageView!
+    @IBOutlet weak var moduleChevronButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

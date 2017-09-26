@@ -18,6 +18,8 @@ class ModuleView: ModuleConformable, Row {
     
     var internalModule: Module?
     
+    private var toolkitTableViewController: ToolkitTableViewController?
+    
     func module() -> Module? {
         return internalModule
     }
@@ -39,13 +41,25 @@ class ModuleView: ModuleConformable, Row {
         set {}
     }
     
+    @objc func handleToggle(of button: UIButton) {
+        
+        if let _tableView = toolkitTableViewController, let _module = internalModule {
+            
+            _tableView.handleToggle(of: _module)
+        }
+        
+    }
+    
     public func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
+        
+        toolkitTableViewController = tableViewController as? ToolkitTableViewController
         
         if let _cell = cell as? ModuleTableViewCell {
             
             if let _module = internalModule {
                 _cell.moduleTitleLabel.text = _module.moduleTitle
                 _cell.moduleBackgroundImageView.image = UIImage(named: "module-backdrop-\(_module.order)")
+                _cell.moduleChevronButton.addTarget(self, action: #selector(handleToggle(of:)), for: .primaryActionTriggered)
                 
                 if let _hierarchy = _module.metadata?["hierarchy"] as? String {
                     _cell.moduleIdentifierLabel.text = _hierarchy
@@ -80,6 +94,17 @@ class Step: ModuleConformable, Row {
         }
         set {}
     }
+    
+    func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
+        
+        if let _cell = cell as? ModuleStepTableViewCell {
+            
+            _cell.stepHierarchyLabel.text = internalModule?.metadata?["hierarchy"] as? String
+            _cell.stepTitleLabel.text = internalModule?.moduleTitle
+            _cell.stepRoadmapButton.isHidden = internalModule?.content == nil
+        }
+        
+    }
 }
 
 class SubStep: ModuleConformable, Row {
@@ -105,12 +130,86 @@ class SubStep: ModuleConformable, Row {
         }
         set {}
     }
+    
+    func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
+        
+        if let _cell = cell as? ModuleSubStepTableViewCell {
+            
+            _cell.substepHierarchyLabel.text = internalModule?.metadata?["hierarchy"] as? String
+            _cell.substepTitleLabel.text = internalModule?.moduleTitle
+        }
+        
+    }
 }
 
 class Tool: ModuleConformable, Row {
     
+    var internalModule: Module?
+    
     func module() -> Module? {
-        return nil
+        return internalModule
+    }
+    
+    //INIT
+    init(with module: Module) {
+        internalModule = module
+    }
+    
+    var cellClass: AnyClass? {
+        return ToolTableViewCell.self
+    }
+    
+    var accessoryType: UITableViewCellAccessoryType? {
+        get {
+            return UITableViewCellAccessoryType.none
+        }
+        set {}
+    }
+    
+    func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
+        
+        if let _cell = cell as? ToolTableViewCell {
+            
+            _cell.toolTitleLabel.text = internalModule?.moduleTitle
+            
+            if let _firstAttachment = internalModule?.attachments?.first {
+                _cell.toolDescriptionLabel.text = _firstAttachment.description
+                _cell.toolImageView.image = _firstAttachment.mimeImage()
+            }
+            
+            _cell.toolCriticalToolButton.isHidden = true
+            
+            if let _criticalTool = internalModule?.metadata?["critical_path"] as? Bool {
+                if _criticalTool {
+                    _cell.toolCriticalToolButton.isHidden = false
+                }
+            }
+        }
+    }
+}
+
+extension FileDescriptor {
+    
+    func mimeImage() -> UIImage? {
+        
+        guard let mimeType = mime else {
+            return #imageLiteral(resourceName: "mime_misc")
+        }
+        
+        switch mimeType {
+        case "text/plain", "text/richtext", "application/vnd.oasis.opendocument.text", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+            return #imageLiteral(resourceName: "mime_doc")
+        case "application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "application/vnd.oasis.opendocument.spreadsheet":
+            return #imageLiteral(resourceName: "mime_xls")
+        case "application/vnd.ms-powerpoint", "application/vnd.openxmlformats-officedocument.presentationml.presentation", "application/vnd.oasis.opendocument.presentation":
+            return #imageLiteral(resourceName: "mime_ppt")
+        case "application/pdf":
+            return #imageLiteral(resourceName: "mime_pdf")
+        case "application/zip":
+            return #imageLiteral(resourceName: "mime_zip")
+        default:
+            return #imageLiteral(resourceName: "mime_misc")
+        }
     }
 }
 
@@ -118,93 +217,6 @@ class WorkflowViewController: UIViewController {
     
     @IBOutlet weak var toolkitButton: UIButton!
     @IBOutlet weak var criticalToolsButton: UIButton!
-    
-    /// Any identifiers in this list are modules that should be expanded. The children of these modules will be included in `displayableModuleObjects`
-    var expandedModuleIndexes = [Int]()
-//    var expandedSubmoduleIndexes = 
-    
-    /// A dictionary where the key is the module identifier of every module (recursively) through the structure.json and it's value being an integer of what depth level it is app. Zero based.
-    var moduleDepthMap = [Int: Int]()
-    
-    func mapTree(for modules: [Module], level: Int) {
-        
-        for module in modules {
-            
-            if let _moduleID = module.identifier {
-                moduleDepthMap[_moduleID] = level
-            }
-            
-            if let _submodules = module.directories {
-                mapTree(for: _submodules, level: level + 1)
-            }
-        }
-    }
-    
-    /// A compiled array of sections to display. This computed variable works out which sections are collapsed or expanded and arranges the views appropriately
-    var displayableModuleObjects: [TableSection]? {
-        
-        var displayableSections = [TableSection]()
-        
-            guard let modules = ModuleManager().modules else {
-                return displayableSections
-            }
-        
-            for _module in modules {
-                
-                var rows = [Row]()
-                
-                //Add top level row
-                let moduleView = ModuleView(with: _module)
-                rows.append(moduleView)
-                
-                //Add sub rows if expanded
-                //TODO: Check for expanding
-                if let _moduleChildren = _module.directories {
-                    
-                    for moduleStep in _moduleChildren {
-                        
-                        let moduleStepView = Step(with: moduleStep)
-                        rows.append(moduleStepView)
-                        
-                        //Check if the step has substeps and add them
-                        //TODO: Check for expanding
-                        
-                        if let _moduleStepChildren = moduleStep.directories {
-                            
-                            for moduleSubStep in _moduleStepChildren {
-                                
-                                let moduleSubStepView = SubStep(with: moduleSubStep)
-                                rows.append(moduleSubStepView)
-                            }
-                        }
-                    }
-                }
-                
-                let moduleSection = TableSection(rows: rows, header: nil, footer: nil, selectionHandler: nil)
-                displayableSections.append(moduleSection)
-                
-            }
-        
-        //Update stuff
-        moduleDepthMap.removeAll()
-        mapTree(for: modules, level: 0)
-        
-        return displayableSections
-    
-//        let moduleManager = ModuleManager()
-//        
-//        if let _modules = moduleManager.modules {
-//            let section = TableSection(rows: _modules)
-//            
-//            return [section]
-//        }
-//        return nil
-        
-    }
-    
-    //    override var childViewControllerForStatusBarStyle: UIViewController? {
-//        return toolkitTableViewController
-//    }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -233,10 +245,6 @@ class WorkflowViewController: UIViewController {
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         }
-
-        if let _displayableObjects = displayableModuleObjects {
-            toolkitTableViewController?.data = _displayableObjects
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -244,15 +252,4 @@ class WorkflowViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

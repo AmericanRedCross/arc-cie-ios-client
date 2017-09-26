@@ -1,18 +1,19 @@
 //
-//  ModuleStepTableViewCell.swift
-//  Cash In Emergencies
+//  ToolTableViewCell.swift
+//  ARCDM
 //
-//  Created by Matthew Cheetham on 21/09/2017.
+//  Created by Matthew Cheetham on 22/09/2017.
 //  Copyright © 2017 3 SIDED CUBE. All rights reserved.
 //
 
 import UIKit
 
-class ModuleStepTableViewCell: UITableViewCell {
+class ToolTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var stepHierarchyLabel: UILabel!
-    @IBOutlet weak var stepTitleLabel: UILabel!
-    @IBOutlet weak var stepRoadmapButton: UIButton!
+    @IBOutlet weak var toolImageView: UIImageView!
+    @IBOutlet weak var toolTitleLabel: UILabel!
+    @IBOutlet weak var toolDescriptionLabel: UILabel!
+    @IBOutlet weak var toolCriticalToolButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

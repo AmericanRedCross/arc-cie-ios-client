@@ -24,6 +24,8 @@
 		497122281F4C23A1000786AE /* ToolkitTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497122271F4C23A1000786AE /* ToolkitTableViewController.swift */; };
 		4971222A1F4C2844000786AE /* ModuleDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497122291F4C2844000786AE /* ModuleDisplayable.swift */; };
 		4971222C1F4C2CF3000786AE /* WorkflowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4971222B1F4C2CF3000786AE /* WorkflowViewController.swift */; };
+		497DF1921F74FC5800367A94 /* ToolTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497DF1911F74FC5800367A94 /* ToolTableViewCell.swift */; };
+		497DF1931F753D1300367A94 /* ToolTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 497DF1881F74FC5700367A94 /* ToolTableViewCell.xib */; };
 		498BAD701F4AE45F00F49660 /* ThunderBasics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49DA86611F4AE3B600BB49B4 /* ThunderBasics.framework */; };
 		498BAD711F4AE45F00F49660 /* ThunderBasics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49DA86611F4AE3B600BB49B4 /* ThunderBasics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49A418601F73EA96004C1F61 /* ModuleSubStepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A4185E1F73EA96004C1F61 /* ModuleSubStepTableViewCell.swift */; };
@@ -175,6 +177,8 @@
 		497122271F4C23A1000786AE /* ToolkitTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolkitTableViewController.swift; sourceTree = "<group>"; };
 		497122291F4C2844000786AE /* ModuleDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleDisplayable.swift; sourceTree = "<group>"; };
 		4971222B1F4C2CF3000786AE /* WorkflowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowViewController.swift; sourceTree = "<group>"; };
+		497DF1881F74FC5700367A94 /* ToolTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToolTableViewCell.xib; sourceTree = "<group>"; };
+		497DF1911F74FC5800367A94 /* ToolTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolTableViewCell.swift; sourceTree = "<group>"; };
 		4987DB7D1F4C201900466297 /* ThunderTable.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ThunderTable.xcodeproj; path = ThunderTable/ThunderTable.xcodeproj; sourceTree = SOURCE_ROOT; };
 		49A4185E1F73EA96004C1F61 /* ModuleSubStepTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleSubStepTableViewCell.swift; sourceTree = "<group>"; };
 		49A4185F1F73EA96004C1F61 /* ModuleStepTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModuleStepTableViewCell.xib; sourceTree = "<group>"; };
@@ -289,6 +293,8 @@
 		49FE8D811F419F6900B73731 /* Cash In Emergencies */ = {
 			isa = PBXGroup;
 			children = (
+				497DF1911F74FC5800367A94 /* ToolTableViewCell.swift */,
+				497DF1881F74FC5700367A94 /* ToolTableViewCell.xib */,
 				49BF8DD61F73C5BC00A1890F /* ModuleStepTableViewCell.swift */,
 				49BF8DD71F73C5BC00A1890F /* ModuleSubStepTableViewCell.xib */,
 				49C2DE8A1F502C7000DCFBB5 /* Utilities.swift */,
@@ -491,6 +497,7 @@
 				49FE8D8D1F419F6900B73731 /* LaunchScreen.storyboard in Resources */,
 				49A418611F73EA96004C1F61 /* ModuleStepTableViewCell.xib in Resources */,
 				49BF8DD91F73C5BC00A1890F /* ModuleSubStepTableViewCell.xib in Resources */,
+				497DF1931F753D1300367A94 /* ToolTableViewCell.xib in Resources */,
 				49FE8D8A1F419F6900B73731 /* Assets.xcassets in Resources */,
 				49FE8D881F419F6900B73731 /* Main.storyboard in Resources */,
 			);
@@ -514,6 +521,7 @@
 				496C49D11F4EEDA300AD05D1 /* SettingsTableViewController.swift in Sources */,
 				49FE8D831F419F6900B73731 /* AppDelegate.swift in Sources */,
 				49A418601F73EA96004C1F61 /* ModuleSubStepTableViewCell.swift in Sources */,
+				497DF1921F74FC5800367A94 /* ToolTableViewCell.swift in Sources */,
 				497122281F4C23A1000786AE /* ToolkitTableViewController.swift in Sources */,
 				4916409A1F4C71CA0084CEE2 /* GradientImageView.swift in Sources */,
 			);

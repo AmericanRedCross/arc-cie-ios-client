@@ -106,6 +106,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="moduleBackgroundImageView" destination="VHZ-Ge-Htj" id="X7h-oT-iTD"/>
+                <outlet property="moduleChevronButton" destination="w3j-3T-oJh" id="Kpa-gf-WNg"/>
                 <outlet property="moduleIdentifierLabel" destination="lK2-9s-FEd" id="dtN-5b-Ppu"/>
                 <outlet property="moduleTitleLabel" destination="eJ5-zh-HiW" id="kBb-fx-Wcu"/>
             </connections>
