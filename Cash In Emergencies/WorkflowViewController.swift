@@ -109,6 +109,8 @@ class Step: ModuleConformable, Row {
 
 class SubStep: ModuleConformable, Row {
     
+    private var toolkitTableViewController: ToolkitTableViewController?
+
     var internalModule: Module?
     
     func module() -> Module? {
@@ -133,12 +135,23 @@ class SubStep: ModuleConformable, Row {
     
     func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
         
+        toolkitTableViewController = tableViewController as? ToolkitTableViewController
+
         if let _cell = cell as? ModuleSubStepTableViewCell {
             
             _cell.substepHierarchyLabel.text = internalModule?.metadata?["hierarchy"] as? String
             _cell.substepTitleLabel.text = internalModule?.moduleTitle
+            _cell.moduleSubstepChevronButton.addTarget(self, action: #selector(handleToggle(of:)), for: .primaryActionTriggered)
+
         }
+    }
+    
+    @objc func handleToggle(of button: UIButton) {
         
+        if let _tableView = toolkitTableViewController, let _module = internalModule {
+            
+            _tableView.handleToggle(of: _module)
+        }
     }
 }
 

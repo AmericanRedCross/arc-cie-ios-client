@@ -59,7 +59,6 @@ class ToolkitTableViewController: TableViewController {
                     rows.append(moduleStepView)
                     
                     //Check if the step has substeps and add them
-                    //TODO: Check for expanding
                     
                     if let _moduleStepChildren = moduleStep.directories {
                         
@@ -69,8 +68,7 @@ class ToolkitTableViewController: TableViewController {
                             rows.append(moduleSubStepView)
                             
                             //Check for tools
-                            //TODO: Check for expanding
-                            if let _tools = moduleSubStep.directories {
+                            if let _tools = moduleSubStep.directories, let moduleIdentifier = moduleSubStep.identifier, expandedModuleIdentifiers.contains(moduleIdentifier) {
                                 
                                 for tool in _tools {
                                     let toolView = Tool(with: tool)

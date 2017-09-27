@@ -96,6 +96,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="moduleSubstepChevronButton" destination="332-G0-S8a" id="AaI-TX-r0l"/>
                 <outlet property="substepHierarchyLabel" destination="UA5-sl-wtS" id="1NO-NO-3Oz"/>
                 <outlet property="substepTitleLabel" destination="Lqi-Se-x8L" id="3FZ-xA-057"/>
             </connections>
