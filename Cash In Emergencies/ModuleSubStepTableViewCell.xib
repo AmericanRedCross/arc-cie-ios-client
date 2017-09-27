@@ -86,6 +86,7 @@
                 <constraints>
                     <constraint firstItem="Fmm-Ru-Cck" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="4fM-XQ-EbW"/>
                     <constraint firstAttribute="bottomMargin" secondItem="yxz-QI-ev4" secondAttribute="bottom" id="GNC-36-yv5"/>
+                    <constraint firstItem="yxz-QI-ev4" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Rb2-sp-0ew"/>
                     <constraint firstItem="332-G0-S8a" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="S6i-Ed-DjY"/>
                     <constraint firstItem="yxz-QI-ev4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="20" id="U9h-gQ-rD5"/>
                     <constraint firstItem="332-G0-S8a" firstAttribute="leading" secondItem="yxz-QI-ev4" secondAttribute="trailing" constant="10" id="UuE-Zd-Szp"/>
@@ -98,6 +99,7 @@
             <connections>
                 <outlet property="moduleSubstepChevronButton" destination="332-G0-S8a" id="AaI-TX-r0l"/>
                 <outlet property="substepHierarchyLabel" destination="UA5-sl-wtS" id="1NO-NO-3Oz"/>
+                <outlet property="substepRoadmapButton" destination="GPm-Gb-9cm" id="MDO-BJ-va3"/>
                 <outlet property="substepTitleLabel" destination="Lqi-Se-x8L" id="3FZ-xA-057"/>
             </connections>
             <point key="canvasLocation" x="35" y="83.5"/>

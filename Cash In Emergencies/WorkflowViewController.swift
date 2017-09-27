@@ -142,7 +142,7 @@ class SubStep: ModuleConformable, Row {
             _cell.substepHierarchyLabel.text = internalModule?.metadata?["hierarchy"] as? String
             _cell.substepTitleLabel.text = internalModule?.moduleTitle
             _cell.moduleSubstepChevronButton.addTarget(self, action: #selector(handleToggle(of:)), for: .primaryActionTriggered)
-
+            _cell.substepRoadmapButton.isHidden = internalModule?.content == nil
         }
     }
     
