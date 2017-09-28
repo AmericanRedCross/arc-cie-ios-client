@@ -143,21 +143,21 @@ class ToolkitTableViewController: TableViewController {
         let exportOption = UIContextualAction(style: .normal, title: "EXPORT OR SHARE") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
             print("hi")
         }
-        exportOption.image = #imageLiteral(resourceName: "workflow-cell-accessory")
+        exportOption.image = #imageLiteral(resourceName: "swipe_action_export")
         exportOption.backgroundColor = UIColor(red: 237.0/255.0, green: 27.0/255.0, blue: 46.0/255.0, alpha: 1.0)
         
         //Note
         let noteOption = UIContextualAction(style: .normal, title: "ADD NOTE") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
             print("hi")
         }
-        noteOption.image = #imageLiteral(resourceName: "workflow-cell-accessory")
+        noteOption.image = #imageLiteral(resourceName: "swipe_action_note_add")
         noteOption.backgroundColor = UIColor(red: 237.0/255.0, green: 27.0/255.0, blue: 46.0/255.0, alpha: 1.0)
         
         //Critical tool
         let toolOption = UIContextualAction(style: .normal, title: "MARK AS CRITICAL TOOL") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
             print("hi")
         }
-        toolOption.image = #imageLiteral(resourceName: "workflow-cell-accessory")
+        toolOption.image = #imageLiteral(resourceName: "swipe_action_critical_path_enable")
         toolOption.backgroundColor = UIColor(red: 237.0/255.0, green: 27.0/255.0, blue: 46.0/255.0, alpha: 1.0)
         
         //Actions
