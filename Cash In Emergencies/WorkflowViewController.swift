@@ -9,6 +9,7 @@
 import UIKit
 import ARCDM
 import ThunderTable
+import Down
 
 protocol ModuleConformable {
     func module() -> Module?
@@ -73,6 +74,8 @@ class Step: ModuleConformable, Row {
     
     var internalModule: Module?
     
+    private var toolkitTableViewController: ToolkitTableViewController?
+    
     func module() -> Module? {
         return internalModule
     }
@@ -97,13 +100,25 @@ class Step: ModuleConformable, Row {
     
     func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
         
+        toolkitTableViewController = tableViewController as? ToolkitTableViewController
+
         if let _cell = cell as? ModuleStepTableViewCell {
             
             _cell.stepHierarchyLabel.text = internalModule?.metadata?["hierarchy"] as? String
             _cell.stepTitleLabel.text = internalModule?.moduleTitle
             _cell.stepRoadmapButton.isHidden = internalModule?.content == nil
+            
+            _cell.stepRoadmapButton.addTarget(self, action: #selector(handleRoadmap(button:)), for: .primaryActionTriggered)
         }
+    }
+    
+    //Actions
+    @objc func handleRoadmap(button: UIButton) {
         
+        if let _tableView = toolkitTableViewController, let _moduleContent = internalModule?.content {
+            
+            _tableView.handleLoadMarkdown(for: _moduleContent)
+        }
     }
 }
 
@@ -143,6 +158,8 @@ class SubStep: ModuleConformable, Row {
             _cell.substepTitleLabel.text = internalModule?.moduleTitle
             _cell.moduleSubstepChevronButton.addTarget(self, action: #selector(handleToggle(of:)), for: .primaryActionTriggered)
             _cell.substepRoadmapButton.isHidden = internalModule?.content == nil
+            _cell.substepRoadmapButton.addTarget(self, action: #selector(handleRoadmap(button:)), for: .primaryActionTriggered)
+
         }
     }
     
@@ -151,6 +168,15 @@ class SubStep: ModuleConformable, Row {
         if let _tableView = toolkitTableViewController, let _module = internalModule {
             
             _tableView.handleToggle(of: _module)
+        }
+    }
+    
+    //Actions
+    @objc func handleRoadmap(button: UIButton) {
+        
+        if let _tableView = toolkitTableViewController, let _moduleContent = internalModule?.content {
+            
+            _tableView.handleLoadMarkdown(for: _moduleContent)
         }
     }
 }

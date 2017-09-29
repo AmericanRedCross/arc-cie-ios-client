@@ -28,6 +28,12 @@
 		497DF1931F753D1300367A94 /* ToolTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 497DF1881F74FC5700367A94 /* ToolTableViewCell.xib */; };
 		498BAD701F4AE45F00F49660 /* ThunderBasics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49DA86611F4AE3B600BB49B4 /* ThunderBasics.framework */; };
 		498BAD711F4AE45F00F49660 /* ThunderBasics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49DA86611F4AE3B600BB49B4 /* ThunderBasics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		498F453F1F7CF02600E8824C /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498F453C1F7CF01D00E8824C /* Down.framework */; };
+		498F45401F7CF02600E8824C /* Down.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 498F453C1F7CF01D00E8824C /* Down.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		498F45441F7CFA2000E8824C /* Document_Viewing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 498F45431F7CFA2000E8824C /* Document_Viewing.storyboard */; };
+		498F45461F7CFB4600E8824C /* MarkdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F45451F7CFB4600E8824C /* MarkdownViewController.swift */; };
+		498F455B1F7D4E4800E8824C /* MarkdownView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498F455A1F7D4E4000E8824C /* MarkdownView.framework */; };
+		498F455C1F7D4E4800E8824C /* MarkdownView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 498F455A1F7D4E4000E8824C /* MarkdownView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49A418601F73EA96004C1F61 /* ModuleSubStepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A4185E1F73EA96004C1F61 /* ModuleSubStepTableViewCell.swift */; };
 		49A418611F73EA96004C1F61 /* ModuleStepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49A4185F1F73EA96004C1F61 /* ModuleStepTableViewCell.xib */; };
 		49BCFFEC1F4455BD00F68A40 /* structure.json in Resources */ = {isa = PBXBuildFile; fileRef = 49BCFFEB1F4455A900F68A40 /* structure.json */; };
@@ -129,6 +135,41 @@
 			remoteGlobalIDString = C272EF8319C831AB004BD339;
 			remoteInfo = ThunderBasics;
 		};
+		498F453B1F7CF01D00E8824C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 498F45361F7CF01D00E8824C /* Down.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8A569F401E6B3E50008BE2AC;
+			remoteInfo = Down;
+		};
+		498F453D1F7CF01D00E8824C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 498F45361F7CF01D00E8824C /* Down.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8AFAEAFB1E6E32E900E09B68;
+			remoteInfo = DownTests;
+		};
+		498F45411F7CF02600E8824C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 498F45361F7CF01D00E8824C /* Down.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8A569F3F1E6B3E50008BE2AC;
+			remoteInfo = Down;
+		};
+		498F45591F7D4E4000E8824C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 498F45551F7D4E4000E8824C /* MarkdownView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FCA050151EC41211001DAD5F;
+			remoteInfo = MarkdownView;
+		};
+		498F455D1F7D4E4800E8824C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 498F45551F7D4E4000E8824C /* MarkdownView.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = FCA050141EC41211001DAD5F;
+			remoteInfo = MarkdownView;
+		};
 		49DA86601F4AE3B600BB49B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 49DA865A1F4AE3B600BB49B4 /* ThunderBasics.xcodeproj */;
@@ -152,6 +193,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				498F455C1F7D4E4800E8824C /* MarkdownView.framework in Embed Frameworks */,
+				498F45401F7CF02600E8824C /* Down.framework in Embed Frameworks */,
 				497122221F4C21A5000786AE /* ThunderTable.framework in Embed Frameworks */,
 				498BAD711F4AE45F00F49660 /* ThunderBasics.framework in Embed Frameworks */,
 				496E5D3F1F41E31900E4B90A /* ARCDM.framework in Embed Frameworks */,
@@ -180,6 +223,10 @@
 		497DF1881F74FC5700367A94 /* ToolTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToolTableViewCell.xib; sourceTree = "<group>"; };
 		497DF1911F74FC5800367A94 /* ToolTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolTableViewCell.swift; sourceTree = "<group>"; };
 		4987DB7D1F4C201900466297 /* ThunderTable.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ThunderTable.xcodeproj; path = ThunderTable/ThunderTable.xcodeproj; sourceTree = SOURCE_ROOT; };
+		498F45361F7CF01D00E8824C /* Down.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Down.xcodeproj; path = "../../../Downloads/Down-swift4/Down.xcodeproj"; sourceTree = "<group>"; };
+		498F45431F7CFA2000E8824C /* Document_Viewing.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Document_Viewing.storyboard; sourceTree = "<group>"; };
+		498F45451F7CFB4600E8824C /* MarkdownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MarkdownViewController.swift; path = "Cash In Emergencies/MarkdownViewController.swift"; sourceTree = "<group>"; };
+		498F45551F7D4E4000E8824C /* MarkdownView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MarkdownView.xcodeproj; path = MarkdownView/MarkdownView.xcodeproj; sourceTree = SOURCE_ROOT; };
 		49A4185E1F73EA96004C1F61 /* ModuleSubStepTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleSubStepTableViewCell.swift; sourceTree = "<group>"; };
 		49A4185F1F73EA96004C1F61 /* ModuleStepTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModuleStepTableViewCell.xib; sourceTree = "<group>"; };
 		49BCFFEB1F4455A900F68A40 /* structure.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = structure.json; sourceTree = "<group>"; };
@@ -204,9 +251,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				498F455B1F7D4E4800E8824C /* MarkdownView.framework in Frameworks */,
 				495A90141F5EE02800843EEE /* libc++.tbd in Frameworks */,
 				4912BABA1F5ED21900AD7100 /* libz.tbd in Frameworks */,
 				497122211F4C21A5000786AE /* ThunderTable.framework in Frameworks */,
+				498F453F1F7CF02600E8824C /* Down.framework in Frameworks */,
 				498BAD701F4AE45F00F49660 /* ThunderBasics.framework in Frameworks */,
 				496E5D3E1F41E31900E4B90A /* ARCDM.framework in Frameworks */,
 				493D42AC1F57F42800B74620 /* ThunderRequest.framework in Frameworks */,
@@ -255,6 +304,23 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		498F45371F7CF01D00E8824C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				498F453C1F7CF01D00E8824C /* Down.framework */,
+				498F453E1F7CF01D00E8824C /* DownTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		498F45561F7D4E4000E8824C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				498F455A1F7D4E4000E8824C /* MarkdownView.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		49BCFFEF1F44879600F68A40 /* Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,6 +342,7 @@
 		49FE8D761F419F6800B73731 = {
 			isa = PBXGroup;
 			children = (
+				498F45451F7CFB4600E8824C /* MarkdownViewController.swift */,
 				49FE8D811F419F6900B73731 /* Cash In Emergencies */,
 				49FE8D801F419F6900B73731 /* Products */,
 				4912BAB01F5ED21900AD7100 /* Frameworks */,
@@ -306,6 +373,7 @@
 				49FE8D821F419F6900B73731 /* AppDelegate.swift */,
 				49FE8D841F419F6900B73731 /* ViewController.swift */,
 				49FE8D861F419F6900B73731 /* Main.storyboard */,
+				498F45431F7CFA2000E8824C /* Document_Viewing.storyboard */,
 				4916408C1F4C5C3A0084CEE2 /* ModuleTableViewCell.swift */,
 				4916408D1F4C5C3A0084CEE2 /* ModuleTableViewCell.xib */,
 				4971222B1F4C2CF3000786AE /* WorkflowViewController.swift */,
@@ -317,6 +385,8 @@
 				496C49CB1F4EE6FA00AD05D1 /* Settings.storyboard */,
 				496C49D01F4EEDA300AD05D1 /* SettingsTableViewController.swift */,
 				49BCFFEF1F44879600F68A40 /* Files */,
+				498F45551F7D4E4000E8824C /* MarkdownView.xcodeproj */,
+				498F45361F7CF01D00E8824C /* Down.xcodeproj */,
 				493D42961F57F41D00B74620 /* ThunderRequest.xcodeproj */,
 				4987DB7D1F4C201900466297 /* ThunderTable.xcodeproj */,
 				49DA865A1F4AE3B600BB49B4 /* ThunderBasics.xcodeproj */,
@@ -345,6 +415,8 @@
 				496E5D411F41E31900E4B90A /* PBXTargetDependency */,
 				498BAD731F4AE45F00F49660 /* PBXTargetDependency */,
 				497122241F4C21A5000786AE /* PBXTargetDependency */,
+				498F45421F7CF02600E8824C /* PBXTargetDependency */,
+				498F455E1F7D4E4800E8824C /* PBXTargetDependency */,
 			);
 			name = "Cash In Emergencies";
 			productName = "Cash In Emergencies";
@@ -383,6 +455,14 @@
 				{
 					ProductGroup = 4914C1F11F41E13200ECD1D6 /* Products */;
 					ProjectRef = 4914C1F01F41E13200ECD1D6 /* ARCDM.xcodeproj */;
+				},
+				{
+					ProductGroup = 498F45371F7CF01D00E8824C /* Products */;
+					ProjectRef = 498F45361F7CF01D00E8824C /* Down.xcodeproj */;
+				},
+				{
+					ProductGroup = 498F45561F7D4E4000E8824C /* Products */;
+					ProjectRef = 498F45551F7D4E4000E8824C /* MarkdownView.xcodeproj */;
 				},
 				{
 					ProductGroup = 49DA865B1F4AE3B600BB49B4 /* Products */;
@@ -468,6 +548,27 @@
 			remoteRef = 4987DB861F4C201A00466297 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		498F453C1F7CF01D00E8824C /* Down.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Down.framework;
+			remoteRef = 498F453B1F7CF01D00E8824C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		498F453E1F7CF01D00E8824C /* DownTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = DownTests.xctest;
+			remoteRef = 498F453D1F7CF01D00E8824C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		498F455A1F7D4E4000E8824C /* MarkdownView.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MarkdownView.framework;
+			remoteRef = 498F45591F7D4E4000E8824C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		49DA86611F4AE3B600BB49B4 /* ThunderBasics.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -490,6 +591,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49BCFFF31F44895500F68A40 /* onboarding_video.mp4 in Resources */,
+				498F45441F7CFA2000E8824C /* Document_Viewing.storyboard in Resources */,
 				4916408F1F4C5C3A0084CEE2 /* ModuleTableViewCell.xib in Resources */,
 				49BCFFEC1F4455BD00F68A40 /* structure.json in Resources */,
 				496C49CC1F4EE6FA00AD05D1 /* Settings.storyboard in Resources */,
@@ -513,6 +615,7 @@
 				491640821F4C38230084CEE2 /* ARCNavigationController.swift in Sources */,
 				49BF8DD81F73C5BC00A1890F /* ModuleStepTableViewCell.swift in Sources */,
 				49FE8D851F419F6900B73731 /* ViewController.swift in Sources */,
+				498F45461F7CFB4600E8824C /* MarkdownViewController.swift in Sources */,
 				49BCFFF21F4487EB00F68A40 /* OnboardingViewController.swift in Sources */,
 				4971222A1F4C2844000786AE /* ModuleDisplayable.swift in Sources */,
 				4971222C1F4C2CF3000786AE /* WorkflowViewController.swift in Sources */,
@@ -544,6 +647,16 @@
 			isa = PBXTargetDependency;
 			name = ThunderBasics;
 			targetProxy = 498BAD721F4AE45F00F49660 /* PBXContainerItemProxy */;
+		};
+		498F45421F7CF02600E8824C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Down;
+			targetProxy = 498F45411F7CF02600E8824C /* PBXContainerItemProxy */;
+		};
+		498F455E1F7D4E4800E8824C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MarkdownView;
+			targetProxy = 498F455D1F7D4E4800E8824C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

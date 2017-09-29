@@ -14,24 +14,23 @@ class ToolkitTableViewController: TableViewController {
 
     /// Any identifiers in this list are modules that should be expanded. The children of these modules will be included in `displayableModuleObjects`
     var expandedModuleIdentifiers = [Int]()
-    //    var expandedSubmoduleIndexes =
     
     /// A dictionary where the key is the module identifier of every module (recursively) through the structure.json and it's value being an integer of what depth level it is app. Zero based.
-//    var moduleDepthMap = [Int: Int]()
-//
-//    func mapTree(for modules: [Module], level: Int) {
-//
-//        for module in modules {
-//
-//            if let _moduleID = module.identifier {
-//                moduleDepthMap[_moduleID] = level
-//            }
-//
-//            if let _submodules = module.directories {
-//                mapTree(for: _submodules, level: level + 1)
-//            }
-//        }
-//    }
+    var moduleDepthMap = [Int: Int]()
+
+    func mapTree(for modules: [Module], level: Int) {
+
+        for module in modules {
+
+            if let _moduleID = module.identifier {
+                moduleDepthMap[_moduleID] = level
+            }
+
+            if let _submodules = module.directories {
+                mapTree(for: _submodules, level: level + 1)
+            }
+        }
+    }
     
     /// A compiled array of sections to display. This computed variable works out which sections are collapsed or expanded and arranges the views appropriately
     var displayableModuleObjects: [TableSection]? {
@@ -85,6 +84,10 @@ class ToolkitTableViewController: TableViewController {
             
         }
         
+        //Update stuff
+        moduleDepthMap.removeAll()
+        mapTree(for: modules, level: 0)
+        
         return displayableSections
         
         //        let moduleManager = ModuleManager()
@@ -136,34 +139,62 @@ class ToolkitTableViewController: TableViewController {
         redraw()
     }
     
+    func handleLoadMarkdown(for contentPath: String) {
+        
+        let contentURL = ContentController().fileUrl(from: contentPath)
+        
+        guard let presentingView = self.parent else {
+            return
+        }
+        
+        if let _contentURL = contentURL, let jsonFileData = try? Data(contentsOf: _contentURL) {
+            
+            let markdown = String(data: jsonFileData, encoding: .utf8)
+            
+            if let _markdownNavView = UIStoryboard(name: "Document_Viewing", bundle: Bundle.main).instantiateViewController(withIdentifier: "markdownNavigationControllerIdentifier") as? UINavigationController, let markdownView = _markdownNavView.viewControllers.first as? MarkdownViewController {
+                
+                if let _markdown = markdown {
+                    markdownView.loadMarkdown(string: _markdown)
+                }
+                presentingView.showDetailViewController(_markdownNavView, sender: self)
+            }
+        }
+    }
+    
     @available(iOS 11.0, *)
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        //Export
-        let exportOption = UIContextualAction(style: .normal, title: "EXPORT OR SHARE") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
-            print("hi")
+        if let _displayableModuleObjects = displayableModuleObjects, let _toolDisplayed = _displayableModuleObjects[indexPath.section].rows[indexPath.row] as? Tool, let module = _toolDisplayed.module() {
+            
+            //Export
+            let exportOption = UIContextualAction(style: .normal, title: "EXPORT OR SHARE") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
+                print("hi")
+            }
+            exportOption.image = #imageLiteral(resourceName: "swipe_action_critical_path_enable")
+            exportOption.backgroundColor = UIColor(red: 237.0/255.0, green: 27.0/255.0, blue: 46.0/255.0, alpha: 1.0)
+            
+            //Note
+            let noteOption = UIContextualAction(style: .normal, title: "ADD NOTE") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
+                print("hi")
+            }
+            noteOption.image = #imageLiteral(resourceName: "swipe_action_note_add")
+            noteOption.backgroundColor = UIColor(red: 237.0/255.0, green: 27.0/255.0, blue: 46.0/255.0, alpha: 1.0)
+            
+            //Critical tool
+            let toolOption = UIContextualAction(style: .normal, title: "MARK AS CRITICAL TOOL") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
+                print("hi")
+            }
+            toolOption.image = #imageLiteral(resourceName: "swipe_action_critical_path_enable")
+            toolOption.backgroundColor = UIColor(red: 237.0/255.0, green: 27.0/255.0, blue: 46.0/255.0, alpha: 1.0)
+            
+            //Actions
+            let swipeActions = UISwipeActionsConfiguration(actions: [exportOption, noteOption, toolOption])
+            swipeActions.performsFirstActionWithFullSwipe = false
+            
+            return swipeActions
         }
-        exportOption.image = #imageLiteral(resourceName: "swipe_action_export")
-        exportOption.backgroundColor = UIColor(red: 237.0/255.0, green: 27.0/255.0, blue: 46.0/255.0, alpha: 1.0)
         
-        //Note
-        let noteOption = UIContextualAction(style: .normal, title: "ADD NOTE") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
-            print("hi")
-        }
-        noteOption.image = #imageLiteral(resourceName: "swipe_action_note_add")
-        noteOption.backgroundColor = UIColor(red: 237.0/255.0, green: 27.0/255.0, blue: 46.0/255.0, alpha: 1.0)
-        
-        //Critical tool
-        let toolOption = UIContextualAction(style: .normal, title: "MARK AS CRITICAL TOOL") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
-            print("hi")
-        }
-        toolOption.image = #imageLiteral(resourceName: "swipe_action_critical_path_enable")
-        toolOption.backgroundColor = UIColor(red: 237.0/255.0, green: 27.0/255.0, blue: 46.0/255.0, alpha: 1.0)
-        
-        //Actions
-        let swipeActions = UISwipeActionsConfiguration(actions: [exportOption, noteOption, toolOption])
-        swipeActions.performsFirstActionWithFullSwipe = false
-        
+        let swipeActions = UISwipeActionsConfiguration(actions: [])
         return swipeActions
     }
 }
