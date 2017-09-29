@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hx0-YB-2FM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hx0-YB-2FM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -140,6 +140,7 @@
                                                     <constraint firstAttribute="width" constant="120" id="hs3-tv-Aq7"/>
                                                     <constraint firstAttribute="height" constant="35" id="kQC-a3-ZjW"/>
                                                 </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <state key="normal" title="TOOLKIT" image="segmented-toolkit"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -152,12 +153,14 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G9l-Yt-E1C">
                                                 <rect key="frame" x="140" y="17.5" width="180" height="35"/>
-                                                <color key="backgroundColor" name="mainRedColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="BS9-W0-Zd2"/>
                                                     <constraint firstAttribute="width" constant="180" id="jSO-yI-kSc"/>
                                                 </constraints>
-                                                <state key="normal" title="CRITICAL TOOLS" image="segmented-critical-tools"/>
+                                                <color key="tintColor" red="0.62341064209999997" green="0.62327319380000001" blue="0.63977271319999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="CRITICAL TOOLS" image="segmented-critical-tools">
+                                                    <color key="titleColor" red="0.62341064214706421" green="0.62327319383621216" blue="0.63977271318435669" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="17.5"/>
