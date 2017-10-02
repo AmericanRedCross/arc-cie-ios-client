@@ -159,7 +159,11 @@ class SubStep: ModuleConformable, Row {
             _cell.moduleSubstepChevronButton.addTarget(self, action: #selector(handleToggle(of:)), for: .primaryActionTriggered)
             _cell.substepRoadmapButton.isHidden = internalModule?.content == nil
             _cell.substepRoadmapButton.addTarget(self, action: #selector(handleRoadmap(button:)), for: .primaryActionTriggered)
-
+            _cell.substepCheckableButton.addTarget(self, action: #selector(handleChecking(of:)), for: .primaryActionTriggered)
+            
+            if let _moduleIdentifier = internalModule?.identifier {
+                _cell.substepCheckableButton.isSelected = ProgressManager().checkState(for: _moduleIdentifier)
+            }
         }
     }
     
@@ -168,6 +172,15 @@ class SubStep: ModuleConformable, Row {
         if let _tableView = toolkitTableViewController, let _module = internalModule {
             
             _tableView.handleToggle(of: _module)
+        }
+    }
+    
+    @objc func handleChecking(of checkView: UIButton) {
+        
+        if let _moduleIdentifier = internalModule?.identifier {
+            ProgressManager().toggle(moduleIdentifier: _moduleIdentifier)
+            
+            checkView.isSelected = !checkView.isSelected
         }
     }
     
@@ -223,6 +236,21 @@ class Tool: ModuleConformable, Row {
                     _cell.toolCriticalToolButton.isHidden = false
                 }
             }
+            
+            _cell.toolCheckableButton.addTarget(self, action: #selector(handleChecking(of:)), for: .primaryActionTriggered)
+            
+            if let _moduleIdentifier = internalModule?.identifier {
+                _cell.toolCheckableButton.isSelected = ProgressManager().checkState(for: _moduleIdentifier)
+            }
+        }
+    }
+    
+    @objc func handleChecking(of checkView: UIButton) {
+        
+        if let _moduleIdentifier = internalModule?.identifier {
+            ProgressManager().toggle(moduleIdentifier: _moduleIdentifier)
+            
+            checkView.isSelected = !checkView.isSelected
         }
     }
 }

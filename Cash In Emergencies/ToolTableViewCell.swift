@@ -14,6 +14,7 @@ class ToolTableViewCell: UITableViewCell {
     @IBOutlet weak var toolTitleLabel: UILabel!
     @IBOutlet weak var toolDescriptionLabel: UILabel!
     @IBOutlet weak var toolCriticalToolButton: UIButton!
+    @IBOutlet weak var toolCheckableButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

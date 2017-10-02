@@ -28,6 +28,7 @@
                             <constraint firstAttribute="width" constant="32" id="qLb-h9-3ZP"/>
                         </constraints>
                         <state key="normal" title="Button" image="check_off"/>
+                        <state key="selected" image="check_on"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="332-G0-S8a" userLabel="dropdown_button">
                         <rect key="frame" x="272" y="17.5" width="32" height="32"/>
@@ -98,6 +99,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="moduleSubstepChevronButton" destination="332-G0-S8a" id="AaI-TX-r0l"/>
+                <outlet property="substepCheckableButton" destination="Fmm-Ru-Cck" id="qXH-IV-aBl"/>
                 <outlet property="substepHierarchyLabel" destination="UA5-sl-wtS" id="1NO-NO-3Oz"/>
                 <outlet property="substepRoadmapButton" destination="GPm-Gb-9cm" id="MDO-BJ-va3"/>
                 <outlet property="substepTitleLabel" destination="Lqi-Se-x8L" id="3FZ-xA-057"/>
@@ -107,6 +109,7 @@
     </objects>
     <resources>
         <image name="check_off" width="34" height="34"/>
+        <image name="check_on" width="34" height="34"/>
         <image name="workflow-cell-accessory" width="32" height="32"/>
         <namedColor name="mainRedColor">
             <color red="0.92941176470588238" green="0.10588235294117647" blue="0.1803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

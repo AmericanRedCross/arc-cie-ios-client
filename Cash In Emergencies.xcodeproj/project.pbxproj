@@ -34,6 +34,7 @@
 		498F45461F7CFB4600E8824C /* MarkdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F45451F7CFB4600E8824C /* MarkdownViewController.swift */; };
 		498F455B1F7D4E4800E8824C /* MarkdownView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498F455A1F7D4E4000E8824C /* MarkdownView.framework */; };
 		498F455C1F7D4E4800E8824C /* MarkdownView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 498F455A1F7D4E4000E8824C /* MarkdownView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		498F45731F8274D500E8824C /* ProgressManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F45721F8274D500E8824C /* ProgressManager.swift */; };
 		49A418601F73EA96004C1F61 /* ModuleSubStepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A4185E1F73EA96004C1F61 /* ModuleSubStepTableViewCell.swift */; };
 		49A418611F73EA96004C1F61 /* ModuleStepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49A4185F1F73EA96004C1F61 /* ModuleStepTableViewCell.xib */; };
 		49BCFFEC1F4455BD00F68A40 /* structure.json in Resources */ = {isa = PBXBuildFile; fileRef = 49BCFFEB1F4455A900F68A40 /* structure.json */; };
@@ -228,6 +229,7 @@
 		498F45451F7CFB4600E8824C /* MarkdownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MarkdownViewController.swift; path = "Cash In Emergencies/MarkdownViewController.swift"; sourceTree = "<group>"; };
 		498F45551F7D4E4000E8824C /* MarkdownView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MarkdownView.xcodeproj; path = MarkdownView/MarkdownView.xcodeproj; sourceTree = SOURCE_ROOT; };
 		498F45711F823F7200E8824C /* Cash In Emergencies.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Cash In Emergencies.entitlements"; sourceTree = "<group>"; };
+		498F45721F8274D500E8824C /* ProgressManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProgressManager.swift; path = "Cash In Emergencies/ProgressManager.swift"; sourceTree = "<group>"; };
 		49A4185E1F73EA96004C1F61 /* ModuleSubStepTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleSubStepTableViewCell.swift; sourceTree = "<group>"; };
 		49A4185F1F73EA96004C1F61 /* ModuleStepTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModuleStepTableViewCell.xib; sourceTree = "<group>"; };
 		49BCFFEB1F4455A900F68A40 /* structure.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = structure.json; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 		49FE8D761F419F6800B73731 = {
 			isa = PBXGroup;
 			children = (
+				498F45721F8274D500E8824C /* ProgressManager.swift */,
 				498F45451F7CFB4600E8824C /* MarkdownViewController.swift */,
 				49FE8D811F419F6900B73731 /* Cash In Emergencies */,
 				49FE8D801F419F6900B73731 /* Products */,
@@ -619,6 +622,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				498F45731F8274D500E8824C /* ProgressManager.swift in Sources */,
 				491640821F4C38230084CEE2 /* ARCNavigationController.swift in Sources */,
 				49BF8DD81F73C5BC00A1890F /* ModuleStepTableViewCell.swift in Sources */,
 				49FE8D851F419F6900B73731 /* ViewController.swift in Sources */,
