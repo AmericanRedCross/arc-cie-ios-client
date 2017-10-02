@@ -9,6 +9,7 @@
 import UIKit
 import ThunderTable
 import ARCDM
+import QuickLook
 
 class ToolkitTableViewController: TableViewController {
 
@@ -17,6 +18,8 @@ class ToolkitTableViewController: TableViewController {
     
     /// A dictionary where the key is the module identifier of every module (recursively) through the structure.json and it's value being an integer of what depth level it is app. Zero based.
     var moduleDepthMap = [Int: Int]()
+    
+    private var disaplayableURL: URL?
 
     func mapTree(for modules: [Module], level: Int) {
 
@@ -166,12 +169,56 @@ class ToolkitTableViewController: TableViewController {
         
         if let _displayableModuleObjects = displayableModuleObjects, let _toolDisplayed = _displayableModuleObjects[indexPath.section].rows[indexPath.row] as? Tool, let module = _toolDisplayed.module() {
             
+            var actions = [UIContextualAction]()
+            
             //Export
             let exportOption = UIContextualAction(style: .normal, title: "EXPORT OR SHARE") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
                 print("hi")
+                print(module)
+                
+                if let _url = module.attachments?.first?.url {
+                    
+                    //Load it up if we already have it
+                    if let _localFile = ContentController().localFileURL(for: _url) {
+                        
+                        let quickLookView = QLPreviewController()
+                        self.disaplayableURL = _localFile
+                        quickLookView.dataSource = self
+                        quickLookView.currentPreviewItemIndex = 0
+                        
+                        OperationQueue.main.addOperation({
+                            self.present(quickLookView, animated: true, completion: nil)
+                        })
+                        
+                        return
+                    }
+                
+                    //Download it instead
+                    ContentController().downloadDocumentFile(from: _url, progress: { (progress, bytesDownloaded, totalBytes) in
+                        
+                    }, completion: { (result) in
+                        
+                        switch result {
+                        case .success(let downloadedFileURL):
+                            
+                            let quickLookView = QLPreviewController()
+                            self.disaplayableURL = downloadedFileURL
+                                quickLookView.dataSource = self
+                            quickLookView.currentPreviewItemIndex = 0
+                            
+                            OperationQueue.main.addOperation({
+                                self.present(quickLookView, animated: true, completion: nil)
+                            })
+                            
+                        case .failure(let error):
+                            print(error)
+                        }
+                    })
+                }
             }
-            exportOption.image = #imageLiteral(resourceName: "swipe_action_critical_path_enable")
+            exportOption.image = #imageLiteral(resourceName: "swipe_action_export")
             exportOption.backgroundColor = UIColor(red: 237.0/255.0, green: 27.0/255.0, blue: 46.0/255.0, alpha: 1.0)
+            actions.append(exportOption)
             
             //Note
             let noteOption = UIContextualAction(style: .normal, title: "ADD NOTE") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
@@ -179,16 +226,27 @@ class ToolkitTableViewController: TableViewController {
             }
             noteOption.image = #imageLiteral(resourceName: "swipe_action_note_add")
             noteOption.backgroundColor = UIColor(red: 237.0/255.0, green: 27.0/255.0, blue: 46.0/255.0, alpha: 1.0)
-            
+            actions.append(noteOption)
+
             //Critical tool
-            let toolOption = UIContextualAction(style: .normal, title: "MARK AS CRITICAL TOOL") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
-                print("hi")
-            }
-            toolOption.image = #imageLiteral(resourceName: "swipe_action_critical_path_enable")
-            toolOption.backgroundColor = UIColor(red: 237.0/255.0, green: 27.0/255.0, blue: 46.0/255.0, alpha: 1.0)
             
+            //If it's marked as critical by DMS don't let them change it
+            if let _criticalTool = module.metadata?["critical_path"] as? Bool {
+                if !_criticalTool {
+                    
+                    //If its not marked as critical by user, give option
+                    //TODO: User critical handling
+                    let toolOption = UIContextualAction(style: .normal, title: "MARK AS CRITICAL TOOL") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
+                        print("hi")
+                    }
+                    toolOption.image = #imageLiteral(resourceName: "swipe_action_critical_path_enable")
+                    toolOption.backgroundColor = UIColor(red: 237.0/255.0, green: 27.0/255.0, blue: 46.0/255.0, alpha: 1.0)
+                    actions.append(toolOption)
+                }
+            }
+
             //Actions
-            let swipeActions = UISwipeActionsConfiguration(actions: [exportOption, noteOption, toolOption])
+            let swipeActions = UISwipeActionsConfiguration(actions: actions)
             swipeActions.performsFirstActionWithFullSwipe = false
             
             return swipeActions
@@ -196,5 +254,20 @@ class ToolkitTableViewController: TableViewController {
         
         let swipeActions = UISwipeActionsConfiguration(actions: [])
         return swipeActions
+    }
+}
+
+extension ToolkitTableViewController: QLPreviewControllerDataSource {
+    
+    func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
+        return 1
+    }
+    
+    func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
+        
+        if let _URL = disaplayableURL {
+            return _URL as NSURL
+        }
+        return NSURL(fileURLWithPath: "lol")
     }
 }
