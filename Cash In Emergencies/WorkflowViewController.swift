@@ -60,6 +60,7 @@ class ModuleView: ModuleConformable, Row {
             if let _module = internalModule {
                 _cell.moduleTitleLabel.text = _module.moduleTitle
                 _cell.moduleBackgroundImageView.image = UIImage(named: "module-backdrop-\(_module.order)")
+                _cell.moduleChevronButton.removeTarget(nil, action: nil, for: .allEvents)
                 _cell.moduleChevronButton.addTarget(self, action: #selector(handleToggle(of:)), for: .primaryActionTriggered)
                 
                 if let _hierarchy = _module.metadata?["hierarchy"] as? String {
