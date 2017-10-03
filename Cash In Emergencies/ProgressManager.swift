@@ -14,6 +14,9 @@ class ProgressManager {
     /// Private identifier to consistently access checked modules
     private let checkedModulesIdentifier = "CIECheckedModules"
     
+    /// Private identifier to consistently access module notes
+    private let moduleNotesIdentifier = "CIEModuleNotes"
+    
     /// Toggles the "checked" state for a module identifier and saves the state of all checked modules to user defaults
     ///
     /// - Parameter moduleIdentifier: The identifier of the module to toggle on/off
@@ -48,5 +51,54 @@ class ProgressManager {
         }
         
         return false
+    }
+    
+    //MARK: - Notes
+    
+    /// Adds a note against a module and saves it to be viewed later
+    ///
+    /// - Parameters:
+    ///   - note: The note contents to save
+    ///   - moduleIdentifier: The identifier of the module to save the note against
+    func add(note: String, for moduleIdentifier: Int) {
+        
+        var noteDictionary: [Int: Any]?
+        if let storedDictionary = UserDefaults.standard.value(forKey: moduleNotesIdentifier) as? [Int: Any] {
+            noteDictionary = storedDictionary
+        } else {
+            noteDictionary = [Int: Any]()
+        }
+        
+        if var noteDictionary = noteDictionary {
+            noteDictionary[moduleIdentifier] = note
+        }
+        
+        UserDefaults.standard.set(noteDictionary, forKey: moduleNotesIdentifier)
+    }
+    
+    /// Retrieves the note (if any) that is saved against this module
+    ///
+    /// - Parameter moduleIdentifier: The identifier of the module you wish to look up notes for
+    /// - Returns: A `String` of a note if any has been saved
+    func note(for moduleIdentifier: Int) -> String? {
+        
+        guard let noteDictionary = UserDefaults.standard.value(forKey: moduleNotesIdentifier) as? [Int: Any] else {
+            return nil
+        }
+        
+        return noteDictionary[moduleIdentifier] as? String
+    }
+    
+    /// Removes a note for a module
+    ///
+    /// - Parameter moduleIdentifier: The identifier of the module to remove the note (if any) for. If the module identifier provided does not have a note saved then nothing will happen.
+    func removeNote(for moduleIdentifier: Int) {
+        guard var noteDictionary = UserDefaults.standard.value(forKey: moduleNotesIdentifier) as? [Int: Any] else {
+            return
+        }
+        
+        noteDictionary[moduleIdentifier] = nil
+        
+        UserDefaults.standard.set(noteDictionary, forKey: moduleNotesIdentifier)
     }
 }
