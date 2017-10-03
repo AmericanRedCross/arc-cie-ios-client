@@ -80,7 +80,7 @@ class NoteAddViewController: UIViewController {
     
     @IBAction func handleCancelButton(_ sender: UIButton) {
         
-        let dismissWarning = UIAlertController(title: "Reset All Data", message: "This will clear all progress and notes recorded in the app", preferredStyle: .alert)
+        let dismissWarning = UIAlertController(title: "Discard Note", message: "This will discard any changes that have been made to this note", preferredStyle: .alert)
         dismissWarning.addAction(UIAlertAction(title: "Okay", style: .destructive, handler: { [weak self] (action) in
             self?.dismiss(animated: true, completion: nil)
         }))
