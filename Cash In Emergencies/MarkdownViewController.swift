@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Down
 import MarkdownView
 
 class MarkdownViewController: UIViewController {

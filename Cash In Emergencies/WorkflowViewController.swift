@@ -9,7 +9,6 @@
 import UIKit
 import ARCDM
 import ThunderTable
-import Down
 
 protocol ModuleConformable {
     func module() -> Module?
