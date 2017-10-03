@@ -108,6 +108,7 @@ class Step: ModuleConformable, Row {
             _cell.stepTitleLabel.text = internalModule?.moduleTitle
             _cell.stepRoadmapButton.isHidden = internalModule?.content == nil
             
+            _cell.stepRoadmapButton.removeTarget(nil, action: nil, for: .allEvents)
             _cell.stepRoadmapButton.addTarget(self, action: #selector(handleRoadmap(button:)), for: .primaryActionTriggered)
         }
     }
@@ -158,6 +159,8 @@ class SubStep: ModuleConformable, Row {
             _cell.substepTitleLabel.text = internalModule?.moduleTitle
             _cell.moduleSubstepChevronButton.addTarget(self, action: #selector(handleToggle(of:)), for: .primaryActionTriggered)
             _cell.substepRoadmapButton.isHidden = internalModule?.content == nil
+            _cell.substepRoadmapButton.removeTarget(nil, action: nil, for: .allEvents)
+            _cell.substepCheckableButton.removeTarget(nil, action: nil, for: .allEvents)
             _cell.substepRoadmapButton.addTarget(self, action: #selector(handleRoadmap(button:)), for: .primaryActionTriggered)
             _cell.substepCheckableButton.addTarget(self, action: #selector(handleChecking(of:)), for: .primaryActionTriggered)
             
@@ -237,6 +240,7 @@ class Tool: ModuleConformable, Row {
                 }
             }
             
+            _cell.toolCheckableButton.removeTarget(nil, action: nil, for: .allEvents)
             _cell.toolCheckableButton.addTarget(self, action: #selector(handleChecking(of:)), for: .primaryActionTriggered)
             
             if let _moduleIdentifier = internalModule?.identifier {
