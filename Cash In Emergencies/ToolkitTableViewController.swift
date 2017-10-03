@@ -226,8 +226,9 @@ class ToolkitTableViewController: TableViewController {
                 
                 let noteViewNavigationController = UIStoryboard(name: "Notes", bundle: Bundle.main).instantiateInitialViewController() as? UINavigationController
                 
-                if let noteViewNavigationController = noteViewNavigationController {
+                if let noteViewNavigationController = noteViewNavigationController, let noteViewController = noteViewNavigationController.topViewController as? NoteAddViewController {
                     OperationQueue.main.addOperation({
+                        noteViewController.module = module
                         self.present(noteViewNavigationController, animated: true, completion: nil)
                     })
                 }

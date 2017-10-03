@@ -55,25 +55,24 @@ class ProgressManager {
     
     //MARK: - Notes
     
-    /// Adds a note against a module and saves it to be viewed later
+    /// Saves a note against a module to be viewed later. Overrites existing entries
     ///
     /// - Parameters:
     ///   - note: The note contents to save
     ///   - moduleIdentifier: The identifier of the module to save the note against
-    func add(note: String, for moduleIdentifier: Int) {
+    func save(note: String, for moduleIdentifier: Int) {
         
-        var noteDictionary: [Int: Any]?
-        if let storedDictionary = UserDefaults.standard.value(forKey: moduleNotesIdentifier) as? [Int: Any] {
+        var noteDictionary: [String: Any]?
+        if let storedDictionary = UserDefaults.standard.value(forKey: moduleNotesIdentifier) as? [String: Any] {
             noteDictionary = storedDictionary
         } else {
-            noteDictionary = [Int: Any]()
+            noteDictionary = [String: Any]()
         }
         
         if var noteDictionary = noteDictionary {
-            noteDictionary[moduleIdentifier] = note
+            noteDictionary[String(moduleIdentifier)] = note
+            UserDefaults.standard.set(noteDictionary, forKey: moduleNotesIdentifier)
         }
-        
-        UserDefaults.standard.set(noteDictionary, forKey: moduleNotesIdentifier)
     }
     
     /// Retrieves the note (if any) that is saved against this module
@@ -82,22 +81,22 @@ class ProgressManager {
     /// - Returns: A `String` of a note if any has been saved
     func note(for moduleIdentifier: Int) -> String? {
         
-        guard let noteDictionary = UserDefaults.standard.value(forKey: moduleNotesIdentifier) as? [Int: Any] else {
+        guard let noteDictionary = UserDefaults.standard.value(forKey: moduleNotesIdentifier) as? [String: Any] else {
             return nil
         }
         
-        return noteDictionary[moduleIdentifier] as? String
+        return noteDictionary[String(moduleIdentifier)] as? String
     }
     
     /// Removes a note for a module
     ///
     /// - Parameter moduleIdentifier: The identifier of the module to remove the note (if any) for. If the module identifier provided does not have a note saved then nothing will happen.
     func removeNote(for moduleIdentifier: Int) {
-        guard var noteDictionary = UserDefaults.standard.value(forKey: moduleNotesIdentifier) as? [Int: Any] else {
+        guard var noteDictionary = UserDefaults.standard.value(forKey: moduleNotesIdentifier) as? [String: Any] else {
             return
         }
         
-        noteDictionary[moduleIdentifier] = nil
+        noteDictionary[String(moduleIdentifier)] = nil
         
         UserDefaults.standard.set(noteDictionary, forKey: moduleNotesIdentifier)
     }

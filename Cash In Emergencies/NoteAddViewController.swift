@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import ARCDM
 
 class NoteAddViewController: UIViewController {
 
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var bottomLayoutConstraint: NSLayoutConstraint!
+    
+    var module: Module?
     
     // MARK: - Lifecycle
     
@@ -21,6 +24,21 @@ class NoteAddViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideNotification(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         if let textView = textView {
             textView.becomeFirstResponder()
+        }
+        
+        //Set up view
+        
+        if let module = module {
+            
+            //Set appropriate title
+            if let moduleHierarchy = module.metadata?["hierarchy"] as? String, let moduleTitle = module.moduleTitle {
+                title = "\(moduleHierarchy) \(moduleTitle)"
+            }
+            
+            //Restore text
+            if let _moduleIdentifier = module.identifier, let text = ProgressManager().note(for: _moduleIdentifier) {
+                textView?.text = text
+            }
         }
     }
     
@@ -58,10 +76,26 @@ class NoteAddViewController: UIViewController {
         }, completion: nil)
     }
 
-    // MARK: - Dismissing
+    // MARK: - Dismissing + saving
     
     @IBAction func handleCancelButton(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+        
+        let dismissWarning = UIAlertController(title: "Reset All Data", message: "This will clear all progress and notes recorded in the app", preferredStyle: .alert)
+        dismissWarning.addAction(UIAlertAction(title: "Okay", style: .destructive, handler: { [weak self] (action) in
+            self?.dismiss(animated: true, completion: nil)
+        }))
+        dismissWarning.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        present(dismissWarning, animated: true, completion: nil)
+    }
+    
+    @IBAction func handleSaveButton(_ sender: UIButton) {
+        
+        if let _inputText = textView.text, let moduleIdentifier = module?.identifier {
+            
+            ProgressManager().save(note: _inputText, for: moduleIdentifier)
+            dismiss(animated: true, completion: nil)
+        }
     }
 }
 
