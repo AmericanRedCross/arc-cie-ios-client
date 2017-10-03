@@ -223,6 +223,14 @@ class ToolkitTableViewController: TableViewController {
             //Note
             let noteOption = UIContextualAction(style: .normal, title: "ADD NOTE") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
                 print("hi")
+                
+                let noteViewNavigationController = UIStoryboard(name: "Notes", bundle: Bundle.main).instantiateInitialViewController() as? UINavigationController
+                
+                if let noteViewNavigationController = noteViewNavigationController {
+                    OperationQueue.main.addOperation({
+                        self.present(noteViewNavigationController, animated: true, completion: nil)
+                    })
+                }
             }
             noteOption.image = #imageLiteral(resourceName: "swipe_action_note_add")
             noteOption.backgroundColor = UIColor(red: 237.0/255.0, green: 27.0/255.0, blue: 46.0/255.0, alpha: 1.0)

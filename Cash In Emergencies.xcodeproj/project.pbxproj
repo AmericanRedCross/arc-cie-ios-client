@@ -12,6 +12,7 @@
 		4916408E1F4C5C3A0084CEE2 /* ModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4916408C1F4C5C3A0084CEE2 /* ModuleTableViewCell.swift */; };
 		4916408F1F4C5C3A0084CEE2 /* ModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4916408D1F4C5C3A0084CEE2 /* ModuleTableViewCell.xib */; };
 		4916409A1F4C71CA0084CEE2 /* GradientImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491640991F4C71CA0084CEE2 /* GradientImageView.swift */; };
+		492F83DD1F83A96000BDD72D /* NoteAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492F83DC1F83A96000BDD72D /* NoteAddViewController.swift */; };
 		493D42AC1F57F42800B74620 /* ThunderRequest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493D42AB1F57F42800B74620 /* ThunderRequest.framework */; };
 		493D42AD1F57F42800B74620 /* ThunderRequest.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 493D42AB1F57F42800B74620 /* ThunderRequest.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		495A90141F5EE02800843EEE /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 495A900B1F5EE02800843EEE /* libc++.tbd */; };
@@ -44,6 +45,7 @@
 		49BF8DD81F73C5BC00A1890F /* ModuleStepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BF8DD61F73C5BC00A1890F /* ModuleStepTableViewCell.swift */; };
 		49BF8DD91F73C5BC00A1890F /* ModuleSubStepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49BF8DD71F73C5BC00A1890F /* ModuleSubStepTableViewCell.xib */; };
 		49C2DE8B1F502C7000DCFBB5 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C2DE8A1F502C7000DCFBB5 /* Utilities.swift */; };
+		49C3ED441F839E0E00763901 /* Notes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49C3ED431F839E0E00763901 /* Notes.storyboard */; };
 		49FE8D831F419F6900B73731 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE8D821F419F6900B73731 /* AppDelegate.swift */; };
 		49FE8D851F419F6900B73731 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE8D841F419F6900B73731 /* ViewController.swift */; };
 		49FE8D881F419F6900B73731 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49FE8D861F419F6900B73731 /* Main.storyboard */; };
@@ -213,6 +215,7 @@
 		4916408C1F4C5C3A0084CEE2 /* ModuleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTableViewCell.swift; sourceTree = "<group>"; };
 		4916408D1F4C5C3A0084CEE2 /* ModuleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModuleTableViewCell.xib; sourceTree = "<group>"; };
 		491640991F4C71CA0084CEE2 /* GradientImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientImageView.swift; sourceTree = "<group>"; };
+		492F83DC1F83A96000BDD72D /* NoteAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteAddViewController.swift; sourceTree = "<group>"; };
 		493D42961F57F41D00B74620 /* ThunderRequest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ThunderRequest.xcodeproj; path = ../ARCDM/ThunderRequest/ThunderRequest.xcodeproj; sourceTree = "<group>"; };
 		493D42AB1F57F42800B74620 /* ThunderRequest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ThunderRequest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		495A900B1F5EE02800843EEE /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
@@ -239,6 +242,7 @@
 		49BF8DD61F73C5BC00A1890F /* ModuleStepTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleStepTableViewCell.swift; sourceTree = "<group>"; };
 		49BF8DD71F73C5BC00A1890F /* ModuleSubStepTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModuleSubStepTableViewCell.xib; sourceTree = "<group>"; };
 		49C2DE8A1F502C7000DCFBB5 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		49C3ED431F839E0E00763901 /* Notes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notes.storyboard; sourceTree = "<group>"; };
 		49DA865A1F4AE3B600BB49B4 /* ThunderBasics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ThunderBasics.xcodeproj; path = ThunderBasics/ThunderBasics.xcodeproj; sourceTree = SOURCE_ROOT; };
 		49FE8D7F1F419F6900B73731 /* Cash In Emergencies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cash In Emergencies.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49FE8D821F419F6900B73731 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -364,6 +368,8 @@
 		49FE8D811F419F6900B73731 /* Cash In Emergencies */ = {
 			isa = PBXGroup;
 			children = (
+				492F83DC1F83A96000BDD72D /* NoteAddViewController.swift */,
+				49C3ED431F839E0E00763901 /* Notes.storyboard */,
 				498F45711F823F7200E8824C /* Cash In Emergencies.entitlements */,
 				497DF1911F74FC5800367A94 /* ToolTableViewCell.swift */,
 				497DF1881F74FC5700367A94 /* ToolTableViewCell.xib */,
@@ -606,6 +612,7 @@
 				49BCFFEC1F4455BD00F68A40 /* structure.json in Resources */,
 				496C49CC1F4EE6FA00AD05D1 /* Settings.storyboard in Resources */,
 				49BCFFEE1F4479B600F68A40 /* Onboarding.storyboard in Resources */,
+				49C3ED441F839E0E00763901 /* Notes.storyboard in Resources */,
 				49FE8D8D1F419F6900B73731 /* LaunchScreen.storyboard in Resources */,
 				49A418611F73EA96004C1F61 /* ModuleStepTableViewCell.xib in Resources */,
 				49BF8DD91F73C5BC00A1890F /* ModuleSubStepTableViewCell.xib in Resources */,
@@ -634,6 +641,7 @@
 				4916408E1F4C5C3A0084CEE2 /* ModuleTableViewCell.swift in Sources */,
 				496C49D11F4EEDA300AD05D1 /* SettingsTableViewController.swift in Sources */,
 				49FE8D831F419F6900B73731 /* AppDelegate.swift in Sources */,
+				492F83DD1F83A96000BDD72D /* NoteAddViewController.swift in Sources */,
 				49A418601F73EA96004C1F61 /* ModuleSubStepTableViewCell.swift in Sources */,
 				497DF1921F74FC5800367A94 /* ToolTableViewCell.swift in Sources */,
 				497122281F4C23A1000786AE /* ToolkitTableViewController.swift in Sources */,
