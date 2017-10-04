@@ -1,12 +1,11 @@
 //
-//  WorkflowViewController.swift
+//  ModuleConformable+Views.swift
 //  Cash In Emergencies
 //
-//  Created by Matthew Cheetham on 22/08/2017.
+//  Created by Matthew Cheetham on 04/10/2017.
 //  Copyright © 2017 3 SIDED CUBE. All rights reserved.
 //
 
-import UIKit
 import ARCDM
 import ThunderTable
 
@@ -101,7 +100,7 @@ class Step: ModuleConformable, Row {
     func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
         
         toolkitTableViewController = tableViewController as? ToolkitTableViewController
-
+        
         if let _cell = cell as? ModuleStepTableViewCell {
             
             _cell.stepHierarchyLabel.text = internalModule?.metadata?["hierarchy"] as? String
@@ -126,7 +125,7 @@ class Step: ModuleConformable, Row {
 class SubStep: ModuleConformable, Row {
     
     private var toolkitTableViewController: ToolkitTableViewController?
-
+    
     var internalModule: Module?
     
     func module() -> Module? {
@@ -152,7 +151,7 @@ class SubStep: ModuleConformable, Row {
     func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
         
         toolkitTableViewController = tableViewController as? ToolkitTableViewController
-
+        
         if let _cell = cell as? ModuleSubStepTableViewCell {
             
             _cell.substepHierarchyLabel.text = internalModule?.metadata?["hierarchy"] as? String
@@ -257,70 +256,4 @@ class Tool: ModuleConformable, Row {
             checkView.isSelected = !checkView.isSelected
         }
     }
-}
-
-extension FileDescriptor {
-    
-    func mimeImage() -> UIImage? {
-        
-        guard let mimeType = mime else {
-            return #imageLiteral(resourceName: "mime_misc")
-        }
-        
-        switch mimeType {
-        case "text/plain", "text/richtext", "application/vnd.oasis.opendocument.text", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
-            return #imageLiteral(resourceName: "mime_doc")
-        case "application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "application/vnd.oasis.opendocument.spreadsheet":
-            return #imageLiteral(resourceName: "mime_xls")
-        case "application/vnd.ms-powerpoint", "application/vnd.openxmlformats-officedocument.presentationml.presentation", "application/vnd.oasis.opendocument.presentation":
-            return #imageLiteral(resourceName: "mime_ppt")
-        case "application/pdf":
-            return #imageLiteral(resourceName: "mime_pdf")
-        case "application/zip":
-            return #imageLiteral(resourceName: "mime_zip")
-        default:
-            return #imageLiteral(resourceName: "mime_misc")
-        }
-    }
-}
-
-class WorkflowViewController: UIViewController {
-    
-    @IBOutlet weak var toolkitButton: UIButton!
-    @IBOutlet weak var criticalToolsButton: UIButton!
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
-    var toolkitTableViewController: ToolkitTableViewController? {
-        return childViewControllers.first as? ToolkitTableViewController
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        toolkitTableViewController?.tableView.contentOffset = CGPoint(x: 0, y: 44)
-        
-        toolkitButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -10)
-        toolkitButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 0)
-        
-        criticalToolsButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -10)
-        criticalToolsButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 0)
-
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
-        }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 }
