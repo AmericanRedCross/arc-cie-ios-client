@@ -21,6 +21,7 @@ class ToolkitTableViewController: TableViewController {
     
     private var disaplayableURL: URL?
 
+    @IBOutlet weak var searchBar: UISearchBar!
     func mapTree(for modules: [Module], level: Int) {
 
         for module in modules {
@@ -167,7 +168,7 @@ class ToolkitTableViewController: TableViewController {
     @available(iOS 11.0, *)
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        if let _displayableModuleObjects = displayableModuleObjects, let _toolDisplayed = _displayableModuleObjects[indexPath.section].rows[indexPath.row] as? Tool, let module = _toolDisplayed.module() {
+        if let _toolDisplayed = data[indexPath.section].rows[indexPath.row] as? Tool, let module = _toolDisplayed.module() {
             
             var actions = [UIContextualAction]()
             
@@ -264,6 +265,12 @@ class ToolkitTableViewController: TableViewController {
         let swipeActions = UISwipeActionsConfiguration(actions: [])
         return swipeActions
     }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        super.scrollViewDidScroll(scrollView)
+        self.parent?.view.setNeedsUpdateConstraints()
+        self.parent?.view.setNeedsLayout()
+    }
 }
 
 extension ToolkitTableViewController: QLPreviewControllerDataSource {
@@ -278,5 +285,29 @@ extension ToolkitTableViewController: QLPreviewControllerDataSource {
             return _URL as NSURL
         }
         return NSURL(fileURLWithPath: "lol")
+    }
+}
+
+extension ToolkitTableViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        ToolIndexManager.shared.searchTools(using: searchText) { (error, tools) in
+            
+            var rows = [Row]()
+
+            for tool in tools {
+                let toolView = Tool(with: tool)
+                rows.append(toolView)
+            }
+            
+            let moduleSection = TableSection(rows: rows, header: nil, footer: nil, selectionHandler: nil)
+            
+            OperationQueue.main.addOperation({
+                self.data = [moduleSection]
+            })
+            
+            print(tools)
+        }
     }
 }

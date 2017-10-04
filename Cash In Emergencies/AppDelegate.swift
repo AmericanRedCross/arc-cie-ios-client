@@ -8,6 +8,7 @@
 
 import UIKit
 import ARCDM
+import CoreSpotlight
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        CSSearchableIndex.default().deleteSearchableItems(withDomainIdentifiers: ["org.redcross.cie.search"]) { (error) in
+            let toolIndex = ToolIndexManager.shared
+            toolIndex.createIndex(products: []) { (error) in
+                
+            }
+        }
 //        contentController.getBundleInformation(for: "2") { (result) in
 //
 //            switch result {
