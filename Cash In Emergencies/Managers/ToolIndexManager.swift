@@ -19,9 +19,9 @@ class ToolIndexManager {
     
     var searchQuery: CSSearchQuery? = nil
     
-    func searchTools(using term: String, completionHandler: @escaping ((Error?, [Module]) -> Void)) {
+    func searchTools(using term: String, completionHandler: @escaping ((Error?, [(parent: String, tool: Module)]) -> Void)) {
         
-        var foundTools: [Module] = []
+        var foundTools = [(String, Module)]()
         
         if let _searchQuery = searchQuery {
             
@@ -31,15 +31,19 @@ class ToolIndexManager {
         
         let queryString = "title == '\(term)*'wc"
         
-        self.searchQuery = CSSearchQuery(queryString: queryString, attributes: ["title", "displayName"])
+        self.searchQuery = CSSearchQuery(queryString: queryString, attributes: ["title", "displayName", "containerDisplayName"])
         
         self.searchQuery?.foundItemsHandler = { (items : [CSSearchableItem]) in
             
-            let returnedTools = items.flatMap({ (searchItem) -> Module? in
+            let returnedTools = items.flatMap({ (searchItem) -> (String, Module)? in
 
                 guard let moduleIdentifier = Int(searchItem.uniqueIdentifier), let modulesToSearch = ModuleManager().modules else { return nil }
 
-                return ModuleManager().module(for: moduleIdentifier, in: modulesToSearch)
+                if let _foundModule = ModuleManager().module(for: moduleIdentifier, in: modulesToSearch), let parentString = searchItem.attributeSet.containerDisplayName {
+                    return (parentString, _foundModule)
+                }
+                
+                return nil
             })
 
             foundTools.append(contentsOf: returnedTools)
@@ -89,6 +93,13 @@ class ToolIndexManager {
                                         let searchableSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeContent as String)
                                         searchableSet.displayName = file.moduleTitle
                                         searchableSet.title = file.moduleTitle
+                                        searchableSet.containerTitle = substep.moduleTitle
+                                        if let moduleTitle = substep.moduleTitle, let subHierarchy = substep.metadata?["hierarchy"] as? String {
+                                            searchableSet.containerDisplayName = "\(subHierarchy) \(moduleTitle)"
+                                        }
+                                        if let subIdentifier = substep.identifier {
+                                            searchableSet.containerIdentifier = String(subIdentifier)
+                                        }
                                         
                                         if let _firstAttachment = file.attachments?.first {
                                             

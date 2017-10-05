@@ -174,8 +174,6 @@ class ToolkitTableViewController: TableViewController {
             
             //Export
             let exportOption = UIContextualAction(style: .normal, title: "EXPORT OR SHARE") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
-                print("hi")
-                print(module)
                 
                 if let _url = module.attachments?.first?.url {
                     
@@ -294,18 +292,32 @@ extension ToolkitTableViewController: UISearchBarDelegate {
         
         ToolIndexManager.shared.searchTools(using: searchText) { (error, tools) in
             
-            var rows = [Row]()
-
-            for tool in tools {
-                let toolView = Tool(with: tool)
-                rows.append(toolView)
+            let orderedItems = Dictionary(grouping: tools, by: { tool in tool.parent })
+            
+            var sections = [Section]()
+            
+            for (key, value) in orderedItems {
+                
+                let tools = value.flatMap({ Tool(with: $0.tool) })
+                let newSection = TableSection(rows: tools, header: key, footer: nil, selectionHandler: nil)
+                sections.append(newSection)
             }
-            
-            let moduleSection = TableSection(rows: rows, header: nil, footer: nil, selectionHandler: nil)
-            
+
             OperationQueue.main.addOperation({
-                self.data = [moduleSection]
+                self.data = sections
             })
+//            var rows = [Row]()
+//
+//            for tool in tools {
+//                let toolView = Tool(with: tool)
+//                rows.append(toolView)
+//            }
+//
+//            let moduleSection = TableSection(rows: rows, header: nil, footer: nil, selectionHandler: nil)
+//
+//            OperationQueue.main.addOperation({
+//                self.data = [moduleSection]
+//            })
             
             print(tools)
         }
