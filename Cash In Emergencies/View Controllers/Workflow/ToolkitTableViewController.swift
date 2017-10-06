@@ -126,6 +126,27 @@ class ToolkitTableViewController: TableViewController {
         }
     }
     
+    func showCriticalToolsOnly() {
+        
+        ToolIndexManager.shared.searchCriticalTools { (error, tools) in
+            
+            let orderedItems = Dictionary(grouping: tools, by: { tool in tool.parent })
+            
+            var sections = [Section]()
+            
+            for (key, value) in orderedItems {
+                
+                let tools = value.flatMap({ Tool(with: $0.tool) })
+                let newSection = TableSection(rows: tools, header: key, footer: nil, selectionHandler: nil)
+                sections.append(newSection)
+            }
+            
+            OperationQueue.main.addOperation({
+                self.data = sections
+            })
+        }
+    }
+    
     func handleToggle(of module: Module) {
         
         guard let moduleID = module.identifier else {

@@ -59,5 +59,11 @@ class WorkflowViewController: UIViewController {
         
         criticalToolsButton.backgroundColor = criticalToolsButton.isSelected ? UIColor(hexString: "ed1b2e") : UIColor.clear
         criticalToolsButton.tintColor = criticalToolsButton.isSelected ? UIColor.white : UIColor(hexString: "9f9fa3")
+        
+        if criticalToolsButton.isSelected {
+            toolkitTableViewController?.showCriticalToolsOnly()
+        } else {
+            toolkitTableViewController?.redraw()
+        }
     }
 }

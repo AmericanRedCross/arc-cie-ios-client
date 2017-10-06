@@ -19,6 +19,44 @@ class ToolIndexManager {
     
     var searchQuery: CSSearchQuery? = nil
     
+    func searchCriticalTools(with completionHandler: @escaping ((Error?, [(parent: String, tool: Module)]) -> Void)) {
+    
+        var foundTools = [(String, Module)]()
+    
+        if let _searchQuery = searchQuery {
+    
+            _searchQuery.cancel()
+            self.searchQuery = nil
+        }
+    
+        let queryString = "critical_path == '1'"
+    
+        self.searchQuery = CSSearchQuery(queryString: queryString, attributes: ["title", "displayName", "containerDisplayName"])
+    
+        self.searchQuery?.foundItemsHandler = { (items : [CSSearchableItem]) in
+    
+            let returnedTools = items.flatMap({ (searchItem) -> (String, Module)? in
+
+                guard let moduleIdentifier = Int(searchItem.uniqueIdentifier), let modulesToSearch = ModuleManager().modules else { return nil }
+
+                if let _foundModule = ModuleManager().module(for: moduleIdentifier, in: modulesToSearch), let parentString = searchItem.attributeSet.containerDisplayName {
+                    return (parentString, _foundModule)
+                }
+    
+                return nil
+            })
+
+            foundTools.append(contentsOf: returnedTools)
+        }
+    
+        self.searchQuery?.completionHandler = { (error: Error?) in
+            completionHandler(nil, foundTools)
+        }
+    
+        self.searchQuery?.start()
+    
+    }
+    
     func searchTools(using term: String, completionHandler: @escaping ((Error?, [(parent: String, tool: Module)]) -> Void)) {
         
         var foundTools = [(String, Module)]()
@@ -97,6 +135,15 @@ class ToolIndexManager {
                                         if let moduleTitle = substep.moduleTitle, let subHierarchy = substep.metadata?["hierarchy"] as? String {
                                             searchableSet.containerDisplayName = "\(subHierarchy) \(moduleTitle)"
                                         }
+                                        
+                                        if let _criticalTool = file.metadata?["critical_path"] as? Bool {
+                                            if _criticalTool {
+                                                if let _key = CSCustomAttributeKey(keyName: "critical_path") {
+                                                    searchableSet.setValue(_criticalTool as NSNumber, forCustomKey: _key)
+                                                }
+                                            }
+                                        }
+                                        
                                         if let subIdentifier = substep.identifier {
                                             searchableSet.containerIdentifier = String(subIdentifier)
                                         }

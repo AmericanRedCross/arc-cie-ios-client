@@ -24,6 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let toolIndex = ToolIndexManager.shared
             toolIndex.createIndex(products: []) { (error) in
                 
+                toolIndex.searchCriticalTools(with: { (error, modules) in
+                    
+                })
+                
             }
         }
 //        contentController.getBundleInformation(for: "2") { (result) in
