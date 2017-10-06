@@ -49,4 +49,15 @@ class WorkflowViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func handleFilterButton(_ sender: UIButton) {
+        
+        toolkitButton.isSelected = !toolkitButton.isSelected
+        criticalToolsButton.isSelected = !criticalToolsButton.isSelected
+        
+        toolkitButton.backgroundColor = toolkitButton.isSelected ? UIColor(hexString: "ed1b2e") : UIColor.clear
+        toolkitButton.tintColor = toolkitButton.isSelected ? UIColor.white : UIColor(hexString: "9f9fa3")
+        
+        criticalToolsButton.backgroundColor = criticalToolsButton.isSelected ? UIColor(hexString: "ed1b2e") : UIColor.clear
+        criticalToolsButton.tintColor = criticalToolsButton.isSelected ? UIColor.white : UIColor(hexString: "9f9fa3")
+    }
 }

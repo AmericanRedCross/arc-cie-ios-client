@@ -130,15 +130,20 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="okP-kn-HC9">
                                         <rect key="frame" x="27.5" y="0.0" width="320" height="70"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PYH-kj-Ky8">
+                                            <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PYH-kj-Ky8">
                                                 <rect key="frame" x="0.0" y="17.5" width="120" height="35"/>
-                                                <color key="backgroundColor" name="mainRedColor"/>
+                                                <color key="backgroundColor" red="0.92803966999999998" green="0.1049155816" blue="0.1790089607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="120" id="hs3-tv-Aq7"/>
                                                     <constraint firstAttribute="height" constant="35" id="kQC-a3-ZjW"/>
                                                 </constraints>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <state key="normal" title="TOOLKIT" image="segmented-toolkit"/>
+                                                <state key="normal" title="TOOLKIT" image="segmented-toolkit">
+                                                    <color key="titleColor" red="0.62341064209999997" green="0.62327319380000001" blue="0.63977271319999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <state key="selected">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="17.5"/>
@@ -147,9 +152,13 @@
                                                         <size key="value" width="10" height="0.0"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="handleFilterButton:" destination="bx8-Rk-bsx" eventType="primaryActionTriggered" id="B2R-ba-k76"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G9l-Yt-E1C">
                                                 <rect key="frame" x="140" y="17.5" width="180" height="35"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="BS9-W0-Zd2"/>
                                                     <constraint firstAttribute="width" constant="180" id="jSO-yI-kSc"/>
@@ -158,11 +167,20 @@
                                                 <state key="normal" title="CRITICAL TOOLS" image="segmented-critical-tools">
                                                     <color key="titleColor" red="0.62341064214706421" green="0.62327319383621216" blue="0.63977271318435669" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <state key="selected">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted" image="segmented-critical-tools">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="17.5"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="handleFilterButton:" destination="bx8-Rk-bsx" eventType="touchUpInside" id="oMy-sL-axD"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
