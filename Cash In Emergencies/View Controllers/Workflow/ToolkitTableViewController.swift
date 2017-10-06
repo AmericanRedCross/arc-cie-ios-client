@@ -19,6 +19,8 @@ class ToolkitTableViewController: TableViewController {
     /// A dictionary where the key is the module identifier of every module (recursively) through the structure.json and it's value being an integer of what depth level it is app. Zero based.
     var moduleDepthMap = [Int: Int]()
     
+    private var timer: Timer?
+    
     private var disaplayableURL: URL?
 
     @IBOutlet weak var searchBar: UISearchBar!
@@ -310,6 +312,20 @@ extension ToolkitTableViewController: QLPreviewControllerDataSource {
 extension ToolkitTableViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(handleSearch), userInfo: nil, repeats: false)
+    }
+    
+    @objc func handleSearch() {
+        
+        guard let searchText = searchBar.text else {
+            redraw()
+            return
+        }
+        
+        if searchText == "" {
+            redraw()
+            return
+        }
         
         ToolIndexManager.shared.searchTools(using: searchText) { (error, tools) in
             
@@ -323,24 +339,10 @@ extension ToolkitTableViewController: UISearchBarDelegate {
                 let newSection = TableSection(rows: tools, header: key, footer: nil, selectionHandler: nil)
                 sections.append(newSection)
             }
-
+            
             OperationQueue.main.addOperation({
                 self.data = sections
             })
-//            var rows = [Row]()
-//
-//            for tool in tools {
-//                let toolView = Tool(with: tool)
-//                rows.append(toolView)
-//            }
-//
-//            let moduleSection = TableSection(rows: rows, header: nil, footer: nil, selectionHandler: nil)
-//
-//            OperationQueue.main.addOperation({
-//                self.data = [moduleSection]
-//            })
-            
-            print(tools)
         }
     }
 }
