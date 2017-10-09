@@ -34,6 +34,13 @@ class WorkflowViewController: UIViewController {
         criticalToolsButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -10)
         criticalToolsButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 0)
 
+        if !UserDefaults.standard.bool(forKey: "CIEHasDoneOnboarding") {
+            let onboarding = UIStoryboard(name: "Onboarding", bundle: Bundle.main).instantiateInitialViewController()
+            
+            if let onboarding = onboarding {
+                present(onboarding, animated: true, completion: nil)
+            }
+        }
     }
     
     override func viewDidLoad() {

@@ -19,12 +19,12 @@ class OnboardingViewController: UIViewController {
             
             let playerView = AVPlayerViewController()
             playerView.showsPlaybackControls = true
-            if #available(iOS 11.0, *) {
-                playerView.exitsFullScreenWhenPlaybackEnds = true
-            } else {
-                
+//            if #available(iOS 11.0, *) {
+//                playerView.exitsFullScreenWhenPlaybackEnds = true
+//            } else {
+            
                 NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying(note:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player.currentItem)
-            }
+//            }
         
             playerView.player = player
         
@@ -35,6 +35,9 @@ class OnboardingViewController: UIViewController {
     }
     
     @objc func playerDidFinishPlaying(note: NSNotification) {
+        
+        UserDefaults.standard.set(true, forKey: "CIEHasDoneOnboarding")
         dismiss(animated: true, completion: nil)
+        navigationController?.dismiss(animated: true, completion: nil)
     }
 }
