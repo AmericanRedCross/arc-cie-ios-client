@@ -19,11 +19,25 @@ class ToolkitTableViewController: TableViewController {
     /// A dictionary where the key is the module identifier of every module (recursively) through the structure.json and it's value being an integer of what depth level it is app. Zero based.
     var moduleDepthMap = [Int: Int]()
     
+    /// Handles delaying searches by 0.5 seconds
     private var timer: Timer?
     
+    /// The URL of the module a user may have selected to display. We have to have this due to the way QLPreview works using delegates
     private var disaplayableURL: URL?
+    
+    /// The standard calculated data source for displaying modules. Prevents recreating where uncecessary
+    private var standardDataSource: [Section]?
+    
+    /// The data source calculated to display only critical tools. Prevents recreating where unecessary
+    private var criticalToolsDataSource: [Section]?
 
     @IBOutlet weak var searchBar: UISearchBar!
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        NotificationCenter.default.addObserver(self, selector: #selector(indexDidRefresh), name: NSNotification.Name("ModulesDidIndex"), object: nil)
+    }
+    
     func mapTree(for modules: [Module], level: Int) {
 
         for module in modules {
@@ -118,17 +132,26 @@ class ToolkitTableViewController: TableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        redraw()
-    }
-    
-    func redraw() {
-        
-        if let _displayableObjects = displayableModuleObjects {
-            data = _displayableObjects
+        reload { (error) in
+            self.redraw()
         }
     }
     
-    func showCriticalToolsOnly() {
+    @objc func indexDidRefresh() {
+        
+        reload { [weak self] (error) in
+            if error == nil {
+                self?.redraw()
+            }
+        }
+        
+    }
+    
+    func reload(with completionHandler: ((Error?) -> Void)?) {
+        
+        if let _displayableObjects = displayableModuleObjects {
+            standardDataSource = _displayableObjects
+        }
         
         ToolIndexManager.shared.searchCriticalTools { (error, tools) in
             
@@ -144,8 +167,25 @@ class ToolkitTableViewController: TableViewController {
             }
             
             OperationQueue.main.addOperation({
-                self.data = sections
+                self.criticalToolsDataSource = sections
+                if let completionHandler = completionHandler {
+                    completionHandler(nil)
+                }
             })
+        }
+    }
+    
+    func redraw() {
+        
+        if let _standardRows = standardDataSource {
+            data = _standardRows
+        }
+    }
+    
+    func showCriticalToolsOnly() {
+        
+        if let _criticalRows = criticalToolsDataSource {
+            data = _criticalRows
         }
     }
     
@@ -163,6 +203,7 @@ class ToolkitTableViewController: TableViewController {
             expandedModuleIdentifiers.append(moduleID)
         }
         
+        standardDataSource = displayableModuleObjects
         redraw()
     }
     
@@ -310,6 +351,19 @@ extension ToolkitTableViewController: QLPreviewControllerDataSource {
 }
 
 extension ToolkitTableViewController: UISearchBarDelegate {
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
+    }
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.setShowsCancelButton(false, animated: true)
+        return true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(handleSearch), userInfo: nil, repeats: false)

@@ -26,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 toolIndex.searchCriticalTools(with: { (error, modules) in
                     
+                    NotificationCenter.default.post(name: NSNotification.Name("ModulesDidIndex"), object: nil)
+                    
                 })
                 
             }

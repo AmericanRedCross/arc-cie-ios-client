@@ -9,6 +9,7 @@
 import UIKit
 import ARCDM
 import ThunderTable
+import ThunderBasics
 
 class WorkflowViewController: UIViewController {
     
@@ -58,6 +59,9 @@ class WorkflowViewController: UIViewController {
     
     @IBAction func handleFilterButton(_ sender: UIButton) {
         
+        toolkitTableViewController?.searchBar?.resignFirstResponder()
+        toolkitTableViewController?.searchBar?.text = nil
+        
         toolkitButton.isSelected = !toolkitButton.isSelected
         criticalToolsButton.isSelected = !criticalToolsButton.isSelected
         
@@ -69,8 +73,10 @@ class WorkflowViewController: UIViewController {
         
         if criticalToolsButton.isSelected {
             toolkitTableViewController?.showCriticalToolsOnly()
+            toolkitTableViewController?.searchBar.setHeight(0)
         } else {
             toolkitTableViewController?.redraw()
+            toolkitTableViewController?.searchBar.setHeight(56)
         }
     }
 }
