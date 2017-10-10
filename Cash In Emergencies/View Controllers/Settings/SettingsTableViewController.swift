@@ -129,13 +129,19 @@ class SettingsTableViewController: UITableViewController {
             }, completion: { (result) in
                 print(result)
                 
-                OperationQueue.main.addOperation({
-                    sender.isEnabled = true
-                    MDCHUDActivityView.finish(in: self.view.window)
-                })
-            })
-        }
-        
+                switch result {
+                case .success(let didSucceed):
+                    OperationQueue.main.addOperation({
+                        sender.isEnabled = true
+                        MDCHUDActivityView.finish(in: self.view.window)
+                        NotificationCenter.default.post(name: NSNotification.Name("ContentControllerBundleDidUpdate"), object: nil)
+                    })
+                case .failure(let error):
+                    print(error)
+                }
+            }
+
+        )}
     }
     
     func handlePlayVideo() {

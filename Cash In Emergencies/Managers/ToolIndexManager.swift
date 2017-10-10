@@ -19,6 +19,12 @@ class ToolIndexManager {
     
     var searchQuery: CSSearchQuery? = nil
     
+    private init() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(bundleDidChange), name: NSNotification.Name("ContentControllerBundleDidUpdate"), object: nil)
+        
+    }
+    
     func searchCriticalTools(with completionHandler: @escaping ((Error?, [(parent: String, tool: Module)]) -> Void)) {
     
         var foundTools = [(String, Module)]()
@@ -182,4 +188,21 @@ class ToolIndexManager {
         CSSearchableIndex.default().deleteSearchableItems(withDomainIdentifiers: [domain], completionHandler: completionHandler)
     }
     
+}
+
+extension ToolIndexManager {
+ 
+    @objc func bundleDidChange() {
+        
+        unIndexAll { [weak self] (error) in
+            
+            if let modules = ModuleManager().modules {
+                self?.createIndex(products: modules, completionHandler: { (error) in
+                    
+                    NotificationCenter.default.post(name: NSNotification.Name("ModulesDidIndex"), object: nil)
+                    
+                })
+            }
+        }
+    }
 }
