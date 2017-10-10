@@ -50,8 +50,8 @@
 		49FE8D8A1F419F6900B73731 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49FE8D891F419F6900B73731 /* Assets.xcassets */; };
 		49FE8D8D1F419F6900B73731 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49FE8D8B1F419F6900B73731 /* LaunchScreen.storyboard */; };
 		FF82CCE11F8CC358009FCC5B /* ProgressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82CCDF1F8CC358009FCC5B /* ProgressTableViewCell.swift */; };
-		FF82CCE21F8CC358009FCC5B /* ProgressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF82CCE01F8CC358009FCC5B /* ProgressTableViewCell.xib */; };
 		FF82CCE41F8CC38E009FCC5B /* ProgressTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82CCE31F8CC38E009FCC5B /* ProgressTableViewController.swift */; };
+		FF82CCE71F8CCA37009FCC5B /* ProgressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF82CCE01F8CC358009FCC5B /* ProgressTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -654,6 +654,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF82CCE71F8CCA37009FCC5B /* ProgressTableViewCell.xib in Resources */,
 				49BCFFF31F44895500F68A40 /* onboarding_video.mp4 in Resources */,
 				498F45441F7CFA2000E8824C /* Document_Viewing.storyboard in Resources */,
 				4916408F1F4C5C3A0084CEE2 /* ModuleTableViewCell.xib in Resources */,
@@ -666,7 +667,6 @@
 				497DF1931F753D1300367A94 /* ToolTableViewCell.xib in Resources */,
 				49FE8D8A1F419F6900B73731 /* Assets.xcassets in Resources */,
 				49FE8D881F419F6900B73731 /* Main.storyboard in Resources */,
-				FF82CCE21F8CC358009FCC5B /* ProgressTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
