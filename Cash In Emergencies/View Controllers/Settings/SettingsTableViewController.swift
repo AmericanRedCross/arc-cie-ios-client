@@ -10,6 +10,7 @@ import UIKit
 import AVKit
 import ARCDM
 import ThunderBasics
+import CloudKit
 
 class SettingsTableViewController: UITableViewController {
     
@@ -126,33 +127,7 @@ class SettingsTableViewController: UITableViewController {
         
         MDCHUDActivityView.start(in: view.window)
         sender.isEnabled = false
-        
-        if let _url = bundleInformation?.downloadURL {
-            
-            self.contentController.downloadBundle(from: _url, progress: { (progress, bytesDownloaded, totalBytes) in
-                print(progress)
-            }, completion: { [weak self] (result) in
-                print(result)
-                
-                switch result {
-                case .success(let didSucceed):
-                    OperationQueue.main.addOperation({
-                        sender.isEnabled = true
-                        MDCHUDActivityView.finish(in: self?.view.window)
-                        NotificationCenter.default.post(name: NSNotification.Name("ContentControllerBundleDidUpdate"), object: nil)
-                        
-                        //Save and reload
-                        if let _interval = self?.bundleInformation?.publishDate?.timeIntervalSince1970 {
-                            UserDefaults.standard.set(_interval, forKey: "CurrentBundleTimestamp")
-                        }
-                        self?.redraw()
-                    })
-                case .failure(let error):
-                    print(error)
-                }
-            }
-
-        )}
+        downloadBundle()
     }
     
     func handlePlayVideo() {
@@ -188,9 +163,14 @@ class SettingsTableViewController: UITableViewController {
         
         if let languageOptions = bundleInformation?.availableLanguages {
             
-            for language in languageOptions {
-                languagePicker.addAction(UIAlertAction(title: language, style: .default, handler: { (action) in
+            for language in languageOptions.reversed() {
+                
+                let languageString = Locale.current.localizedString(forIdentifier: language)
+                
+                languagePicker.addAction(UIAlertAction(title: languageString, style: .default, handler: { (action) in
                     
+                    UserDefaults.standard.set(language, forKey: "ContentOverrideLanguage")
+                    self.downloadBundle()
                 }))
             }
             
@@ -198,5 +178,47 @@ class SettingsTableViewController: UITableViewController {
         }
         
         showDetailViewController(languagePicker, sender: self)
+    }
+    
+    func downloadBundle() {
+        
+        //Set base URL
+        var url: URL?
+        
+        //Add language if required
+        if let baseURL = self.bundleInformation?.downloadURL, let language = UserDefaults.standard.string(forKey: "ContentOverrideLanguage") {
+            if let _newURL = URL(string: "\(baseURL)&language=\(language)") {
+                url = _newURL
+            }
+        } else {
+            url = self.bundleInformation?.downloadURL
+        }
+        
+        guard let _url = url else {
+            return
+        }
+        
+        self.contentController.downloadBundle(from: _url, progress: { (progress, bytesDownloaded, totalBytes) in
+            print(progress)
+        }, completion: { [weak self] (result) in
+            print(result)
+            
+            switch result {
+            case .success(let didSucceed):
+                OperationQueue.main.addOperation({
+                    MDCHUDActivityView.finish(in: self?.view.window)
+                    NotificationCenter.default.post(name: NSNotification.Name("ContentControllerBundleDidUpdate"), object: nil)
+                    
+                    //Save and reload
+                    if let _interval = self?.bundleInformation?.publishDate?.timeIntervalSince1970 {
+                        UserDefaults.standard.set(_interval, forKey: "CurrentBundleTimestamp")
+                    }
+                    self?.redraw()
+                })
+            case .failure(let error):
+                print(error)
+            }
+            }
+        )
     }
 }
