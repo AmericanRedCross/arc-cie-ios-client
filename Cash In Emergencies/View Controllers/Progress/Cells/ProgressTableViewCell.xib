@@ -76,13 +76,13 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jX1-Vw-efj">
                                                 <rect key="frame" x="0.0" y="0.0" width="128" height="62"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" red="0.42745098040000001" green="0.43137254899999999" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUB-STEPS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFR-nv-AOA">
                                                 <rect key="frame" x="0.0" y="65" width="128" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" red="0.42745098040000001" green="0.43137254899999999" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -105,13 +105,13 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kyM-Bo-5sl">
                                                 <rect key="frame" x="0.0" y="0.0" width="128" height="32.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" red="0.42745098040000001" green="0.43137254899999999" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CRITICAL TOOLS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nZp-Xf-Il6">
                                                 <rect key="frame" x="0.0" y="35.5" width="128" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" red="0.42745098040000001" green="0.43137254899999999" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -121,7 +121,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00% COMPLETE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xsi-ef-bj0">
                                 <rect key="frame" x="8" y="121" width="156.5" height="25.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.42745098039215684" green="0.43137254901960786" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>

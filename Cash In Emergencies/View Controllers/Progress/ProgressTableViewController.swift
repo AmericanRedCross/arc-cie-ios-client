@@ -10,12 +10,17 @@ import UIKit
 import ThunderTable
 import ARCDM
 
+// Table View controller for displaying the users progress of each module
 class ProgressTableViewController: TableViewController {
     
+    // Boolean for if the tableViews data needs to be reloaded 
     var needsReload: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let notificationName = NSNotification.Name("ModulePropertyChanged")
+        NotificationCenter.default.addObserver(self, selector: #selector(valuesChanged), name: notificationName, object: nil)
         
         if #available(iOS 11.0, *) {
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
@@ -24,12 +29,17 @@ class ProgressTableViewController: TableViewController {
         redraw()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         if needsReload {
             redraw()
         }
+    }
+    
+    @objc func valuesChanged() {
+        needsReload = true
     }
     
     // Creates a view model and sets it to the view controllers data source. The method loops through the modules and pulls out all of the required data that needs to be shown into one struct
@@ -100,6 +110,7 @@ class ProgressTableViewController: TableViewController {
         
         
         self.data = [TableSection(rows: viewModels)]
+        needsReload = false
     }
         
         // MARK: - Table view data source

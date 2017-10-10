@@ -28,6 +28,7 @@ class ModuleProgressView : UIView {
         }
     }
     
+    // The main colour of the progress bar
     var barColour: UIColor = UIColor.clear {
         didSet {
             progressBar.backgroundColor = barColour.cgColor
