@@ -25,10 +25,15 @@ class SettingsTableViewController: UITableViewController {
         
         //        contentAvailableLabel?.text = bundleInformation?.identifier
         
-        if let publishDate = bundleInformation?.publishDate, publishDate.timeIntervalSince1970 > 0 {
+        let currentTimestamp = contentController.currentBundleTimestamp
+        if let publishDate = bundleInformation?.publishDate, publishDate.timeIntervalSince1970 > currentTimestamp {
             
             downloadButton.isHidden = false
             contentAvailableLabel.text = "New Content Available"
+        } else {
+            
+            downloadButton.isHidden = true
+            contentAvailableLabel.text = "Content up to date"
         }
         //        tableView.red
         
@@ -126,15 +131,21 @@ class SettingsTableViewController: UITableViewController {
             
             self.contentController.downloadBundle(from: _url, progress: { (progress, bytesDownloaded, totalBytes) in
                 print(progress)
-            }, completion: { (result) in
+            }, completion: { [weak self] (result) in
                 print(result)
                 
                 switch result {
                 case .success(let didSucceed):
                     OperationQueue.main.addOperation({
                         sender.isEnabled = true
-                        MDCHUDActivityView.finish(in: self.view.window)
+                        MDCHUDActivityView.finish(in: self?.view.window)
                         NotificationCenter.default.post(name: NSNotification.Name("ContentControllerBundleDidUpdate"), object: nil)
+                        
+                        //Save and reload
+                        if let _interval = self?.bundleInformation?.publishDate?.timeIntervalSince1970 {
+                            UserDefaults.standard.set(_interval, forKey: "CurrentBundleTimestamp")
+                        }
+                        self?.redraw()
                     })
                 case .failure(let error):
                     print(error)
