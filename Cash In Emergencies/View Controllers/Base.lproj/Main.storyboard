@@ -49,6 +49,11 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="rect" keyPath="contentInset">
+                                <rect key="value" x="6" y="0.0" width="0.0" height="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <outlet property="dataSource" destination="Xbs-o0-Q6e" id="8jI-fs-n0B"/>
                             <outlet property="delegate" destination="Xbs-o0-Q6e" id="3iB-rU-78o"/>
@@ -63,7 +68,7 @@
         <!--Progress-->
         <scene sceneID="1qL-7C-qIy">
             <objects>
-                <navigationController id="fDD-I1-qsj" sceneMemberID="viewController">
+                <navigationController id="fDD-I1-qsj" customClass="ARCNavigationController" customModule="Cash_In_Emergencies" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Progress" image="tab-progress" id="1H9-Q8-8RC"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="bRH-wB-pEK">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>

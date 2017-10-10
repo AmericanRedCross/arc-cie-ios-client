@@ -52,6 +52,7 @@
 		FF82CCE11F8CC358009FCC5B /* ProgressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82CCDF1F8CC358009FCC5B /* ProgressTableViewCell.swift */; };
 		FF82CCE41F8CC38E009FCC5B /* ProgressTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82CCE31F8CC38E009FCC5B /* ProgressTableViewController.swift */; };
 		FF82CCE71F8CCA37009FCC5B /* ProgressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF82CCE01F8CC358009FCC5B /* ProgressTableViewCell.xib */; };
+		FF82CCF21F8D1151009FCC5B /* ModuleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82CCF11F8D1151009FCC5B /* ModuleProgressView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -238,6 +239,7 @@
 		FF82CCDF1F8CC358009FCC5B /* ProgressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTableViewCell.swift; sourceTree = "<group>"; };
 		FF82CCE01F8CC358009FCC5B /* ProgressTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressTableViewCell.xib; sourceTree = "<group>"; };
 		FF82CCE31F8CC38E009FCC5B /* ProgressTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTableViewController.swift; sourceTree = "<group>"; };
+		FF82CCF11F8D1151009FCC5B /* ModuleProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleProgressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -461,6 +463,7 @@
 			children = (
 				FF82CCE51F8CC394009FCC5B /* Cells */,
 				FF82CCE31F8CC38E009FCC5B /* ProgressTableViewController.swift */,
+				FF82CCF11F8D1151009FCC5B /* ModuleProgressView.swift */,
 			);
 			path = Progress;
 			sourceTree = "<group>";
@@ -696,6 +699,7 @@
 				FF82CCE41F8CC38E009FCC5B /* ProgressTableViewController.swift in Sources */,
 				497DF1921F74FC5800367A94 /* ToolTableViewCell.swift in Sources */,
 				497122281F4C23A1000786AE /* ToolkitTableViewController.swift in Sources */,
+				FF82CCF21F8D1151009FCC5B /* ModuleProgressView.swift in Sources */,
 				4916409A1F4C71CA0084CEE2 /* GradientImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
