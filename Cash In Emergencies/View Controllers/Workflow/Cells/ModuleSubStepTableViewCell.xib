@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="67" id="KGk-i7-Jjw" customClass="ModuleSubStepTableViewCell" customModule="Cash_In_Emergencies" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="67"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="66.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fmm-Ru-Cck" userLabel="checkable_button">
+                        <rect key="frame" x="24" y="17.5" width="32" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="otB-kC-nGZ"/>
+                            <constraint firstAttribute="width" constant="32" id="qLb-h9-3ZP"/>
+                        </constraints>
+                        <state key="normal" title="Button" image="check_off"/>
+                        <state key="selected" image="check_on"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="332-G0-S8a" userLabel="dropdown_button">
+                        <rect key="frame" x="272" y="17.5" width="32" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="32" id="C5u-wO-Xeg"/>
+                            <constraint firstAttribute="height" constant="32" id="DTM-kv-pQ4"/>
+                        </constraints>
+                        <state key="normal" image="workflow-cell-accessory"/>
+                    </button>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="yxz-QI-ev4">
+                        <rect key="frame" x="66" y="28.5" width="196" height="30"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="0Sb-3z-sOR">
+                                <rect key="frame" x="0.0" y="0.0" width="169.5" height="6"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="2.1.1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UA5-sl-wtS">
+                                        <rect key="frame" x="0.0" y="0.0" width="24.5" height="6"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Initial decision for cash" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lqi-Se-x8L">
+                                        <rect key="frame" x="29.5" y="0.0" width="140" height="6"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GPm-Gb-9cm">
+                                <rect key="frame" x="0.0" y="6" width="52" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="w7R-2f-MnQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
+                                <state key="normal" title="Roadmap">
+                                    <color key="titleColor" name="mainRedColor"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.62352941179999999" green="0.62352941179999999" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <color key="backgroundColor" red="0.98419493436813354" green="0.9843021035194397" blue="0.98827856779098511" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstItem="Fmm-Ru-Cck" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="4fM-XQ-EbW"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="yxz-QI-ev4" secondAttribute="bottom" id="GNC-36-yv5"/>
+                    <constraint firstItem="yxz-QI-ev4" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Rb2-sp-0ew"/>
+                    <constraint firstItem="332-G0-S8a" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="S6i-Ed-DjY"/>
+                    <constraint firstItem="yxz-QI-ev4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="20" id="U9h-gQ-rD5"/>
+                    <constraint firstItem="332-G0-S8a" firstAttribute="leading" secondItem="yxz-QI-ev4" secondAttribute="trailing" constant="10" id="UuE-Zd-Szp"/>
+                    <constraint firstItem="Fmm-Ru-Cck" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="Wbd-m3-Ldo"/>
+                    <constraint firstItem="yxz-QI-ev4" firstAttribute="leading" secondItem="Fmm-Ru-Cck" secondAttribute="trailing" constant="10" id="YXK-F1-DOX"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="332-G0-S8a" secondAttribute="trailing" constant="8" id="rel-Qm-WiU"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="moduleSubstepChevronButton" destination="332-G0-S8a" id="AaI-TX-r0l"/>
+                <outlet property="substepCheckableButton" destination="Fmm-Ru-Cck" id="qXH-IV-aBl"/>
+                <outlet property="substepHierarchyLabel" destination="UA5-sl-wtS" id="1NO-NO-3Oz"/>
+                <outlet property="substepRoadmapButton" destination="GPm-Gb-9cm" id="MDO-BJ-va3"/>
+                <outlet property="substepTitleLabel" destination="Lqi-Se-x8L" id="3FZ-xA-057"/>
+            </connections>
+            <point key="canvasLocation" x="35" y="83.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="check_off" width="34" height="34"/>
+        <image name="check_on" width="34" height="34"/>
+        <image name="workflow-cell-accessory" width="32" height="32"/>
+        <namedColor name="mainRedColor">
+            <color red="0.92941176470588238" green="0.10588235294117647" blue="0.1803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
