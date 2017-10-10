@@ -62,8 +62,17 @@ class ModuleProgressView : UIView {
         let direction = UIView.userInterfaceLayoutDirection(for: semanticContentAttribute)
         if direction == .rightToLeft {
             progressBar.frame = CGRect(x: frame.size.width - progressWidth, y: bounds.origin.y, width: progressWidth, height: bounds.height)
+            
+            if #available(iOS 11.0, *), progress != 100 {
+                progressBar.cornerRadius = 4
+                progressBar.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
+            }
         } else {
             progressBar.frame = CGRect(x: bounds.origin.x, y: bounds.origin.y, width: progressWidth, height: bounds.height)
+            if #available(iOS 11.0, *), progress != 100 {
+                progressBar.cornerRadius = 4
+                progressBar.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
+            }
         }
     }
     

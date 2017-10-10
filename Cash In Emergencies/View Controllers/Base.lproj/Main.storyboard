@@ -39,9 +39,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="5u8-fM-mLF">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WORKFLOW PROGRESS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t8P-zU-xbJ">
+                                    <rect key="frame" x="92" y="11.5" width="191.5" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OVERALL COMPLETION" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WAT-9S-bST">
+                                    <rect key="frame" x="114.5" y="34.5" width="146" height="16"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <color key="textColor" red="0.42745098040000001" green="0.43137254899999999" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aDe-yI-J4a" customClass="ModuleProgressView" customModule="Cash_In_Emergencies" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="54" width="375" height="6"/>
+                                    <color key="backgroundColor" red="1" green="0.0" blue="0.039215686270000001" alpha="0.20496464070000001" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="6" id="rJ9-0c-tGe"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="t8P-zU-xbJ" firstAttribute="centerX" secondItem="5u8-fM-mLF" secondAttribute="centerX" id="J6U-mc-m2m"/>
+                                <constraint firstItem="WAT-9S-bST" firstAttribute="top" secondItem="t8P-zU-xbJ" secondAttribute="bottom" constant="2" id="JuW-Ui-qro"/>
+                                <constraint firstAttribute="bottom" secondItem="aDe-yI-J4a" secondAttribute="bottom" id="bci-eK-Scb"/>
+                                <constraint firstItem="aDe-yI-J4a" firstAttribute="leading" secondItem="5u8-fM-mLF" secondAttribute="leading" id="fZc-w7-K0S"/>
+                                <constraint firstItem="t8P-zU-xbJ" firstAttribute="centerY" secondItem="5u8-fM-mLF" secondAttribute="centerY" constant="-8" id="m5g-np-5c0"/>
+                                <constraint firstAttribute="trailing" secondItem="aDe-yI-J4a" secondAttribute="trailing" id="mt8-hT-dZW"/>
+                                <constraint firstItem="WAT-9S-bST" firstAttribute="centerX" secondItem="5u8-fM-mLF" secondAttribute="centerX" id="zQM-4w-QkJ"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="SYm-Js-uWR">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SYm-Js-uWR" id="I0c-wE-8yB">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -49,21 +84,19 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="rect" keyPath="contentInset">
-                                <rect key="value" x="6" y="0.0" width="0.0" height="0.0"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <outlet property="dataSource" destination="Xbs-o0-Q6e" id="8jI-fs-n0B"/>
                             <outlet property="delegate" destination="Xbs-o0-Q6e" id="3iB-rU-78o"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Progress" id="kdC-f6-9NM"/>
+                    <connections>
+                        <outlet property="overallProgressBarView" destination="aDe-yI-J4a" id="xu5-r0-pfa"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uCh-32-9zC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="929" y="707"/>
+            <point key="canvasLocation" x="928.79999999999995" y="706.59670164917543"/>
         </scene>
         <!--Progress-->
         <scene sceneID="1qL-7C-qIy">

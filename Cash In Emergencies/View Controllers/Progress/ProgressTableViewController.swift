@@ -16,8 +16,14 @@ class ProgressTableViewController: TableViewController {
     // Boolean for if the tableViews data needs to be reloaded 
     var needsReload: Bool = false
     
+
+    @IBOutlet weak var overallProgressBarView: ModuleProgressView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        overallProgressBarView.barColour = UIColor(hexString: "ed1b2e")
         
         let notificationName = NSNotification.Name("ModulePropertyChanged")
         NotificationCenter.default.addObserver(self, selector: #selector(valuesChanged), name: notificationName, object: nil)
@@ -108,6 +114,11 @@ class ProgressTableViewController: TableViewController {
             viewModels.append(viewModel)
         }
         
+        // Set the overall progress
+        let totalPercentage = viewModels.reduce(0) { (value, viewModel) -> Double in
+            return value + Double(viewModel.percentageComplete)
+        }
+        overallProgressBarView.progress = (totalPercentage / Double(viewModels.count))
         
         self.data = [TableSection(rows: viewModels)]
         needsReload = false
