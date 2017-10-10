@@ -16,7 +16,8 @@ class ProgressTableViewController: TableViewController {
     // Boolean for if the tableViews data needs to be reloaded 
     var needsReload: Bool = false
     
-
+    @IBOutlet weak var overallProgressLabel: UILabel!
+    
     @IBOutlet weak var overallProgressBarView: ModuleProgressView!
     
     
@@ -118,7 +119,11 @@ class ProgressTableViewController: TableViewController {
         let totalPercentage = viewModels.reduce(0) { (value, viewModel) -> Double in
             return value + Double(viewModel.percentageComplete)
         }
-        overallProgressBarView.progress = (totalPercentage / Double(viewModels.count))
+       
+        let overallProgressAmount = (totalPercentage / Double(viewModels.count))
+        overallProgressBarView.progress = overallProgressAmount
+        
+        overallProgressLabel.text = "OVERALL COMPLETION \(Int(overallProgressAmount))%"
         
         self.data = [TableSection(rows: viewModels)]
         needsReload = false
