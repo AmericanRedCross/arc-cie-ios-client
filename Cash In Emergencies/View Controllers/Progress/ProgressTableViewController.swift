@@ -10,50 +10,9 @@ import UIKit
 import ThunderTable
 import ARCDM
 
-struct ProgressViewModel {
-    
-    var moduleHierarchy: String
-    var moduleTitle: String?
-    
-    var percentageComplete: Int {
-        return Int((Float(numberOfCompletedCriticalTools) / Float(numberOfCriticalTools)) * 100.0)
-    }
-    
-    var numberOfSubSteps: Int
-    var numberOfCompletedSubSteps: Int
-    
-    var numberOfCriticalTools: Int
-    var numberOfCompletedCriticalTools: Int
-}
-
-
-extension ProgressViewModel: Row {
-    
-    var cellClass: AnyClass? {
-        return ProgressTableViewCell.self
-    }
-    
-    var accessoryType: UITableViewCellAccessoryType? {
-        get {
-            return UITableViewCellAccessoryType.none
-        }
-        set {}
-    }
-    
-    func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
-        guard let progressCell = cell as? ProgressTableViewCell else { return }
-        progressCell.criticalToolsValueLabel.text = "\(self.numberOfCompletedCriticalTools)/\(self.numberOfCriticalTools)"
-        progressCell.subStepsValueLabel.text = "\(numberOfCompletedSubSteps)/\(self.numberOfSubSteps)"
-        progressCell.hierarchyLabel.text = self.moduleHierarchy
-        progressCell.overallPercentageCompleteLabel.text = "\(self.percentageComplete)% COMPLETED"
-        progressCell.moduleLabel.text = self.moduleTitle
-        progressCell.moduleProgressView.progress = Double(self.percentageComplete)
-        progressCell.moduleProgressView.barColour = UIColor(hexString: "ed1b2e")
-    
-    }
-}
-
 class ProgressTableViewController: TableViewController {
+    
+    var needsReload: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,24 +24,40 @@ class ProgressTableViewController: TableViewController {
         redraw()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if needsReload {
+            redraw()
+        }
+    }
+    
+    // Creates a view model and sets it to the view controllers data source. The method loops through the modules and pulls out all of the required data that needs to be shown into one struct
     func redraw() {
         
+        // Get our top level modules
         guard let modules = ModuleManager().modules else {
             return
         }
         
+        // Setup empty view model array
         var viewModels: [ProgressViewModel] = []
         
+        // Loop through the top level modules
         for module in modules {
             
+            // Module title i.e Preparedness
             let moduleTitle = module.moduleTitle
+            // Get the hierarchy, i.e 1
             guard let hierarchy = module.metadata?["hierarchy"] as? String else { continue }
             
+            // Flatmap all of the module's steps subSteps into one array
             let subSteps = module.directories?.flatMap({ (step) -> [Module] in
                 guard let stepDirectories = step.directories else { return [] }
                 return stepDirectories
             }) ?? []
             
+            // Collect all of the critical tools from our substeps
             let criticalTools = subSteps.flatMap({ (subStep) -> [Module] in
                 guard let subStepDirectories = subStep.directories else { return [] }
                 return subStepDirectories.flatMap({ (tool) -> Module? in
@@ -99,8 +74,8 @@ class ProgressTableViewController: TableViewController {
             let numberOfSubSteps = subSteps.count
             let numberOfCriticalTools = criticalTools.count
             
-            
-            let counterClosure: ((Int, Module) -> Int) = { (completedCount, module) -> Int in
+            // Closure which counts the number of completed modules by checking their state, this closure is passed to and ran by a reduce method on the Sub Steps and Critical tools
+            let counter: ((Int, Module) -> Int) = { (completedCount, module) -> Int in
                 // Ensure we have an identifier to check the state of our step
                 guard let identifier = module.identifier else { return completedCount }
                 
@@ -111,14 +86,13 @@ class ProgressTableViewController: TableViewController {
                 
                 // If the state was true lets add on to our count and continue
                 return completedCount + 1
-                
             }
             
-            let completedSubSteps = subSteps.reduce(0, counterClosure)
-            let completedCriticalTools = criticalTools.reduce(0, counterClosure)
+            // Run the counter on each array to get our completed amounts
+            let completedSubSteps = subSteps.reduce(0, counter)
+            let completedCriticalTools = criticalTools.reduce(0, counter)
             
-            
-
+            // Create the view model using all variables we gathered above
            let viewModel = ProgressViewModel(moduleHierarchy: hierarchy, moduleTitle: moduleTitle, numberOfSubSteps: numberOfSubSteps, numberOfCompletedSubSteps: completedSubSteps, numberOfCriticalTools: numberOfCriticalTools, numberOfCompletedCriticalTools: completedCriticalTools)
             
             viewModels.append(viewModel)
@@ -128,7 +102,7 @@ class ProgressTableViewController: TableViewController {
         self.data = [TableSection(rows: viewModels)]
     }
         
-        // MARK: - Table view data sourc
+        // MARK: - Table view data source
         override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
             return 110
             
