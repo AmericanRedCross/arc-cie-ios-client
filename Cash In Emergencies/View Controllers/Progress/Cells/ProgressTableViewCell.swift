@@ -30,23 +30,9 @@ class ProgressTableViewCell: UITableViewCell {
     // A progress bar at the bottom of the view
     @IBOutlet weak var moduleProgressView: ModuleProgressView!
     
-    
     // Label displaying the score of completed substeps
     @IBOutlet weak var subStepsValueLabel: UILabel!
     
     // Label displaying the score of critical tools
     @IBOutlet weak var criticalToolsValueLabel: UILabel!
-    
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
 }

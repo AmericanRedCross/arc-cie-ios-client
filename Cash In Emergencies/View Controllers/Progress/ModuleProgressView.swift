@@ -23,7 +23,6 @@ class ModuleProgressView : UIView {
             DispatchQueue.main.async {
                 self.layoutSubviews()
                 self.progressBar.removeAllAnimations()
-                
             }
         }
     }
@@ -32,7 +31,7 @@ class ModuleProgressView : UIView {
     var barColour: UIColor = UIColor.clear {
         didSet {
             progressBar.backgroundColor = barColour.cgColor
-            layoutSubviews()
+            setNeedsLayout()
         }
     }
     
@@ -76,7 +75,12 @@ class ModuleProgressView : UIView {
         }
     }
     
-    
+
+    /// Updates the progressbar with an optional animation
+    ///
+    /// - Parameters:
+    ///   - newProgress: The progress that the bar should be updated to
+    ///   - animation: if the update should be animated
     func setProgress(newProgress: Double, animation: Bool) {
         
         let oldProgressWidth: CGFloat = ((bounds.width / 100) * min(CGFloat(progress), 100))
@@ -87,12 +91,10 @@ class ModuleProgressView : UIView {
         var oldBounds = CGRect(x: progressBar.bounds.origin.x, y: progressBar.frame.origin.y, width: CGFloat(oldProgressWidth), height: frame.height)
         var newBounds = CGRect(x: progressBar.frame.origin.x, y: progressBar.frame.origin.y, width: CGFloat(progressWidth), height: frame.height)
         
-        
         if direction == .rightToLeft {
             oldBounds = CGRect(x: frame.size.width - oldProgressWidth, y: progressBar.frame.origin.y, width: CGFloat(oldProgressWidth), height: frame.height)
             newBounds = CGRect(x: frame.size.width - progressWidth, y: progressBar.frame.origin.y, width: CGFloat(progressWidth), height: frame.height)
         }
-        
         
         if direction == .leftToRight {
             
