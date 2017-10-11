@@ -34,6 +34,11 @@ class ProgressManager {
         }
         
         UserDefaults.standard.set(_checkedModulesArray, forKey: checkedModulesIdentifier)
+        
+        let notificationName = NSNotification.Name("ModulePropertyChanged")
+        NotificationCenter.default.post(name: notificationName, object: self, userInfo: [
+            "moduleIdentifier": moduleIdentifier
+            ])
     }
     
     /// Determines the current state of a checkable view.
