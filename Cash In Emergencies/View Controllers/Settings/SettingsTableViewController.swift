@@ -22,6 +22,9 @@ class SettingsTableViewController: UITableViewController {
     /// The button that activates downloading of the latest bundle. Hidden by default.
     @IBOutlet weak var downloadButton: UIButton!
     
+    /// A button that displays the current language short code and facilitates changing language when tapped
+    @IBOutlet weak var currentLanguageButton: UIButton!
+    
     /// The content controller responsible for loading locale and remote bundle information and facilitating downloads.
     let contentController = ContentController()
     
@@ -36,6 +39,9 @@ class SettingsTableViewController: UITableViewController {
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         }
+        
+        redraw()
+        getBundleInformation()
     }
     
     func redraw() {
@@ -45,10 +51,23 @@ class SettingsTableViewController: UITableViewController {
             
             downloadButton.isHidden = false
             contentAvailableLabel.text = "New Content Available"
-        } else {
+        } else if let publishDate = bundleInformation?.publishDate, publishDate.timeIntervalSince1970 == currentTimestamp {
             
             downloadButton.isHidden = true
             contentAvailableLabel.text = "Content up to date"
+        } else {
+            
+            downloadButton.isHidden = true
+            contentAvailableLabel.text = "Checking for updates..."
+        }
+        
+        if bundleInformation != nil {
+            currentLanguageButton.isEnabled = true
+        }
+        
+        //Set language label
+        if let language = UserDefaults.standard.string(forKey: "ContentOverrideLanguage") {
+            currentLanguageButton.setTitle(language.uppercased(), for: .normal)
         }
     }
     
@@ -152,6 +171,7 @@ class SettingsTableViewController: UITableViewController {
                 
                 languagePicker.addAction(UIAlertAction(title: languageString, style: .default, handler: { (action) in
                     
+                    MDCHUDActivityView.start(in: self.view.window)
                     UserDefaults.standard.set(language, forKey: "ContentOverrideLanguage")
                     self.downloadBundle()
                 }))
