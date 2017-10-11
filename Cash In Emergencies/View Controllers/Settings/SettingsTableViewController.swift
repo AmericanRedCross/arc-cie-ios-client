@@ -229,7 +229,9 @@ class SettingsTableViewController: UITableViewController {
                     self?.redraw()
                 })
             case .failure(let error):
-                print(error)
+                if let welf = self {
+                    UIAlertController.presentError(error, in: welf)
+                }
             }
             }
         )
@@ -246,7 +248,9 @@ class SettingsTableViewController: UITableViewController {
                 self?.redraw()
                 
             case .failure(let error):
-                print(error)
+                if let welf = self {
+                    UIAlertController.presentError(error, in: welf)
+                }
             }
         }
     }
