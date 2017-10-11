@@ -244,11 +244,15 @@ class SettingsTableViewController: UITableViewController {
             case .success(let information):
                 
                 self?.bundleInformation = information
-                self?.redraw()
+                OperationQueue.main.addOperation({
+                    self?.redraw()
+                })
                 
             case .failure(let error):
                 if let welf = self {
-                    UIAlertController.presentError(error, in: welf)
+                    OperationQueue.main.addOperation({
+                        UIAlertController.presentError(error, in: welf)
+                    })
                 }
             }
         }
