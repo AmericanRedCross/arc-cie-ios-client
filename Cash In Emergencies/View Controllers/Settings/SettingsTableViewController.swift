@@ -214,7 +214,6 @@ class SettingsTableViewController: UITableViewController {
         self.contentController.downloadBundle(from: _url, progress: { (progress, bytesDownloaded, totalBytes) in
             print(progress)
         }, completion: { [weak self] (result) in
-            print(result)
             
             switch result {
             case .success:
