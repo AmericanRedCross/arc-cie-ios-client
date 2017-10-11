@@ -10,77 +10,72 @@ import UIKit
 import AVKit
 import ARCDM
 import ThunderBasics
+import CloudKit
 
+/// The view controller responsible for user settings and downloading the latest bundles. This view also facilitates language switching if available
 class SettingsTableViewController: UITableViewController {
     
+    //MARK: - Variables
+    /// The label indicating whether or not content is available. This is in the first table view cell
     @IBOutlet weak var contentAvailableLabel: UILabel!
     
+    /// The button that activates downloading of the latest bundle. Hidden by default.
     @IBOutlet weak var downloadButton: UIButton!
     
+    /// A button that displays the current language short code and facilitates changing language when tapped
+    @IBOutlet weak var currentLanguageButton: UIButton!
+    
+    /// The content controller responsible for loading locale and remote bundle information and facilitating downloads.
     let contentController = ContentController()
     
+    /// The bundle information from the server containing information about languages and download URLs
     var bundleInformation: BundleInformation?
     
-    func redraw() {
-        
-        //        contentAvailableLabel?.text = bundleInformation?.identifier
-        
-        if let publishDate = bundleInformation?.publishDate, publishDate.timeIntervalSince1970 > 0 {
-            
-            downloadButton.isHidden = false
-            contentAvailableLabel.text = "New Content Available"
-        }
-        //        tableView.red
-        
-    }
+    //MARK: - VC Lifecycle & Drawing
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         }
         
-        contentController.getBundleInformation(for: "1") { (result) in
+        redraw()
+        getBundleInformation()
+    }
+    
+    func redraw() {
+        
+        let currentTimestamp = contentController.currentBundleTimestamp
+        if let publishDate = bundleInformation?.publishDate, publishDate.timeIntervalSince1970 > currentTimestamp {
             
-            switch result {
-            case .success(let information):
-                
-                self.bundleInformation = information
-                self.redraw()
-                //                if let _url = information.downloadURL {
-                //
-                //                    self.contentController.downloadBundle(from: _url, progress: { (progress, bytesDownloaded, totalBytes) in
-                //                        print(progress)
-                //                    }, completion: { (result) in
-                //                        print(result)
-                //
-                //
-                //                    })
-                //                }
-                
-            case .failure(let error):
-                print(error)
-            }
+            downloadButton.isHidden = false
+            contentAvailableLabel.text = "New Content Available"
+        } else if let publishDate = bundleInformation?.publishDate, publishDate.timeIntervalSince1970 == currentTimestamp {
             
+            downloadButton.isHidden = true
+            contentAvailableLabel.text = "Content up to date"
+        } else {
+            
+            downloadButton.isHidden = true
+            contentAvailableLabel.text = "Checking for updates..."
+        }
+        
+        if bundleInformation != nil {
+            currentLanguageButton.isEnabled = true
+        }
+        
+        //Set language label
+        if let language = UserDefaults.standard.string(forKey: "ContentOverrideLanguage") {
+            currentLanguageButton.setTitle(language.uppercased(), for: .normal)
         }
     }
     
-    /// Resets the user data so that the app works like a fresh install
-    func handleResetData() {
-        
-        let resetDataAlert = UIAlertController(title: "Reset All Data", message: "This will clear all progress and notes recorded in the app", preferredStyle: .alert)
-        
-        resetDataAlert.addAction(UIAlertAction(title: "Okay", style: .destructive, handler: { (action: UIAlertAction) in
-            
-            //Handle resetting data here when the controller exists
-            
-        }))
-        
-        resetDataAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        present(resetDataAlert, animated: true, completion: nil)
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
+    //MARK: - Table View Delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -100,7 +95,6 @@ class SettingsTableViewController: UITableViewController {
             case 0:
                 //Play video
                 handlePlayVideo()
-                
                 return
             case 1:
                 handleResetData()
@@ -115,35 +109,36 @@ class SettingsTableViewController: UITableViewController {
         default:
             return
         }
-        
-    }
-    @IBAction func handleDownloadButton(_ sender: UIButton) {
-        
-        MDCHUDActivityView.start(in: view.window)
-        sender.isEnabled = false
-        
-        if let _url = bundleInformation?.downloadURL {
-            
-            self.contentController.downloadBundle(from: _url, progress: { (progress, bytesDownloaded, totalBytes) in
-                print(progress)
-            }, completion: { (result) in
-                print(result)
-                
-                switch result {
-                case .success(let didSucceed):
-                    OperationQueue.main.addOperation({
-                        sender.isEnabled = true
-                        MDCHUDActivityView.finish(in: self.view.window)
-                        NotificationCenter.default.post(name: NSNotification.Name("ContentControllerBundleDidUpdate"), object: nil)
-                    })
-                case .failure(let error):
-                    print(error)
-                }
-            }
-
-        )}
     }
     
+    //MARK: - Action handling
+    /// Resets the user data so that the app works like a fresh install
+    func handleResetData() {
+        
+        let resetDataAlert = UIAlertController(title: "Reset All Data", message: "This will clear all progress and notes recorded in the app", preferredStyle: .alert)
+        
+        resetDataAlert.addAction(UIAlertAction(title: "Okay", style: .destructive, handler: { (action: UIAlertAction) in
+            ProgressManager().clearAllUserValues()
+        }))
+        
+        resetDataAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        present(resetDataAlert, animated: true, completion: nil)
+    }
+    
+    
+    /// Handles tapping of the download button on the bundle cell
+    ///
+    /// - Parameter sender: The download button
+    @IBAction func handleDownloadButton(_ sender: UIButton) {
+        
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        MDCHUDActivityView.start(in: view.window)
+        sender.isEnabled = false
+        downloadBundle()
+    }
+    
+    /// Presents the tutorial video and dismisses on completion
     func handlePlayVideo() {
         
         if let _fileURL = Bundle.main.url(forResource: "onboarding_video", withExtension: "mp4") {
@@ -155,7 +150,6 @@ class SettingsTableViewController: UITableViewController {
             if #available(iOS 11.0, *) {
                 playerView.exitsFullScreenWhenPlaybackEnds = true
             } else {
-                
                 NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying(note:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player.currentItem)
             }
             
@@ -167,19 +161,23 @@ class SettingsTableViewController: UITableViewController {
         }
     }
     
-    @objc func playerDidFinishPlaying(note: NSNotification) {
-        dismiss(animated: true, completion: nil)
-    }
-    
+    /// Presents an action sheet with available languages that the user can select
     @IBAction func handleLanguagePicker() {
-    
+        
         let languagePicker = UIAlertController(title: "Select Language", message: nil, preferredStyle: .actionSheet)
         
         if let languageOptions = bundleInformation?.availableLanguages {
             
-            for language in languageOptions {
-                languagePicker.addAction(UIAlertAction(title: language, style: .default, handler: { (action) in
+            for language in languageOptions.reversed() {
+                
+                let languageString = Locale.current.localizedString(forIdentifier: language)
+                
+                languagePicker.addAction(UIAlertAction(title: languageString, style: .default, handler: { (action) in
                     
+                    self.navigationItem.rightBarButtonItem?.isEnabled = false
+                    MDCHUDActivityView.start(in: self.view.window)
+                    UserDefaults.standard.set(language, forKey: "ContentOverrideLanguage")
+                    self.downloadBundle()
                 }))
             }
             
@@ -187,5 +185,81 @@ class SettingsTableViewController: UITableViewController {
         }
         
         showDetailViewController(languagePicker, sender: self)
+    }
+    
+    /// Dismisses the tutorial video on devices running iOS 10 when the video finishes playing
+    ///
+    /// - Parameter note: The notification that was sent from the player on completion of the video playback
+    @objc func playerDidFinishPlaying(note: NSNotification) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    //MARK: - Downloading
+    func downloadBundle() {
+        
+        //Set base URL
+        var url: URL?
+        
+        //Add language if required
+        if let baseURL = self.bundleInformation?.downloadURL, let language = UserDefaults.standard.string(forKey: "ContentOverrideLanguage") {
+            if let _newURL = URL(string: "\(baseURL)&language=\(language)") {
+                url = _newURL
+            }
+        } else {
+            url = self.bundleInformation?.downloadURL
+        }
+        
+        guard let _url = url else {
+            return
+        }
+        
+        self.contentController.downloadBundle(from: _url, progress: { (progress, bytesDownloaded, totalBytes) in
+            print(progress)
+        }, completion: { [weak self] (result) in
+            
+            switch result {
+            case .success:
+                OperationQueue.main.addOperation({
+                    self?.navigationItem.rightBarButtonItem?.isEnabled = true
+                    MDCHUDActivityView.finish(in: self?.view.window)
+                    NotificationCenter.default.post(name: NSNotification.Name("ContentControllerBundleDidUpdate"), object: nil)
+                    
+                    //Save and reload
+                    if let _interval = self?.bundleInformation?.publishDate?.timeIntervalSince1970 {
+                        UserDefaults.standard.set(_interval, forKey: "CurrentBundleTimestamp")
+                    }
+                    self?.redraw()
+
+                })
+            case .failure(let error):
+                if let welf = self {
+                    self?.navigationItem.rightBarButtonItem?.isEnabled = true
+                    UIAlertController.presentError(error, in: welf)
+                }
+            }
+            }
+        )
+    }
+    
+    /// Downloads the latest bundle information and sets it to the `bundleInformation` variable. This causes the view to reload on completion
+    func getBundleInformation() {
+        contentController.getBundleInformation(for: "1") { [weak self] (result) in
+            
+            switch result {
+            case .success(let information):
+                
+                self?.bundleInformation = information
+                OperationQueue.main.addOperation({
+                    self?.redraw()
+                })
+                
+            case .failure(let error):
+                if let welf = self {
+                    OperationQueue.main.addOperation({
+                        UIAlertController.presentError(error, in: welf)
+                    })
+                }
+            }
+        }
     }
 }
