@@ -12,19 +12,33 @@ import ARCDM
 import ThunderBasics
 import CloudKit
 
+/// The view controller responsible for user settings and downloading the latest bundles. This view also facilitates language switching if available
 class SettingsTableViewController: UITableViewController {
     
+    //MARK: - Variables
+    /// The label indicating whether or not content is available. This is in the first table view cell
     @IBOutlet weak var contentAvailableLabel: UILabel!
     
+    /// The button that activates downloading of the latest bundle. Hidden by default.
     @IBOutlet weak var downloadButton: UIButton!
     
+    /// The content controller responsible for loading locale and remote bundle information and facilitating downloads.
     let contentController = ContentController()
     
+    /// The bundle information from the server containing information about languages and download URLs
     var bundleInformation: BundleInformation?
     
-    func redraw() {
+    //MARK: - VC Lifecycle & Drawing
+    override func viewDidLoad() {
         
-        //        contentAvailableLabel?.text = bundleInformation?.identifier
+        super.viewDidLoad()
+        
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        }
+    }
+    
+    func redraw() {
         
         let currentTimestamp = contentController.currentBundleTimestamp
         if let publishDate = bundleInformation?.publishDate, publishDate.timeIntervalSince1970 > currentTimestamp {
@@ -36,57 +50,9 @@ class SettingsTableViewController: UITableViewController {
             downloadButton.isHidden = true
             contentAvailableLabel.text = "Content up to date"
         }
-        //        tableView.red
-        
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
-        }
-        
-        contentController.getBundleInformation(for: "1") { (result) in
-            
-            switch result {
-            case .success(let information):
-                
-                self.bundleInformation = information
-                self.redraw()
-                //                if let _url = information.downloadURL {
-                //
-                //                    self.contentController.downloadBundle(from: _url, progress: { (progress, bytesDownloaded, totalBytes) in
-                //                        print(progress)
-                //                    }, completion: { (result) in
-                //                        print(result)
-                //
-                //
-                //                    })
-                //                }
-                
-            case .failure(let error):
-                print(error)
-            }
-            
-        }
     }
     
-    /// Resets the user data so that the app works like a fresh install
-    func handleResetData() {
-        
-        let resetDataAlert = UIAlertController(title: "Reset All Data", message: "This will clear all progress and notes recorded in the app", preferredStyle: .alert)
-        
-        resetDataAlert.addAction(UIAlertAction(title: "Okay", style: .destructive, handler: { (action: UIAlertAction) in
-            
-            //Handle resetting data here when the controller exists
-            
-        }))
-        
-        resetDataAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        present(resetDataAlert, animated: true, completion: nil)
-    }
-    
+    //MARK: - Table View Delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -106,7 +72,6 @@ class SettingsTableViewController: UITableViewController {
             case 0:
                 //Play video
                 handlePlayVideo()
-                
                 return
             case 1:
                 handleResetData()
@@ -121,8 +86,29 @@ class SettingsTableViewController: UITableViewController {
         default:
             return
         }
-        
     }
+
+    //MARK: - Action handling
+    /// Resets the user data so that the app works like a fresh install
+    func handleResetData() {
+        
+        let resetDataAlert = UIAlertController(title: "Reset All Data", message: "This will clear all progress and notes recorded in the app", preferredStyle: .alert)
+        
+        resetDataAlert.addAction(UIAlertAction(title: "Okay", style: .destructive, handler: { (action: UIAlertAction) in
+            
+            //Handle resetting data here when the controller exists
+            
+        }))
+        
+        resetDataAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        present(resetDataAlert, animated: true, completion: nil)
+    }
+    
+
+    /// Handles tapping of the download button on the bundle cell
+    ///
+    /// - Parameter sender: The download button
     @IBAction func handleDownloadButton(_ sender: UIButton) {
         
         MDCHUDActivityView.start(in: view.window)
@@ -130,6 +116,7 @@ class SettingsTableViewController: UITableViewController {
         downloadBundle()
     }
     
+    /// Presents the tutorial video and dismisses on completion
     func handlePlayVideo() {
         
         if let _fileURL = Bundle.main.url(forResource: "onboarding_video", withExtension: "mp4") {
@@ -141,7 +128,6 @@ class SettingsTableViewController: UITableViewController {
             if #available(iOS 11.0, *) {
                 playerView.exitsFullScreenWhenPlaybackEnds = true
             } else {
-                
                 NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying(note:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player.currentItem)
             }
             
@@ -153,12 +139,9 @@ class SettingsTableViewController: UITableViewController {
         }
     }
     
-    @objc func playerDidFinishPlaying(note: NSNotification) {
-        dismiss(animated: true, completion: nil)
-    }
-    
+    /// Presents an action sheet with available languages that the user can select
     @IBAction func handleLanguagePicker() {
-    
+        
         let languagePicker = UIAlertController(title: "Select Language", message: nil, preferredStyle: .actionSheet)
         
         if let languageOptions = bundleInformation?.availableLanguages {
@@ -180,6 +163,14 @@ class SettingsTableViewController: UITableViewController {
         showDetailViewController(languagePicker, sender: self)
     }
     
+    /// Dismisses the tutorial video on devices running iOS 10 when the video finishes playing
+    ///
+    /// - Parameter note: The notification that was sent from the player on completion of the video playback
+    @objc func playerDidFinishPlaying(note: NSNotification) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    //MARK: - Downloading
     func downloadBundle() {
         
         //Set base URL
@@ -220,5 +211,21 @@ class SettingsTableViewController: UITableViewController {
             }
             }
         )
+    }
+    
+    /// Downloads the latest bundle information and sets it to the `bundleInformation` variable. This causes the view to reload on completion
+    func getBundleInformation() {
+        contentController.getBundleInformation(for: "1") { [weak self] (result) in
+            
+            switch result {
+            case .success(let information):
+                
+                self?.bundleInformation = information
+                self?.redraw()
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
