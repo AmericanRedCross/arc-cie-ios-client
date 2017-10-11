@@ -49,6 +49,11 @@
 		49FE8D881F419F6900B73731 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49FE8D861F419F6900B73731 /* Main.storyboard */; };
 		49FE8D8A1F419F6900B73731 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49FE8D891F419F6900B73731 /* Assets.xcassets */; };
 		49FE8D8D1F419F6900B73731 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49FE8D8B1F419F6900B73731 /* LaunchScreen.storyboard */; };
+		FF82CCE11F8CC358009FCC5B /* ProgressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82CCDF1F8CC358009FCC5B /* ProgressTableViewCell.swift */; };
+		FF82CCE41F8CC38E009FCC5B /* ProgressTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82CCE31F8CC38E009FCC5B /* ProgressTableViewController.swift */; };
+		FF82CCE71F8CCA37009FCC5B /* ProgressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF82CCE01F8CC358009FCC5B /* ProgressTableViewCell.xib */; };
+		FF82CCF21F8D1151009FCC5B /* ModuleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82CCF11F8D1151009FCC5B /* ModuleProgressView.swift */; };
+		FF82CCF41F8D19BA009FCC5B /* ProgressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82CCF31F8D19BA009FCC5B /* ProgressViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -232,6 +237,11 @@
 		49FE8D891F419F6900B73731 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49FE8D8C1F419F6900B73731 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		49FE8D8E1F419F6900B73731 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF82CCDF1F8CC358009FCC5B /* ProgressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTableViewCell.swift; sourceTree = "<group>"; };
+		FF82CCE01F8CC358009FCC5B /* ProgressTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressTableViewCell.xib; sourceTree = "<group>"; };
+		FF82CCE31F8CC38E009FCC5B /* ProgressTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTableViewController.swift; sourceTree = "<group>"; };
+		FF82CCF11F8D1151009FCC5B /* ModuleProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleProgressView.swift; sourceTree = "<group>"; };
+		FF82CCF31F8D19BA009FCC5B /* ProgressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				49FE8D861F419F6900B73731 /* Main.storyboard */,
+				FF82CCDE1F8CC2C9009FCC5B /* Progress */,
 				492F83F21F84D36A00BDD72D /* Onboarding */,
 				492F83EC1F84D1DA00BDD72D /* Workflow */,
 				492F83F31F84D3B200BDD72D /* Settings */,
@@ -447,6 +458,26 @@
 				49A786FC1F84DBA50076ABB7 /* ThunderRequest.xcodeproj */,
 			);
 			path = "Cash In Emergencies";
+			sourceTree = "<group>";
+		};
+		FF82CCDE1F8CC2C9009FCC5B /* Progress */ = {
+			isa = PBXGroup;
+			children = (
+				FF82CCE51F8CC394009FCC5B /* Cells */,
+				FF82CCE31F8CC38E009FCC5B /* ProgressTableViewController.swift */,
+				FF82CCF11F8D1151009FCC5B /* ModuleProgressView.swift */,
+				FF82CCF31F8D19BA009FCC5B /* ProgressViewModel.swift */,
+			);
+			path = Progress;
+			sourceTree = "<group>";
+		};
+		FF82CCE51F8CC394009FCC5B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FF82CCDF1F8CC358009FCC5B /* ProgressTableViewCell.swift */,
+				FF82CCE01F8CC358009FCC5B /* ProgressTableViewCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -629,6 +660,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF82CCE71F8CCA37009FCC5B /* ProgressTableViewCell.xib in Resources */,
 				49BCFFF31F44895500F68A40 /* onboarding_video.mp4 in Resources */,
 				498F45441F7CFA2000E8824C /* Document_Viewing.storyboard in Resources */,
 				4916408F1F4C5C3A0084CEE2 /* ModuleTableViewCell.xib in Resources */,
@@ -663,11 +695,15 @@
 				492F83EA1F84D1B200BDD72D /* ARCDMSExtensions.swift in Sources */,
 				4916408E1F4C5C3A0084CEE2 /* ModuleTableViewCell.swift in Sources */,
 				496C49D11F4EEDA300AD05D1 /* SettingsTableViewController.swift in Sources */,
+				FF82CCE11F8CC358009FCC5B /* ProgressTableViewCell.swift in Sources */,
 				49FE8D831F419F6900B73731 /* AppDelegate.swift in Sources */,
 				492F83DD1F83A96000BDD72D /* NoteAddViewController.swift in Sources */,
 				49A418601F73EA96004C1F61 /* ModuleSubStepTableViewCell.swift in Sources */,
+				FF82CCE41F8CC38E009FCC5B /* ProgressTableViewController.swift in Sources */,
 				497DF1921F74FC5800367A94 /* ToolTableViewCell.swift in Sources */,
 				497122281F4C23A1000786AE /* ToolkitTableViewController.swift in Sources */,
+				FF82CCF41F8D19BA009FCC5B /* ProgressViewModel.swift in Sources */,
+				FF82CCF21F8D1151009FCC5B /* ModuleProgressView.swift in Sources */,
 				4916409A1F4C71CA0084CEE2 /* GradientImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

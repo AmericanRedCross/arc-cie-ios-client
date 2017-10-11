@@ -11,6 +11,7 @@ import UIKit
 class ARCNavigationController: UINavigationController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        
+        return topViewController?.preferredStatusBarStyle ?? .lightContent
     }
 }
