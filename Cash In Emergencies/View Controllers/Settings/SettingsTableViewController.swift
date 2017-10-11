@@ -118,9 +118,7 @@ class SettingsTableViewController: UITableViewController {
         let resetDataAlert = UIAlertController(title: "Reset All Data", message: "This will clear all progress and notes recorded in the app", preferredStyle: .alert)
         
         resetDataAlert.addAction(UIAlertAction(title: "Okay", style: .destructive, handler: { (action: UIAlertAction) in
-            
-            //Handle resetting data here when the controller exists
-            
+            ProgressManager().clearAllUserValues()
         }))
         
         resetDataAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
