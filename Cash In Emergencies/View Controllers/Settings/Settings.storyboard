@@ -39,7 +39,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="fUR-7Q-ZHb">
-                                                            <rect key="frame" x="72" y="0.5" width="287" height="39"/>
+                                                            <rect key="frame" x="72" y="10" width="287" height="19.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content up to date" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z46-wL-hZ2">
                                                                     <rect key="frame" x="0.0" y="0.0" width="0.0" height="19.5"/>
@@ -49,11 +49,17 @@
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currrent version v1.0.1" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SWA-tz-yy0">
                                                                     <rect key="frame" x="0.0" y="24.5" width="0.0" height="14.5"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
+                                                            <variation key="default">
+                                                                <mask key="subviews">
+                                                                    <exclude reference="SWA-tz-yy0"/>
+                                                                </mask>
+                                                            </variation>
                                                         </stackView>
                                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fRR-pR-eaV">
                                                             <rect key="frame" x="359" y="8" width="68" height="24"/>
