@@ -132,10 +132,18 @@ class SettingsTableViewController: UITableViewController {
     /// - Parameter sender: The download button
     @IBAction func handleDownloadButton(_ sender: UIButton) {
         
-        self.navigationItem.rightBarButtonItem?.isEnabled = false
-        MDCHUDActivityView.start(in: view.window)
-        sender.isEnabled = false
-        downloadBundle()
+        let downloadWarning = UIAlertController(title: "Warning!", message: "We recommend you not to do this during an active operation, as the structure and content of the toolkit may have changed significantly", preferredStyle: .alert)
+        downloadWarning.addAction(UIAlertAction(title: "Proceed", style: .destructive, handler: { [weak self] (action) in
+            if let welf = self {
+                welf.navigationItem.rightBarButtonItem?.isEnabled = false
+                MDCHUDActivityView.start(in: welf.view.window)
+                sender.isEnabled = false
+                welf.downloadBundle()
+            }
+        }))
+        
+        downloadWarning.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(downloadWarning, animated: true, completion: nil)
     }
     
     /// Presents the tutorial video and dismisses on completion
