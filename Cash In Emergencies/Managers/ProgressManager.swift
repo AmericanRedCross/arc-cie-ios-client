@@ -17,13 +17,16 @@ class ProgressManager {
     /// Private identifier to consistently access module notes
     private let moduleNotesIdentifier = "CIEModuleNotes"
     
+    /// Defaults to save the values under
+    let defaults = UserDefaults.standard
+    
     /// Toggles the "checked" state for a module identifier and saves the state of all checked modules to user defaults
     ///
     /// - Parameter moduleIdentifier: The identifier of the module to toggle on/off
     func toggle(moduleIdentifier: Int) {
         
-        guard var _checkedModulesArray = UserDefaults.standard.array(forKey: checkedModulesIdentifier) as? [Int] else {
-            UserDefaults.standard.set([moduleIdentifier], forKey: checkedModulesIdentifier)
+        guard var _checkedModulesArray = defaults.array(forKey: checkedModulesIdentifier) as? [Int] else {
+            defaults.set([moduleIdentifier], forKey: checkedModulesIdentifier)
             return
         }
         
@@ -33,7 +36,7 @@ class ProgressManager {
             _checkedModulesArray.append(moduleIdentifier)
         }
         
-        UserDefaults.standard.set(_checkedModulesArray, forKey: checkedModulesIdentifier)
+        defaults.set(_checkedModulesArray, forKey: checkedModulesIdentifier)
         
         let notificationName = NSNotification.Name("ModulePropertyChanged")
         NotificationCenter.default.post(name: notificationName, object: self, userInfo: [
@@ -47,7 +50,7 @@ class ProgressManager {
     /// - Returns: `true` if the view should be checked
     func checkState(for moduleIdentifier: Int) -> Bool {
         
-        guard let _checkedModulesArray = UserDefaults.standard.array(forKey: checkedModulesIdentifier) as? [Int] else {
+        guard let _checkedModulesArray = defaults.array(forKey: checkedModulesIdentifier) as? [Int] else {
             return false
         }
         
@@ -68,7 +71,7 @@ class ProgressManager {
     func save(note: String, for moduleIdentifier: Int) {
         
         var noteDictionary: [String: Any]?
-        if let storedDictionary = UserDefaults.standard.value(forKey: moduleNotesIdentifier) as? [String: Any] {
+        if let storedDictionary = defaults.value(forKey: moduleNotesIdentifier) as? [String: Any] {
             noteDictionary = storedDictionary
         } else {
             noteDictionary = [String: Any]()
@@ -76,7 +79,7 @@ class ProgressManager {
         
         if var noteDictionary = noteDictionary {
             noteDictionary[String(moduleIdentifier)] = note
-            UserDefaults.standard.set(noteDictionary, forKey: moduleNotesIdentifier)
+            defaults.set(noteDictionary, forKey: moduleNotesIdentifier)
         }
     }
     
@@ -86,7 +89,7 @@ class ProgressManager {
     /// - Returns: A `String` of a note if any has been saved
     func note(for moduleIdentifier: Int) -> String? {
         
-        guard let noteDictionary = UserDefaults.standard.value(forKey: moduleNotesIdentifier) as? [String: Any] else {
+        guard let noteDictionary = defaults.value(forKey: moduleNotesIdentifier) as? [String: Any] else {
             return nil
         }
         
@@ -97,12 +100,22 @@ class ProgressManager {
     ///
     /// - Parameter moduleIdentifier: The identifier of the module to remove the note (if any) for. If the module identifier provided does not have a note saved then nothing will happen.
     func removeNote(for moduleIdentifier: Int) {
-        guard var noteDictionary = UserDefaults.standard.value(forKey: moduleNotesIdentifier) as? [String: Any] else {
+        guard var noteDictionary = defaults.value(forKey: moduleNotesIdentifier) as? [String: Any] else {
             return
         }
         
         noteDictionary[String(moduleIdentifier)] = nil
         
-        UserDefaults.standard.set(noteDictionary, forKey: moduleNotesIdentifier)
+        defaults.set(noteDictionary, forKey: moduleNotesIdentifier)
+    }
+    
+    /// Clears all saved notes and checked values form the user defaults
+    func clearAllUserValues() {
+        
+        defaults.set([String: Any](), forKey: moduleNotesIdentifier)
+        defaults.set([Int](), forKey: checkedModulesIdentifier)
+        defaults.synchronize()
+        let notificationName = NSNotification.Name("ModulePropertyChanged")
+        NotificationCenter.default.post(name: notificationName, object: self, userInfo: nil)
     }
 }
