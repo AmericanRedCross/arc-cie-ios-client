@@ -110,7 +110,7 @@ class SettingsTableViewController: UITableViewController {
             return
         }
     }
-
+    
     //MARK: - Action handling
     /// Resets the user data so that the app works like a fresh install
     func handleResetData() {
@@ -126,7 +126,7 @@ class SettingsTableViewController: UITableViewController {
         present(resetDataAlert, animated: true, completion: nil)
     }
     
-
+    
     /// Handles tapping of the download button on the bundle cell
     ///
     /// - Parameter sender: The download button
