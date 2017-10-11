@@ -132,6 +132,7 @@ class SettingsTableViewController: UITableViewController {
     /// - Parameter sender: The download button
     @IBAction func handleDownloadButton(_ sender: UIButton) {
         
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
         MDCHUDActivityView.start(in: view.window)
         sender.isEnabled = false
         downloadBundle()
@@ -173,6 +174,7 @@ class SettingsTableViewController: UITableViewController {
                 
                 languagePicker.addAction(UIAlertAction(title: languageString, style: .default, handler: { (action) in
                     
+                    self.navigationItem.rightBarButtonItem?.isEnabled = false
                     MDCHUDActivityView.start(in: self.view.window)
                     UserDefaults.standard.set(language, forKey: "ContentOverrideLanguage")
                     self.downloadBundle()
@@ -218,6 +220,7 @@ class SettingsTableViewController: UITableViewController {
             switch result {
             case .success:
                 OperationQueue.main.addOperation({
+                    self?.navigationItem.rightBarButtonItem?.isEnabled = true
                     MDCHUDActivityView.finish(in: self?.view.window)
                     NotificationCenter.default.post(name: NSNotification.Name("ContentControllerBundleDidUpdate"), object: nil)
                     
@@ -226,9 +229,11 @@ class SettingsTableViewController: UITableViewController {
                         UserDefaults.standard.set(_interval, forKey: "CurrentBundleTimestamp")
                     }
                     self?.redraw()
+
                 })
             case .failure(let error):
                 if let welf = self {
+                    self?.navigationItem.rightBarButtonItem?.isEnabled = true
                     UIAlertController.presentError(error, in: welf)
                 }
             }
