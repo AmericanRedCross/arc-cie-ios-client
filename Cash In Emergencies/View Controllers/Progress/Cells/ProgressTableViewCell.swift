@@ -9,6 +9,7 @@
 import UIKit
 import ThunderBasics
 
+// Cell for displaying module progress
 class ProgressTableViewCell: UITableViewCell {
     
     // Containing view which allows for padding and cornerRadius

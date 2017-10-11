@@ -16,8 +16,10 @@ class ProgressTableViewController: TableViewController {
     // Boolean for if the tableViews data needs to be reloaded 
     var needsReload: Bool = false
     
+    // Label displaying the combination of all of the module progress
     @IBOutlet weak var overallProgressLabel: UILabel!
     
+    // Bar that displays the overall progress
     @IBOutlet weak var overallProgressBarView: ModuleProgressView!
     
     
@@ -26,6 +28,7 @@ class ProgressTableViewController: TableViewController {
         
         overallProgressBarView.barColour = UIColor(hexString: "ed1b2e")
         
+        // If any of the substeps/tools become completed we need to redraw the tableView to show the updated values
         let notificationName = NSNotification.Name("ModulePropertyChanged")
         NotificationCenter.default.addObserver(self, selector: #selector(valuesChanged), name: notificationName, object: nil)
         
@@ -35,7 +38,6 @@ class ProgressTableViewController: TableViewController {
         
         redraw()
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
