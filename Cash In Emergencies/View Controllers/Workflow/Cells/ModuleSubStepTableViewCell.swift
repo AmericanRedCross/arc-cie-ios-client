@@ -13,8 +13,11 @@ class ModuleSubStepTableViewCell: UITableViewCell {
     @IBOutlet weak var substepHierarchyLabel: UILabel!
     @IBOutlet weak var substepTitleLabel: UILabel!
     @IBOutlet weak var moduleSubstepChevronButton: UIButton!
-    @IBOutlet weak var substepRoadmapButton: UIButton!
+    @IBOutlet weak var substepAddNoteButton: UIButton!
     @IBOutlet weak var substepCheckableButton: UIButton!
+    
+    
+    @IBOutlet weak var substepButtonContainerStackView: UIStackView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

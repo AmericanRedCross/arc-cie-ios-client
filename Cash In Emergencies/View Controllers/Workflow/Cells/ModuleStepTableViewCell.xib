@@ -25,24 +25,24 @@
                         <rect key="frame" x="24" y="-4" width="288" height="50.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="2.1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2wM-H6-cHu">
-                                <rect key="frame" x="0.0" y="18" width="19" height="14.5"/>
+                                <rect key="frame" x="0.0" y="18" width="22.5" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Planning &amp; Preperation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vWM-uK-m8C">
-                                <rect key="frame" x="24" y="18" width="165" height="14.5"/>
+                                <rect key="frame" x="27.5" y="18" width="193" height="14.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="huQ-uH-AHq">
-                                <rect key="frame" x="194" y="13" width="94" height="24"/>
+                                <rect key="frame" x="225.5" y="13" width="62.5" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="Rot-CF-NAO"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                <state key="normal" title="Module Roadmap">
+                                <state key="normal" title="Roadmap">
                                     <color key="titleColor" name="mainRedColor"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>

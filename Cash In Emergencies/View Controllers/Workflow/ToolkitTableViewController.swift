@@ -89,6 +89,8 @@ class ToolkitTableViewController: TableViewController {
                             //Check for tools
                             if let _tools = moduleSubStep.directories, let moduleIdentifier = moduleSubStep.identifier, expandedModuleIdentifiers.contains(moduleIdentifier) {
                                 
+                                moduleSubStepView.shouldShowAddNoteButton = true
+                                
                                 for tool in _tools {
                                     let toolView = Tool(with: tool)
                                     rows.append(toolView)

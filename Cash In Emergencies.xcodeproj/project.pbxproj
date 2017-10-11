@@ -308,10 +308,10 @@
 			isa = PBXGroup;
 			children = (
 				492F83E71F84D15100BDD72D /* ModuleConformable+Views.swift */,
-				49A4185E1F73EA96004C1F61 /* ModuleSubStepTableViewCell.swift */,
 				49A4185F1F73EA96004C1F61 /* ModuleStepTableViewCell.xib */,
 				49BF8DD61F73C5BC00A1890F /* ModuleStepTableViewCell.swift */,
 				49BF8DD71F73C5BC00A1890F /* ModuleSubStepTableViewCell.xib */,
+				49A4185E1F73EA96004C1F61 /* ModuleSubStepTableViewCell.swift */,
 				497DF1911F74FC5800367A94 /* ToolTableViewCell.swift */,
 				497DF1881F74FC5700367A94 /* ToolTableViewCell.xib */,
 				4916408C1F4C5C3A0084CEE2 /* ModuleTableViewCell.swift */,

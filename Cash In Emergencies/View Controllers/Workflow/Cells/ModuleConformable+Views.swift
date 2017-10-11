@@ -85,7 +85,6 @@ class Step: ModuleConformable, Row {
     }
     
     //ROW
-    
     var cellClass: AnyClass? {
         return ModuleStepTableViewCell.self
     }
@@ -132,6 +131,8 @@ class SubStep: ModuleConformable, Row {
         return internalModule
     }
     
+    var shouldShowAddNoteButton: Bool = false
+    
     //INIT
     init(with module: Module) {
         internalModule = module
@@ -157,11 +158,15 @@ class SubStep: ModuleConformable, Row {
             _cell.substepHierarchyLabel.text = internalModule?.metadata?["hierarchy"] as? String
             _cell.substepTitleLabel.text = internalModule?.moduleTitle
             _cell.moduleSubstepChevronButton.addTarget(self, action: #selector(handleToggle(of:)), for: .primaryActionTriggered)
-            _cell.substepRoadmapButton.isHidden = internalModule?.content == nil
-            _cell.substepRoadmapButton.removeTarget(nil, action: nil, for: .allEvents)
+ 
+            _cell.substepAddNoteButton.removeTarget(nil, action: nil, for: .allEvents)
             _cell.substepCheckableButton.removeTarget(nil, action: nil, for: .allEvents)
-            _cell.substepRoadmapButton.addTarget(self, action: #selector(handleRoadmap(button:)), for: .primaryActionTriggered)
+            _cell.substepAddNoteButton.addTarget(self, action: #selector(handleRoadmap(button:)), for: .primaryActionTriggered)
             _cell.substepCheckableButton.addTarget(self, action: #selector(handleChecking(of:)), for: .primaryActionTriggered)
+        
+            
+            _cell.substepAddNoteButton.isHidden = !shouldShowAddNoteButton
+            _cell.substepButtonContainerStackView.isHidden = !shouldShowAddNoteButton
             
             if let _moduleIdentifier = internalModule?.identifier {
                 _cell.substepCheckableButton.isSelected = ProgressManager().checkState(for: _moduleIdentifier)

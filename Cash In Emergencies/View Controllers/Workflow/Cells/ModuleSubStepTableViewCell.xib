@@ -42,57 +42,60 @@
                         <rect key="frame" x="66" y="15" width="196" height="79.5"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0Sb-3z-sOR">
-                                <rect key="frame" x="0.0" y="0.0" width="196" height="55.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="196" height="79.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="900" text="2.1.1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UA5-sl-wtS">
-                                        <rect key="frame" x="0.0" y="0.0" width="24.5" height="55.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="24.5" height="79.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="251" horizontalCompressionResistancePriority="800" text="Initial decision for cash" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lqi-Se-x8L">
-                                        <rect key="frame" x="34.5" y="0.0" width="161.5" height="55.5"/>
+                                        <rect key="frame" x="34.5" y="0.0" width="161.5" height="79.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Yvz-pH-3vP">
-                                <rect key="frame" x="0.0" y="55.5" width="196" height="24"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GPm-Gb-9cm">
-                                        <rect key="frame" x="0.0" y="0.0" width="52" height="24"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="24" id="w7R-2f-MnQ"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                        <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
-                                        <state key="normal" title="Roadmap">
-                                            <color key="titleColor" name="mainRedColor"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" red="0.62352941179999999" green="0.62352941179999999" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="12"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </button>
-                                </subviews>
-                            </stackView>
+                        </subviews>
+                    </stackView>
+                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Yvz-pH-3vP">
+                        <rect key="frame" x="24" y="77" width="0.0" height="24"/>
+                        <subviews>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GPm-Gb-9cm">
+                                <rect key="frame" x="-24" y="-77" width="52" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="w7R-2f-MnQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
+                                <state key="normal" title="Add Note">
+                                    <color key="titleColor" name="mainRedColor"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.62352941179999999" green="0.62352941179999999" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                     </stackView>
                 </subviews>
                 <color key="backgroundColor" red="0.98419493436813354" green="0.9843021035194397" blue="0.98827856779098511" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
+                    <constraint firstItem="Yvz-pH-3vP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="0G1-cr-3Eb"/>
+                    <constraint firstItem="Yvz-pH-3vP" firstAttribute="top" secondItem="Fmm-Ru-Cck" secondAttribute="bottom" constant="6" id="2rV-VE-idJ"/>
                     <constraint firstItem="Fmm-Ru-Cck" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="4fM-XQ-EbW"/>
                     <constraint firstItem="332-G0-S8a" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="S6i-Ed-DjY"/>
                     <constraint firstItem="332-G0-S8a" firstAttribute="leading" secondItem="yxz-QI-ev4" secondAttribute="trailing" constant="10" id="UuE-Zd-Szp"/>
+                    <constraint firstAttribute="bottom" secondItem="Yvz-pH-3vP" secondAttribute="bottom" constant="8.5" id="Wac-ch-HXt"/>
                     <constraint firstItem="Fmm-Ru-Cck" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="Wbd-m3-Ldo"/>
                     <constraint firstItem="yxz-QI-ev4" firstAttribute="leading" secondItem="Fmm-Ru-Cck" secondAttribute="trailing" constant="10" id="YXK-F1-DOX"/>
                     <constraint firstAttribute="trailingMargin" secondItem="332-G0-S8a" secondAttribute="trailing" constant="8" id="rel-Qm-WiU"/>
@@ -104,9 +107,10 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="moduleSubstepChevronButton" destination="332-G0-S8a" id="AaI-TX-r0l"/>
+                <outlet property="substepAddNoteButton" destination="GPm-Gb-9cm" id="BQh-zu-11i"/>
+                <outlet property="substepButtonContainerStackView" destination="Yvz-pH-3vP" id="Xj4-ku-4Hk"/>
                 <outlet property="substepCheckableButton" destination="Fmm-Ru-Cck" id="qXH-IV-aBl"/>
                 <outlet property="substepHierarchyLabel" destination="UA5-sl-wtS" id="1NO-NO-3Oz"/>
-                <outlet property="substepRoadmapButton" destination="GPm-Gb-9cm" id="MDO-BJ-va3"/>
                 <outlet property="substepTitleLabel" destination="Lqi-Se-x8L" id="3FZ-xA-057"/>
             </connections>
             <point key="canvasLocation" x="35" y="107"/>
