@@ -217,7 +217,7 @@ class SettingsTableViewController: UITableViewController {
             print(result)
             
             switch result {
-            case .success(let didSucceed):
+            case .success:
                 OperationQueue.main.addOperation({
                     MDCHUDActivityView.finish(in: self?.view.window)
                     NotificationCenter.default.post(name: NSNotification.Name("ContentControllerBundleDidUpdate"), object: nil)
