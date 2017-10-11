@@ -22,7 +22,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KNK-jr-YD8" userLabel="checkable_button">
-                        <rect key="frame" x="24" y="50.5" width="32" height="32"/>
+                        <rect key="frame" x="0.0" y="50.5" width="32" height="32"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="32" id="20R-dg-qHB"/>
                             <constraint firstAttribute="width" constant="32" id="xbY-jq-ONv"/>
@@ -31,12 +31,12 @@
                         <state key="selected" image="check_on"/>
                     </button>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="d6x-oB-MPg">
-                        <rect key="frame" x="66" y="18" width="246" height="96.5"/>
+                        <rect key="frame" x="0.0" y="18" width="0.0" height="96.5"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="yhX-LL-fRp">
                                 <rect key="frame" x="0.0" y="0.0" width="153" height="30"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mime_misc" translatesAutoresizingMaskIntoConstraints="NO" id="h6n-pq-BqC">
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mime_misc" translatesAutoresizingMaskIntoConstraints="NO" id="h6n-pq-BqC">
                                         <rect key="frame" x="0.0" y="0.0" width="24" height="30"/>
                                         <color key="tintColor" name="mainRedColor"/>
                                         <constraints>
@@ -45,7 +45,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tool name goes here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="te2-4R-tQ4">
-                                        <rect key="frame" x="29" y="0.0" width="124" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="124" height="30"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -84,12 +84,14 @@
                     <constraint firstItem="d6x-oB-MPg" firstAttribute="leading" secondItem="KNK-jr-YD8" secondAttribute="trailing" constant="10" id="90F-ob-LPZ"/>
                     <constraint firstItem="KNK-jr-YD8" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="TlY-Kp-a0c"/>
                     <constraint firstItem="KNK-jr-YD8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="YMv-mq-IQ9"/>
+                    <constraint firstItem="d6x-oB-MPg" firstAttribute="centerY" secondItem="KNK-jr-YD8" secondAttribute="centerY" id="lrr-ih-C4Q"/>
                     <constraint firstItem="d6x-oB-MPg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="n1Y-ek-pdE"/>
                     <constraint firstAttribute="bottomMargin" secondItem="d6x-oB-MPg" secondAttribute="bottom" constant="10" id="wN6-fy-n7F"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="criticalToolStackView" destination="k8O-Bz-2In" id="jgh-F0-JHx"/>
                 <outlet property="toolCheckableButton" destination="KNK-jr-YD8" id="0f5-lS-Ixb"/>
                 <outlet property="toolCriticalToolButton" destination="ZO9-hu-KTo" id="f1C-ry-LX3"/>
                 <outlet property="toolDescriptionLabel" destination="b7l-cV-gt3" id="2a9-ie-nqw"/>

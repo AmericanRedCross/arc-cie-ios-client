@@ -16,9 +16,18 @@ class ToolTableViewCell: UITableViewCell {
     @IBOutlet weak var toolCriticalToolButton: UIButton!
     @IBOutlet weak var toolCheckableButton: UIButton!
     
+    @IBOutlet weak var criticalToolStackView: UIStackView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        // Hide description label if theres no content so the other label is centered
+        toolDescriptionLabel.isHidden = (toolDescriptionLabel.text == nil)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

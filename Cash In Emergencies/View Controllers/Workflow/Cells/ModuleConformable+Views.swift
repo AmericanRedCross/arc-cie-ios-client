@@ -232,10 +232,13 @@ class Tool: ModuleConformable, Row {
             }
             
             _cell.toolCriticalToolButton.isHidden = true
+            _cell.criticalToolStackView.isHidden = true
             
             if let _criticalTool = internalModule?.metadata?["critical_path"] as? Bool {
                 if _criticalTool {
-                    _cell.toolCriticalToolButton.isHidden = false
+                   _cell.toolCriticalToolButton.isHidden = false
+                
+                    _cell.criticalToolStackView.isHidden = false
                 }
             }
             
