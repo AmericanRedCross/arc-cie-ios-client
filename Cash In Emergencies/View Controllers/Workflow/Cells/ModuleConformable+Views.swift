@@ -70,6 +70,8 @@ class ModuleView: ModuleConformable, Row {
                 _cell.moduleChevronButton.removeTarget(nil, action: nil, for: .allEvents)
                 _cell.moduleChevronButton.addTarget(self, action: #selector(handleToggle(of:)), for: .primaryActionTriggered)
                 
+                _cell.moduleIdentifierLabel.backgroundColor = ModuleColourUtility.colour(for: _module)
+                
                 _cell.moduleRoadmapButton.isHidden = !shouldShowModuleRoadmap
                 _cell.moduleRoadmapButton.removeTarget(nil, action: nil, for: .allEvents)
                 _cell.moduleRoadmapButton.addTarget(self, action: #selector(handleRoadmap(button:)), for: .primaryActionTriggered)
@@ -186,8 +188,6 @@ class SubStep: ModuleConformable, Row {
                 }
             }
             
-            
-       
             _cell.substepAddNoteButton.isHidden = !shouldShowAddNoteButton
             _cell.substepButtonContainerStackView.isHidden = !shouldShowAddNoteButton
             
