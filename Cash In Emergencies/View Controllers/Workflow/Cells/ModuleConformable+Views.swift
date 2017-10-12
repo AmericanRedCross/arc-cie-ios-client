@@ -13,12 +13,16 @@ protocol ModuleConformable {
     func module() -> Module?
 }
 
+// Wrapping Module class, provides ThunderTable Conformance
 class ModuleView: ModuleConformable, Row {
     
+    // The module data the wrapper is representing
     var internalModule: Module?
     
+    // Tableviewcontroller the module is being represented in
     private var toolkitTableViewController: ToolkitTableViewController?
     
+    // If the cell should show the module roadmap button
     var shouldShowModuleRoadmap: Bool = false
     
     func module() -> Module? {
@@ -84,10 +88,13 @@ class ModuleView: ModuleConformable, Row {
     }
 }
 
+// Wrapper module respresenting a Step which is a child of the Module class, conforms to ThunderTable
 class Step: ModuleConformable, Row {
     
+    // The module data the wrapper is representing
     var internalModule: Module?
     
+    // Tableviewcontroller the module is being represented in
     private var toolkitTableViewController: ToolkitTableViewController?
     
     func module() -> Module? {
@@ -136,6 +143,7 @@ class Step: ModuleConformable, Row {
     }
 }
 
+// Wrapper module respresenting a SubStep which is a child of the Module class, conforms to ThunderTable
 class SubStep: ModuleConformable, Row {
     
     private var toolkitTableViewController: ToolkitTableViewController?

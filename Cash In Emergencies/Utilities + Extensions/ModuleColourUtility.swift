@@ -10,10 +10,16 @@ import Foundation
 import ThunderBasics
 import ARCDM
 
+/// Provides utility methods for hardcoded colours
 class ModuleColourUtility {
     
+    /// Fallback colour if none of the hardcoded values amtch the provided input
     private static var fallBackColour = UIColor(hexString: "ed1b2e")!
     
+    /// Returns a hardcoded module colour for a given module
+    ///
+    /// - Parameter module: the module to find the matching colour for
+    /// - Returns: a specified hardcoded colour or a fallback colour
     class func colour(for module: Module) -> UIColor {
         
         guard let hierarchy = module.metadata?["hierarchy"] as? String else {
@@ -23,6 +29,10 @@ class ModuleColourUtility {
         return ModuleColourUtility.colour(for: hierarchy)
     }
     
+    /// Returns a hardcoded module colour for a given module hierarchy
+    ///
+    /// - Parameter moduleHierarchy: a string of the hierarchy of the module i.e "2"
+    /// - Returns: a specified hardcoded colour or a fallback colour
     class func colour(for moduleHierarchy: String) -> UIColor {
         switch moduleHierarchy {
             
