@@ -133,6 +133,7 @@
                 <outlet property="moduleBackgroundImageView" destination="VHZ-Ge-Htj" id="X7h-oT-iTD"/>
                 <outlet property="moduleChevronButton" destination="w3j-3T-oJh" id="Kpa-gf-WNg"/>
                 <outlet property="moduleIdentifierLabel" destination="lK2-9s-FEd" id="dtN-5b-Ppu"/>
+                <outlet property="moduleRoadmapButton" destination="h0L-k3-RdL" id="7nb-bC-916"/>
                 <outlet property="moduleTitleLabel" destination="eJ5-zh-HiW" id="kBb-fx-Wcu"/>
             </connections>
             <point key="canvasLocation" x="124" y="138.5"/>

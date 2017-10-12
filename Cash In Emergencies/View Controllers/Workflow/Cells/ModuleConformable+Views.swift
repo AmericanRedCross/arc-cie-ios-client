@@ -19,6 +19,8 @@ class ModuleView: ModuleConformable, Row {
     
     private var toolkitTableViewController: ToolkitTableViewController?
     
+    var shouldShowModuleRoadmap: Bool = false
+    
     func module() -> Module? {
         return internalModule
     }
@@ -46,7 +48,14 @@ class ModuleView: ModuleConformable, Row {
             
             _tableView.handleToggle(of: _module)
         }
+    }
+    
+    @objc func handleRoadmap(button: UIButton) {
         
+        if let _tableView = toolkitTableViewController, let _moduleContent = internalModule?.content {
+            
+            _tableView.handleLoadMarkdown(for: _moduleContent)
+        }
     }
     
     public func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
@@ -60,6 +69,10 @@ class ModuleView: ModuleConformable, Row {
                 _cell.moduleBackgroundImageView.image = UIImage(named: "module-backdrop-\(_module.order)")
                 _cell.moduleChevronButton.removeTarget(nil, action: nil, for: .allEvents)
                 _cell.moduleChevronButton.addTarget(self, action: #selector(handleToggle(of:)), for: .primaryActionTriggered)
+                
+                _cell.moduleRoadmapButton.isHidden = !shouldShowModuleRoadmap
+                _cell.moduleRoadmapButton.removeTarget(nil, action: nil, for: .allEvents)
+                _cell.moduleRoadmapButton.addTarget(self, action: #selector(handleRoadmap(button:)), for: .primaryActionTriggered)
                 
                 if let _hierarchy = _module.metadata?["hierarchy"] as? String {
                     _cell.moduleIdentifierLabel.text = _hierarchy
@@ -161,10 +174,20 @@ class SubStep: ModuleConformable, Row {
  
             _cell.substepAddNoteButton.removeTarget(nil, action: nil, for: .allEvents)
             _cell.substepCheckableButton.removeTarget(nil, action: nil, for: .allEvents)
-            _cell.substepAddNoteButton.addTarget(self, action: #selector(handleRoadmap(button:)), for: .primaryActionTriggered)
+            _cell.substepAddNoteButton.addTarget(self, action: #selector(handleAddNote(button:)), for: .primaryActionTriggered)
             _cell.substepCheckableButton.addTarget(self, action: #selector(handleChecking(of:)), for: .primaryActionTriggered)
-        
             
+            
+            _cell.substepAddNoteButton.setTitle("Add Note", for: .normal)
+            
+            if let moduleIdentifier = internalModule?.identifier {
+                if ProgressManager().note(for: moduleIdentifier) != nil {
+                     _cell.substepAddNoteButton.setTitle("Edit Note", for: .normal)
+                }
+            }
+            
+            
+       
             _cell.substepAddNoteButton.isHidden = !shouldShowAddNoteButton
             _cell.substepButtonContainerStackView.isHidden = !shouldShowAddNoteButton
             
@@ -197,6 +220,14 @@ class SubStep: ModuleConformable, Row {
         if let _tableView = toolkitTableViewController, let _moduleContent = internalModule?.content {
             
             _tableView.handleLoadMarkdown(for: _moduleContent)
+        }
+    }
+    
+    @objc func handleAddNote(button: UIButton) {
+        
+        if let _tableView = toolkitTableViewController, let internalModule = internalModule {
+            
+            _tableView.addNote(for: internalModule)
         }
     }
 }

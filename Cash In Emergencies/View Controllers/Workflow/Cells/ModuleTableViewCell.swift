@@ -15,6 +15,9 @@ class ModuleTableViewCell: UITableViewCell {
     @IBOutlet weak var moduleBackgroundImageView: GradientImageView!
     @IBOutlet weak var moduleChevronButton: UIButton!
     
+    @IBOutlet weak var moduleRoadmapButton: UIButton!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -69,6 +69,12 @@ class ToolkitTableViewController: TableViewController {
             let moduleView = ModuleView(with: _module)
             rows.append(moduleView)
             
+            if let moduleIdentifier = _module.identifier {
+                if expandedModuleIdentifiers.contains(moduleIdentifier) {
+                    moduleView.shouldShowModuleRoadmap = true
+                }
+            }
+            
             //Add sub rows if expanded
             if let _moduleChildren = _module.directories, let moduleIdentifier = _module.identifier, expandedModuleIdentifiers.contains(moduleIdentifier) {
                 
@@ -286,17 +292,8 @@ class ToolkitTableViewController: TableViewController {
             actions.append(exportOption)
             
             //Note
-            let noteOption = UIContextualAction(style: .normal, title: "ADD NOTE") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
-                print("hi")
-                
-                let noteViewNavigationController = UIStoryboard(name: "Notes", bundle: Bundle.main).instantiateInitialViewController() as? UINavigationController
-                
-                if let noteViewNavigationController = noteViewNavigationController, let noteViewController = noteViewNavigationController.topViewController as? NoteAddViewController {
-                    OperationQueue.main.addOperation({
-                        noteViewController.module = module
-                        self.present(noteViewNavigationController, animated: true, completion: nil)
-                    })
-                }
+            let noteOption = UIContextualAction(style: .normal, title: "ADD NOTE") {  [weak self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
+                self?.addNote(for: module)
             }
             noteOption.image = #imageLiteral(resourceName: "swipe_action_note_add")
             noteOption.backgroundColor = UIColor(red: 237.0/255.0, green: 27.0/255.0, blue: 46.0/255.0, alpha: 1.0)
@@ -334,6 +331,19 @@ class ToolkitTableViewController: TableViewController {
 //        super.scrollViewDidScroll(scrollView)
         self.parent?.view.setNeedsUpdateConstraints()
         self.parent?.view.setNeedsLayout()
+    }
+    
+    func addNote(for module: Module) {
+        print("Add note option")
+        
+        let noteViewNavigationController = UIStoryboard(name: "Notes", bundle: Bundle.main).instantiateInitialViewController() as? UINavigationController
+        
+        if let noteViewNavigationController = noteViewNavigationController, let noteViewController = noteViewNavigationController.topViewController as? NoteAddViewController {
+            OperationQueue.main.addOperation({
+                noteViewController.module = module
+                self.present(noteViewNavigationController, animated: true, completion: nil)
+            })
+        }
     }
 }
 
