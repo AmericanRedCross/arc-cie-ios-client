@@ -12,9 +12,14 @@ import ARCDM
 /// Deals with exporting a CSV of the tools and user critical data
 class CSVManager {
     
-    private var csvHeadings = ["Step","Sub-Step Action & Guidance","Done","Sub-Step Notes","Tool","Done","Critical Notes"]
+    /// An array of heading items to be set in the CSV for each module
+    private var csvHeadings = ["Step","Sub-Step Action & Guidance","Done","Sub-Step Notes","Tool","Done","Tool Notes"]
     
-    func exportModules(criticalOnly: Bool = false) -> Data? {
+    /// Exports the modules as a CSV, saves that CSV to disk and then returns to file path URL to you
+    ///
+    /// - Parameter criticalOnly: If true only modules that are marked as critical tools by the DMS or the user will be entered into the CSV
+    /// - Returns: The file URL of the created CSV on the disk
+    func exportModules(criticalOnly: Bool = false) -> URL? {
         
         let progressManager = ProgressManager()
         let newLine = "\n"
@@ -111,7 +116,10 @@ class CSVManager {
         
         if let cacheDirectory = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first, let cacheURL = URL(string: cacheDirectory) {
             
-            let filePath = cacheURL.appendingPathComponent("file.csv")
+            let cieDataDirectory = cacheURL.appendingPathComponent("CIEData")
+            try? FileManager.default.createDirectory(atPath: cieDataDirectory.path, withIntermediateDirectories: true, attributes: nil)
+            
+            let filePath = cieDataDirectory.appendingPathComponent("file.csv")
             do {
                 try csvString.write(toFile:filePath.path, atomically: true, encoding: .utf8)
             }
