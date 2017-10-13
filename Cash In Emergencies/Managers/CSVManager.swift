@@ -43,6 +43,13 @@ class CSVManager {
                                 
                                 for tool in tools {
                                     
+                                    if criticalOnly {
+                                        //TODO: Include user marked critical tools
+                                        if tool.metadata?["critical_path"] == nil {
+                                            continue
+                                        }
+                                    }
+                                    
                                     //Step
                                     if let stepName = step.moduleTitle, let stepHierarchy = step.metadata?["hierarchy"] as? String {
                                         csvString = csvString+(stepHierarchy+" "+stepName).csvSafeString()+","
