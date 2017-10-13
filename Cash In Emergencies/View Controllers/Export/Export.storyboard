@@ -77,7 +77,9 @@
                                                 <constraint firstItem="Az7-SW-meT" firstAttribute="trailing" secondItem="9pn-7P-dzY" secondAttribute="trailing" constant="12" id="Oli-z3-iWj"/>
                                                 <constraint firstItem="luf-9E-v4L" firstAttribute="leading" secondItem="Zfr-5o-p4O" secondAttribute="trailing" constant="10" id="aTe-uB-aak"/>
                                                 <constraint firstItem="9pn-7P-dzY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="luf-9E-v4L" secondAttribute="trailing" id="myu-L9-GpE"/>
+                                                <constraint firstItem="Az7-SW-meT" firstAttribute="bottom" secondItem="Zfr-5o-p4O" secondAttribute="bottom" constant="24.5" id="oyK-DH-Oqx"/>
                                                 <constraint firstItem="Zfr-5o-p4O" firstAttribute="leading" secondItem="Az7-SW-meT" secondAttribute="leading" constant="37" id="piD-2u-vGr"/>
+                                                <constraint firstItem="Zfr-5o-p4O" firstAttribute="top" secondItem="Az7-SW-meT" secondAttribute="top" constant="25" id="wIL-kh-kIC"/>
                                             </constraints>
                                             <viewLayoutGuide key="safeArea" id="Az7-SW-meT"/>
                                         </tableViewCellContentView>
@@ -131,9 +133,11 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="XX1-wo-W86" firstAttribute="top" secondItem="IjO-Ct-3t7" secondAttribute="top" constant="25" id="21P-U7-DdI"/>
                                                 <constraint firstItem="IjO-Ct-3t7" firstAttribute="trailing" secondItem="wdf-Gc-lbA" secondAttribute="trailing" constant="12" id="BD5-zb-27g"/>
                                                 <constraint firstItem="wdf-Gc-lbA" firstAttribute="centerY" secondItem="IjO-Ct-3t7" secondAttribute="centerY" id="PQ2-2E-hOS"/>
                                                 <constraint firstItem="XX1-wo-W86" firstAttribute="centerY" secondItem="IjO-Ct-3t7" secondAttribute="centerY" id="Q8u-aK-8UM"/>
+                                                <constraint firstItem="IjO-Ct-3t7" firstAttribute="bottom" secondItem="XX1-wo-W86" secondAttribute="bottom" constant="24.5" id="TNF-91-qRO"/>
                                                 <constraint firstItem="w4r-oc-DaA" firstAttribute="centerY" secondItem="IjO-Ct-3t7" secondAttribute="centerY" id="XRW-aQ-eL2"/>
                                                 <constraint firstItem="wdf-Gc-lbA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="w4r-oc-DaA" secondAttribute="trailing" id="dWi-Q8-DLI"/>
                                                 <constraint firstItem="w4r-oc-DaA" firstAttribute="leading" secondItem="XX1-wo-W86" secondAttribute="trailing" constant="10" id="eUa-cc-DnJ"/>
