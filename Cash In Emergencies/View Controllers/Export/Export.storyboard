@@ -15,8 +15,8 @@
         <scene sceneID="II0-Hc-gUJ">
             <objects>
                 <tableViewController id="XhR-eF-ejj" customClass="ExportTableViewController" customModule="Cash_In_Emergencies" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="MQM-PF-DGb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="MQM-PF-DGb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -31,6 +31,7 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mime_csv" translatesAutoresizingMaskIntoConstraints="NO" id="Zfr-5o-p4O">
                                                     <rect key="frame" x="37" y="25" width="24" height="30"/>
+                                                    <color key="tintColor" red="0.92803966999999998" green="0.1049155816" blue="0.1790089607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="24" id="0CN-s8-aYw"/>
                                                         <constraint firstAttribute="height" constant="30" id="tUa-Wm-R8j"/>
@@ -38,7 +39,7 @@
                                                     <viewLayoutGuide key="safeArea" id="pLm-Ym-Bc9"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Critical Path Progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="luf-9E-v4L">
-                                                    <rect key="frame" x="99" y="30" width="165" height="21"/>
+                                                    <rect key="frame" x="71" y="30" width="165" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -74,7 +75,7 @@
                                                 <constraint firstItem="Zfr-5o-p4O" firstAttribute="centerY" secondItem="Az7-SW-meT" secondAttribute="centerY" id="IPV-DF-7nG"/>
                                                 <constraint firstItem="luf-9E-v4L" firstAttribute="centerY" secondItem="Az7-SW-meT" secondAttribute="centerY" id="Mrm-VH-Kup"/>
                                                 <constraint firstItem="Az7-SW-meT" firstAttribute="trailing" secondItem="9pn-7P-dzY" secondAttribute="trailing" constant="12" id="Oli-z3-iWj"/>
-                                                <constraint firstItem="luf-9E-v4L" firstAttribute="leading" secondItem="Zfr-5o-p4O" secondAttribute="trailing" constant="38" id="aTe-uB-aak"/>
+                                                <constraint firstItem="luf-9E-v4L" firstAttribute="leading" secondItem="Zfr-5o-p4O" secondAttribute="trailing" constant="10" id="aTe-uB-aak"/>
                                                 <constraint firstItem="9pn-7P-dzY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="luf-9E-v4L" secondAttribute="trailing" id="myu-L9-GpE"/>
                                                 <constraint firstItem="Zfr-5o-p4O" firstAttribute="leading" secondItem="Az7-SW-meT" secondAttribute="leading" constant="37" id="piD-2u-vGr"/>
                                             </constraints>
@@ -90,6 +91,7 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mime_csv" translatesAutoresizingMaskIntoConstraints="NO" id="XX1-wo-W86">
                                                     <rect key="frame" x="37" y="25" width="24" height="30"/>
+                                                    <color key="tintColor" red="0.92803966999999998" green="0.1049155816" blue="0.1790089607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="24" id="KQz-k7-lF5"/>
                                                         <constraint firstAttribute="height" constant="30" id="u0H-CM-tmq"/>
@@ -97,7 +99,7 @@
                                                     <viewLayoutGuide key="safeArea" id="Dni-is-34b"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Entire Progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4r-oc-DaA">
-                                                    <rect key="frame" x="99" y="30" width="117" height="21"/>
+                                                    <rect key="frame" x="71" y="30" width="117" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -134,7 +136,7 @@
                                                 <constraint firstItem="XX1-wo-W86" firstAttribute="centerY" secondItem="IjO-Ct-3t7" secondAttribute="centerY" id="Q8u-aK-8UM"/>
                                                 <constraint firstItem="w4r-oc-DaA" firstAttribute="centerY" secondItem="IjO-Ct-3t7" secondAttribute="centerY" id="XRW-aQ-eL2"/>
                                                 <constraint firstItem="wdf-Gc-lbA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="w4r-oc-DaA" secondAttribute="trailing" id="dWi-Q8-DLI"/>
-                                                <constraint firstItem="w4r-oc-DaA" firstAttribute="leading" secondItem="XX1-wo-W86" secondAttribute="trailing" constant="38" id="eUa-cc-DnJ"/>
+                                                <constraint firstItem="w4r-oc-DaA" firstAttribute="leading" secondItem="XX1-wo-W86" secondAttribute="trailing" constant="10" id="eUa-cc-DnJ"/>
                                                 <constraint firstItem="XX1-wo-W86" firstAttribute="leading" secondItem="IjO-Ct-3t7" secondAttribute="leading" constant="37" id="j4t-FT-Ea3"/>
                                             </constraints>
                                             <viewLayoutGuide key="safeArea" id="IjO-Ct-3t7"/>
@@ -148,7 +150,14 @@
                             <outlet property="delegate" destination="XhR-eF-ejj" id="7LM-Gc-Rm0"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Export Content" id="hhZ-zn-Fh6"/>
+                    <navigationItem key="navigationItem" title="Export Content" id="hhZ-zn-Fh6">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="W6E-eY-9fW">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="XhR-eF-ejj" kind="custom" customClass="TSCDismissSegue" id="lAG-fW-Zfm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SI5-9j-WG2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -157,11 +166,11 @@
         <!--Navigation Controller-->
         <scene sceneID="7ZS-Bq-dCf">
             <objects>
-                <navigationController id="8LI-mf-Bkn" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="XNI-2v-6dU">
+                <navigationController id="8LI-mf-Bkn" customClass="ARCNavigationController" customModule="Cash_In_Emergencies" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="XNI-2v-6dU">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.93004649877548218" green="0.10542947798967361" blue="0.18283036351203918" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.92803966999999998" green="0.1049155816" blue="0.1790089607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="XhR-eF-ejj" kind="relationship" relationship="rootViewController" id="xuL-Cx-yXa"/>

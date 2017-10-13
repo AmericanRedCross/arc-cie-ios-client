@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ThunderBasics
 
 class ExportTableViewController: UITableViewController {
 
@@ -14,19 +15,25 @@ class ExportTableViewController: UITableViewController {
     
     @IBAction func handleExportCriticalPath(_ sender: UIButton) {
         
+        MDCHUDActivityView.start(in: view.window, text: "Exporting")
+        
         if let criticalPathFile = CSVManager.exportModules(criticalOnly: true) {
          
             documentcontroller = UIDocumentInteractionController(url: criticalPathFile)
             documentcontroller?.presentOptionsMenu(from: sender.frame, in: view, animated: true)
+            MDCHUDActivityView.finish(in: view.window)
         }
     }
     
     @IBAction func handleExportEntireProgress(_ sender: UIButton) {
         
+        MDCHUDActivityView.start(in: view.window, text: "Exporting")
+
         if let criticalPathFile = CSVManager.exportModules(criticalOnly: false) {
             
             documentcontroller = UIDocumentInteractionController(url: criticalPathFile)
             documentcontroller?.presentOptionsMenu(from: sender.frame, in: view, animated: true)
+            MDCHUDActivityView.finish(in: view.window)
         }
     }
     
@@ -36,6 +43,10 @@ class ExportTableViewController: UITableViewController {
         if #available(iOS 11.0, *) {
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         }
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }
 
