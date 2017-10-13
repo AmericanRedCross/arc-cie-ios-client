@@ -42,9 +42,7 @@ class ToolkitTableViewController: TableViewController {
 
         for module in modules {
 
-            if let _moduleID = module.identifier {
-                moduleDepthMap[_moduleID] = level
-            }
+            moduleDepthMap[module.identifier] = level
 
             if let _submodules = module.directories {
                 mapTree(for: _submodules, level: level + 1)
@@ -69,14 +67,12 @@ class ToolkitTableViewController: TableViewController {
             let moduleView = ModuleView(with: _module)
             rows.append(moduleView)
             
-            if let moduleIdentifier = _module.identifier {
-                if expandedModuleIdentifiers.contains(moduleIdentifier) {
-                    moduleView.shouldShowModuleRoadmap = true
-                }
+            if expandedModuleIdentifiers.contains(_module.identifier) {
+                moduleView.shouldShowModuleRoadmap = true
             }
             
             //Add sub rows if expanded
-            if let _moduleChildren = _module.directories, let moduleIdentifier = _module.identifier, expandedModuleIdentifiers.contains(moduleIdentifier) {
+            if let _moduleChildren = _module.directories, expandedModuleIdentifiers.contains(_module.identifier) {
                 
                 for moduleStep in _moduleChildren {
                     
@@ -93,7 +89,7 @@ class ToolkitTableViewController: TableViewController {
                             rows.append(moduleSubStepView)
                             
                             //Check for tools
-                            if let _tools = moduleSubStep.directories, let moduleIdentifier = moduleSubStep.identifier, expandedModuleIdentifiers.contains(moduleIdentifier) {
+                            if let _tools = moduleSubStep.directories,  expandedModuleIdentifiers.contains(moduleSubStep.identifier) {
                                 
                                 moduleSubStepView.shouldShowAddNoteButton = true
                                 
@@ -199,9 +195,7 @@ class ToolkitTableViewController: TableViewController {
     
     func handleToggle(of module: Module) {
         
-        guard let moduleID = module.identifier else {
-            return
-        }
+        let moduleID = module.identifier
         
         if expandedModuleIdentifiers.contains(moduleID) {
             if let removalIndex = expandedModuleIdentifiers.index(of: moduleID) {
@@ -292,7 +286,10 @@ class ToolkitTableViewController: TableViewController {
             actions.append(exportOption)
             
             //Note
-            let noteOption = UIContextualAction(style: .normal, title: "ADD NOTE") {  [weak self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
+            
+            let noteOptionTitle = (ProgressManager().note(for: module.identifier) != nil) ? "ADD NOTE" : "EDIT NOTE"
+            
+            let noteOption = UIContextualAction(style: .normal, title: noteOptionTitle) {  [weak self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
                 self?.addNote(for: module)
             }
             noteOption.image = #imageLiteral(resourceName: "swipe_action_note_add")
@@ -308,8 +305,12 @@ class ToolkitTableViewController: TableViewController {
                     //If its not marked as critical by user, give option
                     //TODO: User critical handling
                     let toolOption = UIContextualAction(style: .normal, title: "MARK AS CRITICAL TOOL") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
-                        print("hi")
+                        
+                        fatalError("Mark as critical tool")
+                        // #warning Incomplete implementation, mark tool as critical
+
                     }
+                    
                     toolOption.image = #imageLiteral(resourceName: "swipe_action_critical_path_enable")
                     toolOption.backgroundColor = UIColor(red: 237.0/255.0, green: 27.0/255.0, blue: 46.0/255.0, alpha: 1.0)
                     actions.append(toolOption)
@@ -334,7 +335,6 @@ class ToolkitTableViewController: TableViewController {
     }
     
     func addNote(for module: Module) {
-        print("Add note option")
         
         let noteViewNavigationController = UIStoryboard(name: "Notes", bundle: Bundle.main).instantiateInitialViewController() as? UINavigationController
         
