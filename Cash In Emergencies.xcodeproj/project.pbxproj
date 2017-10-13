@@ -49,6 +49,7 @@
 		49FE8D881F419F6900B73731 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49FE8D861F419F6900B73731 /* Main.storyboard */; };
 		49FE8D8A1F419F6900B73731 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49FE8D891F419F6900B73731 /* Assets.xcassets */; };
 		49FE8D8D1F419F6900B73731 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49FE8D8B1F419F6900B73731 /* LaunchScreen.storyboard */; };
+		FF5CF3221F910BAC00DF7C5D /* ToolkitTableViewController+SwipeableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5CF3211F910BAC00DF7C5D /* ToolkitTableViewController+SwipeableCells.swift */; };
 		FF82CCE11F8CC358009FCC5B /* ProgressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82CCDF1F8CC358009FCC5B /* ProgressTableViewCell.swift */; };
 		FF82CCE41F8CC38E009FCC5B /* ProgressTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82CCE31F8CC38E009FCC5B /* ProgressTableViewController.swift */; };
 		FF82CCE71F8CCA37009FCC5B /* ProgressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF82CCE01F8CC358009FCC5B /* ProgressTableViewCell.xib */; };
@@ -238,6 +239,7 @@
 		49FE8D891F419F6900B73731 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49FE8D8C1F419F6900B73731 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		49FE8D8E1F419F6900B73731 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF5CF3211F910BAC00DF7C5D /* ToolkitTableViewController+SwipeableCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToolkitTableViewController+SwipeableCells.swift"; sourceTree = "<group>"; };
 		FF82CCDF1F8CC358009FCC5B /* ProgressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTableViewCell.swift; sourceTree = "<group>"; };
 		FF82CCE01F8CC358009FCC5B /* ProgressTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressTableViewCell.xib; sourceTree = "<group>"; };
 		FF82CCE31F8CC38E009FCC5B /* ProgressTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTableViewController.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 				492F83F11F84D35300BDD72D /* Markdown Viewing */,
 				492F83EE1F84D2C000BDD72D /* Note Editing */,
 				492F83ED1F84D1FC00BDD72D /* Cells */,
+				FF5CF3211F910BAC00DF7C5D /* ToolkitTableViewController+SwipeableCells.swift */,
 			);
 			path = Workflow;
 			sourceTree = "<group>";
@@ -695,6 +698,7 @@
 				49BCFFF21F4487EB00F68A40 /* OnboardingViewController.swift in Sources */,
 				4971222C1F4C2CF3000786AE /* WorkflowViewController.swift in Sources */,
 				49C2DE8B1F502C7000DCFBB5 /* Utilities.swift in Sources */,
+				FF5CF3221F910BAC00DF7C5D /* ToolkitTableViewController+SwipeableCells.swift in Sources */,
 				FFAEB1CD1F8F8A2000B079B4 /* ModuleColourUtility.swift in Sources */,
 				492F83EA1F84D1B200BDD72D /* ARCDMSExtensions.swift in Sources */,
 				4916408E1F4C5C3A0084CEE2 /* ModuleTableViewCell.swift in Sources */,

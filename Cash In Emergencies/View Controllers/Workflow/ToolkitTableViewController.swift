@@ -23,7 +23,7 @@ class ToolkitTableViewController: TableViewController {
     private var timer: Timer?
     
     /// The URL of the module a user may have selected to display. We have to have this due to the way QLPreview works using delegates
-    private var disaplayableURL: URL?
+    internal var displayableURL: URL?
     
     /// The standard calculated data source for displaying modules. Prevents recreating where uncecessary
     private var standardDataSource: [Section]?
@@ -231,105 +231,6 @@ class ToolkitTableViewController: TableViewController {
         }
     }
     
-    @available(iOS 11.0, *)
-    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        
-        if let _toolDisplayed = data[indexPath.section].rows[indexPath.row] as? Tool, let module = _toolDisplayed.module() {
-            
-            var actions = [UIContextualAction]()
-            
-            //Export
-            let exportOption = UIContextualAction(style: .normal, title: "EXPORT OR SHARE") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
-                
-                if let _url = module.attachments?.first?.url {
-                    
-                    //Load it up if we already have it
-                    if let _localFile = ContentController().localFileURL(for: _url) {
-                        
-                        let quickLookView = QLPreviewController()
-                        self.disaplayableURL = _localFile
-                        quickLookView.dataSource = self
-                        quickLookView.currentPreviewItemIndex = 0
-                        
-                        OperationQueue.main.addOperation({
-                            self.present(quickLookView, animated: true, completion: nil)
-                        })
-                        
-                        return
-                    }
-                
-                    //Download it instead
-                    ContentController().downloadDocumentFile(from: _url, progress: { (progress, bytesDownloaded, totalBytes) in
-                        
-                    }, completion: { (result) in
-                        
-                        switch result {
-                        case .success(let downloadedFileURL):
-                            
-                            let quickLookView = QLPreviewController()
-                            self.disaplayableURL = downloadedFileURL
-                                quickLookView.dataSource = self
-                            quickLookView.currentPreviewItemIndex = 0
-                            
-                            OperationQueue.main.addOperation({
-                                self.present(quickLookView, animated: true, completion: nil)
-                            })
-                            
-                        case .failure(let error):
-                            print(error)
-                        }
-                    })
-                }
-            }
-            exportOption.image = #imageLiteral(resourceName: "swipe_action_export")
-            exportOption.backgroundColor = UIColor(red: 237.0/255.0, green: 27.0/255.0, blue: 46.0/255.0, alpha: 1.0)
-            actions.append(exportOption)
-            
-            //Note
-            
-            let noteOptionTitle = (ProgressManager().note(for: module.identifier) != nil) ? "ADD NOTE" : "EDIT NOTE"
-            
-            let noteOption = UIContextualAction(style: .normal, title: noteOptionTitle) {  [weak self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
-                self?.addNote(for: module)
-            }
-            noteOption.image = #imageLiteral(resourceName: "swipe_action_note_add")
-            noteOption.backgroundColor = UIColor(red: 237.0/255.0, green: 27.0/255.0, blue: 46.0/255.0, alpha: 1.0)
-            actions.append(noteOption)
-
-            //Critical tool
-            
-            //If it's marked as critical by DMS don't let them change it
-            let _criticalTool = module.metadata?["critical_path"] as? Bool ?? false
-            
-            // Only run if block criticalTool is nil or false
-            if !_criticalTool  {
-
-                //If its not marked as critical by user, give option
-                //TODO: User critical handling
-                
-                let progressManager = ProgressManager()
-                
-                let toolOptionTitle = progressManager.userCriticalTool(for: module.identifier) ? "UNMARK" : "MARK"
-                let toolOption = UIContextualAction(style: .normal, title: toolOptionTitle) { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
-                    
-                    progressManager.toggleMarkToolAsUserCritical(for: module.identifier)
-                }
-                
-                toolOption.image = #imageLiteral(resourceName: "swipe_action_critical_path_enable")
-                toolOption.backgroundColor = UIColor(red: 237.0/255.0, green: 27.0/255.0, blue: 46.0/255.0, alpha: 1.0)
-                actions.append(toolOption)
-            }
-
-            //Actions
-            let swipeActions = UISwipeActionsConfiguration(actions: actions)
-            swipeActions.performsFirstActionWithFullSwipe = false
-            
-            return swipeActions
-        }
-        
-        let swipeActions = UISwipeActionsConfiguration(actions: [])
-        return swipeActions
-    }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
 //        super.scrollViewDidScroll(scrollView)
@@ -358,7 +259,7 @@ extension ToolkitTableViewController: QLPreviewControllerDataSource {
     
     func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
         
-        if let _URL = disaplayableURL {
+        if let _URL = displayableURL {
             return _URL as NSURL
         }
         return NSURL(fileURLWithPath: "lol")
