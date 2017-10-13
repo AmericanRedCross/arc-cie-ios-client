@@ -22,5 +22,18 @@ class ToolTableViewCell: UITableViewCell {
         
         // Hide description label if theres no content so the other label is centered
         toolDescriptionLabel.isHidden = (toolDescriptionLabel.text == nil)
+        
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        toolCriticalToolButton.isHidden = true
+        criticalToolStackView.isHidden = true
     }
 }

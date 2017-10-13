@@ -281,7 +281,6 @@ class Tool: ModuleConformable, Row {
             if let _criticalTool = internalModule?.metadata?["critical_path"] as? Bool {
                 if _criticalTool {
                    _cell.toolCriticalToolButton.isHidden = false
-                
                     _cell.criticalToolStackView.isHidden = false
                 }
             }
@@ -292,6 +291,10 @@ class Tool: ModuleConformable, Row {
             if let _moduleIdentifier = internalModule?.identifier {
                 _cell.toolCheckableButton.isSelected = ProgressManager().checkState(for: _moduleIdentifier)
             }
+            
+            // Hack, however if we don't call this the cells appear at the wrong height and we get graphical layout bugs :(
+            // TODO: Find fix for this
+            _cell.layoutSubviews()
         }
     }
     
