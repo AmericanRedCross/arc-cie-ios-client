@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		490DBE641F8F63E2001E632A /* CSVManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490DBE631F8F63E2001E632A /* CSVManager.swift */; };
 		4912BABA1F5ED21900AD7100 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4912BAB91F5ED21900AD7100 /* libz.tbd */; };
 		491640821F4C38230084CEE2 /* ARCNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491640811F4C38230084CEE2 /* ARCNavigationController.swift */; };
 		4916408E1F4C5C3A0084CEE2 /* ModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4916408C1F4C5C3A0084CEE2 /* ModuleTableViewCell.swift */; };
@@ -197,6 +198,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		490DBE631F8F63E2001E632A /* CSVManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVManager.swift; sourceTree = "<group>"; };
 		4912BAB91F5ED21900AD7100 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		491640811F4C38230084CEE2 /* ARCNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARCNavigationController.swift; sourceTree = "<group>"; };
 		4916408C1F4C5C3A0084CEE2 /* ModuleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTableViewCell.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 			children = (
 				49A787121F84EB4D0076ABB7 /* ToolIndexManager.swift */,
 				498F45721F8274D500E8824C /* ProgressManager.swift */,
+				490DBE631F8F63E2001E632A /* CSVManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -692,6 +695,7 @@
 				49BCFFF21F4487EB00F68A40 /* OnboardingViewController.swift in Sources */,
 				4971222C1F4C2CF3000786AE /* WorkflowViewController.swift in Sources */,
 				49C2DE8B1F502C7000DCFBB5 /* Utilities.swift in Sources */,
+				490DBE641F8F63E2001E632A /* CSVManager.swift in Sources */,
 				492F83EA1F84D1B200BDD72D /* ARCDMSExtensions.swift in Sources */,
 				4916408E1F4C5C3A0084CEE2 /* ModuleTableViewCell.swift in Sources */,
 				496C49D11F4EEDA300AD05D1 /* SettingsTableViewController.swift in Sources */,
