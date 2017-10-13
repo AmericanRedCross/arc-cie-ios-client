@@ -12,14 +12,14 @@ import ARCDM
 /// Deals with exporting a CSV of the tools and user critical data
 class CSVManager {
     
-    /// An array of heading items to be set in the CSV for each module
-    private var csvHeadings = ["Step","Sub-Step Action & Guidance","Done","Sub-Step Notes","Tool","Done","Tool Notes"]
-    
     /// Exports the modules as a CSV, saves that CSV to disk and then returns to file path URL to you
     ///
     /// - Parameter criticalOnly: If true only modules that are marked as critical tools by the DMS or the user will be entered into the CSV
     /// - Returns: The file URL of the created CSV on the disk
-    func exportModules(criticalOnly: Bool = false) -> URL? {
+    class func exportModules(criticalOnly: Bool = false) -> URL? {
+        
+        /// An array of heading items to be set in the CSV for each module
+        let csvHeadings = ["Step","Sub-Step Action & Guidance","Done","Sub-Step Notes","Tool","Done","Tool Notes"]
         
         let progressManager = ProgressManager()
         let newLine = "\n"
@@ -114,18 +114,20 @@ class CSVManager {
             csvString = csvString+newLine
         }
         
-        if let cacheDirectory = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first, let cacheURL = URL(string: cacheDirectory) {
-            
+        if let cacheDirectory = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first {
+            let cacheURL = URL(fileURLWithPath: cacheDirectory)
             let cieDataDirectory = cacheURL.appendingPathComponent("CIEData")
             try? FileManager.default.createDirectory(atPath: cieDataDirectory.path, withIntermediateDirectories: true, attributes: nil)
             
-            let filePath = cieDataDirectory.appendingPathComponent("file.csv")
+            let filePath = cieDataDirectory.appendingPathComponent("export.csv")
             do {
                 try csvString.write(toFile:filePath.path, atomically: true, encoding: .utf8)
             }
             catch let error as NSError {
                 print("Ooops! Something went wrong: \(error)")
             }
+            
+            return filePath
         }
     
         return nil

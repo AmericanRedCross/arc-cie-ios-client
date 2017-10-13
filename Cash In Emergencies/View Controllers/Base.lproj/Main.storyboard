@@ -282,6 +282,9 @@
                             </barButtonItem>
                             <barButtonItem title="Item" image="workflow-navigation-download-icon" id="XOV-lp-qCA">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="Xwh-BK-ZUd" kind="showDetail" id="gk2-qN-uWg"/>
+                                </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
@@ -334,6 +337,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lVU-k9-oK1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="929" y="-243"/>
+        </scene>
+        <!--Export-->
+        <scene sceneID="DUR-yK-qt6">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Export" id="Xwh-BK-ZUd" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gEL-RK-qtJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1777" y="-1238"/>
         </scene>
     </scenes>
     <resources>
