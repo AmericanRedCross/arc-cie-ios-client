@@ -12,7 +12,7 @@ import ARCDM
 /// Deals with exporting a CSV of the tools and user critical data
 class CSVManager {
     
-    private var csvHeadings = ["Step","Done","No.","Sub-Step Action & Guidance","Sub-Step Notes","Critical Tool","Critical Notes"]
+    private var csvHeadings = ["Step","Sub-Step Action & Guidance","Done","Sub-Step Notes","Tool","Done","Critical Notes"]
     
     func exportModules(criticalOnly: Bool = false) -> Data? {
         
@@ -44,29 +44,24 @@ class CSVManager {
                                 for tool in tools {
                                     
                                     //Step
-                                    if let _stepName = step.moduleTitle {
-                                        csvString = csvString+_stepName.csvSafeString()+","
+                                    if let stepName = step.moduleTitle, let stepHierarchy = step.metadata?["hierarchy"] as? String {
+                                        csvString = csvString+(stepHierarchy+" "+stepName).csvSafeString()+","
+                                    } else {
+                                        csvString = csvString+","
+                                    }
+                                    
+                                    //Sub-Step Action & Guidance
+                                    if let substepName = substep.moduleTitle, let substepHierarchy = substep.metadata?["hierarchy"] as? String {
+                                        csvString = csvString+(substepHierarchy+" "+substepName).csvSafeString()+","
                                     } else {
                                         csvString = csvString+","
                                     }
                                     
                                     //Done
-                                    if let identifier = tool.identifier, progressManager.checkState(for: identifier) {
+                                    if let identifier = substep.identifier, progressManager.checkState(for: identifier) {
                                         csvString = csvString+"yes"+","
                                     } else {
                                         csvString = csvString+"no"+","
-                                    }
-                                    
-                                    //No.
-                                    if let hierarchy = substep.metadata?["hierarchy"] as? String {
-                                        csvString = csvString+hierarchy+","
-                                    }
-                                    
-                                    //Sub-Step Action & Guidance
-                                    if let substepName = substep.moduleTitle {
-                                        csvString = csvString+substepName.csvSafeString()+","
-                                    } else {
-                                        csvString = csvString+","
                                     }
                                     
                                     //Sub-Step Notes
@@ -81,6 +76,13 @@ class CSVManager {
                                         csvString = csvString+toolTitle.csvSafeString()+","
                                     } else {
                                         csvString = csvString+","
+                                    }
+                                    
+                                    //Done
+                                    if let identifier = tool.identifier, progressManager.checkState(for: identifier) {
+                                        csvString = csvString+"yes"+","
+                                    } else {
+                                        csvString = csvString+"no"+","
                                     }
                                     
                                     //Critical Notes
