@@ -81,6 +81,65 @@
                                             <viewLayoutGuide key="safeArea" id="Az7-SW-meT"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="80" id="d1q-Za-ztg">
+                                        <rect key="frame" x="0.0" y="80" width="375" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="d1q-Za-ztg" id="22h-mQ-uXb">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mime_csv" translatesAutoresizingMaskIntoConstraints="NO" id="XX1-wo-W86">
+                                                    <rect key="frame" x="37" y="25" width="24" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="24" id="KQz-k7-lF5"/>
+                                                        <constraint firstAttribute="height" constant="30" id="u0H-CM-tmq"/>
+                                                    </constraints>
+                                                    <viewLayoutGuide key="safeArea" id="Dni-is-34b"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Entire Progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4r-oc-DaA">
+                                                    <rect key="frame" x="99" y="30" width="117" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wdf-Gc-lbA">
+                                                    <rect key="frame" x="300" y="22" width="63" height="34"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="34" id="BHY-CN-2rf"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                                    <state key="normal" title="Export">
+                                                        <color key="titleColor" name="mainRedColor"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                            <color key="value" red="0.62352941179999999" green="0.62352941179999999" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                            <real key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="17"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="handleExportEntireProgress:" destination="XhR-eF-ejj" eventType="primaryActionTriggered" id="FpC-Rs-Ur7"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="IjO-Ct-3t7" firstAttribute="trailing" secondItem="wdf-Gc-lbA" secondAttribute="trailing" constant="12" id="BD5-zb-27g"/>
+                                                <constraint firstItem="wdf-Gc-lbA" firstAttribute="centerY" secondItem="IjO-Ct-3t7" secondAttribute="centerY" id="PQ2-2E-hOS"/>
+                                                <constraint firstItem="XX1-wo-W86" firstAttribute="centerY" secondItem="IjO-Ct-3t7" secondAttribute="centerY" id="Q8u-aK-8UM"/>
+                                                <constraint firstItem="w4r-oc-DaA" firstAttribute="centerY" secondItem="IjO-Ct-3t7" secondAttribute="centerY" id="XRW-aQ-eL2"/>
+                                                <constraint firstItem="wdf-Gc-lbA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="w4r-oc-DaA" secondAttribute="trailing" id="dWi-Q8-DLI"/>
+                                                <constraint firstItem="w4r-oc-DaA" firstAttribute="leading" secondItem="XX1-wo-W86" secondAttribute="trailing" constant="38" id="eUa-cc-DnJ"/>
+                                                <constraint firstItem="XX1-wo-W86" firstAttribute="leading" secondItem="IjO-Ct-3t7" secondAttribute="leading" constant="37" id="j4t-FT-Ea3"/>
+                                            </constraints>
+                                            <viewLayoutGuide key="safeArea" id="IjO-Ct-3t7"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -115,6 +174,9 @@
     </scenes>
     <resources>
         <image name="mime_csv" width="24" height="30"/>
+        <namedColor name="mainRedColor">
+            <color red="0.92941176469999998" green="0.1058823529" blue="0.18039215689999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="mainRedColor">
             <color red="0.92941176469999998" green="0.1058823529" blue="0.18039215689999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

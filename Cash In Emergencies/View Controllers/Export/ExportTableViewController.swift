@@ -18,7 +18,23 @@ class ExportTableViewController: UITableViewController {
          
             documentcontroller = UIDocumentInteractionController(url: criticalPathFile)
             documentcontroller?.presentOptionsMenu(from: sender.frame, in: view, animated: true)
+        }
+    }
+    
+    @IBAction func handleExportEntireProgress(_ sender: UIButton) {
+        
+        if let criticalPathFile = CSVManager.exportModules(criticalOnly: false) {
             
+            documentcontroller = UIDocumentInteractionController(url: criticalPathFile)
+            documentcontroller?.presentOptionsMenu(from: sender.frame, in: view, animated: true)
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if #available(iOS 11.0, *) {
+            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         }
     }
 }
