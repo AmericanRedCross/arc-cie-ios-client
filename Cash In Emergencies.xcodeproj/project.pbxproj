@@ -310,10 +310,10 @@
 			isa = PBXGroup;
 			children = (
 				492F83E71F84D15100BDD72D /* ModuleConformable+Views.swift */,
-				49A4185F1F73EA96004C1F61 /* ModuleStepTableViewCell.xib */,
 				49BF8DD61F73C5BC00A1890F /* ModuleStepTableViewCell.swift */,
-				49BF8DD71F73C5BC00A1890F /* ModuleSubStepTableViewCell.xib */,
+				49A4185F1F73EA96004C1F61 /* ModuleStepTableViewCell.xib */,
 				49A4185E1F73EA96004C1F61 /* ModuleSubStepTableViewCell.swift */,
+				49BF8DD71F73C5BC00A1890F /* ModuleSubStepTableViewCell.xib */,
 				497DF1911F74FC5800367A94 /* ToolTableViewCell.swift */,
 				497DF1881F74FC5700367A94 /* ToolTableViewCell.xib */,
 				4916408C1F4C5C3A0084CEE2 /* ModuleTableViewCell.swift */,
@@ -449,8 +449,8 @@
 				492F83EB1F84D1CB00BDD72D /* View Controllers */,
 				492F83EF1F84D2D300BDD72D /* Utilities + Extensions */,
 				49BCFFEF1F44879600F68A40 /* Files */,
-				49FE8D891F419F6900B73731 /* Assets.xcassets */,
 				492F83F01F84D2E400BDD72D /* Managers */,
+				49FE8D891F419F6900B73731 /* Assets.xcassets */,
 				498F45711F823F7200E8824C /* Cash In Emergencies.entitlements */,
 				49FE8D8B1F419F6900B73731 /* LaunchScreen.storyboard */,
 				49FE8D8E1F419F6900B73731 /* Info.plist */,
