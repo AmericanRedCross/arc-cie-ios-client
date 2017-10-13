@@ -299,22 +299,25 @@ class ToolkitTableViewController: TableViewController {
             //Critical tool
             
             //If it's marked as critical by DMS don't let them change it
-            if let _criticalTool = module.metadata?["critical_path"] as? Bool {
-                if !_criticalTool {
-                    
-                    //If its not marked as critical by user, give option
-                    //TODO: User critical handling
-                    let toolOption = UIContextualAction(style: .normal, title: "MARK AS CRITICAL TOOL") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
-                        
-                        fatalError("Mark as critical tool")
-                        // #warning Incomplete implementation, mark tool as critical
+            let _criticalTool = module.metadata?["critical_path"] as? Bool ?? false
+            
+            // Only run if block criticalTool is nil or false
+            if !_criticalTool  {
 
-                    }
+                //If its not marked as critical by user, give option
+                //TODO: User critical handling
+                
+                let progressManager = ProgressManager()
+                
+                let toolOptionTitle = progressManager.userCriticalTool(for: module.identifier) ? "UNMARK" : "MARK"
+                let toolOption = UIContextualAction(style: .normal, title: toolOptionTitle) { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
                     
-                    toolOption.image = #imageLiteral(resourceName: "swipe_action_critical_path_enable")
-                    toolOption.backgroundColor = UIColor(red: 237.0/255.0, green: 27.0/255.0, blue: 46.0/255.0, alpha: 1.0)
-                    actions.append(toolOption)
+                    progressManager.toggleMarkToolAsUserCritical(for: module.identifier)
                 }
+                
+                toolOption.image = #imageLiteral(resourceName: "swipe_action_critical_path_enable")
+                toolOption.backgroundColor = UIColor(red: 237.0/255.0, green: 27.0/255.0, blue: 46.0/255.0, alpha: 1.0)
+                actions.append(toolOption)
             }
 
             //Actions
