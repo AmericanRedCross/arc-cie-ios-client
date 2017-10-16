@@ -34,10 +34,20 @@ class OnboardingViewController: UIViewController {
         }
     }
     
+    func finishOnboarding() {
+        UserDefaults.standard.set(true, forKey: "CIEHasDoneOnboarding")
+        navigationController?.dismiss(animated: true, completion: nil)
+    }
+    
     @objc func playerDidFinishPlaying(note: NSNotification) {
         
-        UserDefaults.standard.set(true, forKey: "CIEHasDoneOnboarding")
-        dismiss(animated: true, completion: nil)
-        navigationController?.dismiss(animated: true, completion: nil)
+            dismiss(animated: true, completion: nil)
+        finishOnboarding()
+    }
+    
+    // Press button was skipped
+    @IBAction func pressedSkip(_ sender: Any) {
+        
+        finishOnboarding()
     }
 }
