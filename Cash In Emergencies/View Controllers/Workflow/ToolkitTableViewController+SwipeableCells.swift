@@ -55,9 +55,9 @@ extension ToolkitTableViewController {
                         quickLookView.dataSource = self
                         quickLookView.currentPreviewItemIndex = 0
                         
-                        self.tableView.reloadRows(at: [indexPath], with: .automatic)
                         
                         OperationQueue.main.addOperation({
+                            self.tableView.reloadRows(at: [indexPath], with: .automatic)
                             self.present(quickLookView, animated: true, completion: nil)
                         })
                         
@@ -112,7 +112,10 @@ extension ToolkitTableViewController {
             let toolOption = UIContextualAction(style: .normal, title: toolOptionTitle) { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
                 
                 progressManager.toggleMarkToolAsUserCritical(for: module.identifier)
-                self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                DispatchQueue.main.async {
+                    self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                }
+                
                 completionHandler(true)
             }
             
