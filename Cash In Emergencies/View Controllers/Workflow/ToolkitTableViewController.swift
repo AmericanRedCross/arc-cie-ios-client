@@ -30,6 +30,9 @@ class ToolkitTableViewController: TableViewController {
     
     /// The data source calculated to display only critical tools. Prevents recreating where unecessary
     private var criticalToolsDataSource: [Section]?
+    
+    /// Value that stores the content Offset of the tableView before dispearing so it can be restored later to avoid the tableView jumping
+    var previousContentOffset: CGPoint? = nil
 
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -139,6 +142,19 @@ class ToolkitTableViewController: TableViewController {
         reload { (error) in
             self.redraw()
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if let previousContentOffset = previousContentOffset {
+            tableView.contentOffset = previousContentOffset
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        previousContentOffset = tableView.contentOffset
     }
     
     @objc func indexDidRefresh() {
