@@ -17,23 +17,34 @@ class ExportTableViewController: UITableViewController {
         
         MDCHUDActivityView.start(in: view.window, text: "Exporting")
         
+        defer {
+            MDCHUDActivityView.finish(in: view.window)
+        }
+        
         if let criticalPathFile = CSVManager.exportModules(criticalOnly: true) {
          
             documentcontroller = UIDocumentInteractionController(url: criticalPathFile)
             documentcontroller?.presentOptionsMenu(from: sender.frame, in: view, animated: true)
-            MDCHUDActivityView.finish(in: view.window)
+        } else {
+            presentError(ExportError.genericError)
         }
     }
     
     @IBAction func handleExportEntireProgress(_ sender: UIButton) {
         
         MDCHUDActivityView.start(in: view.window, text: "Exporting")
+        
+        defer {
+            MDCHUDActivityView.finish(in: view.window)
+        }
 
         if let criticalPathFile = CSVManager.exportModules(criticalOnly: false) {
             
             documentcontroller = UIDocumentInteractionController(url: criticalPathFile)
             documentcontroller?.presentOptionsMenu(from: sender.frame, in: view, animated: true)
-            MDCHUDActivityView.finish(in: view.window)
+
+        } else {
+            presentError(ExportError.genericError)
         }
     }
     
@@ -47,6 +58,18 @@ class ExportTableViewController: UITableViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    
+    // Provides localised errors for when exporting fails
+    enum ExportError: LocalizedError {
+        
+        // General non specific error
+        case genericError
+        
+        var errorDescription: String? {
+                return "There was a problem exporting the file you requested."
+        }
     }
 }
 

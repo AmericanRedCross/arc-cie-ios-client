@@ -52,6 +52,7 @@
 		49FE8D881F419F6900B73731 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49FE8D861F419F6900B73731 /* Main.storyboard */; };
 		49FE8D8A1F419F6900B73731 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49FE8D891F419F6900B73731 /* Assets.xcassets */; };
 		49FE8D8D1F419F6900B73731 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49FE8D8B1F419F6900B73731 /* LaunchScreen.storyboard */; };
+		FF5CF33D1F94DDD000DF7C5D /* UIViewController+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5CF33C1F94DDD000DF7C5D /* UIViewController+Error.swift */; };
 		FF82CCE11F8CC358009FCC5B /* ProgressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82CCDF1F8CC358009FCC5B /* ProgressTableViewCell.swift */; };
 		FF82CCE41F8CC38E009FCC5B /* ProgressTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82CCE31F8CC38E009FCC5B /* ProgressTableViewController.swift */; };
 		FF82CCE71F8CCA37009FCC5B /* ProgressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF82CCE01F8CC358009FCC5B /* ProgressTableViewCell.xib */; };
@@ -243,6 +244,7 @@
 		49FE8D891F419F6900B73731 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49FE8D8C1F419F6900B73731 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		49FE8D8E1F419F6900B73731 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF5CF33C1F94DDD000DF7C5D /* UIViewController+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Error.swift"; sourceTree = "<group>"; };
 		FF82CCDF1F8CC358009FCC5B /* ProgressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTableViewCell.swift; sourceTree = "<group>"; };
 		FF82CCE01F8CC358009FCC5B /* ProgressTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressTableViewCell.xib; sourceTree = "<group>"; };
 		FF82CCE31F8CC38E009FCC5B /* ProgressTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTableViewController.swift; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 				491640991F4C71CA0084CEE2 /* GradientImageView.swift */,
 				492F83E91F84D1B200BDD72D /* ARCDMSExtensions.swift */,
 				49C2DE8A1F502C7000DCFBB5 /* Utilities.swift */,
+				FF5CF33C1F94DDD000DF7C5D /* UIViewController+Error.swift */,
 			);
 			path = "Utilities + Extensions";
 			sourceTree = "<group>";
@@ -702,6 +705,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				498F45731F8274D500E8824C /* ProgressManager.swift in Sources */,
+				FF5CF33D1F94DDD000DF7C5D /* UIViewController+Error.swift in Sources */,
 				492F83E81F84D15100BDD72D /* ModuleConformable+Views.swift in Sources */,
 				491640821F4C38230084CEE2 /* ARCNavigationController.swift in Sources */,
 				49BF8DD81F73C5BC00A1890F /* ModuleStepTableViewCell.swift in Sources */,
