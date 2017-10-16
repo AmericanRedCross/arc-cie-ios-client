@@ -15,14 +15,14 @@ import QuickLook
 extension ToolkitTableViewController {
     
     
-    func addExportOptionIfAvailible(with module: Module) -> UIContextualAction? {
+    func addExportOptionIfAvailible(with module: Module, at indexPath: IndexPath) -> UIContextualAction? {
         //Export
         let exportFile = module.attachments?.first?.url.flatMap({ (url) -> URL? in
             return ContentController().localFileURL(for: url)
         })
         
         let exportTitle = exportFile == nil ? "DOWNLOAD" : "EXPORT"
-        let exportOption = UIContextualAction(style: .normal, title: exportTitle) { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
+        let exportOption = UIContextualAction(style: .normal, title: exportTitle) { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: @escaping (Bool) -> Void) in
             
             if let _url = module.attachments?.first?.url {
                 
@@ -38,6 +38,7 @@ extension ToolkitTableViewController {
                         self.present(quickLookView, animated: true, completion: nil)
                     })
                     
+                    completionHandler(true)
                     return
                 }
                 
@@ -54,12 +55,19 @@ extension ToolkitTableViewController {
                         quickLookView.dataSource = self
                         quickLookView.currentPreviewItemIndex = 0
                         
+                        self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                        
                         OperationQueue.main.addOperation({
                             self.present(quickLookView, animated: true, completion: nil)
                         })
                         
+                        completionHandler(true)
+                        return
+                        
                     case .failure(let error):
                         print(error)
+                        completionHandler(false)
+                        return
                     }
                 })
             }
@@ -69,12 +77,18 @@ extension ToolkitTableViewController {
         return exportOption
     }
     
-    func addNoteOption(for module: Module) -> UIContextualAction {
+    func addNoteOption(for module: Module, at indexPath: IndexPath) -> UIContextualAction {
         //Note
-        let noteOptionTitle = (ProgressManager().note(for: module.identifier) != nil) ? "ADD NOTE" : "EDIT NOTE"
+        let noteOptionTitle = (ProgressManager().note(for: module.identifier) == nil) ? "ADD NOTE" : "EDIT NOTE"
         
-        let noteOption = UIContextualAction(style: .normal, title: noteOptionTitle) {  [weak self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
-            self?.addNote(for: module)
+        let noteOption = UIContextualAction(style: .normal, title: noteOptionTitle) {  [weak self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: @escaping (Bool) -> Void) in
+
+            DispatchQueue.main.async {
+                self?.addNote(for: module)
+                self?.tableView.reloadRows(at: [indexPath], with: .automatic)
+                completionHandler(true)
+                return
+            }
         }
         noteOption.image = #imageLiteral(resourceName: "swipe_action_note_add")
         noteOption.backgroundColor = UIColor(red: 237.0/255.0, green: 27.0/255.0, blue: 46.0/255.0, alpha: 1.0)
@@ -82,7 +96,7 @@ extension ToolkitTableViewController {
     }
     
     
-    func addCriticalToolOption(for module: Module) -> UIContextualAction? {
+    func addCriticalToolOption(for module: Module, at indexPath: IndexPath) -> UIContextualAction? {
         //If it's marked as critical by DMS don't let them change it
         let _criticalTool = module.metadata?["critical_path"] as? Bool ?? false
         
@@ -98,6 +112,8 @@ extension ToolkitTableViewController {
             let toolOption = UIContextualAction(style: .normal, title: toolOptionTitle) { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
                 
                 progressManager.toggleMarkToolAsUserCritical(for: module.identifier)
+                self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                completionHandler(true)
             }
             
             toolOption.image = #imageLiteral(resourceName: "swipe_action_critical_path_enable")
@@ -116,15 +132,15 @@ extension ToolkitTableViewController {
             var actions = [UIContextualAction]()
             
             // Export
-            if let exportOption = self.addExportOptionIfAvailible(with: module) {
+            if let exportOption = self.addExportOptionIfAvailible(with: module, at: indexPath) {
                 actions.append(exportOption)
             }
             
             // Note
-            actions.append(addNoteOption(for: module))
+            actions.append(addNoteOption(for: module, at: indexPath))
         
             //Critical too
-            if let criticalToolOption = addCriticalToolOption(for: module) {
+            if let criticalToolOption = addCriticalToolOption(for: module, at: indexPath) {
                 actions.append(criticalToolOption)
             }
 

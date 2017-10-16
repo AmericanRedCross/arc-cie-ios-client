@@ -61,8 +61,8 @@
                                         <color key="textColor" red="0.42745098039215684" green="0.43137254901960786" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="k8O-Bz-2In">
-                                        <rect key="frame" x="0.0" y="54" width="76" height="16"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="k8O-Bz-2In">
+                                        <rect key="frame" x="0.0" y="54" width="287" height="16"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZO9-hu-KTo">
                                                 <rect key="frame" x="0.0" y="0.0" width="76" height="16"/>
@@ -74,6 +74,42 @@
                                                 <inset key="contentEdgeInsets" minX="3" minY="0.0" maxX="3" maxY="0.0"/>
                                                 <state key="normal" title="CRITICAL TOOL">
                                                     <color key="titleColor" red="0.52530103921890259" green="0.52931481599807739" blue="0.53755301237106323" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I9N-MO-0Lu">
+                                                <rect key="frame" x="0.0" y="0.0" width="75" height="16"/>
+                                                <color key="backgroundColor" red="0.92537742850000004" green="0.92547506089999998" blue="0.92946165800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="16" id="e85-RW-MmU"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                                <inset key="contentEdgeInsets" minX="3" minY="0.0" maxX="3" maxY="0.0"/>
+                                                <state key="normal" title="USER CRITICAL">
+                                                    <color key="titleColor" red="0.52530103920000004" green="0.52931481599999997" blue="0.53755301239999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a04-6p-8or">
+                                                <rect key="frame" x="0.0" y="0.0" width="66" height="16"/>
+                                                <color key="backgroundColor" red="0.92537742850000004" green="0.92547506089999998" blue="0.92946165800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="16" id="s3Q-kV-UhU"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                                <inset key="contentEdgeInsets" minX="3" minY="0.0" maxX="3" maxY="0.0"/>
+                                                <state key="normal" title="NOTE ADDED">
+                                                    <color key="titleColor" red="0.52530103920000004" green="0.52931481599999997" blue="0.53755301239999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksk-DE-dmb">
+                                                <rect key="frame" x="0.0" y="0.0" width="55" height="16"/>
+                                                <color key="backgroundColor" red="0.92537742850000004" green="0.92547506089999998" blue="0.92946165800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="16" id="4BA-Dt-osK"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                                <inset key="contentEdgeInsets" minX="3" minY="0.0" maxX="3" maxY="0.0"/>
+                                                <state key="normal" title="EXPORTED">
+                                                    <color key="titleColor" red="0.52530103920000004" green="0.52931481599999997" blue="0.53755301239999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                             </button>
                                         </subviews>
@@ -94,11 +130,14 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="criticalToolStackView" destination="k8O-Bz-2In" id="jgh-F0-JHx"/>
+                <outlet property="exportedButton" destination="ksk-DE-dmb" id="O1f-Tw-ani"/>
+                <outlet property="noteAddedButton" destination="a04-6p-8or" id="DA9-of-EEn"/>
                 <outlet property="toolCheckableButton" destination="KNK-jr-YD8" id="0f5-lS-Ixb"/>
                 <outlet property="toolCriticalToolButton" destination="ZO9-hu-KTo" id="f1C-ry-LX3"/>
                 <outlet property="toolDescriptionLabel" destination="b7l-cV-gt3" id="2a9-ie-nqw"/>
                 <outlet property="toolImageView" destination="h6n-pq-BqC" id="IHb-Yk-RA1"/>
                 <outlet property="toolTitleLabel" destination="te2-4R-tQ4" id="er5-zH-LA5"/>
+                <outlet property="userMarkedCriticalButton" destination="I9N-MO-0Lu" id="hoB-zQ-TJQ"/>
             </connections>
             <point key="canvasLocation" x="34.5" y="179.5"/>
         </tableViewCell>

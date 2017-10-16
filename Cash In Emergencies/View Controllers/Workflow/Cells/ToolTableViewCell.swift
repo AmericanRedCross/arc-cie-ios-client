@@ -16,6 +16,10 @@ class ToolTableViewCell: UITableViewCell {
     @IBOutlet weak var toolCriticalToolButton: UIButton!
     @IBOutlet weak var toolCheckableButton: UIButton!
     @IBOutlet weak var criticalToolStackView: UIStackView!
+    @IBOutlet weak var userMarkedCriticalButton: UIButton!
+    @IBOutlet weak var noteAddedButton: UIButton!
+    @IBOutlet weak var exportedButton: UIButton!
+    
 
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -35,5 +39,8 @@ class ToolTableViewCell: UITableViewCell {
         
         toolCriticalToolButton.isHidden = true
         criticalToolStackView.isHidden = true
+        userMarkedCriticalButton.isHidden = true
+        noteAddedButton.isHidden = true
+        exportedButton.isHidden = true
     }
 }

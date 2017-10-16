@@ -244,6 +244,34 @@ class Tool: ModuleConformable, Row {
     
     var internalModule: Module?
     
+    lazy var progressManager = ProgressManager()
+    
+    var isCriticalTool: Bool {
+        return internalModule?.metadata?["critical_path"] as? Bool ?? false
+    }
+    
+    var isUserMarkedCriticalTool: Bool {
+        guard let moduleIdentifier = internalModule?.identifier else {
+            return false
+        }
+        return progressManager.userCriticalTool(for: moduleIdentifier)
+    }
+    
+    var hasNoteAdded: Bool {
+        guard let moduleIdentifier = internalModule?.identifier else {
+            return false
+        }
+        return progressManager.note(for: moduleIdentifier) != nil
+    }
+    
+    var hasBeenExported: Bool {
+        let exportFile = internalModule?.attachments?.first?.url.flatMap({ (url) -> URL? in
+            return ContentController().localFileURL(for: url)
+        })
+        
+        return exportFile != nil
+    }
+    
     func module() -> Module? {
         return internalModule
     }
@@ -275,21 +303,38 @@ class Tool: ModuleConformable, Row {
                 _cell.toolImageView.image = _firstAttachment.mimeImage()
             }
             
-            _cell.toolCriticalToolButton.isHidden = true
             _cell.criticalToolStackView.isHidden = true
+            _cell.toolCriticalToolButton.isHidden = true
+            _cell.userMarkedCriticalButton.isHidden = true
+            _cell.criticalToolStackView.isHidden = true
+            _cell.noteAddedButton.isHidden = true
+            _cell.exportedButton.isHidden = true
             
-            if let _criticalTool = internalModule?.metadata?["critical_path"] as? Bool {
-                if _criticalTool {
-                   _cell.toolCriticalToolButton.isHidden = false
-                    _cell.criticalToolStackView.isHidden = false
-                }
+            if isCriticalTool {
+                _cell.criticalToolStackView.isHidden = false
+                _cell.toolCriticalToolButton.isHidden = false
             }
             
-            _cell.toolCheckableButton.removeTarget(nil, action: nil, for: .allEvents)
-            _cell.toolCheckableButton.addTarget(self, action: #selector(handleChecking(of:)), for: .primaryActionTriggered)
+            if isUserMarkedCriticalTool {
+                _cell.criticalToolStackView.isHidden = false
+                _cell.userMarkedCriticalButton.isHidden = false
+            }
+            
+            if hasNoteAdded {
+                _cell.criticalToolStackView.isHidden = false
+                _cell.noteAddedButton.isHidden = false
+            }
+            
+            if hasBeenExported {
+                _cell.criticalToolStackView.isHidden = false
+                _cell.exportedButton.isHidden = false
+            }
+            
+//            _cell.toolCheckableButton.removeTarget(nil, action: nil, for: .allEvents)
+//            _cell.toolCheckableButton.addTarget(self, action: #selector(handleChecking(of:)), for: .primaryActionTriggered)
             
             if let _moduleIdentifier = internalModule?.identifier {
-                _cell.toolCheckableButton.isSelected = ProgressManager().checkState(for: _moduleIdentifier)
+                _cell.toolCheckableButton.isSelected = progressManager.checkState(for: _moduleIdentifier)
             }
             
             // Hack, however if we don't call this the cells appear at the wrong height and we get graphical layout bugs :(
@@ -301,7 +346,7 @@ class Tool: ModuleConformable, Row {
     @objc func handleChecking(of checkView: UIButton) {
         
         if let _moduleIdentifier = internalModule?.identifier {
-            ProgressManager().toggle(moduleIdentifier: _moduleIdentifier)
+            progressManager.toggle(moduleIdentifier: _moduleIdentifier)
             
             checkView.isSelected = !checkView.isSelected
         }
