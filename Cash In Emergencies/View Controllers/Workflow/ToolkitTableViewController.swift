@@ -23,7 +23,7 @@ class ToolkitTableViewController: TableViewController {
     private var timer: Timer?
     
     /// The URL of the module a user may have selected to display. We have to have this due to the way QLPreview works using delegates
-    private var disaplayableURL: URL?
+    internal var displayableURL: URL?
     
     /// The standard calculated data source for displaying modules. Prevents recreating where uncecessary
     private var standardDataSource: [Section]?
@@ -42,9 +42,7 @@ class ToolkitTableViewController: TableViewController {
 
         for module in modules {
 
-            if let _moduleID = module.identifier {
-                moduleDepthMap[_moduleID] = level
-            }
+            moduleDepthMap[module.identifier] = level
 
             if let _submodules = module.directories {
                 mapTree(for: _submodules, level: level + 1)
@@ -69,8 +67,12 @@ class ToolkitTableViewController: TableViewController {
             let moduleView = ModuleView(with: _module)
             rows.append(moduleView)
             
+            if expandedModuleIdentifiers.contains(_module.identifier) {
+                moduleView.shouldShowModuleRoadmap = true
+            }
+            
             //Add sub rows if expanded
-            if let _moduleChildren = _module.directories, let moduleIdentifier = _module.identifier, expandedModuleIdentifiers.contains(moduleIdentifier) {
+            if let _moduleChildren = _module.directories, expandedModuleIdentifiers.contains(_module.identifier) {
                 
                 for moduleStep in _moduleChildren {
                     
@@ -87,7 +89,9 @@ class ToolkitTableViewController: TableViewController {
                             rows.append(moduleSubStepView)
                             
                             //Check for tools
-                            if let _tools = moduleSubStep.directories, let moduleIdentifier = moduleSubStep.identifier, expandedModuleIdentifiers.contains(moduleIdentifier) {
+                            if let _tools = moduleSubStep.directories,  expandedModuleIdentifiers.contains(moduleSubStep.identifier) {
+                                
+                                moduleSubStepView.shouldShowAddNoteButton = true
                                 
                                 for tool in _tools {
                                     let toolView = Tool(with: tool)
@@ -191,9 +195,7 @@ class ToolkitTableViewController: TableViewController {
     
     func handleToggle(of module: Module) {
         
-        guard let moduleID = module.identifier else {
-            return
-        }
+        let moduleID = module.identifier
         
         if expandedModuleIdentifiers.contains(moduleID) {
             if let removalIndex = expandedModuleIdentifiers.index(of: moduleID) {
@@ -229,109 +231,23 @@ class ToolkitTableViewController: TableViewController {
         }
     }
     
-    @available(iOS 11.0, *)
-    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        
-        if let _toolDisplayed = data[indexPath.section].rows[indexPath.row] as? Tool, let module = _toolDisplayed.module() {
-            
-            var actions = [UIContextualAction]()
-            
-            //Export
-            let exportOption = UIContextualAction(style: .normal, title: "EXPORT OR SHARE") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
-                
-                if let _url = module.attachments?.first?.url {
-                    
-                    //Load it up if we already have it
-                    if let _localFile = ContentController().localFileURL(for: _url) {
-                        
-                        let quickLookView = QLPreviewController()
-                        self.disaplayableURL = _localFile
-                        quickLookView.dataSource = self
-                        quickLookView.currentPreviewItemIndex = 0
-                        
-                        OperationQueue.main.addOperation({
-                            self.present(quickLookView, animated: true, completion: nil)
-                        })
-                        
-                        return
-                    }
-                
-                    //Download it instead
-                    ContentController().downloadDocumentFile(from: _url, progress: { (progress, bytesDownloaded, totalBytes) in
-                        
-                    }, completion: { (result) in
-                        
-                        switch result {
-                        case .success(let downloadedFileURL):
-                            
-                            let quickLookView = QLPreviewController()
-                            self.disaplayableURL = downloadedFileURL
-                                quickLookView.dataSource = self
-                            quickLookView.currentPreviewItemIndex = 0
-                            
-                            OperationQueue.main.addOperation({
-                                self.present(quickLookView, animated: true, completion: nil)
-                            })
-                            
-                        case .failure(let error):
-                            print(error)
-                        }
-                    })
-                }
-            }
-            exportOption.image = #imageLiteral(resourceName: "swipe_action_export")
-            exportOption.backgroundColor = UIColor(red: 237.0/255.0, green: 27.0/255.0, blue: 46.0/255.0, alpha: 1.0)
-            actions.append(exportOption)
-            
-            //Note
-            let noteOption = UIContextualAction(style: .normal, title: "ADD NOTE") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
-                print("hi")
-                
-                let noteViewNavigationController = UIStoryboard(name: "Notes", bundle: Bundle.main).instantiateInitialViewController() as? UINavigationController
-                
-                if let noteViewNavigationController = noteViewNavigationController, let noteViewController = noteViewNavigationController.topViewController as? NoteAddViewController {
-                    OperationQueue.main.addOperation({
-                        noteViewController.module = module
-                        self.present(noteViewNavigationController, animated: true, completion: nil)
-                    })
-                }
-            }
-            noteOption.image = #imageLiteral(resourceName: "swipe_action_note_add")
-            noteOption.backgroundColor = UIColor(red: 237.0/255.0, green: 27.0/255.0, blue: 46.0/255.0, alpha: 1.0)
-            actions.append(noteOption)
-
-            //Critical tool
-            
-            //If it's marked as critical by DMS don't let them change it
-            if let _criticalTool = module.metadata?["critical_path"] as? Bool {
-                if !_criticalTool {
-                    
-                    //If its not marked as critical by user, give option
-                    //TODO: User critical handling
-                    let toolOption = UIContextualAction(style: .normal, title: "MARK AS CRITICAL TOOL") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
-                        print("hi")
-                    }
-                    toolOption.image = #imageLiteral(resourceName: "swipe_action_critical_path_enable")
-                    toolOption.backgroundColor = UIColor(red: 237.0/255.0, green: 27.0/255.0, blue: 46.0/255.0, alpha: 1.0)
-                    actions.append(toolOption)
-                }
-            }
-
-            //Actions
-            let swipeActions = UISwipeActionsConfiguration(actions: actions)
-            swipeActions.performsFirstActionWithFullSwipe = false
-            
-            return swipeActions
-        }
-        
-        let swipeActions = UISwipeActionsConfiguration(actions: [])
-        return swipeActions
-    }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
 //        super.scrollViewDidScroll(scrollView)
         self.parent?.view.setNeedsUpdateConstraints()
         self.parent?.view.setNeedsLayout()
+    }
+    
+    func addNote(for module: Module) {
+        
+        let noteViewNavigationController = UIStoryboard(name: "Notes", bundle: Bundle.main).instantiateInitialViewController() as? UINavigationController
+        
+        if let noteViewNavigationController = noteViewNavigationController, let noteViewController = noteViewNavigationController.topViewController as? NoteAddViewController {
+            OperationQueue.main.addOperation({
+                noteViewController.module = module
+                self.present(noteViewNavigationController, animated: true, completion: nil)
+            })
+        }
     }
 }
 
@@ -343,7 +259,7 @@ extension ToolkitTableViewController: QLPreviewControllerDataSource {
     
     func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
         
-        if let _URL = disaplayableURL {
+        if let _URL = displayableURL {
             return _URL as NSURL
         }
         return NSURL(fileURLWithPath: "lol")

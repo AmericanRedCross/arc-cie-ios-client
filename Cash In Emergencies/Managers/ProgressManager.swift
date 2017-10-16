@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ARCDM
 
 /// Keeps track of the users progress through tools and module steps
 class ProgressManager {
@@ -16,6 +17,9 @@ class ProgressManager {
     
     /// Private identifier to consistently access module notes
     private let moduleNotesIdentifier = "CIEModuleNotes"
+    
+    /// Private identifier to consistently access critical tools
+    private let userMarkedCriticalToolsIdentifier = "CIEUserCriticalTools"
     
     /// Defaults to save the values under
     let defaults = UserDefaults.standard
@@ -107,6 +111,35 @@ class ProgressManager {
         noteDictionary[String(moduleIdentifier)] = nil
         
         defaults.set(noteDictionary, forKey: moduleNotesIdentifier)
+    }
+    
+    func userCriticalTool(for moduleIdentifier: Int) -> Bool {
+        
+        guard let _markedCriticalArray = defaults.array(forKey: userMarkedCriticalToolsIdentifier) as? [Int] else {
+            return false
+        }
+        
+        if _markedCriticalArray.index(of: moduleIdentifier) != nil {
+            return true
+        }
+        
+        return false
+    }
+    
+    func toggleMarkToolAsUserCritical(for moduleIdentifier: Int) {
+        
+        guard var _markedCriticalArray = defaults.array(forKey: userMarkedCriticalToolsIdentifier) as? [Int] else {
+            defaults.set([moduleIdentifier], forKey: userMarkedCriticalToolsIdentifier)
+            return
+        }
+        
+        if let moduleIndex = _markedCriticalArray.index(of: moduleIdentifier) {
+            _markedCriticalArray.remove(at: moduleIndex)
+        } else {
+            _markedCriticalArray.append(moduleIdentifier)
+        }
+        
+        defaults.set(_markedCriticalArray, forKey: userMarkedCriticalToolsIdentifier)
     }
     
     /// Clears all saved notes and checked values form the user defaults

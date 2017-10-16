@@ -13,11 +13,17 @@ protocol ModuleConformable {
     func module() -> Module?
 }
 
+// Wrapping Module class, provides ThunderTable Conformance
 class ModuleView: ModuleConformable, Row {
     
+    // The module data the wrapper is representing
     var internalModule: Module?
     
+    // Tableviewcontroller the module is being represented in
     private var toolkitTableViewController: ToolkitTableViewController?
+    
+    // If the cell should show the module roadmap button
+    var shouldShowModuleRoadmap: Bool = false
     
     func module() -> Module? {
         return internalModule
@@ -46,7 +52,14 @@ class ModuleView: ModuleConformable, Row {
             
             _tableView.handleToggle(of: _module)
         }
+    }
+    
+    @objc func handleRoadmap(button: UIButton) {
         
+        if let _tableView = toolkitTableViewController, let _moduleContent = internalModule?.content {
+            
+            _tableView.handleLoadMarkdown(for: _moduleContent)
+        }
     }
     
     public func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
@@ -61,6 +74,12 @@ class ModuleView: ModuleConformable, Row {
                 _cell.moduleChevronButton.removeTarget(nil, action: nil, for: .allEvents)
                 _cell.moduleChevronButton.addTarget(self, action: #selector(handleToggle(of:)), for: .primaryActionTriggered)
                 
+                _cell.moduleIdentifierLabel.backgroundColor = ModuleColourUtility.colour(for: _module)
+                
+                _cell.moduleRoadmapButton.isHidden = !shouldShowModuleRoadmap
+                _cell.moduleRoadmapButton.removeTarget(nil, action: nil, for: .allEvents)
+                _cell.moduleRoadmapButton.addTarget(self, action: #selector(handleRoadmap(button:)), for: .primaryActionTriggered)
+                
                 if let _hierarchy = _module.metadata?["hierarchy"] as? String {
                     _cell.moduleIdentifierLabel.text = _hierarchy
                 }
@@ -69,10 +88,13 @@ class ModuleView: ModuleConformable, Row {
     }
 }
 
+// Wrapper module respresenting a Step which is a child of the Module class, conforms to ThunderTable
 class Step: ModuleConformable, Row {
     
+    // The module data the wrapper is representing
     var internalModule: Module?
     
+    // Tableviewcontroller the module is being represented in
     private var toolkitTableViewController: ToolkitTableViewController?
     
     func module() -> Module? {
@@ -85,7 +107,6 @@ class Step: ModuleConformable, Row {
     }
     
     //ROW
-    
     var cellClass: AnyClass? {
         return ModuleStepTableViewCell.self
     }
@@ -122,6 +143,7 @@ class Step: ModuleConformable, Row {
     }
 }
 
+// Wrapper module respresenting a SubStep which is a child of the Module class, conforms to ThunderTable
 class SubStep: ModuleConformable, Row {
     
     private var toolkitTableViewController: ToolkitTableViewController?
@@ -131,6 +153,8 @@ class SubStep: ModuleConformable, Row {
     func module() -> Module? {
         return internalModule
     }
+    
+    var shouldShowAddNoteButton: Bool = false
     
     //INIT
     init(with module: Module) {
@@ -157,11 +181,23 @@ class SubStep: ModuleConformable, Row {
             _cell.substepHierarchyLabel.text = internalModule?.metadata?["hierarchy"] as? String
             _cell.substepTitleLabel.text = internalModule?.moduleTitle
             _cell.moduleSubstepChevronButton.addTarget(self, action: #selector(handleToggle(of:)), for: .primaryActionTriggered)
-            _cell.substepRoadmapButton.isHidden = internalModule?.content == nil
-            _cell.substepRoadmapButton.removeTarget(nil, action: nil, for: .allEvents)
+ 
+            _cell.substepAddNoteButton.removeTarget(nil, action: nil, for: .allEvents)
             _cell.substepCheckableButton.removeTarget(nil, action: nil, for: .allEvents)
-            _cell.substepRoadmapButton.addTarget(self, action: #selector(handleRoadmap(button:)), for: .primaryActionTriggered)
+            _cell.substepAddNoteButton.addTarget(self, action: #selector(handleAddNote(button:)), for: .primaryActionTriggered)
             _cell.substepCheckableButton.addTarget(self, action: #selector(handleChecking(of:)), for: .primaryActionTriggered)
+            
+            
+            _cell.substepAddNoteButton.setTitle("Add Note", for: .normal)
+            
+            if let moduleIdentifier = internalModule?.identifier {
+                if ProgressManager().note(for: moduleIdentifier) != nil {
+                     _cell.substepAddNoteButton.setTitle("Edit Note", for: .normal)
+                }
+            }
+            
+            _cell.substepAddNoteButton.isHidden = !shouldShowAddNoteButton
+            _cell.substepButtonContainerStackView.isHidden = !shouldShowAddNoteButton
             
             if let _moduleIdentifier = internalModule?.identifier {
                 _cell.substepCheckableButton.isSelected = ProgressManager().checkState(for: _moduleIdentifier)
@@ -192,6 +228,14 @@ class SubStep: ModuleConformable, Row {
         if let _tableView = toolkitTableViewController, let _moduleContent = internalModule?.content {
             
             _tableView.handleLoadMarkdown(for: _moduleContent)
+        }
+    }
+    
+    @objc func handleAddNote(button: UIButton) {
+        
+        if let _tableView = toolkitTableViewController, let internalModule = internalModule {
+            
+            _tableView.addNote(for: internalModule)
         }
     }
 }
@@ -232,10 +276,12 @@ class Tool: ModuleConformable, Row {
             }
             
             _cell.toolCriticalToolButton.isHidden = true
+            _cell.criticalToolStackView.isHidden = true
             
             if let _criticalTool = internalModule?.metadata?["critical_path"] as? Bool {
                 if _criticalTool {
-                    _cell.toolCriticalToolButton.isHidden = false
+                   _cell.toolCriticalToolButton.isHidden = false
+                    _cell.criticalToolStackView.isHidden = false
                 }
             }
             
@@ -245,6 +291,10 @@ class Tool: ModuleConformable, Row {
             if let _moduleIdentifier = internalModule?.identifier {
                 _cell.toolCheckableButton.isSelected = ProgressManager().checkState(for: _moduleIdentifier)
             }
+            
+            // Hack, however if we don't call this the cells appear at the wrong height and we get graphical layout bugs :(
+            // TODO: Find fix for this
+            _cell.layoutSubviews()
         }
     }
     

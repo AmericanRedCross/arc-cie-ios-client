@@ -14,16 +14,5 @@ class ModuleTableViewCell: UITableViewCell {
     @IBOutlet weak var moduleIdentifierLabel: UILabel!
     @IBOutlet weak var moduleBackgroundImageView: GradientImageView!
     @IBOutlet weak var moduleChevronButton: UIButton!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
+    @IBOutlet weak var moduleRoadmapButton: UIButton!
 }

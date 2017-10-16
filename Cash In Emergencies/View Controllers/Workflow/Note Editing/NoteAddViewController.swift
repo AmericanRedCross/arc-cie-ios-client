@@ -36,7 +36,7 @@ class NoteAddViewController: UIViewController {
             }
             
             //Restore text
-            if let _moduleIdentifier = module.identifier, let text = ProgressManager().note(for: _moduleIdentifier) {
+            if let text = ProgressManager().note(for: module.identifier) {
                 textView?.text = text
             }
         }

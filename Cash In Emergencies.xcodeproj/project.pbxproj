@@ -49,11 +49,13 @@
 		49FE8D881F419F6900B73731 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49FE8D861F419F6900B73731 /* Main.storyboard */; };
 		49FE8D8A1F419F6900B73731 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49FE8D891F419F6900B73731 /* Assets.xcassets */; };
 		49FE8D8D1F419F6900B73731 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49FE8D8B1F419F6900B73731 /* LaunchScreen.storyboard */; };
+		FF5CF3221F910BAC00DF7C5D /* ToolkitTableViewController+SwipeableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5CF3211F910BAC00DF7C5D /* ToolkitTableViewController+SwipeableCells.swift */; };
 		FF82CCE11F8CC358009FCC5B /* ProgressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82CCDF1F8CC358009FCC5B /* ProgressTableViewCell.swift */; };
 		FF82CCE41F8CC38E009FCC5B /* ProgressTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82CCE31F8CC38E009FCC5B /* ProgressTableViewController.swift */; };
 		FF82CCE71F8CCA37009FCC5B /* ProgressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF82CCE01F8CC358009FCC5B /* ProgressTableViewCell.xib */; };
 		FF82CCF21F8D1151009FCC5B /* ModuleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82CCF11F8D1151009FCC5B /* ModuleProgressView.swift */; };
 		FF82CCF41F8D19BA009FCC5B /* ProgressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82CCF31F8D19BA009FCC5B /* ProgressViewModel.swift */; };
+		FFAEB1CD1F8F8A2000B079B4 /* ModuleColourUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAEB1CC1F8F8A2000B079B4 /* ModuleColourUtility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -237,11 +239,13 @@
 		49FE8D891F419F6900B73731 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49FE8D8C1F419F6900B73731 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		49FE8D8E1F419F6900B73731 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF5CF3211F910BAC00DF7C5D /* ToolkitTableViewController+SwipeableCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToolkitTableViewController+SwipeableCells.swift"; sourceTree = "<group>"; };
 		FF82CCDF1F8CC358009FCC5B /* ProgressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTableViewCell.swift; sourceTree = "<group>"; };
 		FF82CCE01F8CC358009FCC5B /* ProgressTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressTableViewCell.xib; sourceTree = "<group>"; };
 		FF82CCE31F8CC38E009FCC5B /* ProgressTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTableViewController.swift; sourceTree = "<group>"; };
 		FF82CCF11F8D1151009FCC5B /* ModuleProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleProgressView.swift; sourceTree = "<group>"; };
 		FF82CCF31F8D19BA009FCC5B /* ProgressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewModel.swift; sourceTree = "<group>"; };
+		FFAEB1CC1F8F8A2000B079B4 /* ModuleColourUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleColourUtility.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,6 +304,7 @@
 				492F83F11F84D35300BDD72D /* Markdown Viewing */,
 				492F83EE1F84D2C000BDD72D /* Note Editing */,
 				492F83ED1F84D1FC00BDD72D /* Cells */,
+				FF5CF3211F910BAC00DF7C5D /* ToolkitTableViewController+SwipeableCells.swift */,
 			);
 			path = Workflow;
 			sourceTree = "<group>";
@@ -308,9 +313,9 @@
 			isa = PBXGroup;
 			children = (
 				492F83E71F84D15100BDD72D /* ModuleConformable+Views.swift */,
-				49A4185E1F73EA96004C1F61 /* ModuleSubStepTableViewCell.swift */,
-				49A4185F1F73EA96004C1F61 /* ModuleStepTableViewCell.xib */,
 				49BF8DD61F73C5BC00A1890F /* ModuleStepTableViewCell.swift */,
+				49A4185F1F73EA96004C1F61 /* ModuleStepTableViewCell.xib */,
+				49A4185E1F73EA96004C1F61 /* ModuleSubStepTableViewCell.swift */,
 				49BF8DD71F73C5BC00A1890F /* ModuleSubStepTableViewCell.xib */,
 				497DF1911F74FC5800367A94 /* ToolTableViewCell.swift */,
 				497DF1881F74FC5700367A94 /* ToolTableViewCell.xib */,
@@ -336,6 +341,7 @@
 				491640991F4C71CA0084CEE2 /* GradientImageView.swift */,
 				492F83E91F84D1B200BDD72D /* ARCDMSExtensions.swift */,
 				49C2DE8A1F502C7000DCFBB5 /* Utilities.swift */,
+				FFAEB1CC1F8F8A2000B079B4 /* ModuleColourUtility.swift */,
 			);
 			path = "Utilities + Extensions";
 			sourceTree = "<group>";
@@ -446,8 +452,8 @@
 				492F83EB1F84D1CB00BDD72D /* View Controllers */,
 				492F83EF1F84D2D300BDD72D /* Utilities + Extensions */,
 				49BCFFEF1F44879600F68A40 /* Files */,
-				49FE8D891F419F6900B73731 /* Assets.xcassets */,
 				492F83F01F84D2E400BDD72D /* Managers */,
+				49FE8D891F419F6900B73731 /* Assets.xcassets */,
 				498F45711F823F7200E8824C /* Cash In Emergencies.entitlements */,
 				49FE8D8B1F419F6900B73731 /* LaunchScreen.storyboard */,
 				49FE8D8E1F419F6900B73731 /* Info.plist */,
@@ -692,6 +698,8 @@
 				49BCFFF21F4487EB00F68A40 /* OnboardingViewController.swift in Sources */,
 				4971222C1F4C2CF3000786AE /* WorkflowViewController.swift in Sources */,
 				49C2DE8B1F502C7000DCFBB5 /* Utilities.swift in Sources */,
+				FF5CF3221F910BAC00DF7C5D /* ToolkitTableViewController+SwipeableCells.swift in Sources */,
+				FFAEB1CD1F8F8A2000B079B4 /* ModuleColourUtility.swift in Sources */,
 				492F83EA1F84D1B200BDD72D /* ARCDMSExtensions.swift in Sources */,
 				4916408E1F4C5C3A0084CEE2 /* ModuleTableViewCell.swift in Sources */,
 				496C49D11F4EEDA300AD05D1 /* SettingsTableViewController.swift in Sources */,
