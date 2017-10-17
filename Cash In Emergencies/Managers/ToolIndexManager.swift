@@ -135,10 +135,10 @@ class ToolIndexManager {
                                     for file in files {
                                         
                                         let searchableSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeContent as String)
-                                        searchableSet.displayName = file.moduleTitle
-                                        searchableSet.title = file.moduleTitle
-                                        searchableSet.containerTitle = substep.moduleTitle
-                                        if let moduleTitle = substep.moduleTitle, let subHierarchy = substep.metadata?["hierarchy"] as? String {
+                                        searchableSet.displayName = file.directoryTitle
+                                        searchableSet.title = file.directoryTitle
+                                        searchableSet.containerTitle = substep.directoryTitle
+                                        if let moduleTitle = substep.directoryTitle, let subHierarchy = substep.metadata?["hierarchy"] as? String {
                                             searchableSet.containerDisplayName = "\(subHierarchy) \(moduleTitle)"
                                         }
                                         

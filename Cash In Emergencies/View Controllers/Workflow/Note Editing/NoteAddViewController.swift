@@ -31,7 +31,7 @@ class NoteAddViewController: UIViewController {
         if let module = module {
             
             //Set appropriate title
-            if let moduleHierarchy = module.metadata?["hierarchy"] as? String, let moduleTitle = module.moduleTitle {
+            if let moduleHierarchy = module.metadata?["hierarchy"] as? String, let moduleTitle = module.directoryTitle {
                 title = "\(moduleHierarchy) \(moduleTitle)"
             }
             

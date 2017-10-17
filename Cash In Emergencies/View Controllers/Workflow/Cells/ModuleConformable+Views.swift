@@ -69,7 +69,7 @@ class ModuleView: ModuleConformable, Row {
         if let _cell = cell as? ModuleTableViewCell {
             
             if let _module = internalModule {
-                _cell.moduleTitleLabel.text = _module.moduleTitle
+                _cell.moduleTitleLabel.text = _module.directoryTitle
                 _cell.moduleBackgroundImageView.image = UIImage(named: "module-backdrop-\(_module.order)")
                 _cell.moduleChevronButton.removeTarget(nil, action: nil, for: .allEvents)
                 _cell.moduleChevronButton.addTarget(self, action: #selector(handleToggle(of:)), for: .primaryActionTriggered)
@@ -125,7 +125,7 @@ class Step: ModuleConformable, Row {
         if let _cell = cell as? ModuleStepTableViewCell {
             
             _cell.stepHierarchyLabel.text = internalModule?.metadata?["hierarchy"] as? String
-            _cell.stepTitleLabel.text = internalModule?.moduleTitle
+            _cell.stepTitleLabel.text = internalModule?.directoryTitle
             _cell.stepRoadmapButton.isHidden = internalModule?.content == nil
             
             _cell.stepRoadmapButton.removeTarget(nil, action: nil, for: .allEvents)
@@ -179,7 +179,7 @@ class SubStep: ModuleConformable, Row {
         if let _cell = cell as? ModuleSubStepTableViewCell {
             
             _cell.substepHierarchyLabel.text = internalModule?.metadata?["hierarchy"] as? String
-            _cell.substepTitleLabel.text = internalModule?.moduleTitle
+            _cell.substepTitleLabel.text = internalModule?.directoryTitle
             _cell.moduleSubstepChevronButton.addTarget(self, action: #selector(handleToggle(of:)), for: .primaryActionTriggered)
  
             _cell.substepAddNoteButton.removeTarget(nil, action: nil, for: .allEvents)
@@ -296,7 +296,7 @@ class Tool: ModuleConformable, Row {
         
         if let _cell = cell as? ToolTableViewCell {
             
-            _cell.toolTitleLabel.text = internalModule?.moduleTitle
+            _cell.toolTitleLabel.text = internalModule?.directoryTitle
             
             if let _firstAttachment = internalModule?.attachments?.first {
                 _cell.toolDescriptionLabel.text = _firstAttachment.description

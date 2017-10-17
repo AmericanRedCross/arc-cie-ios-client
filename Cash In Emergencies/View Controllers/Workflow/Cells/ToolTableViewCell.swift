@@ -1,6 +1,6 @@
 //
 //  ToolTableViewCell.swift
-//  ARCDM
+//  DMSSDK
 //
 //  Created by Matthew Cheetham on 22/09/2017.
 //  Copyright © 2017 3 SIDED CUBE. All rights reserved.

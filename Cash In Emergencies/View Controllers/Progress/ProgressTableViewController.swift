@@ -66,7 +66,7 @@ class ProgressTableViewController: TableViewController {
         for module in modules {
             
             // Module title i.e Preparedness
-            let moduleTitle = module.moduleTitle
+            let moduleTitle = module.directoryTitle
             // Get the hierarchy, i.e 1
             guard let hierarchy = module.metadata?["hierarchy"] as? String else { continue }
             

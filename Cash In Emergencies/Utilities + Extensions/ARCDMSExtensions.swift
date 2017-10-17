@@ -1,5 +1,5 @@
 //
-//  ARCDMSExtensions.swift
+//  DMSSDKExtensions.swift
 //  Cash In Emergencies
 //
 //  Created by Matthew Cheetham on 04/10/2017.
