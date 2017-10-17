@@ -24,7 +24,7 @@ class CSVManager {
         let progressManager = ProgressManager()
         let newLine = "\n"
         
-        guard let modules = DirectoryManager().modules else {
+        guard let modules = DirectoryManager().directories else {
             return nil
         }
         

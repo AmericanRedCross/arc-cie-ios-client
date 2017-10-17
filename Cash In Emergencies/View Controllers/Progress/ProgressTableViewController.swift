@@ -55,7 +55,7 @@ class ProgressTableViewController: TableViewController {
     func redraw() {
         
         // Get our top level modules
-        guard let modules = DirectoryManager().modules else {
+        guard let modules = DirectoryManager().directories else {
             return
         }
         

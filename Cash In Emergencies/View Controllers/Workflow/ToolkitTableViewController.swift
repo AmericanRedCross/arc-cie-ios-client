@@ -58,7 +58,7 @@ class ToolkitTableViewController: TableViewController {
         
         var displayableSections = [TableSection]()
         
-        guard let modules = DirectoryManager().modules else {
+        guard let modules = DirectoryManager().directories else {
             return displayableSections
         }
         

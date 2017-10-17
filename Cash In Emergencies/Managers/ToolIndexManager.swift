@@ -43,7 +43,7 @@ class ToolIndexManager {
     
             let returnedTools = items.flatMap({ (searchItem) -> (String, Directory)? in
 
-                guard let moduleIdentifier = Int(searchItem.uniqueIdentifier), let modulesToSearch = DirectoryManager().modules else { return nil }
+                guard let moduleIdentifier = Int(searchItem.uniqueIdentifier), let modulesToSearch = DirectoryManager().directories else { return nil }
 
                 if let _foundModule = DirectoryManager().module(for: moduleIdentifier, in: modulesToSearch), let parentString = searchItem.attributeSet.containerDisplayName {
                     return (parentString, _foundModule)
@@ -81,7 +81,7 @@ class ToolIndexManager {
             
             let returnedTools = items.flatMap({ (searchItem) -> (String, Directory)? in
 
-                guard let moduleIdentifier = Int(searchItem.uniqueIdentifier), let modulesToSearch = DirectoryManager().modules else { return nil }
+                guard let moduleIdentifier = Int(searchItem.uniqueIdentifier), let modulesToSearch = DirectoryManager().directories else { return nil }
 
                 if let _foundModule = DirectoryManager().module(for: moduleIdentifier, in: modulesToSearch), let parentString = searchItem.attributeSet.containerDisplayName {
                     return (parentString, _foundModule)
@@ -118,7 +118,7 @@ class ToolIndexManager {
         
         var searchableItems = [CSSearchableItem]()
         
-        if let modules = DirectoryManager().modules {
+        if let modules = DirectoryManager().directories {
             
             for module in modules {
                 
@@ -193,7 +193,7 @@ extension ToolIndexManager {
         
         unIndexAll { [weak self] (error) in
             
-            if let modules = DirectoryManager().modules {
+            if let modules = DirectoryManager().directories {
                 self?.createIndex(products: modules, completionHandler: { (error) in
                     
                     NotificationCenter.default.post(name: NSNotification.Name("ModulesDidIndex"), object: nil)
