@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ARCDM
+import DMSSDK
 import CoreSpotlight
 
 @UIApplicationMain

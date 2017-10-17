@@ -8,7 +8,7 @@
 
 import UIKit
 import ThunderTable
-import ARCDM
+import DMSSDK
 import QuickLook
 
 class ToolkitTableViewController: TableViewController {
@@ -41,7 +41,7 @@ class ToolkitTableViewController: TableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(indexDidRefresh), name: NSNotification.Name("ModulesDidIndex"), object: nil)
     }
     
-    func mapTree(for modules: [Module], level: Int) {
+    func mapTree(for modules: [Directory], level: Int) {
 
         for module in modules {
 
@@ -58,7 +58,7 @@ class ToolkitTableViewController: TableViewController {
         
         var displayableSections = [TableSection]()
         
-        guard let modules = ModuleManager().modules else {
+        guard let modules = DirectoryManager().directories else {
             return displayableSections
         }
         
@@ -215,7 +215,7 @@ class ToolkitTableViewController: TableViewController {
         }
     }
     
-    func handleToggle(of module: Module) {
+    func handleToggle(of module: Directory) {
         
         let moduleID = module.identifier
         
@@ -233,7 +233,7 @@ class ToolkitTableViewController: TableViewController {
     
     func handleLoadMarkdown(for contentPath: String) {
         
-        let contentURL = ContentController().fileUrl(from: contentPath)
+        let contentURL = ContentManager().fileUrl(from: contentPath)
         
         guard let presentingView = self.parent else {
             return
@@ -260,7 +260,7 @@ class ToolkitTableViewController: TableViewController {
         self.parent?.view.setNeedsLayout()
     }
     
-    func addNote(for module: Module, completion: (() -> Void)? = nil) {
+    func addNote(for module: Directory, completion: (() -> Void)? = nil) {
         
         let noteViewNavigationController = UIStoryboard(name: "Notes", bundle: Bundle.main).instantiateInitialViewController() as? UINavigationController
         

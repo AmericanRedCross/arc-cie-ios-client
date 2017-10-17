@@ -1,6 +1,3 @@
-[submodule "ARCDM"]
-	path = ARCDM
-	url = git@bitbucket.org:3sidedcube/arc-dm-ios-framework.git
 [submodule "ThunderBasics"]
 	path = ThunderBasics
 	url = https://github.com/3sidedcube/iOS-ThunderBasics.git
@@ -17,3 +14,7 @@
 	path = MarkdownView
 	url = https://github.com/keitaoouchi/MarkdownView.git
 	branch = feature/xcode9
+[submodule "DMSSDK"]
+	path = DMSSDK
+	url = git@bitbucket.org:3sidedcube/arc-dmssdk-ios-framework.git
+	branch = develop

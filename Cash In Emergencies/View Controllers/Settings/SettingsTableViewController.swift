@@ -8,7 +8,7 @@
 
 import UIKit
 import AVKit
-import ARCDM
+import DMSSDK
 import ThunderBasics
 import CloudKit
 
@@ -26,7 +26,7 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var currentLanguageButton: UIButton!
     
     /// The content controller responsible for loading locale and remote bundle information and facilitating downloads.
-    let contentController = ContentController()
+    let contentController = ContentManager()
     
     /// The bundle information from the server containing information about languages and download URLs
     var bundleInformation: BundleInformation?

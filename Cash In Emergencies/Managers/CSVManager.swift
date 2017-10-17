@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import ARCDM
+import DMSSDK
 
 /// Deals with exporting a CSV of the tools and user critical data
 class CSVManager {
@@ -24,7 +24,7 @@ class CSVManager {
         let progressManager = ProgressManager()
         let newLine = "\n"
         
-        guard let modules = ModuleManager().modules else {
+        guard let modules = DirectoryManager().directories else {
             return nil
         }
         
@@ -32,7 +32,7 @@ class CSVManager {
         
         for module in modules {
             
-            if let moduleTitle = module.moduleTitle {
+            if let moduleTitle = module.directoryTitle {
                 csvString = csvString+moduleTitle+" ,,,,,,"+newLine+csvHeadings.joined(separator: ",")+newLine
             }
             
@@ -56,14 +56,14 @@ class CSVManager {
                                     }
                                     
                                     //Step
-                                    if let stepName = step.moduleTitle, let stepHierarchy = step.metadata?["hierarchy"] as? String {
+                                    if let stepName = step.directoryTitle, let stepHierarchy = step.metadata?["hierarchy"] as? String {
                                         csvString = csvString+(stepHierarchy+" "+stepName).csvSafeString()+","
                                     } else {
                                         csvString = csvString+","
                                     }
                                     
                                     //Sub-Step Action & Guidance
-                                    if let substepName = substep.moduleTitle, let substepHierarchy = substep.metadata?["hierarchy"] as? String {
+                                    if let substepName = substep.directoryTitle, let substepHierarchy = substep.metadata?["hierarchy"] as? String {
                                         csvString = csvString+(substepHierarchy+" "+substepName).csvSafeString()+","
                                     } else {
                                         csvString = csvString+","
@@ -84,7 +84,7 @@ class CSVManager {
                                     }
                                     
                                     //Critical Tool
-                                    if let toolTitle = tool.moduleTitle {
+                                    if let toolTitle = tool.directoryTitle {
                                         csvString = csvString+toolTitle.csvSafeString()+","
                                     } else {
                                         csvString = csvString+","

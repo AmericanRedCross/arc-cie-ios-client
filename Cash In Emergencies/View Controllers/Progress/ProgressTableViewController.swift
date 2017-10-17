@@ -8,7 +8,7 @@
 
 import UIKit
 import ThunderTable
-import ARCDM
+import DMSSDK
 
 // Table View controller for displaying the users progress of each module
 class ProgressTableViewController: TableViewController {
@@ -55,7 +55,7 @@ class ProgressTableViewController: TableViewController {
     func redraw() {
         
         // Get our top level modules
-        guard let modules = ModuleManager().modules else {
+        guard let modules = DirectoryManager().directories else {
             return
         }
         
@@ -66,20 +66,20 @@ class ProgressTableViewController: TableViewController {
         for module in modules {
             
             // Module title i.e Preparedness
-            let moduleTitle = module.moduleTitle
+            let moduleTitle = module.directoryTitle
             // Get the hierarchy, i.e 1
             guard let hierarchy = module.metadata?["hierarchy"] as? String else { continue }
             
             // Flatmap all of the module's steps subSteps into one array
-            let subSteps = module.directories?.flatMap({ (step) -> [Module] in
+            let subSteps = module.directories?.flatMap({ (step) -> [Directory] in
                 guard let stepDirectories = step.directories else { return [] }
                 return stepDirectories
             }) ?? []
             
             // Collect all of the critical tools from our substeps
-            let criticalTools = subSteps.flatMap({ (subStep) -> [Module] in
+            let criticalTools = subSteps.flatMap({ (subStep) -> [Directory] in
                 guard let subStepDirectories = subStep.directories else { return [] }
-                return subStepDirectories.flatMap({ (tool) -> Module? in
+                return subStepDirectories.flatMap({ (tool) -> Directory? in
                     
                     if let isCritical = tool.metadata?["critical_path"] as? Bool,
                         isCritical {
@@ -94,7 +94,7 @@ class ProgressTableViewController: TableViewController {
             let numberOfCriticalTools = criticalTools.count
             
             // Closure which counts the number of completed modules by checking their state, this closure is passed to and ran by a reduce method on the Sub Steps and Critical tools
-            let counter: ((Int, Module) -> Int) = { (completedCount, module) -> Int in
+            let counter: ((Int, Directory) -> Int) = { (completedCount, module) -> Int in
                 
                 // Check if the state is complete, otherwise return our current count
                 guard ProgressManager().checkState(for: module.identifier) else {

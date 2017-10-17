@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import ARCDM
+import DMSSDK
 
 /// Keeps track of the users progress through tools and module steps
 class ProgressManager {

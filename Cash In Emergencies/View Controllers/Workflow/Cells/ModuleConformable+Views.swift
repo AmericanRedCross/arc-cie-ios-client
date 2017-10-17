@@ -6,18 +6,18 @@
 //  Copyright © 2017 3 SIDED CUBE. All rights reserved.
 //
 
-import ARCDM
+import DMSSDK
 import ThunderTable
 
 protocol ModuleConformable {
-    func module() -> Module?
+    func module() -> Directory?
 }
 
 // Wrapping Module class, provides ThunderTable Conformance
 class ModuleView: ModuleConformable, Row {
     
     // The module data the wrapper is representing
-    var internalModule: Module?
+    var internalModule: Directory?
     
     // Tableviewcontroller the module is being represented in
     private var toolkitTableViewController: ToolkitTableViewController?
@@ -25,12 +25,12 @@ class ModuleView: ModuleConformable, Row {
     // If the cell should show the module roadmap button
     var shouldShowModuleRoadmap: Bool = false
     
-    func module() -> Module? {
+    func module() -> Directory? {
         return internalModule
     }
     
     //INIT
-    init(with module: Module) {
+    init(with module: Directory) {
         internalModule = module
     }
     
@@ -69,7 +69,7 @@ class ModuleView: ModuleConformable, Row {
         if let _cell = cell as? ModuleTableViewCell {
             
             if let _module = internalModule {
-                _cell.moduleTitleLabel.text = _module.moduleTitle
+                _cell.moduleTitleLabel.text = _module.directoryTitle
                 _cell.moduleBackgroundImageView.image = UIImage(named: "module-backdrop-\(_module.order)")
                 _cell.moduleChevronButton.removeTarget(nil, action: nil, for: .allEvents)
                 _cell.moduleChevronButton.addTarget(self, action: #selector(handleToggle(of:)), for: .primaryActionTriggered)
@@ -92,17 +92,17 @@ class ModuleView: ModuleConformable, Row {
 class Step: ModuleConformable, Row {
     
     // The module data the wrapper is representing
-    var internalModule: Module?
+    var internalModule: Directory?
     
     // Tableviewcontroller the module is being represented in
     private var toolkitTableViewController: ToolkitTableViewController?
     
-    func module() -> Module? {
+    func module() -> Directory? {
         return internalModule
     }
     
     //INIT
-    init(with module: Module) {
+    init(with module: Directory) {
         internalModule = module
     }
     
@@ -125,7 +125,7 @@ class Step: ModuleConformable, Row {
         if let _cell = cell as? ModuleStepTableViewCell {
             
             _cell.stepHierarchyLabel.text = internalModule?.metadata?["hierarchy"] as? String
-            _cell.stepTitleLabel.text = internalModule?.moduleTitle
+            _cell.stepTitleLabel.text = internalModule?.directoryTitle
             _cell.stepRoadmapButton.isHidden = internalModule?.content == nil
             
             _cell.stepRoadmapButton.removeTarget(nil, action: nil, for: .allEvents)
@@ -150,16 +150,16 @@ class SubStep: ModuleConformable, Row {
     
     private var cellIndexPath: IndexPath?
     
-    var internalModule: Module?
+    var internalModule: Directory?
     
-    func module() -> Module? {
+    func module() -> Directory? {
         return internalModule
     }
     
     var shouldShowAddNoteButton: Bool = false
     
     //INIT
-    init(with module: Module) {
+    init(with module: Directory) {
         internalModule = module
     }
     
@@ -182,7 +182,7 @@ class SubStep: ModuleConformable, Row {
         if let _cell = cell as? ModuleSubStepTableViewCell {
             
             _cell.substepHierarchyLabel.text = internalModule?.metadata?["hierarchy"] as? String
-            _cell.substepTitleLabel.text = internalModule?.moduleTitle
+            _cell.substepTitleLabel.text = internalModule?.directoryTitle
             _cell.moduleSubstepChevronButton.addTarget(self, action: #selector(handleToggle(of:)), for: .primaryActionTriggered)
  
             _cell.substepAddNoteButton.removeTarget(nil, action: nil, for: .allEvents)
@@ -250,7 +250,7 @@ class SubStep: ModuleConformable, Row {
 
 class Tool: ModuleConformable, Row {
     
-    var internalModule: Module?
+    var internalModule: Directory?
     
     lazy var progressManager = ProgressManager()
     
@@ -274,18 +274,18 @@ class Tool: ModuleConformable, Row {
     
     var hasBeenExported: Bool {
         let exportFile = internalModule?.attachments?.first?.url.flatMap({ (url) -> URL? in
-            return ContentController().localFileURL(for: url)
+            return ContentManager().localFileURL(for: url)
         })
         
         return exportFile != nil
     }
     
-    func module() -> Module? {
+    func module() -> Directory? {
         return internalModule
     }
     
     //INIT
-    init(with module: Module) {
+    init(with module: Directory) {
         internalModule = module
     }
     
@@ -304,7 +304,7 @@ class Tool: ModuleConformable, Row {
         
         if let _cell = cell as? ToolTableViewCell {
             
-            _cell.toolTitleLabel.text = internalModule?.moduleTitle
+            _cell.toolTitleLabel.text = internalModule?.directoryTitle
             
             if let _firstAttachment = internalModule?.attachments?.first {
                 _cell.toolDescriptionLabel.text = _firstAttachment.description

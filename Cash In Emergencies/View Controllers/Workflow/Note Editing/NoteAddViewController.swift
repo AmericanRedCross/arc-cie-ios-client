@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ARCDM
+import DMSSDK
 
 class NoteAddViewController: UIViewController {
 
@@ -17,7 +17,7 @@ class NoteAddViewController: UIViewController {
     /// Optional closure to be fired when the user has either saved a note or discarded one
     var completionHandler: (() -> Void)?
     
-    var module: Module?
+    var module: Directory?
     
     // MARK: - Lifecycle
     
@@ -34,7 +34,7 @@ class NoteAddViewController: UIViewController {
         if let module = module {
             
             //Set appropriate title
-            if let moduleHierarchy = module.metadata?["hierarchy"] as? String, let moduleTitle = module.moduleTitle {
+            if let moduleHierarchy = module.metadata?["hierarchy"] as? String, let moduleTitle = module.directoryTitle {
                 title = "\(moduleHierarchy) \(moduleTitle)"
             }
             

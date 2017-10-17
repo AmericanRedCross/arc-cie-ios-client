@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import ARCDM
+import DMSSDK
 import QuickLook
 import ThunderBasics
 
@@ -16,10 +16,10 @@ import ThunderBasics
 extension ToolkitTableViewController {
     
     
-    func addExportOptionIfAvailible(with module: Module, at indexPath: IndexPath) -> UIContextualAction? {
+    func addExportOptionIfAvailible(with module: Directory, at indexPath: IndexPath) -> UIContextualAction? {
         //Export
         let exportFile = module.attachments?.first?.url.flatMap({ (url) -> URL? in
-            return ContentController().localFileURL(for: url)
+            return ContentManager().localFileURL(for: url)
         })
         
         let exportTitle = exportFile == nil ? "DOWNLOAD" : "EXPORT"
@@ -53,7 +53,7 @@ extension ToolkitTableViewController {
                 }
                 
                 //Download it instead
-                ContentController().downloadDocumentFile(from: _url, progress: { (progress, bytesDownloaded, totalBytes) in
+                ContentManager().downloadDocumentFile(from: _url, progress: { (progress, bytesDownloaded, totalBytes) in
                     
                 }, completion: { (result) in
                     
@@ -96,7 +96,7 @@ extension ToolkitTableViewController {
         return exportOption
     }
     
-    func addNoteOption(for module: Module, at indexPath: IndexPath) -> UIContextualAction {
+    func addNoteOption(for module: Directory, at indexPath: IndexPath) -> UIContextualAction {
         //Note
         let noteOptionTitle = (ProgressManager().note(for: module.identifier) == nil) ? "ADD NOTE" : "EDIT NOTE"
         
@@ -118,7 +118,7 @@ extension ToolkitTableViewController {
     }
     
     
-    func addCriticalToolOption(for module: Module, at indexPath: IndexPath) -> UIContextualAction? {
+    func addCriticalToolOption(for module: Directory, at indexPath: IndexPath) -> UIContextualAction? {
         //If it's marked as critical by DMS don't let them change it
         let _criticalTool = module.metadata?["critical_path"] as? Bool ?? false
         

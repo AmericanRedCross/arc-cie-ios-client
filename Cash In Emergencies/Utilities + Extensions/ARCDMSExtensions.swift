@@ -1,12 +1,12 @@
 //
-//  ARCDMSExtensions.swift
+//  DMSSDKExtensions.swift
 //  Cash In Emergencies
 //
 //  Created by Matthew Cheetham on 04/10/2017.
 //  Copyright © 2017 3 SIDED CUBE. All rights reserved.
 //
 
-import ARCDM
+import DMSSDK
 
 extension FileDescriptor {
     
