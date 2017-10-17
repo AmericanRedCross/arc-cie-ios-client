@@ -1,6 +1,6 @@
 [submodule "ARCDM"]
 	path = ARCDM
-	url = git@bitbucket.org:3sidedcube/arc-dm-ios-framework.git
+url=git@bitbucket.org:3sidedcube/arc-dmssdk-ios-framework.git
 [submodule "ThunderBasics"]
 	path = ThunderBasics
 	url = https://github.com/3sidedcube/iOS-ThunderBasics.git
