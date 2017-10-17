@@ -192,8 +192,17 @@ class ToolkitTableViewController: TableViewController {
                 sections.append(newSection)
             }
             
+            // Sort the sections alphanumerically by the section header
+            let sortedSections = sections.sorted(by: { (sectionA, sectionB) -> Bool in
+                guard let headerA = sectionA.header, let headerB = sectionB.header else {
+                    return false
+                }
+                
+                return headerA < headerB
+            })
+        
             OperationQueue.main.addOperation({
-                self.criticalToolsDataSource = sections
+                self.criticalToolsDataSource = sortedSections
                 if let completionHandler = completionHandler {
                     completionHandler(nil)
                 }
