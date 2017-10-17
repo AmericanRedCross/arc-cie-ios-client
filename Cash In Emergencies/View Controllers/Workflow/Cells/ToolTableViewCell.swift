@@ -15,16 +15,32 @@ class ToolTableViewCell: UITableViewCell {
     @IBOutlet weak var toolDescriptionLabel: UILabel!
     @IBOutlet weak var toolCriticalToolButton: UIButton!
     @IBOutlet weak var toolCheckableButton: UIButton!
+    @IBOutlet weak var criticalToolStackView: UIStackView!
+    @IBOutlet weak var userMarkedCriticalButton: UIButton!
+    @IBOutlet weak var noteAddedButton: UIButton!
+    @IBOutlet weak var exportedButton: UIButton!
+    
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        // Hide description label if theres no content so the other label is centered
+        toolDescriptionLabel.isHidden = (toolDescriptionLabel.text == nil)
+        
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        toolCriticalToolButton.isHidden = true
+        criticalToolStackView.isHidden = true
+        userMarkedCriticalButton.isHidden = true
+        noteAddedButton.isHidden = true
+        exportedButton.isHidden = true
+    }
 }

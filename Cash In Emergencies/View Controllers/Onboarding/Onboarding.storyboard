@@ -74,6 +74,9 @@
                                         <state key="normal" title="SKIP">
                                             <color key="titleColor" red="0.93998771910000001" green="0.080797113480000002" blue="0.14344987270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="pressedSkip:" destination="hW3-ux-XtB" eventType="touchUpInside" id="lwp-NL-eKU"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>

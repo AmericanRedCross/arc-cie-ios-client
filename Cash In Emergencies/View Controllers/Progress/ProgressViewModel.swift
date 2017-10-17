@@ -65,6 +65,10 @@ extension ProgressViewModel: Row {
         progressCell.moduleLabel.text = self.moduleTitle
         
         progressCell.moduleProgressView.progress = Double(self.percentageComplete)
-        progressCell.moduleProgressView.barColour = UIColor(hexString: "ed1b2e")
+        progressCell.hierarchyView.backgroundColor = ModuleColourUtility.colour(for: moduleHierarchy)
+        
+        let hierarchyColor = ModuleColourUtility.colour(for: moduleHierarchy)
+        progressCell.moduleProgressView.barColour = hierarchyColor
+        progressCell.moduleProgressView.backgroundColor = hierarchyColor.withAlphaComponent(0.2)
     }
 }

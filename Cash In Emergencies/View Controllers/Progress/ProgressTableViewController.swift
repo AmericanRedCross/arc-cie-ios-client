@@ -95,11 +95,9 @@ class ProgressTableViewController: TableViewController {
             
             // Closure which counts the number of completed modules by checking their state, this closure is passed to and ran by a reduce method on the Sub Steps and Critical tools
             let counter: ((Int, Module) -> Int) = { (completedCount, module) -> Int in
-                // Ensure we have an identifier to check the state of our step
-                guard let identifier = module.identifier else { return completedCount }
                 
                 // Check if the state is complete, otherwise return our current count
-                guard ProgressManager().checkState(for: identifier) else {
+                guard ProgressManager().checkState(for: module.identifier) else {
                     return completedCount
                 }
                 

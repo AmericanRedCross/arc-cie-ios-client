@@ -149,10 +149,9 @@ class ToolIndexManager {
                                                 }
                                             }
                                         }
+                                    
+                                        searchableSet.containerIdentifier = String(substep.identifier)
                                         
-                                        if let subIdentifier = substep.identifier {
-                                            searchableSet.containerIdentifier = String(subIdentifier)
-                                        }
                                         
                                         if let _firstAttachment = file.attachments?.first {
                                             
@@ -165,9 +164,7 @@ class ToolIndexManager {
                                             }
                                         }
                                         
-                                        guard let _moduleIdentifier = file.identifier else {
-                                            break
-                                        }
+                                        let _moduleIdentifier = file.identifier
                                         
                                         let item = CSSearchableItem(uniqueIdentifier: "\(_moduleIdentifier)", domainIdentifier: domain, attributeSet: searchableSet)
                                         
