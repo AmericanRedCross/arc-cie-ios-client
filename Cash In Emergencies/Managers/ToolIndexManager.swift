@@ -150,7 +150,7 @@ class ToolIndexManager {
                                             }
                                         }
                                     
-                                        searchableSet.containerIdentifier = String(substep.identifier)
+                                        searchableSet.containerIdentifier = String(describing: substep.identifier)
                                         
                                         
                                         if let _firstAttachment = file.attachments?.first {

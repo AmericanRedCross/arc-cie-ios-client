@@ -70,14 +70,14 @@ class CSVManager {
                                     }
                                     
                                     //Done
-                                    if let identifier = substep.identifier, progressManager.checkState(for: identifier) {
+                                    if progressManager.checkState(for: substep.identifier) {
                                         csvString = csvString+"yes"+","
                                     } else {
                                         csvString = csvString+"no"+","
                                     }
                                     
                                     //Sub-Step Notes
-                                    if let substepIdentifier = substep.identifier, let substepNote = progressManager.note(for: substepIdentifier) {
+                                    if let substepNote = progressManager.note(for: substep.identifier) {
                                         csvString = csvString+substepNote.csvSafeString()+","
                                     } else {
                                         csvString = csvString+","
@@ -91,14 +91,14 @@ class CSVManager {
                                     }
                                     
                                     //Done
-                                    if let identifier = tool.identifier, progressManager.checkState(for: identifier) {
+                                    if progressManager.checkState(for: tool.identifier) {
                                         csvString = csvString+"yes"+","
                                     } else {
                                         csvString = csvString+"no"+","
                                     }
                                     
                                     //Critical Notes
-                                    if let toolIdentifier = tool.identifier, let toolNote = progressManager.note(for: toolIdentifier) {
+                                    if let toolNote = progressManager.note(for: tool.identifier) {
                                         csvString = csvString+toolNote.csvSafeString()+","
                                     }
                                     
