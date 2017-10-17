@@ -260,13 +260,15 @@ class ToolkitTableViewController: TableViewController {
         self.parent?.view.setNeedsLayout()
     }
     
-    func addNote(for module: Module) {
+    func addNote(for module: Module, completion: (() -> Void)? = nil) {
         
         let noteViewNavigationController = UIStoryboard(name: "Notes", bundle: Bundle.main).instantiateInitialViewController() as? UINavigationController
         
         if let noteViewNavigationController = noteViewNavigationController, let noteViewController = noteViewNavigationController.topViewController as? NoteAddViewController {
+            
             OperationQueue.main.addOperation({
                 noteViewController.module = module
+                noteViewController.completionHandler = completion
                 self.present(noteViewNavigationController, animated: true, completion: nil)
             })
         }

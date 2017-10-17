@@ -14,6 +14,9 @@ class NoteAddViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var bottomLayoutConstraint: NSLayoutConstraint!
     
+    /// Optional closure to be fired when the user has either saved a note or discarded one
+    var completionHandler: (() -> Void)?
+    
     var module: Module?
     
     // MARK: - Lifecycle
@@ -86,7 +89,7 @@ class NoteAddViewController: UIViewController {
         }))
         dismissWarning.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
-        present(dismissWarning, animated: true, completion: nil)
+        present(dismissWarning, animated: true, completion: completionHandler)
     }
     
     @IBAction func handleSaveButton(_ sender: UIButton) {
@@ -94,7 +97,7 @@ class NoteAddViewController: UIViewController {
         if let _inputText = textView.text, let moduleIdentifier = module?.identifier {
             
             ProgressManager().save(note: _inputText, for: moduleIdentifier)
-            dismiss(animated: true, completion: nil)
+            dismiss(animated: true, completion: completionHandler)
         }
     }
 }
