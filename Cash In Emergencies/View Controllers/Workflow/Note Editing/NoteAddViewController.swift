@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ARCDM
+import DMSSDK
 
 class NoteAddViewController: UIViewController {
 

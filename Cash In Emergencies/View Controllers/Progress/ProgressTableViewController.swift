@@ -8,7 +8,7 @@
 
 import UIKit
 import ThunderTable
-import ARCDM
+import DMSSDK
 
 // Table View controller for displaying the users progress of each module
 class ProgressTableViewController: TableViewController {

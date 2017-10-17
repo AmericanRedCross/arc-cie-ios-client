@@ -6,7 +6,7 @@
 //  Copyright © 2017 3 SIDED CUBE. All rights reserved.
 //
 
-import ARCDM
+import DMSSDK
 import ThunderTable
 
 protocol ModuleConformable {

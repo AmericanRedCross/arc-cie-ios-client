@@ -8,7 +8,7 @@
 
 import UIKit
 import ThunderTable
-import ARCDM
+import DMSSDK
 import QuickLook
 
 class ToolkitTableViewController: TableViewController {

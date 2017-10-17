@@ -8,7 +8,7 @@
 
 import UIKit
 import AVKit
-import ARCDM
+import DMSSDK
 import ThunderBasics
 import CloudKit
 

@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import ARCDM
+import DMSSDK
 import QuickLook
 
 @available(iOS 11.0, *)

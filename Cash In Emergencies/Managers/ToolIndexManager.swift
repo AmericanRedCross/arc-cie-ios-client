@@ -8,7 +8,7 @@
 
 import Foundation
 import CoreSpotlight
-import ARCDM
+import DMSSDK
 import MobileCoreServices
 
 class ToolIndexManager {

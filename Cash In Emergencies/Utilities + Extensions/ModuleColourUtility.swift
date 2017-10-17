@@ -8,7 +8,7 @@
 
 import Foundation
 import ThunderBasics
-import ARCDM
+import DMSSDK
 
 /// Provides utility methods for hardcoded colours
 class ModuleColourUtility {
