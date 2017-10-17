@@ -15,4 +15,17 @@ class ModuleTableViewCell: UITableViewCell {
     @IBOutlet weak var moduleBackgroundImageView: GradientImageView!
     @IBOutlet weak var moduleChevronButton: UIButton!
     @IBOutlet weak var moduleRoadmapButton: UIButton!
+    
+    
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        let colour = moduleIdentifierLabel.backgroundColor
+        super.setHighlighted(highlighted, animated: animated)
+        self.moduleIdentifierLabel.backgroundColor = colour
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        let colour = moduleIdentifierLabel.backgroundColor
+        super.setSelected(selected, animated: animated)
+        self.moduleIdentifierLabel.backgroundColor = colour
+    }
 }
