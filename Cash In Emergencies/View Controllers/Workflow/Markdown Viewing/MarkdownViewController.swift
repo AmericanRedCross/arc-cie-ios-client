@@ -8,6 +8,7 @@
 
 import UIKit
 import MarkdownView
+import ThunderBasics
 
 class MarkdownViewController: UIViewController {
     
@@ -21,6 +22,12 @@ class MarkdownViewController: UIViewController {
         super.init(coder: aDecoder)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        MDCHUDActivityView.start(in: self.view, text: "Loading document")
+    }
+    
     func loadMarkdown(string: String) {
         
         downView = MarkdownView()
@@ -30,9 +37,24 @@ class MarkdownViewController: UIViewController {
         if let _downView = downView {
             view.addSubview(_downView)
             downView?.frame = view.frame
+            downView?.alpha = 0
         }
         
         downView?.load(markdown: string)
+        
+        downView?.onRendered = { [weak self] (height: CGFloat) in
+            
+            guard let welf = self else { return }
+            
+            UIView.animate(withDuration: 0.4, animations: {
+                welf.downView?.alpha = 1
+            })
+            
+            DispatchQueue.main.async {
+                 MDCHUDActivityView.finish(in: welf.view)
+            }
+        }
+       
 //        try? downView?.update(markdownString: string)
     }
     
