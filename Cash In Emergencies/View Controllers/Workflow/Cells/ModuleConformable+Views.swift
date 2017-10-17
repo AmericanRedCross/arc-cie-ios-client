@@ -338,8 +338,8 @@ class Tool: ModuleConformable, Row {
                 _cell.exportedButton.isHidden = false
             }
             
-//            _cell.toolCheckableButton.removeTarget(nil, action: nil, for: .allEvents)
-//            _cell.toolCheckableButton.addTarget(self, action: #selector(handleChecking(of:)), for: .primaryActionTriggered)
+            _cell.toolCheckableButton.removeTarget(nil, action: nil, for: .allEvents)
+            _cell.toolCheckableButton.addTarget(self, action: #selector(handleChecking(of:)), for: .primaryActionTriggered)
             
             if let _moduleIdentifier = internalModule?.identifier {
                 _cell.toolCheckableButton.isSelected = progressManager.checkState(for: _moduleIdentifier)
