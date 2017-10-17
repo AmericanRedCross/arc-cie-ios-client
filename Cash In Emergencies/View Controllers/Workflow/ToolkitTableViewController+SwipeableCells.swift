@@ -84,8 +84,11 @@ extension ToolkitTableViewController {
         let noteOption = UIContextualAction(style: .normal, title: noteOptionTitle) {  [weak self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: @escaping (Bool) -> Void) in
 
             DispatchQueue.main.async {
-                self?.addNote(for: module)
-                self?.tableView.reloadRows(at: [indexPath], with: .automatic)
+                self?.addNote(for: module, completion: {
+                    DispatchQueue.main.async {
+                        self?.tableView.reloadRows(at: [indexPath], with: .automatic)
+                    }
+                })
                 completionHandler(true)
                 return
             }

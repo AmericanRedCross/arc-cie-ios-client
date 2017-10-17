@@ -148,6 +148,8 @@ class SubStep: ModuleConformable, Row {
     
     private var toolkitTableViewController: ToolkitTableViewController?
     
+    private var cellIndexPath: IndexPath?
+    
     var internalModule: Module?
     
     func module() -> Module? {
@@ -175,6 +177,7 @@ class SubStep: ModuleConformable, Row {
     func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
         
         toolkitTableViewController = tableViewController as? ToolkitTableViewController
+        cellIndexPath = indexPath
         
         if let _cell = cell as? ModuleSubStepTableViewCell {
             
@@ -235,7 +238,12 @@ class SubStep: ModuleConformable, Row {
         
         if let _tableView = toolkitTableViewController, let internalModule = internalModule {
             
-            _tableView.addNote(for: internalModule)
+            _tableView.addNote(for: internalModule, completion: { [weak self] in
+                guard let indexPath = self?.cellIndexPath else { return }
+                DispatchQueue.main.async {
+                    _tableView.tableView.reloadRows(at: [indexPath], with: .automatic)
+                }
+            })
         }
     }
 }
