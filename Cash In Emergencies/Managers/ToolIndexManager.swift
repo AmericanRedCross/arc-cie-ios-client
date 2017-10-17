@@ -25,9 +25,9 @@ class ToolIndexManager {
         
     }
     
-    func searchCriticalTools(with completionHandler: @escaping ((Error?, [(parent: String, tool: Module)]) -> Void)) {
+    func searchCriticalTools(with completionHandler: @escaping ((Error?, [(parent: String, tool: Directory)]) -> Void)) {
     
-        var foundTools = [(String, Module)]()
+        var foundTools = [(String, Directory)]()
     
         if let _searchQuery = searchQuery {
     
@@ -41,11 +41,11 @@ class ToolIndexManager {
     
         self.searchQuery?.foundItemsHandler = { (items : [CSSearchableItem]) in
     
-            let returnedTools = items.flatMap({ (searchItem) -> (String, Module)? in
+            let returnedTools = items.flatMap({ (searchItem) -> (String, Directory)? in
 
-                guard let moduleIdentifier = Int(searchItem.uniqueIdentifier), let modulesToSearch = ModuleManager().modules else { return nil }
+                guard let moduleIdentifier = Int(searchItem.uniqueIdentifier), let modulesToSearch = DirectoryManager().modules else { return nil }
 
-                if let _foundModule = ModuleManager().module(for: moduleIdentifier, in: modulesToSearch), let parentString = searchItem.attributeSet.containerDisplayName {
+                if let _foundModule = DirectoryManager().module(for: moduleIdentifier, in: modulesToSearch), let parentString = searchItem.attributeSet.containerDisplayName {
                     return (parentString, _foundModule)
                 }
     
@@ -63,9 +63,9 @@ class ToolIndexManager {
     
     }
     
-    func searchTools(using term: String, completionHandler: @escaping ((Error?, [(parent: String, tool: Module)]) -> Void)) {
+    func searchTools(using term: String, completionHandler: @escaping ((Error?, [(parent: String, tool: Directory)]) -> Void)) {
         
-        var foundTools = [(String, Module)]()
+        var foundTools = [(String, Directory)]()
         
         if let _searchQuery = searchQuery {
             
@@ -79,11 +79,11 @@ class ToolIndexManager {
         
         self.searchQuery?.foundItemsHandler = { (items : [CSSearchableItem]) in
             
-            let returnedTools = items.flatMap({ (searchItem) -> (String, Module)? in
+            let returnedTools = items.flatMap({ (searchItem) -> (String, Directory)? in
 
-                guard let moduleIdentifier = Int(searchItem.uniqueIdentifier), let modulesToSearch = ModuleManager().modules else { return nil }
+                guard let moduleIdentifier = Int(searchItem.uniqueIdentifier), let modulesToSearch = DirectoryManager().modules else { return nil }
 
-                if let _foundModule = ModuleManager().module(for: moduleIdentifier, in: modulesToSearch), let parentString = searchItem.attributeSet.containerDisplayName {
+                if let _foundModule = DirectoryManager().module(for: moduleIdentifier, in: modulesToSearch), let parentString = searchItem.attributeSet.containerDisplayName {
                     return (parentString, _foundModule)
                 }
                 
@@ -100,7 +100,7 @@ class ToolIndexManager {
         self.searchQuery?.start()
     }
     
-    func index(products: [Module], completionHandler: ((Error?) -> Void)?) {
+    func index(products: [Directory], completionHandler: ((Error?) -> Void)?) {
         
         unIndexAll { (error) in
             if let error = error {
@@ -114,11 +114,11 @@ class ToolIndexManager {
         }
     }
     
-    func createIndex(products: [Module], completionHandler: ((Error?) -> Void)?) {
+    func createIndex(products: [Directory], completionHandler: ((Error?) -> Void)?) {
         
         var searchableItems = [CSSearchableItem]()
         
-        if let modules = ModuleManager().modules {
+        if let modules = DirectoryManager().modules {
             
             for module in modules {
                 
@@ -193,7 +193,7 @@ extension ToolIndexManager {
         
         unIndexAll { [weak self] (error) in
             
-            if let modules = ModuleManager().modules {
+            if let modules = DirectoryManager().modules {
                 self?.createIndex(products: modules, completionHandler: { (error) in
                     
                     NotificationCenter.default.post(name: NSNotification.Name("ModulesDidIndex"), object: nil)

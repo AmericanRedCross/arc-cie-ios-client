@@ -10,14 +10,14 @@ import DMSSDK
 import ThunderTable
 
 protocol ModuleConformable {
-    func module() -> Module?
+    func module() -> Directory?
 }
 
 // Wrapping Module class, provides ThunderTable Conformance
 class ModuleView: ModuleConformable, Row {
     
     // The module data the wrapper is representing
-    var internalModule: Module?
+    var internalModule: Directory?
     
     // Tableviewcontroller the module is being represented in
     private var toolkitTableViewController: ToolkitTableViewController?
@@ -25,12 +25,12 @@ class ModuleView: ModuleConformable, Row {
     // If the cell should show the module roadmap button
     var shouldShowModuleRoadmap: Bool = false
     
-    func module() -> Module? {
+    func module() -> Directory? {
         return internalModule
     }
     
     //INIT
-    init(with module: Module) {
+    init(with module: Directory) {
         internalModule = module
     }
     
@@ -92,17 +92,17 @@ class ModuleView: ModuleConformable, Row {
 class Step: ModuleConformable, Row {
     
     // The module data the wrapper is representing
-    var internalModule: Module?
+    var internalModule: Directory?
     
     // Tableviewcontroller the module is being represented in
     private var toolkitTableViewController: ToolkitTableViewController?
     
-    func module() -> Module? {
+    func module() -> Directory? {
         return internalModule
     }
     
     //INIT
-    init(with module: Module) {
+    init(with module: Directory) {
         internalModule = module
     }
     
@@ -148,16 +148,16 @@ class SubStep: ModuleConformable, Row {
     
     private var toolkitTableViewController: ToolkitTableViewController?
     
-    var internalModule: Module?
+    var internalModule: Directory?
     
-    func module() -> Module? {
+    func module() -> Directory? {
         return internalModule
     }
     
     var shouldShowAddNoteButton: Bool = false
     
     //INIT
-    init(with module: Module) {
+    init(with module: Directory) {
         internalModule = module
     }
     
@@ -242,7 +242,7 @@ class SubStep: ModuleConformable, Row {
 
 class Tool: ModuleConformable, Row {
     
-    var internalModule: Module?
+    var internalModule: Directory?
     
     lazy var progressManager = ProgressManager()
     
@@ -272,12 +272,12 @@ class Tool: ModuleConformable, Row {
         return exportFile != nil
     }
     
-    func module() -> Module? {
+    func module() -> Directory? {
         return internalModule
     }
     
     //INIT
-    init(with module: Module) {
+    init(with module: Directory) {
         internalModule = module
     }
     

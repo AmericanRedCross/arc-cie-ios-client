@@ -15,7 +15,7 @@ import QuickLook
 extension ToolkitTableViewController {
     
     
-    func addExportOptionIfAvailible(with module: Module, at indexPath: IndexPath) -> UIContextualAction? {
+    func addExportOptionIfAvailible(with module: Directory, at indexPath: IndexPath) -> UIContextualAction? {
         //Export
         let exportFile = module.attachments?.first?.url.flatMap({ (url) -> URL? in
             return ContentController().localFileURL(for: url)
@@ -77,7 +77,7 @@ extension ToolkitTableViewController {
         return exportOption
     }
     
-    func addNoteOption(for module: Module, at indexPath: IndexPath) -> UIContextualAction {
+    func addNoteOption(for module: Directory, at indexPath: IndexPath) -> UIContextualAction {
         //Note
         let noteOptionTitle = (ProgressManager().note(for: module.identifier) == nil) ? "ADD NOTE" : "EDIT NOTE"
         
@@ -96,7 +96,7 @@ extension ToolkitTableViewController {
     }
     
     
-    func addCriticalToolOption(for module: Module, at indexPath: IndexPath) -> UIContextualAction? {
+    func addCriticalToolOption(for module: Directory, at indexPath: IndexPath) -> UIContextualAction? {
         //If it's marked as critical by DMS don't let them change it
         let _criticalTool = module.metadata?["critical_path"] as? Bool ?? false
         

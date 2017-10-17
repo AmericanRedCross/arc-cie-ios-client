@@ -20,7 +20,7 @@ class ModuleColourUtility {
     ///
     /// - Parameter module: the module to find the matching colour for
     /// - Returns: a specified hardcoded colour or a fallback colour
-    class func colour(for module: Module) -> UIColor {
+    class func colour(for module: Directory) -> UIColor {
         
         guard let hierarchy = module.metadata?["hierarchy"] as? String else {
 

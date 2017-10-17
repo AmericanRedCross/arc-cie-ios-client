@@ -41,7 +41,7 @@ class ToolkitTableViewController: TableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(indexDidRefresh), name: NSNotification.Name("ModulesDidIndex"), object: nil)
     }
     
-    func mapTree(for modules: [Module], level: Int) {
+    func mapTree(for modules: [Directory], level: Int) {
 
         for module in modules {
 
@@ -58,7 +58,7 @@ class ToolkitTableViewController: TableViewController {
         
         var displayableSections = [TableSection]()
         
-        guard let modules = ModuleManager().modules else {
+        guard let modules = DirectoryManager().modules else {
             return displayableSections
         }
         
@@ -215,7 +215,7 @@ class ToolkitTableViewController: TableViewController {
         }
     }
     
-    func handleToggle(of module: Module) {
+    func handleToggle(of module: Directory) {
         
         let moduleID = module.identifier
         
@@ -260,7 +260,7 @@ class ToolkitTableViewController: TableViewController {
         self.parent?.view.setNeedsLayout()
     }
     
-    func addNote(for module: Module) {
+    func addNote(for module: Directory) {
         
         let noteViewNavigationController = UIStoryboard(name: "Notes", bundle: Bundle.main).instantiateInitialViewController() as? UINavigationController
         

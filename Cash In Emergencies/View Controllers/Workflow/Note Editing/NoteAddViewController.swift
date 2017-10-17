@@ -14,7 +14,7 @@ class NoteAddViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var bottomLayoutConstraint: NSLayoutConstraint!
     
-    var module: Module?
+    var module: Directory?
     
     // MARK: - Lifecycle
     
