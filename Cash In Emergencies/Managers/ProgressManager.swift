@@ -143,12 +143,29 @@ class ProgressManager {
     }
     
     /// Clears all saved notes and checked values form the user defaults
-    func clearAllUserValues() {
+    func clearAllUserValues(completion: (() -> Void)? = nil) {
         
-        defaults.set([String: Any](), forKey: moduleNotesIdentifier)
-        defaults.set([Int](), forKey: checkedModulesIdentifier)
-        defaults.synchronize()
-        let notificationName = NSNotification.Name("ModulePropertyChanged")
-        NotificationCenter.default.post(name: notificationName, object: self, userInfo: nil)
+        func clearAllFiles(in directory: FileManager.SearchPathDirectory) {
+            if let directoryPath = NSSearchPathForDirectoriesInDomains(directory, .userDomainMask, true).first {
+                guard let items = try? FileManager.default.contentsOfDirectory(atPath: directoryPath) else { return }
+            
+                for item in items {
+                    let completePath = directoryPath.appending("/").appending(item)
+                    try? FileManager.default.removeItem(atPath: completePath)
+                }
+            }
+        }
+        
+        DispatchQueue.global().async {
+            self.defaults.set([String: Any](), forKey: self.moduleNotesIdentifier)
+            self.defaults.set([Int](), forKey: self.checkedModulesIdentifier)
+            self.defaults.synchronize()
+            let notificationName = NSNotification.Name("ModulePropertyChanged")
+            NotificationCenter.default.post(name: notificationName, object: self, userInfo: nil)
+            
+            let directories : [FileManager.SearchPathDirectory] = [.documentDirectory, .cachesDirectory]
+            directories.forEach(clearAllFiles)
+            completion?()
+        }
     }
 }
