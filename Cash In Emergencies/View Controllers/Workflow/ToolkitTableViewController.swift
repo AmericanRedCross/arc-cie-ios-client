@@ -139,6 +139,12 @@ class ToolkitTableViewController: TableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let _displayableObjects = displayableModuleObjects {
+            standardDataSource = _displayableObjects
+        }
+        
+        redraw()
+        
         reload { (error) in
             self.redraw()
         }

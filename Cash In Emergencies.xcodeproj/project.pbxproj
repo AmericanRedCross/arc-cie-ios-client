@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		490DBE641F8F63E2001E632A /* CSVManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490DBE631F8F63E2001E632A /* CSVManager.swift */; };
+		490DBE801F9119B1001E632A /* Export.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 490DBE7F1F9119B0001E632A /* Export.storyboard */; };
+		490DBE841F911B05001E632A /* ExportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490DBE831F911B05001E632A /* ExportTableViewController.swift */; };
 		4912BABA1F5ED21900AD7100 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4912BAB91F5ED21900AD7100 /* libz.tbd */; };
 		491640821F4C38230084CEE2 /* ARCNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491640811F4C38230084CEE2 /* ARCNavigationController.swift */; };
 		4916408E1F4C5C3A0084CEE2 /* ModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4916408C1F4C5C3A0084CEE2 /* ModuleTableViewCell.swift */; };
@@ -49,6 +52,7 @@
 		49FE8D881F419F6900B73731 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49FE8D861F419F6900B73731 /* Main.storyboard */; };
 		49FE8D8A1F419F6900B73731 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49FE8D891F419F6900B73731 /* Assets.xcassets */; };
 		49FE8D8D1F419F6900B73731 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49FE8D8B1F419F6900B73731 /* LaunchScreen.storyboard */; };
+		FF5CF33D1F94DDD000DF7C5D /* UIViewController+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5CF33C1F94DDD000DF7C5D /* UIViewController+Error.swift */; };
 		FF5CF3221F910BAC00DF7C5D /* ToolkitTableViewController+SwipeableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5CF3211F910BAC00DF7C5D /* ToolkitTableViewController+SwipeableCells.swift */; };
 		FF82CCE11F8CC358009FCC5B /* ProgressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82CCDF1F8CC358009FCC5B /* ProgressTableViewCell.swift */; };
 		FF82CCE41F8CC38E009FCC5B /* ProgressTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82CCE31F8CC38E009FCC5B /* ProgressTableViewController.swift */; };
@@ -199,6 +203,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		490DBE631F8F63E2001E632A /* CSVManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVManager.swift; sourceTree = "<group>"; };
+		490DBE7F1F9119B0001E632A /* Export.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Export.storyboard; sourceTree = "<group>"; };
+		490DBE831F911B05001E632A /* ExportTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportTableViewController.swift; sourceTree = "<group>"; };
 		4912BAB91F5ED21900AD7100 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		491640811F4C38230084CEE2 /* ARCNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARCNavigationController.swift; sourceTree = "<group>"; };
 		4916408C1F4C5C3A0084CEE2 /* ModuleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTableViewCell.swift; sourceTree = "<group>"; };
@@ -239,6 +246,7 @@
 		49FE8D891F419F6900B73731 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49FE8D8C1F419F6900B73731 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		49FE8D8E1F419F6900B73731 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF5CF33C1F94DDD000DF7C5D /* UIViewController+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Error.swift"; sourceTree = "<group>"; };
 		FF5CF3211F910BAC00DF7C5D /* ToolkitTableViewController+SwipeableCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToolkitTableViewController+SwipeableCells.swift"; sourceTree = "<group>"; };
 		FF82CCDF1F8CC358009FCC5B /* ProgressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTableViewCell.swift; sourceTree = "<group>"; };
 		FF82CCE01F8CC358009FCC5B /* ProgressTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressTableViewCell.xib; sourceTree = "<group>"; };
@@ -266,6 +274,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		490DBE821F9119E0001E632A /* Export */ = {
+			isa = PBXGroup;
+			children = (
+				490DBE7F1F9119B0001E632A /* Export.storyboard */,
+				490DBE831F911B05001E632A /* ExportTableViewController.swift */,
+			);
+			path = Export;
+			sourceTree = "<group>";
+		};
 		4912BAB01F5ED21900AD7100 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				49FE8D861F419F6900B73731 /* Main.storyboard */,
+				490DBE821F9119E0001E632A /* Export */,
 				FF82CCDE1F8CC2C9009FCC5B /* Progress */,
 				492F83F21F84D36A00BDD72D /* Onboarding */,
 				492F83EC1F84D1DA00BDD72D /* Workflow */,
@@ -341,6 +359,7 @@
 				491640991F4C71CA0084CEE2 /* GradientImageView.swift */,
 				492F83E91F84D1B200BDD72D /* ARCDMSExtensions.swift */,
 				49C2DE8A1F502C7000DCFBB5 /* Utilities.swift */,
+				FF5CF33C1F94DDD000DF7C5D /* UIViewController+Error.swift */,
 				FFAEB1CC1F8F8A2000B079B4 /* ModuleColourUtility.swift */,
 			);
 			path = "Utilities + Extensions";
@@ -351,6 +370,7 @@
 			children = (
 				49A787121F84EB4D0076ABB7 /* ToolIndexManager.swift */,
 				498F45721F8274D500E8824C /* ProgressManager.swift */,
+				490DBE631F8F63E2001E632A /* CSVManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -670,6 +690,7 @@
 				49BCFFF31F44895500F68A40 /* onboarding_video.mp4 in Resources */,
 				498F45441F7CFA2000E8824C /* Document_Viewing.storyboard in Resources */,
 				4916408F1F4C5C3A0084CEE2 /* ModuleTableViewCell.xib in Resources */,
+				490DBE801F9119B1001E632A /* Export.storyboard in Resources */,
 				496C49CC1F4EE6FA00AD05D1 /* Settings.storyboard in Resources */,
 				49BCFFEE1F4479B600F68A40 /* Onboarding.storyboard in Resources */,
 				49C3ED441F839E0E00763901 /* Notes.storyboard in Resources */,
@@ -690,6 +711,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				498F45731F8274D500E8824C /* ProgressManager.swift in Sources */,
+				FF5CF33D1F94DDD000DF7C5D /* UIViewController+Error.swift in Sources */,
 				492F83E81F84D15100BDD72D /* ModuleConformable+Views.swift in Sources */,
 				491640821F4C38230084CEE2 /* ARCNavigationController.swift in Sources */,
 				49BF8DD81F73C5BC00A1890F /* ModuleStepTableViewCell.swift in Sources */,
@@ -698,6 +720,7 @@
 				49BCFFF21F4487EB00F68A40 /* OnboardingViewController.swift in Sources */,
 				4971222C1F4C2CF3000786AE /* WorkflowViewController.swift in Sources */,
 				49C2DE8B1F502C7000DCFBB5 /* Utilities.swift in Sources */,
+				490DBE641F8F63E2001E632A /* CSVManager.swift in Sources */,
 				FF5CF3221F910BAC00DF7C5D /* ToolkitTableViewController+SwipeableCells.swift in Sources */,
 				FFAEB1CD1F8F8A2000B079B4 /* ModuleColourUtility.swift in Sources */,
 				492F83EA1F84D1B200BDD72D /* ARCDMSExtensions.swift in Sources */,
@@ -709,6 +732,7 @@
 				49A418601F73EA96004C1F61 /* ModuleSubStepTableViewCell.swift in Sources */,
 				FF82CCE41F8CC38E009FCC5B /* ProgressTableViewController.swift in Sources */,
 				497DF1921F74FC5800367A94 /* ToolTableViewCell.swift in Sources */,
+				490DBE841F911B05001E632A /* ExportTableViewController.swift in Sources */,
 				497122281F4C23A1000786AE /* ToolkitTableViewController.swift in Sources */,
 				FF82CCF41F8D19BA009FCC5B /* ProgressViewModel.swift in Sources */,
 				FF82CCF21F8D1151009FCC5B /* ModuleProgressView.swift in Sources */,
