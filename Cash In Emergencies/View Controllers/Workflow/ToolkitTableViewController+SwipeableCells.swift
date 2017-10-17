@@ -18,7 +18,7 @@ extension ToolkitTableViewController {
     func addExportOptionIfAvailible(with module: Directory, at indexPath: IndexPath) -> UIContextualAction? {
         //Export
         let exportFile = module.attachments?.first?.url.flatMap({ (url) -> URL? in
-            return ContentController().localFileURL(for: url)
+            return ContentManager().localFileURL(for: url)
         })
         
         let exportTitle = exportFile == nil ? "DOWNLOAD" : "EXPORT"
@@ -43,7 +43,7 @@ extension ToolkitTableViewController {
                 }
                 
                 //Download it instead
-                ContentController().downloadDocumentFile(from: _url, progress: { (progress, bytesDownloaded, totalBytes) in
+                ContentManager().downloadDocumentFile(from: _url, progress: { (progress, bytesDownloaded, totalBytes) in
                     
                 }, completion: { (result) in
                     

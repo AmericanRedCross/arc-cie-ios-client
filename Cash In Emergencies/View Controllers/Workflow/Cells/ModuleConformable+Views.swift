@@ -266,7 +266,7 @@ class Tool: ModuleConformable, Row {
     
     var hasBeenExported: Bool {
         let exportFile = internalModule?.attachments?.first?.url.flatMap({ (url) -> URL? in
-            return ContentController().localFileURL(for: url)
+            return ContentManager().localFileURL(for: url)
         })
         
         return exportFile != nil

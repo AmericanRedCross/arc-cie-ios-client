@@ -45,7 +45,7 @@ class ToolIndexManager {
 
                 guard let moduleIdentifier = Int(searchItem.uniqueIdentifier), let modulesToSearch = DirectoryManager().directories else { return nil }
 
-                if let _foundModule = DirectoryManager().module(for: moduleIdentifier, in: modulesToSearch), let parentString = searchItem.attributeSet.containerDisplayName {
+                if let _foundModule = DirectoryManager.directory(for: moduleIdentifier, in: modulesToSearch), let parentString = searchItem.attributeSet.containerDisplayName {
                     return (parentString, _foundModule)
                 }
     
@@ -83,7 +83,7 @@ class ToolIndexManager {
 
                 guard let moduleIdentifier = Int(searchItem.uniqueIdentifier), let modulesToSearch = DirectoryManager().directories else { return nil }
 
-                if let _foundModule = DirectoryManager().module(for: moduleIdentifier, in: modulesToSearch), let parentString = searchItem.attributeSet.containerDisplayName {
+                if let _foundModule = DirectoryManager.directory(for: moduleIdentifier, in: modulesToSearch), let parentString = searchItem.attributeSet.containerDisplayName {
                     return (parentString, _foundModule)
                 }
                 

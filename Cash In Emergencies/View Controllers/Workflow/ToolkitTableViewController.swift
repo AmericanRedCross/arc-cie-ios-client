@@ -233,7 +233,7 @@ class ToolkitTableViewController: TableViewController {
     
     func handleLoadMarkdown(for contentPath: String) {
         
-        let contentURL = ContentController().fileUrl(from: contentPath)
+        let contentURL = ContentManager().fileUrl(from: contentPath)
         
         guard let presentingView = self.parent else {
             return
