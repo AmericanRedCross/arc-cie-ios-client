@@ -22,7 +22,7 @@ extension ToolkitTableViewController {
             return ContentManager().localFileURL(for: url)
         })
         
-        let exportTitle = exportFile == nil ? "DOWNLOAD" : "EXPORT"
+        let exportTitle = exportFile == nil ? "DOWNLOAD" : "OPEN"
         let exportOption = UIContextualAction(style: .normal, title: exportTitle) { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: @escaping (Bool) -> Void) in
             
             if let _url = directory.attachments?.first?.url {
