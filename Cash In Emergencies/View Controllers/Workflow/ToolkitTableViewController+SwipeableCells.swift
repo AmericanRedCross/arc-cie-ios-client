@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import ARCDM
 import QuickLook
+import ThunderBasics
 
 @available(iOS 11.0, *)
 extension ToolkitTableViewController {
@@ -42,10 +43,28 @@ extension ToolkitTableViewController {
                     return
                 }
                 
+                // Show a loading indicator
+                DispatchQueue.main.async {
+                    self.view.isUserInteractionEnabled = false
+                    self.parent?.view.isUserInteractionEnabled = false
+                    self.navigationController?.view.isUserInteractionEnabled = false
+                    self.tabBarController?.view.isUserInteractionEnabled = false
+                    MDCHUDActivityView.start(in: self.view.window, text: "Downloading")
+                }
+                
                 //Download it instead
                 ContentController().downloadDocumentFile(from: _url, progress: { (progress, bytesDownloaded, totalBytes) in
                     
                 }, completion: { (result) in
+                    
+                    // Finish loading indicator
+                    DispatchQueue.main.async {
+                        self.view.isUserInteractionEnabled = true
+                        self.parent?.view.isUserInteractionEnabled = true
+                        self.navigationController?.view.isUserInteractionEnabled = true
+                        self.tabBarController?.view.isUserInteractionEnabled = true
+                        MDCHUDActivityView.finish(in: self.view.window)
+                    }
                     
                     switch result {
                     case .success(let downloadedFileURL):
