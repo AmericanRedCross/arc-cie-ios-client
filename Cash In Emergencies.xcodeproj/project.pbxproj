@@ -43,7 +43,6 @@
 		49A787131F84EB4D0076ABB7 /* ToolIndexManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A787121F84EB4D0076ABB7 /* ToolIndexManager.swift */; };
 		49BCFFEE1F4479B600F68A40 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49BCFFED1F4479B600F68A40 /* Onboarding.storyboard */; };
 		49BCFFF21F4487EB00F68A40 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BCFFF11F4487EB00F68A40 /* OnboardingViewController.swift */; };
-		49BCFFF31F44895500F68A40 /* onboarding_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 49BCFFF01F4487A100F68A40 /* onboarding_video.mp4 */; };
 		49BF8DD81F73C5BC00A1890F /* ModuleStepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BF8DD61F73C5BC00A1890F /* ModuleStepTableViewCell.swift */; };
 		49BF8DD91F73C5BC00A1890F /* ModuleSubStepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49BF8DD71F73C5BC00A1890F /* ModuleSubStepTableViewCell.xib */; };
 		49C2DE8B1F502C7000DCFBB5 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C2DE8A1F502C7000DCFBB5 /* Utilities.swift */; };
@@ -234,7 +233,6 @@
 		49A4185F1F73EA96004C1F61 /* ModuleStepTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModuleStepTableViewCell.xib; sourceTree = "<group>"; };
 		49A787121F84EB4D0076ABB7 /* ToolIndexManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolIndexManager.swift; sourceTree = "<group>"; };
 		49BCFFED1F4479B600F68A40 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
-		49BCFFF01F4487A100F68A40 /* onboarding_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = onboarding_video.mp4; sourceTree = "<group>"; };
 		49BCFFF11F4487EB00F68A40 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		49BF8DD61F73C5BC00A1890F /* ModuleStepTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleStepTableViewCell.swift; sourceTree = "<group>"; };
 		49BF8DD71F73C5BC00A1890F /* ModuleSubStepTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModuleSubStepTableViewCell.xib; sourceTree = "<group>"; };
@@ -246,6 +244,7 @@
 		49FE8D891F419F6900B73731 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49FE8D8C1F419F6900B73731 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		49FE8D8E1F419F6900B73731 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF0BF03E1F96658C006235CB /* onboarding_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = onboarding_video.mp4; sourceTree = "<group>"; };
 		FF5CF3211F910BAC00DF7C5D /* ToolkitTableViewController+SwipeableCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToolkitTableViewController+SwipeableCells.swift"; sourceTree = "<group>"; };
 		FF5CF33C1F94DDD000DF7C5D /* UIViewController+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Error.swift"; sourceTree = "<group>"; };
 		FF82CCDF1F8CC358009FCC5B /* ProgressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTableViewCell.swift; sourceTree = "<group>"; };
@@ -443,7 +442,7 @@
 		49BCFFEF1F44879600F68A40 /* Files */ = {
 			isa = PBXGroup;
 			children = (
-				49BCFFF01F4487A100F68A40 /* onboarding_video.mp4 */,
+				FF0BF03E1F96658C006235CB /* onboarding_video.mp4 */,
 			);
 			path = Files;
 			sourceTree = "<group>";
@@ -687,7 +686,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF82CCE71F8CCA37009FCC5B /* ProgressTableViewCell.xib in Resources */,
-				49BCFFF31F44895500F68A40 /* onboarding_video.mp4 in Resources */,
 				498F45441F7CFA2000E8824C /* Document_Viewing.storyboard in Resources */,
 				4916408F1F4C5C3A0084CEE2 /* ModuleTableViewCell.xib in Resources */,
 				490DBE801F9119B1001E632A /* Export.storyboard in Resources */,

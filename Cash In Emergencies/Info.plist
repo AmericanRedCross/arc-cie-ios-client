@@ -21,7 +21,7 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>DMSSDKBaseURL</key>
-	<string>https://cie.arc.cubeapis.com/api/</string>
+	<string>https://cie-staging.arc.cubeapis.com/api/</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>

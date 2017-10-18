@@ -134,40 +134,7 @@ class ToolIndexManager {
                                     
                                     for file in files {
                                         
-                                        let searchableSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeContent as String)
-                                        searchableSet.displayName = file.directoryTitle
-                                        searchableSet.title = file.directoryTitle
-                                        searchableSet.containerTitle = substep.directoryTitle
-                                        if let moduleTitle = substep.directoryTitle, let subHierarchy = substep.metadata?["hierarchy"] as? String {
-                                            searchableSet.containerDisplayName = "\(subHierarchy) \(moduleTitle)"
-                                        }
-                                        
-                                        if let _criticalTool = file.metadata?["critical_path"] as? Bool {
-                                            if _criticalTool {
-                                                if let _key = CSCustomAttributeKey(keyName: "critical_path") {
-                                                    searchableSet.setValue(_criticalTool as NSNumber, forCustomKey: _key)
-                                                }
-                                            }
-                                        }
-                                    
-                                        searchableSet.containerIdentifier = String(describing: substep.identifier)
-                                        
-                                        
-                                        if let _firstAttachment = file.attachments?.first {
-                                            
-                                            if let size = _firstAttachment.size {
-                                                searchableSet.fileSize = NSNumber(value: size)
-                                            }
-                                            
-                                            if let _mimeImage = _firstAttachment.mimeImage() {
-                                                searchableSet.thumbnailData = UIImagePNGRepresentation(_mimeImage)
-                                            }
-                                        }
-                                        
-                                        let _moduleIdentifier = file.identifier
-                                        
-                                        let item = CSSearchableItem(uniqueIdentifier: "\(_moduleIdentifier)", domainIdentifier: domain, attributeSet: searchableSet)
-                                        
+                                        let item = createSearchableItem(for: file, parentSubstep: substep)
                                         searchableItems.append(item)
                                     }
                                 }
@@ -181,10 +148,62 @@ class ToolIndexManager {
         CSSearchableIndex.default().indexSearchableItems(searchableItems, completionHandler: completionHandler)
     }
     
+    func createSearchableItem(for file: Directory, parentSubstep: Directory) -> CSSearchableItem {
+        
+        let searchableSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeContent as String)
+        searchableSet.displayName = file.directoryTitle
+        searchableSet.title = file.directoryTitle
+        searchableSet.containerTitle = parentSubstep.directoryTitle
+        if let moduleTitle = parentSubstep.directoryTitle, let subHierarchy = parentSubstep.metadata?["hierarchy"] as? String {
+            searchableSet.containerDisplayName = "\(subHierarchy) \(moduleTitle)"
+        }
+        
+        if let _criticalTool = file.metadata?["critical_path"] as? Bool {
+            if _criticalTool {
+                if let _key = CSCustomAttributeKey(keyName: "critical_path") {
+                    searchableSet.setValue(_criticalTool as NSNumber, forCustomKey: _key)
+                }
+            }
+        } else if ProgressManager().userCriticalTool(for: file.identifier) {
+            if let _key = CSCustomAttributeKey(keyName: "critical_path") {
+                searchableSet.setValue((1 as NSNumber), forCustomKey: _key)
+            }
+        }
+        
+        searchableSet.containerIdentifier = String(describing: parentSubstep.identifier)
+        
+        
+        if let _firstAttachment = file.attachments?.first {
+            
+            if let size = _firstAttachment.size {
+                searchableSet.fileSize = NSNumber(value: size)
+            }
+            
+            if let _mimeImage = _firstAttachment.mimeImage() {
+                searchableSet.thumbnailData = UIImagePNGRepresentation(_mimeImage)
+            }
+        }
+        
+        let _moduleIdentifier = file.identifier
+        
+        let item = CSSearchableItem(uniqueIdentifier: "\(_moduleIdentifier)", domainIdentifier: domain, attributeSet: searchableSet)
+        
+        return item
+    }
+    
+    func indexTool(_ directory: Directory, completionHandler: ((Error?) -> Void)?) {
+        
+        if let parentIdentifier = directory.parentIdentifier, let directories = DirectoryManager().directories {
+            if let parentDirectory = DirectoryManager.directory(for: parentIdentifier, in: directories) {
+                let item = createSearchableItem(for: directory, parentSubstep: parentDirectory)
+                CSSearchableIndex.default().indexSearchableItems([item], completionHandler: completionHandler)
+            }
+        }
+    }
+    
     func unIndexAll(completionHandler: ((Error?) -> Void)?) {
         CSSearchableIndex.default().deleteSearchableItems(withDomainIdentifiers: [domain], completionHandler: completionHandler)
     }
-    
 }
 
 extension ToolIndexManager {

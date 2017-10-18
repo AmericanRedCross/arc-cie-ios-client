@@ -16,16 +16,16 @@ import ThunderBasics
 extension ToolkitTableViewController {
     
     
-    func addExportOptionIfAvailible(with module: Directory, at indexPath: IndexPath) -> UIContextualAction? {
+    func addExportOptionIfAvailible(with directory: Directory, at indexPath: IndexPath) -> UIContextualAction? {
         //Export
-        let exportFile = module.attachments?.first?.url.flatMap({ (url) -> URL? in
+        let exportFile = directory.attachments?.first?.url.flatMap({ (url) -> URL? in
             return ContentManager().localFileURL(for: url)
         })
         
-        let exportTitle = exportFile == nil ? "DOWNLOAD" : "EXPORT"
+        let exportTitle = exportFile == nil ? "DOWNLOAD" : "OPEN"
         let exportOption = UIContextualAction(style: .normal, title: exportTitle) { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: @escaping (Bool) -> Void) in
             
-            if let _url = module.attachments?.first?.url {
+            if let _url = directory.attachments?.first?.url {
                 
                 //Load it up if we already have it
                 if let _localFile = exportFile {
@@ -96,14 +96,14 @@ extension ToolkitTableViewController {
         return exportOption
     }
     
-    func addNoteOption(for module: Directory, at indexPath: IndexPath) -> UIContextualAction {
+    func addNoteOption(for directory: Directory, at indexPath: IndexPath) -> UIContextualAction {
         //Note
-        let noteOptionTitle = (ProgressManager().note(for: module.identifier) == nil) ? "ADD NOTE" : "EDIT NOTE"
+        let noteOptionTitle = (ProgressManager().note(for: directory.identifier) == nil) ? "ADD NOTE" : "EDIT NOTE"
         
         let noteOption = UIContextualAction(style: .normal, title: noteOptionTitle) {  [weak self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: @escaping (Bool) -> Void) in
 
             DispatchQueue.main.async {
-                self?.addNote(for: module, completion: {
+                self?.addNote(for: directory, completion: {
                     DispatchQueue.main.async {
                         self?.tableView.reloadRows(at: [indexPath], with: .automatic)
                     }
@@ -118,9 +118,9 @@ extension ToolkitTableViewController {
     }
     
     
-    func addCriticalToolOption(for module: Directory, at indexPath: IndexPath) -> UIContextualAction? {
+    func addCriticalToolOption(for directory: Directory, at indexPath: IndexPath) -> UIContextualAction? {
         //If it's marked as critical by DMS don't let them change it
-        let _criticalTool = module.metadata?["critical_path"] as? Bool ?? false
+        let _criticalTool = directory.metadata?["critical_path"] as? Bool ?? false
         
         // Only run if block criticalTool is nil or false
         if !_criticalTool  {
@@ -130,12 +130,18 @@ extension ToolkitTableViewController {
             
             let progressManager = ProgressManager()
             
-            let toolOptionTitle = progressManager.userCriticalTool(for: module.identifier) ? "UNMARK" : "MARK"
+            let toolOptionTitle = progressManager.userCriticalTool(for: directory.identifier) ? "UNMARK" : "MARK"
             let toolOption = UIContextualAction(style: .normal, title: toolOptionTitle) { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
                 
-                progressManager.toggleMarkToolAsUserCritical(for: module.identifier)
+                progressManager.toggleMarkToolAsUserCritical(for: directory.identifier)
                 DispatchQueue.main.async {
                     self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                }
+                
+                DispatchQueue.global().async {
+                    ToolIndexManager.shared.indexTool(directory, completionHandler: { error in
+                        self.reload(with: nil)
+                    })
                 }
                 
                 completionHandler(true)
@@ -152,20 +158,20 @@ extension ToolkitTableViewController {
     @available(iOS 11.0, *)
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        if let _toolDisplayed = data[indexPath.section].rows[indexPath.row] as? Tool, let module = _toolDisplayed.module() {
+        if let _toolDisplayed = data[indexPath.section].rows[indexPath.row] as? Tool, let directory = _toolDisplayed.module() {
             
             var actions = [UIContextualAction]()
             
             // Export
-            if let exportOption = self.addExportOptionIfAvailible(with: module, at: indexPath) {
+            if let exportOption = self.addExportOptionIfAvailible(with: directory, at: indexPath) {
                 actions.append(exportOption)
             }
             
             // Note
-            actions.append(addNoteOption(for: module, at: indexPath))
+            actions.append(addNoteOption(for: directory, at: indexPath))
         
             //Critical too
-            if let criticalToolOption = addCriticalToolOption(for: module, at: indexPath) {
+            if let criticalToolOption = addCriticalToolOption(for: directory, at: indexPath) {
                 actions.append(criticalToolOption)
             }
 
