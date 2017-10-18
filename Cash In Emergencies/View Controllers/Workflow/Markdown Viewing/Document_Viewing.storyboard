@@ -14,8 +14,8 @@
         <scene sceneID="vl6-iI-8kg">
             <objects>
                 <navigationController storyboardIdentifier="markdownNavigationControllerIdentifier" id="QaN-pC-XYu" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="vcf-ve-GcO">
-                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vcf-ve-GcO">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -26,7 +26,7 @@
             </objects>
             <point key="canvasLocation" x="-1052" y="-17"/>
         </scene>
-        <!--Assessment Roadmap-->
+        <!--Markdown View Controller-->
         <scene sceneID="2PH-Ha-oCD">
             <objects>
                 <viewController storyboardIdentifier="markdownViewController" id="6RT-Rc-cVw" customClass="MarkdownViewController" customModule="Cash_In_Emergencies" customModuleProvider="target" sceneMemberID="viewController">
@@ -36,7 +36,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="NBB-1r-f53"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Assessment Roadmap" id="lEs-cI-Fqr">
+                    <navigationItem key="navigationItem" id="lEs-cI-Fqr">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="ZEt-cT-n6w">
                             <connections>
                                 <segue destination="6RT-Rc-cVw" kind="custom" customClass="TSCDismissSegue" id="3PE-EC-Ob2"/>

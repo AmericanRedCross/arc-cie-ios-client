@@ -41,6 +41,7 @@
 		49A418601F73EA96004C1F61 /* ModuleSubStepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A4185E1F73EA96004C1F61 /* ModuleSubStepTableViewCell.swift */; };
 		49A418611F73EA96004C1F61 /* ModuleStepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49A4185F1F73EA96004C1F61 /* ModuleStepTableViewCell.xib */; };
 		49A787131F84EB4D0076ABB7 /* ToolIndexManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A787121F84EB4D0076ABB7 /* ToolIndexManager.swift */; };
+		49BBF6F11F9791DF00BEA8F8 /* onboarding_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = FF0BF03E1F96658C006235CB /* onboarding_video.mp4 */; };
 		49BCFFEE1F4479B600F68A40 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49BCFFED1F4479B600F68A40 /* Onboarding.storyboard */; };
 		49BCFFF21F4487EB00F68A40 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BCFFF11F4487EB00F68A40 /* OnboardingViewController.swift */; };
 		49BF8DD81F73C5BC00A1890F /* ModuleStepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BF8DD61F73C5BC00A1890F /* ModuleStepTableViewCell.swift */; };
@@ -695,6 +696,7 @@
 				49FE8D8D1F419F6900B73731 /* LaunchScreen.storyboard in Resources */,
 				49A418611F73EA96004C1F61 /* ModuleStepTableViewCell.xib in Resources */,
 				49BF8DD91F73C5BC00A1890F /* ModuleSubStepTableViewCell.xib in Resources */,
+				49BBF6F11F9791DF00BEA8F8 /* onboarding_video.mp4 in Resources */,
 				497DF1931F753D1300367A94 /* ToolTableViewCell.xib in Resources */,
 				49FE8D8A1F419F6900B73731 /* Assets.xcassets in Resources */,
 				49FE8D881F419F6900B73731 /* Main.storyboard in Resources */,

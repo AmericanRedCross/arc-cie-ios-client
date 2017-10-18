@@ -61,7 +61,7 @@ class SettingsTableViewController: UITableViewController {
             contentAvailableLabel.text = "Checking for updates..."
         }
         
-        if bundleInformation != nil {
+        if let languages = bundleInformation?.availableLanguages, languages.count > 0 {
             currentLanguageButton.isEnabled = true
         }
         
