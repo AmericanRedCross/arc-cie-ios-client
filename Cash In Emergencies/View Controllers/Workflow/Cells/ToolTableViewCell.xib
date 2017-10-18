@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -40,7 +39,7 @@
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mime_misc" translatesAutoresizingMaskIntoConstraints="NO" id="h6n-pq-BqC">
                                                 <rect key="frame" x="0.0" y="0.0" width="24" height="30"/>
-                                                <color key="tintColor" name="mainRedColor"/>
+                                                <color key="tintColor" red="0.93003803490000003" green="0.1054351404" blue="0.17794868350000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="6VN-iZ-LIP"/>
                                                     <constraint firstAttribute="width" constant="24" id="Kai-Qo-dIl"/>
@@ -146,8 +145,5 @@
         <image name="check_off" width="34" height="34"/>
         <image name="check_on" width="34" height="34"/>
         <image name="mime_misc" width="24" height="30"/>
-        <namedColor name="mainRedColor">
-            <color red="0.92941176470588238" green="0.10588235294117647" blue="0.1803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
     </resources>
 </document>
