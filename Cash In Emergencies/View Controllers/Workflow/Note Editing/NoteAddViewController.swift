@@ -20,6 +20,10 @@ class NoteAddViewController: UIViewController {
     var module: Directory?
     
     // MARK: - Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        automaticallyAdjustsScrollViewInsets = false
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
