@@ -11,19 +11,87 @@ import UIKit
 import DMSSDK
 import QuickLook
 import ThunderBasics
+import SwipeCellKit
 
-@available(iOS 11.0, *)
+
+// Bridges iOS11's UIContextualAction and SwipeCellKit's SwipeAction classes
+struct SwipeBridgingAction {
+    
+    var title: String?
+    var image: UIImage?
+    var style: SwipeStyle
+    var backgroundColor: UIColor? = nil
+    var handler: (() -> Bool)?
+    
+    
+    init(title: String?, image: UIImage?, style: SwipeStyle, handler: (() -> Bool)?) {
+        self.title = title
+        self.image = image
+        self.style = style
+        self.handler = handler
+    }
+    
+
+    @available(iOS 11.0, *)
+    func contextualAction() -> UIContextualAction {
+        
+        func contextualStyle() -> UIContextualAction.Style {
+            switch self.style {
+            case .normal:
+                    return UIContextualAction.Style.normal
+            case .destructive:
+                    return UIContextualAction.Style.destructive
+            }
+        }
+        
+        let action = UIContextualAction(style: contextualStyle(), title: self.title, handler: { (action, view, completionHandler) in
+            completionHandler(self.handler?() ?? true)
+        })
+        
+        action.backgroundColor = self.backgroundColor
+        action.image = image
+        
+        return action
+    }
+    
+    func swipeAction() -> SwipeAction {
+        
+        func swipeStyle() -> SwipeActionStyle {
+            switch self.style {
+            case .normal:
+                return SwipeActionStyle.default
+            case .destructive:
+                return SwipeActionStyle.destructive
+            }
+        }
+        
+        let action = SwipeAction(style: swipeStyle(), title: self.title, handler: { (action, indexPath) in
+            let _ = self.handler?()
+        })
+        
+        action.backgroundColor = self.backgroundColor
+        action.image = image
+        
+        return action
+    }
+    
+    enum SwipeStyle {
+        case normal
+        case destructive
+    }
+}
+
 extension ToolkitTableViewController {
     
-    
-    func addExportOptionIfAvailible(with directory: Directory, at indexPath: IndexPath) -> UIContextualAction? {
+    func addExportOptionIfAvailible(with directory: Directory, at indexPath: IndexPath) -> SwipeBridgingAction? {
         //Export
         let exportFile = directory.attachments?.first?.url.flatMap({ (url) -> URL? in
             return ContentManager().localFileURL(for: url)
         })
         
         let exportTitle = exportFile == nil ? "DOWNLOAD" : "OPEN"
-        let exportOption = UIContextualAction(style: .normal, title: exportTitle) { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: @escaping (Bool) -> Void) in
+        
+        var exportOption = SwipeBridgingAction(title: exportTitle, image: #imageLiteral(resourceName: "swipe_action_export"), style: .normal) { () -> Bool in
             
             if let _url = directory.attachments?.first?.url {
                 
@@ -39,8 +107,8 @@ extension ToolkitTableViewController {
                         self.present(quickLookView, animated: true, completion: nil)
                     })
                     
-                    completionHandler(true)
-                    return
+
+                    return true
                 }
                 
                 // Show a loading indicator
@@ -79,46 +147,47 @@ extension ToolkitTableViewController {
                             self.tableView.reloadRows(at: [indexPath], with: .automatic)
                             self.present(quickLookView, animated: true, completion: nil)
                         })
-                        
-                        completionHandler(true)
+                    
                         return
                         
                     case .failure(let error):
                         print(error)
-                        completionHandler(false)
                         return
                     }
                 })
-            }
         }
-        exportOption.image = #imageLiteral(resourceName: "swipe_action_export")
+        return true
+    }
+        
         exportOption.backgroundColor = UIColor(red: 237.0/255.0, green: 27.0/255.0, blue: 46.0/255.0, alpha: 1.0)
         return exportOption
     }
     
-    func addNoteOption(for directory: Directory, at indexPath: IndexPath) -> UIContextualAction {
+    func addNoteOption(for directory: Directory, at indexPath: IndexPath) -> SwipeBridgingAction {
         //Note
         let noteOptionTitle = (ProgressManager().note(for: directory.identifier) == nil) ? "ADD NOTE" : "EDIT NOTE"
         
-        let noteOption = UIContextualAction(style: .normal, title: noteOptionTitle) {  [weak self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: @escaping (Bool) -> Void) in
-
+        var noteOption = SwipeBridgingAction(title: noteOptionTitle, image: #imageLiteral(resourceName: "swipe_action_note_add"), style: .normal) { () -> Bool in
+            
             DispatchQueue.main.async {
-                self?.addNote(for: directory, completion: {
+                self.addNote(for: directory, completion: {
                     DispatchQueue.main.async {
-                        self?.tableView.reloadRows(at: [indexPath], with: .automatic)
+                        self.tableView.reloadRows(at: [indexPath], with: .automatic)
                     }
                 })
-                completionHandler(true)
+                
                 return
             }
+            
+            return true
         }
-        noteOption.image = #imageLiteral(resourceName: "swipe_action_note_add")
+        
         noteOption.backgroundColor = UIColor(red: 237.0/255.0, green: 27.0/255.0, blue: 46.0/255.0, alpha: 1.0)
         return noteOption
     }
     
     
-    func addCriticalToolOption(for directory: Directory, at indexPath: IndexPath) -> UIContextualAction? {
+    func addCriticalToolOption(for directory: Directory, at indexPath: IndexPath) -> SwipeBridgingAction? {
         //If it's marked as critical by DMS don't let them change it
         let _criticalTool = directory.metadata?["critical_path"] as? Bool ?? false
         
@@ -131,7 +200,8 @@ extension ToolkitTableViewController {
             let progressManager = ProgressManager()
             
             let toolOptionTitle = progressManager.userCriticalTool(for: directory.identifier) ? "UNMARK" : "MARK"
-            let toolOption = UIContextualAction(style: .normal, title: toolOptionTitle) { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
+            
+            var toolOption = SwipeBridgingAction(title: toolOptionTitle, image: #imageLiteral(resourceName: "swipe_action_critical_path_enable"), style: .normal, handler: { () -> Bool in
                 
                 progressManager.toggleMarkToolAsUserCritical(for: directory.identifier)
                 DispatchQueue.main.async {
@@ -144,16 +214,19 @@ extension ToolkitTableViewController {
                     })
                 }
                 
-                completionHandler(true)
-            }
+                return true
+            })
             
-            toolOption.image = #imageLiteral(resourceName: "swipe_action_critical_path_enable")
             toolOption.backgroundColor = UIColor(red: 237.0/255.0, green: 27.0/255.0, blue: 46.0/255.0, alpha: 1.0)
             return toolOption
         }
         
         return nil
     }
+}
+
+@available(iOS 11.0, *)
+extension ToolkitTableViewController {
     
     @available(iOS 11.0, *)
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -164,15 +237,15 @@ extension ToolkitTableViewController {
             
             // Export
             if let exportOption = self.addExportOptionIfAvailible(with: directory, at: indexPath) {
-                actions.append(exportOption)
+                actions.append(exportOption.contextualAction())
             }
             
             // Note
-            actions.append(addNoteOption(for: directory, at: indexPath))
+            actions.append(addNoteOption(for: directory, at: indexPath).contextualAction())
         
             //Critical too
             if let criticalToolOption = addCriticalToolOption(for: directory, at: indexPath) {
-                actions.append(criticalToolOption)
+                actions.append(criticalToolOption.contextualAction())
             }
 
             //Actions
@@ -184,5 +257,36 @@ extension ToolkitTableViewController {
         
         // Return empty array configuration as retuning nil provides default delete option
         return UISwipeActionsConfiguration(actions: [])
+    }
+}
+
+
+extension ToolkitTableViewController: SwipeTableViewCellDelegate {
+    
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        
+        if let _toolDisplayed = data[indexPath.section].rows[indexPath.row] as? Tool, let directory = _toolDisplayed.module() {
+            
+            var actions = [SwipeAction]()
+            
+            // Export
+            if let exportOption = self.addExportOptionIfAvailible(with: directory, at: indexPath) {
+                actions.append(exportOption.swipeAction())
+            }
+            
+            // Note
+            actions.append(addNoteOption(for: directory, at: indexPath).swipeAction())
+            
+            //Critical too
+            if let criticalToolOption = addCriticalToolOption(for: directory, at: indexPath) {
+                actions.append(criticalToolOption.swipeAction())
+            }
+        
+            
+            return actions
+        }
+        
+        return nil
     }
 }

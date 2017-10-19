@@ -54,7 +54,11 @@
 		49FE8D8D1F419F6900B73731 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49FE8D8B1F419F6900B73731 /* LaunchScreen.storyboard */; };
 		FF5CF3221F910BAC00DF7C5D /* ToolkitTableViewController+SwipeableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5CF3211F910BAC00DF7C5D /* ToolkitTableViewController+SwipeableCells.swift */; };
 		FF5CF33D1F94DDD000DF7C5D /* UIViewController+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5CF33C1F94DDD000DF7C5D /* UIViewController+Error.swift */; };
-		FF72F68C1F98F9A100912E04 /* SwipeCellKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FF72F6851F98F98900912E04 /* SwipeCellKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FF72F6921F98FAC300912E04 /* SwipeableToolTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF72F6901F98FAC300912E04 /* SwipeableToolTableViewCell.swift */; };
+		FF72F6931F98FAC300912E04 /* SwipeableToolTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF72F6911F98FAC300912E04 /* SwipeableToolTableViewCell.xib */; };
+		FF72F6941F98FAE900912E04 /* SwipeCellKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF72F6851F98F98900912E04 /* SwipeCellKit.framework */; };
+		FF72F6951F98FAEE00912E04 /* SwipeCellKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF72F6851F98F98900912E04 /* SwipeCellKit.framework */; };
+		FF72F6961F98FAEE00912E04 /* SwipeCellKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FF72F6851F98F98900912E04 /* SwipeCellKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FF82CCE11F8CC358009FCC5B /* ProgressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82CCDF1F8CC358009FCC5B /* ProgressTableViewCell.swift */; };
 		FF82CCE41F8CC38E009FCC5B /* ProgressTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82CCE31F8CC38E009FCC5B /* ProgressTableViewController.swift */; };
 		FF82CCE71F8CCA37009FCC5B /* ProgressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF82CCE01F8CC358009FCC5B /* ProgressTableViewCell.xib */; };
@@ -190,6 +194,13 @@
 			remoteGlobalIDString = 3F234AC31E44A7A400E22A38;
 			remoteInfo = SwipeCellKit;
 		};
+		FF72F6971F98FAEE00912E04 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF72F67F1F98F98900912E04 /* SwipeCellKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F234AC21E44A7A400E22A38;
+			remoteInfo = SwipeCellKit;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -199,7 +210,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				FF72F68C1F98F9A100912E04 /* SwipeCellKit.framework in Embed Frameworks */,
+				FF72F6961F98FAEE00912E04 /* SwipeCellKit.framework in Embed Frameworks */,
 				492F846B1F84D48D00BDD72D /* ThunderTable.framework in Embed Frameworks */,
 				492F84731F84D49300BDD72D /* ThunderBasics.framework in Embed Frameworks */,
 				496E467A1F960584003F34B8 /* ThunderRequest.framework in Embed Frameworks */,
@@ -258,6 +269,8 @@
 		FF5CF3211F910BAC00DF7C5D /* ToolkitTableViewController+SwipeableCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToolkitTableViewController+SwipeableCells.swift"; sourceTree = "<group>"; };
 		FF5CF33C1F94DDD000DF7C5D /* UIViewController+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Error.swift"; sourceTree = "<group>"; };
 		FF72F67F1F98F98900912E04 /* SwipeCellKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwipeCellKit.xcodeproj; path = SwipeCellKit/SwipeCellKit.xcodeproj; sourceTree = SOURCE_ROOT; };
+		FF72F6901F98FAC300912E04 /* SwipeableToolTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableToolTableViewCell.swift; sourceTree = "<group>"; };
+		FF72F6911F98FAC300912E04 /* SwipeableToolTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwipeableToolTableViewCell.xib; sourceTree = "<group>"; };
 		FF82CCDF1F8CC358009FCC5B /* ProgressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTableViewCell.swift; sourceTree = "<group>"; };
 		FF82CCE01F8CC358009FCC5B /* ProgressTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressTableViewCell.xib; sourceTree = "<group>"; };
 		FF82CCE31F8CC38E009FCC5B /* ProgressTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTableViewController.swift; sourceTree = "<group>"; };
@@ -271,6 +284,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF72F6951F98FAEE00912E04 /* SwipeCellKit.framework in Frameworks */,
+				FF72F6941F98FAE900912E04 /* SwipeCellKit.framework in Frameworks */,
 				492F846A1F84D48D00BDD72D /* ThunderTable.framework in Frameworks */,
 				496E46791F960584003F34B8 /* ThunderRequest.framework in Frameworks */,
 				492F84661F84D48A00BDD72D /* MarkdownView.framework in Frameworks */,
@@ -340,6 +355,8 @@
 				497DF1881F74FC5700367A94 /* ToolTableViewCell.xib */,
 				4916408C1F4C5C3A0084CEE2 /* ModuleTableViewCell.swift */,
 				4916408D1F4C5C3A0084CEE2 /* ModuleTableViewCell.xib */,
+				FF72F6901F98FAC300912E04 /* SwipeableToolTableViewCell.swift */,
+				FF72F6911F98FAC300912E04 /* SwipeableToolTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -545,6 +562,7 @@
 				492F84751F84D49300BDD72D /* PBXTargetDependency */,
 				496E46781F96057F003F34B8 /* PBXTargetDependency */,
 				496E467C1F960584003F34B8 /* PBXTargetDependency */,
+				FF72F6981F98FAEE00912E04 /* PBXTargetDependency */,
 			);
 			name = "Cash In Emergencies";
 			productName = "Cash In Emergencies";
@@ -725,6 +743,7 @@
 				49C3ED441F839E0E00763901 /* Notes.storyboard in Resources */,
 				49FE8D8D1F419F6900B73731 /* LaunchScreen.storyboard in Resources */,
 				49A418611F73EA96004C1F61 /* ModuleStepTableViewCell.xib in Resources */,
+				FF72F6931F98FAC300912E04 /* SwipeableToolTableViewCell.xib in Resources */,
 				49BF8DD91F73C5BC00A1890F /* ModuleSubStepTableViewCell.xib in Resources */,
 				49BBF6F11F9791DF00BEA8F8 /* onboarding_video.mp4 in Resources */,
 				497DF1931F753D1300367A94 /* ToolTableViewCell.xib in Resources */,
@@ -744,6 +763,7 @@
 				FF5CF33D1F94DDD000DF7C5D /* UIViewController+Error.swift in Sources */,
 				492F83E81F84D15100BDD72D /* ModuleConformable+Views.swift in Sources */,
 				491640821F4C38230084CEE2 /* ARCNavigationController.swift in Sources */,
+				FF72F6921F98FAC300912E04 /* SwipeableToolTableViewCell.swift in Sources */,
 				49BF8DD81F73C5BC00A1890F /* ModuleStepTableViewCell.swift in Sources */,
 				49A787131F84EB4D0076ABB7 /* ToolIndexManager.swift in Sources */,
 				498F45461F7CFB4600E8824C /* MarkdownViewController.swift in Sources */,
@@ -797,6 +817,11 @@
 			isa = PBXTargetDependency;
 			name = ThunderRequest;
 			targetProxy = 496E467B1F960584003F34B8 /* PBXContainerItemProxy */;
+		};
+		FF72F6981F98FAEE00912E04 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwipeCellKit;
+			targetProxy = FF72F6971F98FAEE00912E04 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
