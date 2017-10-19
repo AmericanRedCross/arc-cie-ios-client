@@ -311,6 +311,8 @@ class Tool: ModuleConformable, Row {
                 _cell.toolImageView.image = _firstAttachment.mimeImage()
             }
             
+            _cell.toolImageView.tintColor = UIColor(hexString: "ED1B2D")
+            
             _cell.criticalToolStackView.isHidden = true
             _cell.toolCriticalToolButton.isHidden = true
             _cell.userMarkedCriticalButton.isHidden = true
