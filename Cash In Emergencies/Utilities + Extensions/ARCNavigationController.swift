@@ -16,12 +16,12 @@ class ARCNavigationController: UINavigationController {
         
         
         // Add Export and Settings options on our two main view controllers
-        if let topVc = topViewController, topVc is ToolkitTableViewController || topVc is ProgressTableViewController {
+        if let topVc = topViewController, topVc is WorkflowViewController || topVc is ProgressTableViewController {
             let exportButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "workflow-navigation-download-icon"), style: .done, target: self, action: #selector(showExportOptions))
             
             let settingsButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "workflow-navigation-settings-icon"), style: .done, target: self, action: #selector(showSettings))
             
-            self.topViewController?.navigationItem.rightBarButtonItems = [exportButtonItem, settingsButtonItem]
+            self.topViewController?.navigationItem.rightBarButtonItems = [settingsButtonItem, exportButtonItem]
         }
     }
     

@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -272,22 +271,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="46q-57-8x1"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Workflow" id="vCI-t3-zvu">
-                        <rightBarButtonItems>
-                            <barButtonItem title="Item" image="workflow-navigation-settings-icon" id="Bvl-tv-82s">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <segue destination="m7G-Fw-HpD" kind="show" id="Q3L-RX-xVv"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Item" image="workflow-navigation-download-icon" id="XOV-lp-qCA">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <segue destination="Xwh-BK-ZUd" kind="showDetail" id="gk2-qN-uWg"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Workflow" id="vCI-t3-zvu"/>
                     <connections>
                         <outlet property="criticalToolsButton" destination="G9l-Yt-E1C" id="DKd-Pz-8Q7"/>
                         <outlet property="toolkitButton" destination="PYH-kj-Ky8" id="kCc-2s-PBJ"/>
@@ -296,14 +280,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nMf-wW-W4e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="929" y="-919"/>
-        </scene>
-        <!--Settings-->
-        <scene sceneID="cdy-Gi-2jE">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Settings" id="m7G-Fw-HpD" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lTv-bv-3sc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1596" y="-1345"/>
         </scene>
         <!--Toolkit Table View Controller-->
         <scene sceneID="hjX-UX-qq0">
@@ -338,21 +314,11 @@
             </objects>
             <point key="canvasLocation" x="929" y="-243"/>
         </scene>
-        <!--Export-->
-        <scene sceneID="DUR-yK-qt6">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Export" id="Xwh-BK-ZUd" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gEL-RK-qtJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1777" y="-1238"/>
-        </scene>
     </scenes>
     <resources>
         <image name="segmented-critical-tools" width="8" height="16"/>
         <image name="segmented-toolkit" width="16" height="14"/>
         <image name="tab-progress" width="22" height="21"/>
         <image name="tab-workflow" width="20" height="20"/>
-        <image name="workflow-navigation-download-icon" width="32" height="32"/>
-        <image name="workflow-navigation-settings-icon" width="32" height="32"/>
     </resources>
 </document>
