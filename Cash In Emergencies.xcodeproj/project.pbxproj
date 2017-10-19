@@ -54,6 +54,7 @@
 		49FE8D8D1F419F6900B73731 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49FE8D8B1F419F6900B73731 /* LaunchScreen.storyboard */; };
 		FF5CF3221F910BAC00DF7C5D /* ToolkitTableViewController+SwipeableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5CF3211F910BAC00DF7C5D /* ToolkitTableViewController+SwipeableCells.swift */; };
 		FF5CF33D1F94DDD000DF7C5D /* UIViewController+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5CF33C1F94DDD000DF7C5D /* UIViewController+Error.swift */; };
+		FF72F68C1F98F9A100912E04 /* SwipeCellKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FF72F6851F98F98900912E04 /* SwipeCellKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FF82CCE11F8CC358009FCC5B /* ProgressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82CCDF1F8CC358009FCC5B /* ProgressTableViewCell.swift */; };
 		FF82CCE41F8CC38E009FCC5B /* ProgressTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82CCE31F8CC38E009FCC5B /* ProgressTableViewController.swift */; };
 		FF82CCE71F8CCA37009FCC5B /* ProgressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF82CCE01F8CC358009FCC5B /* ProgressTableViewCell.xib */; };
@@ -182,6 +183,13 @@
 			remoteGlobalIDString = C2E5088119C835A300350F00;
 			remoteInfo = ThunderRequest;
 		};
+		FF72F6841F98F98900912E04 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF72F67F1F98F98900912E04 /* SwipeCellKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3F234AC31E44A7A400E22A38;
+			remoteInfo = SwipeCellKit;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -191,6 +199,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				FF72F68C1F98F9A100912E04 /* SwipeCellKit.framework in Embed Frameworks */,
 				492F846B1F84D48D00BDD72D /* ThunderTable.framework in Embed Frameworks */,
 				492F84731F84D49300BDD72D /* ThunderBasics.framework in Embed Frameworks */,
 				496E467A1F960584003F34B8 /* ThunderRequest.framework in Embed Frameworks */,
@@ -248,6 +257,7 @@
 		FF0BF03E1F96658C006235CB /* onboarding_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = onboarding_video.mp4; sourceTree = "<group>"; };
 		FF5CF3211F910BAC00DF7C5D /* ToolkitTableViewController+SwipeableCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToolkitTableViewController+SwipeableCells.swift"; sourceTree = "<group>"; };
 		FF5CF33C1F94DDD000DF7C5D /* UIViewController+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Error.swift"; sourceTree = "<group>"; };
+		FF72F67F1F98F98900912E04 /* SwipeCellKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwipeCellKit.xcodeproj; path = SwipeCellKit/SwipeCellKit.xcodeproj; sourceTree = SOURCE_ROOT; };
 		FF82CCDF1F8CC358009FCC5B /* ProgressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTableViewCell.swift; sourceTree = "<group>"; };
 		FF82CCE01F8CC358009FCC5B /* ProgressTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressTableViewCell.xib; sourceTree = "<group>"; };
 		FF82CCE31F8CC38E009FCC5B /* ProgressTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTableViewController.swift; sourceTree = "<group>"; };
@@ -477,6 +487,7 @@
 				498F45711F823F7200E8824C /* Cash In Emergencies.entitlements */,
 				49FE8D8B1F419F6900B73731 /* LaunchScreen.storyboard */,
 				49FE8D8E1F419F6900B73731 /* Info.plist */,
+				FF72F67F1F98F98900912E04 /* SwipeCellKit.xcodeproj */,
 				496E46471F960568003F34B8 /* DMSSDK.xcodeproj */,
 				492F84601F84D48100BDD72D /* MarkdownView.xcodeproj */,
 				492F84571F84D47700BDD72D /* ThunderTable.xcodeproj */,
@@ -484,6 +495,14 @@
 				496E46631F960577003F34B8 /* ThunderRequest.xcodeproj */,
 			);
 			path = "Cash In Emergencies";
+			sourceTree = "<group>";
+		};
+		FF72F6801F98F98900912E04 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FF72F6851F98F98900912E04 /* SwipeCellKit.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		FF82CCDE1F8CC2C9009FCC5B /* Progress */ = {
@@ -573,6 +592,10 @@
 				{
 					ProductGroup = 492F84611F84D48100BDD72D /* Products */;
 					ProjectRef = 492F84601F84D48100BDD72D /* MarkdownView.xcodeproj */;
+				},
+				{
+					ProductGroup = FF72F6801F98F98900912E04 /* Products */;
+					ProjectRef = FF72F67F1F98F98900912E04 /* SwipeCellKit.xcodeproj */;
 				},
 				{
 					ProductGroup = 492F842B1F84D44800BDD72D /* Products */;
@@ -677,6 +700,13 @@
 			fileType = wrapper.framework;
 			path = ThunderRequestTV.framework;
 			remoteRef = 496E46731F960577003F34B8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FF72F6851F98F98900912E04 /* SwipeCellKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwipeCellKit.framework;
+			remoteRef = FF72F6841F98F98900912E04 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
