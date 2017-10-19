@@ -26,14 +26,17 @@ class WorkflowViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        toolkitTableViewController?.tableView.contentOffset = CGPoint(x: 0, y: 44)
-        
+
         toolkitButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -10)
         toolkitButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 0)
         
         criticalToolsButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -10)
         criticalToolsButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 0)
+        
+        if let searchBar = toolkitTableViewController?.searchBar {
+            toolkitTableViewController?.tableView.contentOffset = CGPoint(x: 0, y: searchBar.frame.height)
+        }
+        
 
         if !UserDefaults.standard.bool(forKey: "CIEHasDoneOnboarding") {
             let onboarding = UIStoryboard(name: "Onboarding", bundle: Bundle.main).instantiateInitialViewController()
