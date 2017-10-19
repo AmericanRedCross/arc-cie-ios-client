@@ -122,7 +122,10 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <edgeInsets key="layoutMargins" top="20" left="0.0" bottom="20" right="0.0"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="120" id="Ne2-pZ-xy4"/>
+                        </constraints>
+                        <edgeInsets key="layoutMargins" top="25" left="0.0" bottom="25" right="0.0"/>
                     </stackView>
                 </subviews>
                 <constraints>
@@ -144,7 +147,7 @@
                 <outlet property="toolTitleLabel" destination="te2-4R-tQ4" id="er5-zH-LA5"/>
                 <outlet property="userMarkedCriticalButton" destination="I9N-MO-0Lu" id="hoB-zQ-TJQ"/>
             </connections>
-            <point key="canvasLocation" x="98" y="179.5"/>
+            <point key="canvasLocation" x="98" y="187"/>
         </tableViewCell>
     </objects>
     <resources>
