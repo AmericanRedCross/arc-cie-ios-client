@@ -54,6 +54,14 @@ class MarkdownViewController: UIViewController {
                  MDCHUDActivityView.finish(in: welf.view)
             }
         }
+        
+        // called when user touch link
+        downView?.onTouchLink = { [weak self] request in
+            guard let url = request.url else { return false }
+            
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            return true
+        }
        
 //        try? downView?.update(markdownString: string)
     }
