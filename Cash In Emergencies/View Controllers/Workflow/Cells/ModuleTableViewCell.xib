@@ -86,11 +86,8 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w3j-3T-oJh">
-                        <rect key="frame" x="460" y="62" width="32" height="32"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="32" id="73X-u0-xDH"/>
-                            <constraint firstAttribute="height" constant="32" id="DHr-gN-rfy"/>
-                        </constraints>
+                        <rect key="frame" x="420" y="42" width="72" height="72"/>
+                        <inset key="contentEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
                         <state key="normal" image="workflow-cell-accessory"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0L-k3-RdL">
