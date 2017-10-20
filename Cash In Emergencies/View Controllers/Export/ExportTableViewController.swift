@@ -19,6 +19,10 @@ class ExportTableViewController: UITableViewController {
     @IBOutlet weak var criticalPathExportButton: UIButton!
     @IBOutlet weak var entireProgressExportButton: UIButton!
     @IBOutlet weak var doneButton: UIBarButtonItem!
+    @IBOutlet weak var entireToolkitLabel: UILabel!
+    @IBOutlet weak var criticalPathToolsLabel: UILabel!
+    @IBOutlet weak var entireToolkitExportButton: UIButton!
+    @IBOutlet weak var criticalPathToolsButton: UIButton!
     
     @IBAction func handleExportCriticalPath(_ sender: UIButton) {
         
@@ -55,6 +59,27 @@ class ExportTableViewController: UITableViewController {
         }
     }
     
+    @IBAction func handleExportEntireToolkit(_ sender: UIButton) {
+        
+        let toolkitURL = urlForToolKitZip()
+        if let _url = toolkitURL {
+            showShareSheetFor(url: _url)
+        }
+    }
+    
+    @IBAction func handleExportCriticalPathTools(_ sender: UIButton) {
+        let toolkitURL = urlForToolKitZip(onlyCritical: true)
+        if let _url = toolkitURL {
+            showShareSheetFor(url: _url)
+        }
+    }
+    
+    func showShareSheetFor(url: URL) {
+        
+        let shareView = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        present(shareView, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -68,6 +93,10 @@ class ExportTableViewController: UITableViewController {
         criticalPathExportButton?.setTitle(NSLocalizedString("EXPORT_BUTTON_EXPORT", value: "Export", comment: "Button that exports user content"), for: .normal)
         entireProgressExportButton?.setTitle(NSLocalizedString("EXPORT_BUTTON_EXPORT", value: "Export", comment: "Button that exports user content"), for: .normal)
         doneButton?.title = NSLocalizedString("EXPORT_BUTTON_DONE", value: "Done", comment: "Button to dismiss the export view")
+        entireToolkitLabel?.text = NSLocalizedString("EXPORT_ENTIRETOOLKIT_TEXT", value: "Entire Toolkit", comment: "Text for the row that allows exporting the entire toolkit")
+        criticalPathToolsLabel?.text = NSLocalizedString("EXPORT_CRITICALPATHTOOLS_TEXT", value: "Critical Path Tools", comment: "Text for the row that allows exporting the critical path tools")
+        entireToolkitExportButton?.setTitle(NSLocalizedString("EXPORT_BUTTON_EXPORT", value: "Export", comment: "Button that exports user content"), for: .normal)
+        criticalPathToolsButton?.setTitle(NSLocalizedString("EXPORT_BUTTON_EXPORT", value: "Export", comment: "Button that exports user content"), for: .normal)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -84,6 +113,41 @@ class ExportTableViewController: UITableViewController {
         var errorDescription: String? {
                 return "There was a problem exporting the file you requested."
         }
+    }
+    
+    /// Created a URL for the toolkit that can be shared so users can download a zip of the tools.
+    ///
+    /// - Parameter onlyCritical: If this parameter is set to true the zip will only contain critical tools
+    /// - Returns: Returns a ZIP file URL for the users to download content with
+     func urlForToolKitZip(onlyCritical: Bool = false) -> URL? {
+        
+        guard let baseURLString = Bundle.main.infoDictionary?["DMSSDKBaseURL"] as? String else {
+            return nil
+        }
+        
+        //Set base URL
+        var url = URL(string: baseURLString)?.appendingPathComponent("projects/1/files/export")
+        
+        guard let _url = url else {
+            return nil
+        }
+        
+        //Add language if required
+        if let language = UserDefaults.standard.string(forKey: "ContentOverrideLanguage") {
+            if let _newURL = URL(string: "\(_url.absoluteString)?language=\(language)") {
+                url = _newURL
+            }
+        }
+        
+        //Add critical only if required
+        if onlyCritical == true {
+            
+            if let _criticalURL = URL(string: "\(_url.absoluteString)&meta=critical_path&value=true") {
+                url = _criticalURL
+            }
+        }
+        
+        return url
     }
 }
 
