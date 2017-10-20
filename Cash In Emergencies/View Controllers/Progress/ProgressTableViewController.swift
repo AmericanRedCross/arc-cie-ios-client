@@ -26,6 +26,8 @@ class ProgressTableViewController: TableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(valuesChanged), name: NSNotification.Name("ModulesDidIndex"), object: nil)
+        
         overallProgressBarView.barColour = UIColor(hexString: "ed1b2e")
         
         // If any of the substeps/tools become completed we need to redraw the tableView to show the updated values
@@ -38,6 +40,7 @@ class ProgressTableViewController: TableViewController {
         
         redraw()
     }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -128,14 +131,14 @@ class ProgressTableViewController: TableViewController {
         self.data = [TableSection(rows: viewModels)]
         needsReload = false
     }
+    
+    // MARK: - Table view data source
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 110
         
-        // MARK: - Table view data source
-        override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return 110
-            
-        }
+    }
         
-        override var preferredStatusBarStyle: UIStatusBarStyle {
-            return .lightContent
-        }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
