@@ -31,6 +31,26 @@ class SettingsTableViewController: UITableViewController {
     /// The bundle information from the server containing information about languages and download URLs
     var bundleInformation: BundleInformation?
     
+    /// Done button to dismiss the view
+    @IBOutlet weak var doneButton: UIBarButtonItem!
+    
+    /// Label of cell for showing welcome tutorial video
+    @IBOutlet weak var watchVideoLabel: UILabel!
+    
+    /// Subtitle label of cell for showing tutorial video
+    @IBOutlet weak var watchVideoSubLabel: UILabel!
+    
+    /// Title label of cell for resetting user data
+    @IBOutlet weak var resetDataTitleLabel: UILabel!
+    
+    /// Subtitle label of cell for resetting user data
+    @IBOutlet weak var resetDataSubtitleLabel: UILabel!
+    
+    /// Title label of cell for changing language
+    @IBOutlet weak var changeLanguageTitleLabel: UILabel!
+    
+    /// Subtitle label of cell for changing language
+    @IBOutlet weak var changeLanguageSubtitleLabel: UILabel!
     //MARK: - VC Lifecycle & Drawing
     override func viewDidLoad() {
         
@@ -42,6 +62,16 @@ class SettingsTableViewController: UITableViewController {
         
         redraw()
         getBundleInformation()
+        
+        title = NSLocalizedString("SETTINGS_TITLE", value: "Settings", comment: "Title for the settings screen shown in the navigation bar")
+        doneButton?.title = NSLocalizedString("SETTINGS_BUTTON_DONE", value: "Done", comment: "Done button to dismiss the settings view")
+        downloadButton?.setTitle(NSLocalizedString("SETTINGS_BUTTON_DOWNLOAD", value: "Download", comment: "Download button shown when new content is available to download"), for: .normal)
+        watchVideoLabel?.text = NSLocalizedString("SETTINGS_TUTORIAL_LABEL_TITLE", value: "Watch the video", comment: "Title Label of cell that triggers watching tutorial video")
+        watchVideoLabel?.text = NSLocalizedString("SETTINGS_TUTORIAL_LABEL_SUBTITLE", value: "Watch the tutorial video", comment: "Subtitle Label of cell that triggers watching tutorial video")
+        resetDataTitleLabel?.text = NSLocalizedString("SETTINGS_RESET_LABEL_TITLE", value: "Reset All Data", comment: "Title Label of cell that triggers resetting user data")
+        resetDataSubtitleLabel?.text = NSLocalizedString("SETTINGS_RESET_LABEL_SUBTITLE", value: "Clears all progress and note data", comment: "Subtitle Label of cell that triggers resetting user data")
+        changeLanguageTitleLabel?.text = NSLocalizedString("SETTINGS_LANGUAGE_LABEL_TITLE", value: "Change Language", comment: "Title Label of cell that presents options for changing language")
+        changeLanguageSubtitleLabel?.text = NSLocalizedString("SETTINGS_LANGUAGE_LABEL_SUBTITLE", value: "Downloads the App Content in another Language", comment: "Subtitle Label of cell that presents options for changing language")
     }
     
     func redraw() {
@@ -50,15 +80,15 @@ class SettingsTableViewController: UITableViewController {
         if let publishDate = bundleInformation?.publishDate, publishDate.timeIntervalSince1970 > currentTimestamp {
             
             downloadButton.isHidden = false
-            contentAvailableLabel.text = "New Content Available"
+            contentAvailableLabel.text = NSLocalizedString("SETTINGS_LABEL_NEWCONTENT", value: "New Content Available", comment: "Indicates that there is new content available to download")
         } else if let publishDate = bundleInformation?.publishDate, publishDate.timeIntervalSince1970 == currentTimestamp {
             
             downloadButton.isHidden = true
-            contentAvailableLabel.text = "Content up to date"
+            contentAvailableLabel.text = NSLocalizedString("SETTINGS_LABEL_UPTODATE", value: "Content up to date", comment: "Indicates that the content is up to date and no update is available")
         } else {
             
             downloadButton.isHidden = true
-            contentAvailableLabel.text = "Checking for updates..."
+            contentAvailableLabel.text = NSLocalizedString("SETTINGS_LABEL_UPDATECHECKING", value: "Checking for updates...", comment: "Indicates that the app is currently checking for updates")
         }
         
         if let languages = bundleInformation?.availableLanguages, languages.count > 0 {
@@ -115,13 +145,13 @@ class SettingsTableViewController: UITableViewController {
     /// Resets the user data so that the app works like a fresh install
     func handleResetData() {
         
-        let resetDataAlert = UIAlertController(title: "Reset All Data", message: "This will clear all progress and notes recorded in the app", preferredStyle: .alert)
+        let resetDataAlert = UIAlertController(title: NSLocalizedString("SETTINGS_ALERT_RESET_TITLE", value: "Reset all data", comment: "Title of alert warning user that all data will be reset"), message: NSLocalizedString("SETTINGS_ALERT_RESET_MESSAGE", value: "This will clear all progress and notes recorded in the app", comment: "Message of alert warning user that all data will be reset"), preferredStyle: .alert)
         
-        resetDataAlert.addAction(UIAlertAction(title: "Okay", style: .destructive, handler: { (action: UIAlertAction) in
+        resetDataAlert.addAction(UIAlertAction(title: NSLocalizedString("SETTINGS_ALERT_RESET_BUTTON_OKAY", value: "Okay", comment: "Button to accept resetting user data"), style: .destructive, handler: { (action: UIAlertAction) in
             ProgressManager().clearAllUserValues()
         }))
         
-        resetDataAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        resetDataAlert.addAction(UIAlertAction(title: NSLocalizedString("SETTINGS_ALERT_RESET_BUTTON_CANCEL", value: "Cancel", comment: "Button to abort the resetting of user data"), style: .cancel, handler: nil))
         
         present(resetDataAlert, animated: true, completion: nil)
     }
@@ -132,8 +162,8 @@ class SettingsTableViewController: UITableViewController {
     /// - Parameter sender: The download button
     @IBAction func handleDownloadButton(_ sender: UIButton) {
         
-        let downloadWarning = UIAlertController(title: "Warning!", message: "We recommend you not to do this during an active operation, as the structure and content of the toolkit may have changed significantly", preferredStyle: .alert)
-        downloadWarning.addAction(UIAlertAction(title: "Proceed", style: .destructive, handler: { [weak self] (action) in
+        let downloadWarning = UIAlertController(title: NSLocalizedString("SETTINGS_ALERT_DOWNLOAD_TITLE", value: "Warning!", comment: "Title of alert warning user that downloading data is dangerous"), message: NSLocalizedString("SETTINGS_ALERT_DOWNLOAD_MESSAGE", value: "We recommend you not to do this during an active operation, as the structure and content of the toolkit may have changed significantly", comment: "Message body of alert warning user that downloading data is dangerous while on an active operation"), preferredStyle: .alert)
+        downloadWarning.addAction(UIAlertAction(title: NSLocalizedString("SETTINGS_ALERT_DOWNLOAD_BUTTON_ACCEPT", value: "Proceed", comment: "Button to proceed with downloading new bundle"), style: .destructive, handler: { [weak self] (action) in
             if let welf = self {
                 welf.navigationItem.rightBarButtonItem?.isEnabled = false
                 MDCHUDActivityView.start(in: welf.view.window)
@@ -142,7 +172,7 @@ class SettingsTableViewController: UITableViewController {
             }
         }))
         
-        downloadWarning.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        downloadWarning.addAction(UIAlertAction(title: NSLocalizedString("SETTINGS_ALERT_DOWNLOAD_BUTTON_CANCEL", value: "Cancel", comment: "Button to abort the downloading new bundle"), style: .cancel, handler: nil))
         present(downloadWarning, animated: true, completion: nil)
     }
     
@@ -172,7 +202,7 @@ class SettingsTableViewController: UITableViewController {
     /// Presents an action sheet with available languages that the user can select
     @IBAction func handleLanguagePicker() {
         
-        let languagePicker = UIAlertController(title: "Select Language", message: nil, preferredStyle: .actionSheet)
+        let languagePicker = UIAlertController(title: NSLocalizedString("SETTINGS_ACTIONSHEET_LANGUAGE_TITLE", value: "Select Language", comment: "Title of action sheet that lists available languages to switch the app content to. User may select one option"), message: nil, preferredStyle: .actionSheet)
         
         if let languageOptions = bundleInformation?.availableLanguages {
             
@@ -189,7 +219,7 @@ class SettingsTableViewController: UITableViewController {
                 }))
             }
             
-            languagePicker.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            languagePicker.addAction(UIAlertAction(title: NSLocalizedString("SETTINGS_ACTIONSHEET_LANGUAGE_BUTTON_CANCEL", value: "Cancel", comment: "Button to cancel switching app content language"), style: .cancel, handler: nil))
         }
         
         showDetailViewController(languagePicker, sender: self)

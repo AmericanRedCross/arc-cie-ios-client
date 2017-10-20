@@ -14,6 +14,12 @@ class NoteAddViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var bottomLayoutConstraint: NSLayoutConstraint!
     
+    /// Cancel button to dismiss the note adding without saving
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    
+    /// Button that saves the text entered for the note
+    @IBOutlet weak var saveButton: UIButton!
+    
     /// Optional closure to be fired when the user has either saved a note or discarded one
     var completionHandler: (() -> Void)?
     
@@ -43,6 +49,13 @@ class NoteAddViewController: UIViewController {
                 textView?.text = text
             }
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        cancelButton.title = NSLocalizedString("NOTE_CANCEL", value: "Cancel", comment: "Cancels the process of adding a note and dismisses the view")
+        navigationItem.prompt = NSLocalizedString("NOTE_PROMPT", value: "Edit Note", comment: "The prompt in the navigation bar that indicates you are editing a note")
+        saveButton.setTitle(NSLocalizedString("NOTE_SAVE", value: "Save", comment: "Text on the button that saves the note and dismisses the view"), for: .normal)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

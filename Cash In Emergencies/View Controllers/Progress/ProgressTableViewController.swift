@@ -16,12 +16,19 @@ class ProgressTableViewController: TableViewController {
     // Boolean for if the tableViews data needs to be reloaded 
     var needsReload: Bool = false
     
+    /// Label displaying the title to explain the purpose of the view
+    @IBOutlet weak var workflowProgressLabel: UILabel!
+    
     // Label displaying the combination of all of the module progress
     @IBOutlet weak var overallProgressLabel: UILabel!
     
     // Bar that displays the overall progress
     @IBOutlet weak var overallProgressBarView: ModuleProgressView!
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.navigationController?.tabBarItem?.title = NSLocalizedString("PROGRESS_TABBAR_TITLE", value: "Progress", comment: "Word to display on the tab bar for the progress tab")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +44,9 @@ class ProgressTableViewController: TableViewController {
         }
         
         redraw()
+        
+        self.title = NSLocalizedString("PROGRESS_NAVIGATION_TITLE", value: "Progress", comment: "The title in the navigation bar at the top of the progress view")
+        workflowProgressLabel?.text = NSLocalizedString("PROGRESS_HEADER_TITLE", value:"WORKFLOW PROGRESS", comment: "A header title explaining that the view displays workflow progress. Styled in upercase")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -122,8 +132,8 @@ class ProgressTableViewController: TableViewController {
        
         let overallProgressAmount = (totalPercentage / Double(viewModels.count))
         overallProgressBarView.progress = overallProgressAmount
-        
-        overallProgressLabel.text = "OVERALL COMPLETION \(Int(overallProgressAmount))%"
+
+        overallProgressLabel.text = String(format: NSLocalizedString("PROGRESS_HEADER_COMPLETION", value: "OVERALL COMPLETION %lu%%", comment: "Displays the percentage completion of the progress by the user"), arguments: [Int(overallProgressAmount)])
         
         self.data = [TableSection(rows: viewModels)]
         needsReload = false

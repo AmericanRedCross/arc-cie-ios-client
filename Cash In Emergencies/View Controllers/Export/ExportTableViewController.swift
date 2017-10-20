@@ -14,6 +14,12 @@ class ExportTableViewController: UITableViewController {
 
     var documentcontroller: UIDocumentInteractionController?
     
+    @IBOutlet weak var criticalPathLabel: UILabel!
+    @IBOutlet weak var entireProgressLabel: UILabel!
+    @IBOutlet weak var criticalPathExportButton: UIButton!
+    @IBOutlet weak var entireProgressExportButton: UIButton!
+    @IBOutlet weak var doneButton: UIBarButtonItem!
+    
     @IBAction func handleExportCriticalPath(_ sender: UIButton) {
         
         MDCHUDActivityView.start(in: view.window, text: "Exporting")
@@ -55,6 +61,13 @@ class ExportTableViewController: UITableViewController {
         if #available(iOS 11.0, *) {
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         }
+        
+        self.title = NSLocalizedString("EXPORT_NAVIGATION_TITLE", value: "Export Content", comment: "The title in the navigation bar at the top of view to export files")
+        criticalPathLabel?.text = NSLocalizedString("EXPORT_CRITICALPATH_TEXT", value: "Critical Path Progress", comment: "Text for the row that allows exporting the critical path progress")
+        entireProgressLabel?.text = NSLocalizedString("EXPORT_ENTIREPATH_TEXT", value: "Entire Progress", comment: "Text for the row that allows exporting the entire progress of the user")
+        criticalPathExportButton?.setTitle(NSLocalizedString("EXPORT_BUTTON_EXPORT", value: "Export", comment: "Button that exports user content"), for: .normal)
+        entireProgressExportButton?.setTitle(NSLocalizedString("EXPORT_BUTTON_EXPORT", value: "Export", comment: "Button that exports user content"), for: .normal)
+        doneButton?.title = NSLocalizedString("EXPORT_BUTTON_DONE", value: "Done", comment: "Button to dismiss the export view")
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

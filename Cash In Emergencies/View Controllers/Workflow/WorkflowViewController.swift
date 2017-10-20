@@ -50,6 +50,11 @@ class WorkflowViewController: UIViewController {
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         }
+        
+        self.title = NSLocalizedString("WORKFLOW_NAVIGATION_TITLE", value: "Workflow", comment: "The title in the navigation bar at the top of the workflow view")
+        self.toolkitButton?.setTitle(NSLocalizedString("WORKFLOW_FILTER_BUTTON_TOOLKIT", value: "TOOLKIT", comment: "The button that filters the list to show the entire toolkit"), for: .normal)
+        self.criticalToolsButton?.setTitle(NSLocalizedString("WORKFLOW_FILTER_BUTTON_CRITICALTOOLS", value: "CRITICAL TOOLS", comment: "The button that filters the list of directories to only show critical tools"), for: .normal)
+        self.navigationController?.tabBarItem?.title = NSLocalizedString("WORKFLOW_TABBAR_TITLE", value: "Workflow", comment: "Word to display on the tab bar for the workflow tab")
     }
 
     @IBAction func handleFilterButton(_ sender: UIButton) {

@@ -239,9 +239,9 @@
 		49BF8DD71F73C5BC00A1890F /* ModuleSubStepTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModuleSubStepTableViewCell.xib; sourceTree = "<group>"; };
 		49C2DE8A1F502C7000DCFBB5 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		49C3ED431F839E0E00763901 /* Notes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notes.storyboard; sourceTree = "<group>"; };
+		49F3FF981F98E2E500B9A309 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
 		49FE8D7F1F419F6900B73731 /* Cash In Emergencies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cash In Emergencies.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49FE8D821F419F6900B73731 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		49FE8D871F419F6900B73731 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		49FE8D891F419F6900B73731 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49FE8D8C1F419F6900B73731 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		49FE8D8E1F419F6900B73731 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -774,7 +774,7 @@
 		49FE8D861F419F6900B73731 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				49FE8D871F419F6900B73731 /* Base */,
+				49F3FF981F98E2E500B9A309 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

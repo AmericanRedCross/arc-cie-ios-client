@@ -90,6 +90,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bottomLayoutConstraint" destination="2ea-Qx-Eh0" id="zVq-YT-ZAg"/>
+                        <outlet property="cancelButton" destination="7Bz-mT-eiL" id="NHU-wE-DXP"/>
+                        <outlet property="saveButton" destination="EeL-Yf-Bmd" id="VQ8-Gd-ksn"/>
                         <outlet property="textView" destination="NFe-qs-LdN" id="KAu-Qa-OGB"/>
                     </connections>
                 </viewController>
