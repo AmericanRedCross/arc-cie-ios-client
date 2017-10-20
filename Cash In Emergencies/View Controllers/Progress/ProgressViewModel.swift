@@ -56,11 +56,13 @@ extension ProgressViewModel: Row {
         
         guard let progressCell = cell as? ProgressTableViewCell else { return }
         
-        progressCell.criticalToolsValueLabel.text = "\(self.numberOfCompletedCriticalTools)/\(self.numberOfCriticalTools)"
-        progressCell.subStepsValueLabel.text = "\(numberOfCompletedSubSteps)/\(self.numberOfSubSteps)"
+        progressCell.criticalToolsTitleLabel.text = NSLocalizedString("PROGRESS_CELL_CRITICALTOOLS_TITLE", value: "CRITICAL TOOLS", comment: "Title displayed beneath count of critical tools completed")
+        progressCell.criticalToolsValueLabel.text = String(format: NSLocalizedString("PROGRESS_CELL_CRITICALTOOLS_COMPLETIONCOUNT", value: "%lu/%lu", comment: "Displays the count of critical tools completed out of a maximum number. Example '1/20'"), arguments: [self.numberOfCompletedCriticalTools, self.numberOfSubSteps])
+        progressCell.subStepsTitleLabel.text = NSLocalizedString("PROGRESS_CELL_SUBSTEPS_TITLE", value: "SUB-STEPS", comment: "Title displayed beneath count of substeps completed")
+        progressCell.subStepsValueLabel.text = String(format: NSLocalizedString("PROGRESS_CELL_SUBSTEPS_COMPLETIONCOUNT", value: "%lu/%lu", comment: "Displays the count of substeps completed out of a maximum number. Example '1/20'"), arguments: [self.numberOfCompletedSubSteps, self.numberOfSubSteps])
         
         progressCell.hierarchyLabel.text = self.moduleHierarchy
-        progressCell.overallPercentageCompleteLabel.text = "\(self.percentageComplete)% COMPLETED"
+        progressCell.overallPercentageCompleteLabel.text = String(format: NSLocalizedString("PROGRESS_CELL_OVERALL_COMPLETEPERCENTAGE", value: "%lu%% COMPLETED", comment: "Displays the percentage of the directory completed. Example '10% COMPLETED'"), arguments: [percentageComplete])
         
         progressCell.moduleLabel.text = self.moduleTitle
         
