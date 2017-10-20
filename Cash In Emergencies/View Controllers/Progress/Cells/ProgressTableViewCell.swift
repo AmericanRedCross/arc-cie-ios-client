@@ -30,8 +30,14 @@ class ProgressTableViewCell: UITableViewCell {
     // A progress bar at the bottom of the view
     @IBOutlet weak var moduleProgressView: ModuleProgressView!
     
+    /// Label displaying the word for "Sub-steps"
+    @IBOutlet weak var subStepsTitleLabel: UILabel!
+    
     // Label displaying the score of completed substeps
     @IBOutlet weak var subStepsValueLabel: UILabel!
+    
+    /// Label displaying the word for "Critical tools"
+    @IBOutlet weak var criticalToolsTitleLabel: UILabel!
     
     // Label displaying the score of critical tools
     @IBOutlet weak var criticalToolsValueLabel: UILabel!
