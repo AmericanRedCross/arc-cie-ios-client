@@ -29,6 +29,9 @@ class NoteAddViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         automaticallyAdjustsScrollViewInsets = false
+        cancelButton.title = NSLocalizedString("NOTE_CANCEL", value: "Cancel", comment: "Cancels the process of adding a note and dismisses the view")
+        navigationItem.prompt = NSLocalizedString("NOTE_PROMPT", value: "Edit Note", comment: "The prompt in the navigation bar that indicates you are editing a note")
+        saveButton.setTitle(NSLocalizedString("NOTE_SAVE", value: "Save", comment: "Text on the button that saves the note and dismisses the view"), for: .normal)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,13 +56,6 @@ class NoteAddViewController: UIViewController {
                 textView?.text = text
             }
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        cancelButton.title = NSLocalizedString("NOTE_CANCEL", value: "Cancel", comment: "Cancels the process of adding a note and dismisses the view")
-        navigationItem.prompt = NSLocalizedString("NOTE_PROMPT", value: "Edit Note", comment: "The prompt in the navigation bar that indicates you are editing a note")
-        saveButton.setTitle(NSLocalizedString("NOTE_SAVE", value: "Save", comment: "Text on the button that saves the note and dismisses the view"), for: .normal)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

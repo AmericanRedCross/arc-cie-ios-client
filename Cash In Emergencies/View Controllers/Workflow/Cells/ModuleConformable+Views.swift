@@ -76,6 +76,7 @@ class ModuleView: ModuleConformable, Row {
                 
                 _cell.moduleIdentifierLabel.backgroundColor = ModuleColourUtility.colour(for: _module)
                 
+                _cell.moduleRoadmapButton.setTitle(NSLocalizedString("WORKFLOW_MODULE_BUTTON_MODULEROADMAP", value: "Module Roadmap", comment: "Button that displays the module roadmap document"), for: .normal)
                 _cell.moduleRoadmapButton.isHidden = !shouldShowModuleRoadmap
                 _cell.moduleRoadmapButton.removeTarget(nil, action: nil, for: .allEvents)
                 _cell.moduleRoadmapButton.addTarget(self, action: #selector(handleRoadmap(button:)), for: .primaryActionTriggered)
@@ -126,6 +127,7 @@ class Step: ModuleConformable, Row {
             
             _cell.stepHierarchyLabel.text = internalModule?.metadata?["hierarchy"] as? String
             _cell.stepTitleLabel.text = internalModule?.directoryTitle
+            _cell.stepRoadmapButton.setTitle(NSLocalizedString("WORKFLOW_STEP_BUTTON_ROADMAP", value: "Roadmap", comment: "Button that displays the roadmap document"), for: .normal)
             _cell.stepRoadmapButton.isHidden = internalModule?.content == nil
             
             _cell.stepRoadmapButton.removeTarget(nil, action: nil, for: .allEvents)
@@ -190,12 +192,11 @@ class SubStep: ModuleConformable, Row {
             _cell.substepAddNoteButton.addTarget(self, action: #selector(handleAddNote(button:)), for: .primaryActionTriggered)
             _cell.substepCheckableButton.addTarget(self, action: #selector(handleChecking(of:)), for: .primaryActionTriggered)
             
-            
-            _cell.substepAddNoteButton.setTitle("Add Note", for: .normal)
+            _cell.substepAddNoteButton.setTitle(NSLocalizedString("WORKFLOW_SUBSTEP_BUTTON_NOTE_ADD", value: "Add Note", comment: "Button that presents a view for a user to add a note to"), for: .normal)
             
             if let moduleIdentifier = internalModule?.identifier {
                 if ProgressManager().note(for: moduleIdentifier) != nil {
-                     _cell.substepAddNoteButton.setTitle("Edit Note", for: .normal)
+                     _cell.substepAddNoteButton.setTitle(NSLocalizedString("WORKFLOW_SUBSTEP_BUTTON_NOTE_EDIT", value: "Edit Note", comment: "Button that presents a view for a user to edit an existing note"), for: .normal)
                 }
             }
             

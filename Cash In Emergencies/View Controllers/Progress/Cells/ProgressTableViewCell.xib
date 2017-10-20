@@ -165,12 +165,14 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="containerView" destination="a5K-Ju-ptl" id="uEe-Sr-Rqv"/>
+                <outlet property="criticalToolsTitleLabel" destination="nZp-Xf-Il6" id="7VE-Zd-QmI"/>
                 <outlet property="criticalToolsValueLabel" destination="kyM-Bo-5sl" id="ep6-R9-A3U"/>
                 <outlet property="hierarchyLabel" destination="83n-0M-WfU" id="q3a-UN-w0b"/>
                 <outlet property="hierarchyView" destination="WOh-Pa-S0T" id="X21-yX-ETV"/>
                 <outlet property="moduleLabel" destination="8kO-w2-XwX" id="0xI-Td-GSp"/>
                 <outlet property="moduleProgressView" destination="e2Q-45-4G1" id="CFy-fr-buq"/>
                 <outlet property="overallPercentageCompleteLabel" destination="Xsi-ef-bj0" id="IRE-wB-BXE"/>
+                <outlet property="subStepsTitleLabel" destination="jFR-nv-AOA" id="fQM-Ju-1mZ"/>
                 <outlet property="subStepsValueLabel" destination="jX1-Vw-efj" id="wBF-sy-cdd"/>
             </connections>
             <point key="canvasLocation" x="88" y="93.5"/>

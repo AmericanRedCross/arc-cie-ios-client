@@ -22,7 +22,7 @@ extension ToolkitTableViewController {
             return ContentManager().localFileURL(for: url)
         })
         
-        let exportTitle = exportFile == nil ? "DOWNLOAD" : "OPEN"
+        let exportTitle = exportFile == nil ? NSLocalizedString("WORKFLOW_TOOL_BUTTON_DOWNLOAD", value: "DOWNLOAD", comment: "Button that downloads a tool") : NSLocalizedString("WORKFLOW_TOOL_BUTTON_OPEN", value: "OPEN", comment: "Button that opens a tool that was already downloaded")
         let exportOption = UIContextualAction(style: .normal, title: exportTitle) { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: @escaping (Bool) -> Void) in
             
             if let _url = directory.attachments?.first?.url {
@@ -49,7 +49,7 @@ extension ToolkitTableViewController {
                     self.parent?.view.isUserInteractionEnabled = false
                     self.navigationController?.view.isUserInteractionEnabled = false
                     self.tabBarController?.view.isUserInteractionEnabled = false
-                    MDCHUDActivityView.start(in: self.view.window, text: "Downloading")
+                    MDCHUDActivityView.start(in: self.view.window, text: NSLocalizedString("WORKFLOW_TOOL_INDICATOR_DOWNLOADING", value: "Downloading", comment: "Displayed below a loading indicator while a document is downloading"))
                 }
                 
                 //Download it instead
@@ -98,7 +98,7 @@ extension ToolkitTableViewController {
     
     func addNoteOption(for directory: Directory, at indexPath: IndexPath) -> UIContextualAction {
         //Note
-        let noteOptionTitle = (ProgressManager().note(for: directory.identifier) == nil) ? "ADD NOTE" : "EDIT NOTE"
+        let noteOptionTitle = (ProgressManager().note(for: directory.identifier) == nil) ? NSLocalizedString("WORKFLOW_TOOL_BUTTON_ADDNOTE", value: "ADD NOTE", comment: "Button that shows a view to add a note") : NSLocalizedString("WORKFLOW_TOOL_BUTTON_EDITNOTE", value: "EDIT NOTE", comment: "Button that shows a view to edit an existing note")
         
         let noteOption = UIContextualAction(style: .normal, title: noteOptionTitle) {  [weak self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: @escaping (Bool) -> Void) in
 
@@ -130,7 +130,7 @@ extension ToolkitTableViewController {
             
             let progressManager = ProgressManager()
             
-            let toolOptionTitle = progressManager.userCriticalTool(for: directory.identifier) ? "UNMARK" : "MARK"
+            let toolOptionTitle = progressManager.userCriticalTool(for: directory.identifier) ? NSLocalizedString("WORKFLOW_TOOL_BUTTON_UNMARK", value: "UNMARK", comment: "Button that removes the critical tool mark from a tool") : NSLocalizedString("WORKFLOW_TOOL_BUTTON_MARK", value: "MARK", comment: "Button that adds the critical tool mark to a tool")
             let toolOption = UIContextualAction(style: .normal, title: toolOptionTitle) { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
                 
                 progressManager.toggleMarkToolAsUserCritical(for: directory.identifier)
