@@ -37,12 +37,15 @@
                         <viewLayoutGuide key="safeArea" id="NBB-1r-f53"/>
                     </view>
                     <navigationItem key="navigationItem" id="lEs-cI-Fqr">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="ZEt-cT-n6w">
+                        <barButtonItem key="rightBarButtonItem" title="Done" style="done" id="ZEt-cT-n6w">
                             <connections>
                                 <segue destination="6RT-Rc-cVw" kind="custom" customClass="TSCDismissSegue" id="3PE-EC-Ob2"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="doneButton" destination="ZEt-cT-n6w" id="ItU-hs-tPN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3rL-XF-V0H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

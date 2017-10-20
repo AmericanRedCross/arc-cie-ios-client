@@ -14,12 +14,20 @@ class MarkdownViewController: UIViewController {
     
     var downView: MarkdownView?
     
+    /// Button to dismiss the markdown view
+    @IBOutlet weak var doneButton: UIBarButtonItem!
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        doneButton?.title = NSLocalizedString("MARKDOWN_DONE", value: "Done", comment: "Button in the navigation bar that dismisses the view")
     }
     
     override func viewWillAppear(_ animated: Bool) {

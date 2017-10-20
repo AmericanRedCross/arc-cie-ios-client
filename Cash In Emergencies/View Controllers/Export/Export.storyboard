@@ -164,13 +164,20 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Export Content" id="hhZ-zn-Fh6">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="W6E-eY-9fW">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="W6E-eY-9fW">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="XhR-eF-ejj" kind="custom" customClass="TSCDismissSegue" id="lAG-fW-Zfm"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="criticalPathExportButton" destination="9pn-7P-dzY" id="4VL-c9-yke"/>
+                        <outlet property="criticalPathLabel" destination="luf-9E-v4L" id="93L-0H-JLW"/>
+                        <outlet property="doneButton" destination="W6E-eY-9fW" id="zlQ-gm-Om5"/>
+                        <outlet property="entireProgressExportButton" destination="wdf-Gc-lbA" id="0IC-OG-jVP"/>
+                        <outlet property="entireProgressLabel" destination="w4r-oc-DaA" id="01U-Sf-2zH"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SI5-9j-WG2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

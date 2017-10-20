@@ -104,6 +104,7 @@
                     <connections>
                         <outlet property="overallProgressBarView" destination="aDe-yI-J4a" id="xu5-r0-pfa"/>
                         <outlet property="overallProgressLabel" destination="WAT-9S-bST" id="Gs8-DH-wrV"/>
+                        <outlet property="workflowProgressLabel" destination="t8P-zU-xbJ" id="QtU-M8-ntm"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uCh-32-9zC" userLabel="First Responder" sceneMemberID="firstResponder"/>

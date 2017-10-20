@@ -23,6 +23,18 @@ class OnboardingViewController: UIViewController {
     /// Responsible for downloading the bundle
     let contentManager = ContentManager()
     
+    /// Label displaying a welcome message
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    /// Label explaining the tutorial
+    @IBOutlet weak var subtitleLabel: UILabel!
+    
+    /// Button that activates the video tutorial
+    @IBOutlet weak var playTutorialButton: UIButton!
+    
+    /// Button that skips the tutorial
+    @IBOutlet weak var skipTutorialButton: UIButton!
+    
     //MARK: - Video playback
     @IBAction func handlePlayVideo(_ sender: UIButton) {
         
@@ -80,6 +92,11 @@ class OnboardingViewController: UIViewController {
         }, repeats: true)
         
         handleDownloadBundle()
+        
+        titleLabel?.text = NSLocalizedString("WELCOME_TITLE", value: "Welcome to the Cash in Emergencies toolkit", comment: "Text welcoming the user to the app")
+        subtitleLabel?.text = NSLocalizedString("WELCOME_SUBTITLE", value: "Watch our quick tutorial to find out how it can help you support those affected by emergencies", comment: "Text asking the user to watch the tutorial")
+        playTutorialButton?.setTitle(NSLocalizedString("WELCOME_BUTTON_WATCH", value: "Watch the Video Tutorial", comment: "Button that plays the video tutorial"), for: .normal)
+        skipTutorialButton?.setTitle(NSLocalizedString("WELCOME_BUTTON_SKIP", value: "SKIP", comment: "Button that skips the tutorial"), for: .normal)
     }
     
     /// Displays an alert to the user letting them know that the download of the bundle failed and asks them to retry.

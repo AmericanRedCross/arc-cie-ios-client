@@ -270,7 +270,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="tjJ-rT-cA0">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="eI9-kJ-VWQ">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="eI9-kJ-VWQ">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="DbB-TU-Hcv" kind="custom" customClass="TSCDismissSegue" id="k7C-9f-BQ4"/>
@@ -278,9 +278,16 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="changeLanguageSubtitleLabel" destination="a9O-lf-y5a" id="zbf-cc-3HI"/>
+                        <outlet property="changeLanguageTitleLabel" destination="3Oy-j0-QEa" id="m04-Pb-az1"/>
                         <outlet property="contentAvailableLabel" destination="Z46-wL-hZ2" id="18o-iu-7qu"/>
                         <outlet property="currentLanguageButton" destination="bnG-n4-eoP" id="SXg-XB-J4Q"/>
+                        <outlet property="doneButton" destination="eI9-kJ-VWQ" id="OtG-TF-ycR"/>
                         <outlet property="downloadButton" destination="fRR-pR-eaV" id="mr8-NM-bvD"/>
+                        <outlet property="resetDataSubtitleLabel" destination="REh-Ba-BCu" id="tst-QM-fqA"/>
+                        <outlet property="resetDataTitleLabel" destination="pB9-OP-IeV" id="l7i-1U-KAY"/>
+                        <outlet property="watchVideoLabel" destination="pOk-dr-jFa" id="p0L-gi-p4B"/>
+                        <outlet property="watchVideoSubLabel" destination="nh3-yv-75k" id="5f6-bc-MjO"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sao-55-tLC" userLabel="First Responder" sceneMemberID="firstResponder"/>

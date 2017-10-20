@@ -100,6 +100,12 @@
                         <viewLayoutGuide key="safeArea" id="BKK-55-AFc"/>
                     </view>
                     <navigationItem key="navigationItem" id="qCA-53-0ON"/>
+                    <connections>
+                        <outlet property="playTutorialButton" destination="KZg-du-d8h" id="kaY-3w-8Qf"/>
+                        <outlet property="skipTutorialButton" destination="L5R-aU-xhA" id="THY-z9-fpV"/>
+                        <outlet property="subtitleLabel" destination="hu2-VZ-IcL" id="QQo-cs-TSI"/>
+                        <outlet property="titleLabel" destination="8Im-nE-7Dd" id="yBr-cP-FP9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ys3-2i-03s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
