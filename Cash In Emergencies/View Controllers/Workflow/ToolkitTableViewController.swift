@@ -191,9 +191,16 @@ class ToolkitTableViewController: TableViewController {
             
             var sections = [Section]()
             
-            for (key, value) in orderedItems {
+            for (key, values) in orderedItems {
                 
-                let tools = value.flatMap({ Tool(with: $0.tool) })
+                var tools = [Tool]()
+    
+                for value in values {
+                    let tool = Tool(with: value.tool)
+                    tool.parentHierarchy = value.parentHierarchy
+                    tools.append(tool)
+                }
+                
                 let newSection = TableSection(rows: tools, header: key, footer: nil, selectionHandler: nil)
                 sections.append(newSection)
             }

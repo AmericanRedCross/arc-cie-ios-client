@@ -25,9 +25,9 @@ class ToolIndexManager {
         
     }
     
-    func searchCriticalTools(with completionHandler: @escaping ((Error?, [(parent: String, tool: Directory)]) -> Void)) {
+    func searchCriticalTools(with completionHandler: @escaping ((Error?, [(parent: String, tool: Directory, parentHierarchy: String?)]) -> Void)) {
     
-        var foundTools = [(String, Directory)]()
+        var foundTools = [(String, Directory, String?)]()
     
         if let _searchQuery = searchQuery {
     
@@ -37,16 +37,19 @@ class ToolIndexManager {
     
         let queryString = "critical_path == '1'"
     
-        self.searchQuery = CSSearchQuery(queryString: queryString, attributes: ["title", "displayName", "containerDisplayName"])
+        self.searchQuery = CSSearchQuery(queryString: queryString, attributes: ["title", "displayName", "containerDisplayName", "containerIdentifier"])
     
         self.searchQuery?.foundItemsHandler = { (items : [CSSearchableItem]) in
     
-            let returnedTools = items.flatMap({ (searchItem) -> (String, Directory)? in
+            let returnedTools = items.flatMap({ (searchItem) -> (String, Directory, String?)? in
 
                 guard let moduleIdentifier = Int(searchItem.uniqueIdentifier), let modulesToSearch = DirectoryManager().directories else { return nil }
 
                 if let _foundModule = DirectoryManager.directory(for: moduleIdentifier, in: modulesToSearch), let parentString = searchItem.attributeSet.containerDisplayName {
-                    return (parentString, _foundModule)
+                    
+                   let parentHierarchy = searchItem.attributeSet.containerIdentifier
+                    
+                    return (parentString, _foundModule, parentHierarchy as String?)
                 }
     
                 return nil
@@ -63,9 +66,9 @@ class ToolIndexManager {
     
     }
     
-    func searchTools(using term: String, completionHandler: @escaping ((Error?, [(parent: String, tool: Directory)]) -> Void)) {
+    func searchTools(using term: String, completionHandler: @escaping ((Error?, [(parent: String, tool: Directory, parentHierarchy: String?)]) -> Void)) {
         
-        var foundTools = [(String, Directory)]()
+        var foundTools = [(String, Directory, String?)]()
         
         if let _searchQuery = searchQuery {
             
@@ -75,16 +78,19 @@ class ToolIndexManager {
         
         let queryString = "title == '\(term)*'wc"
         
-        self.searchQuery = CSSearchQuery(queryString: queryString, attributes: ["title", "displayName", "containerDisplayName"])
+        self.searchQuery = CSSearchQuery(queryString: queryString, attributes: ["title", "displayName", "containerDisplayName", "containerIdentifier"])
         
         self.searchQuery?.foundItemsHandler = { (items : [CSSearchableItem]) in
             
-            let returnedTools = items.flatMap({ (searchItem) -> (String, Directory)? in
+            let returnedTools = items.flatMap({ (searchItem) -> (String, Directory, String?)? in
 
                 guard let moduleIdentifier = Int(searchItem.uniqueIdentifier), let modulesToSearch = DirectoryManager().directories else { return nil }
 
                 if let _foundModule = DirectoryManager.directory(for: moduleIdentifier, in: modulesToSearch), let parentString = searchItem.attributeSet.containerDisplayName {
-                    return (parentString, _foundModule)
+                    
+                   let parentHierarchy = searchItem.attributeSet.containerIdentifier
+                    
+                    return (parentString, _foundModule, parentHierarchy as String?)
                 }
                 
                 return nil
@@ -156,11 +162,18 @@ class ToolIndexManager {
         searchableSet.containerTitle = parentSubstep.directoryTitle
         if let moduleTitle = parentSubstep.directoryTitle, let subHierarchy = parentSubstep.metadata?["hierarchy"] as? String {
             searchableSet.containerDisplayName = "\(subHierarchy) \(moduleTitle)"
+            
+        // Strip the first number to retrieve the parent hierarchy
+            
+            if let parentHierarchyPart = subHierarchy.components(separatedBy: ".").first {
+                searchableSet.containerIdentifier = String(parentHierarchyPart)
+            }
         }
         
         if let _criticalTool = file.metadata?["critical_path"] as? Bool {
             if _criticalTool {
                 if let _key = CSCustomAttributeKey(keyName: "critical_path") {
+
                     searchableSet.setValue(_criticalTool as NSNumber, forCustomKey: _key)
                 }
             }
@@ -169,8 +182,6 @@ class ToolIndexManager {
                 searchableSet.setValue((1 as NSNumber), forCustomKey: _key)
             }
         }
-        
-        searchableSet.containerIdentifier = String(describing: parentSubstep.identifier)
         
         
         if let _firstAttachment = file.attachments?.first {
