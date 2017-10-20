@@ -293,7 +293,12 @@ class Tool: ModuleConformable, Row {
     }
     
     var cellClass: AnyClass? {
-        return ToolTableViewCell.self
+        if #available(iOS 11.0, *) {
+            return ToolTableViewCell.self
+        } else {
+            return SwipeableToolTableViewCell.self
+        }
+        
     }
     
     var accessoryType: UITableViewCellAccessoryType? {
@@ -305,7 +310,13 @@ class Tool: ModuleConformable, Row {
     
     func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
         
-        if let _cell = cell as? ToolTableViewCell {
+        if let _cell = cell as? (UITableViewCell & ToolTableCellShared) {
+            
+            if let swipeableCell = _cell as? SwipeableToolTableViewCell {
+                if let tableViewController = tableViewController as? ToolkitTableViewController {
+                    swipeableCell.delegate = tableViewController
+                }
+            }
             
             _cell.toolTitleLabel.text = internalModule?.directoryTitle
             
@@ -352,6 +363,7 @@ class Tool: ModuleConformable, Row {
             
             // Hack, however if we don't call this the cells appear at the wrong height and we get graphical layout bugs :(
             // TODO: Find fix for this
+            
             _cell.layoutSubviews()
         }
     }

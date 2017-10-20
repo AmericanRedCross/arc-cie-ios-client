@@ -1,14 +1,30 @@
 //
-//  ToolTableViewCell.swift
-//  DMSSDK
+//  SwipeableToolTableViewCell.swift
+//  Cash In Emergencies
 //
-//  Created by Matthew Cheetham on 22/09/2017.
+//  Created by Joel Trew on 19/10/2017.
 //  Copyright © 2017 3 SIDED CUBE. All rights reserved.
 //
 
 import UIKit
+import SwipeCellKit
 
-class ToolTableViewCell: UITableViewCell, ToolTableCellShared {
+protocol ToolTableCellShared {
+    
+    var toolImageView: UIImageView! { get set }
+    var toolTitleLabel: UILabel! { get set }
+    var toolDescriptionLabel: UILabel! { get set }
+    var toolCriticalToolButton: UIButton! { get set }
+    var toolCheckableButton: UIButton! { get set }
+    var criticalToolStackView: UIStackView! { get set }
+    var userMarkedCriticalButton: UIButton! { get set }
+    var noteAddedButton: UIButton! { get set }
+    var exportedButton: UIButton! { get set }
+    
+    
+}
+
+class SwipeableToolTableViewCell: SwipeTableViewCell, ToolTableCellShared {
 
     @IBOutlet weak var toolImageView: UIImageView!
     @IBOutlet weak var toolTitleLabel: UILabel!
@@ -20,7 +36,7 @@ class ToolTableViewCell: UITableViewCell, ToolTableCellShared {
     @IBOutlet weak var noteAddedButton: UIButton!
     @IBOutlet weak var exportedButton: UIButton!
     
-
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -31,7 +47,7 @@ class ToolTableViewCell: UITableViewCell, ToolTableCellShared {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-    
+        
     }
     
     override func prepareForReuse() {
