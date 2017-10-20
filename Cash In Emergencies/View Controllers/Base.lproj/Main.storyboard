@@ -238,7 +238,6 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="okP-kn-HC9" firstAttribute="centerY" secondItem="Vml-cS-1h9" secondAttribute="centerY" id="Ngi-fR-lgT"/>
-                                    <constraint firstItem="okP-kn-HC9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Vml-cS-1h9" secondAttribute="leading" constant="3" id="chh-CP-n6v"/>
                                     <constraint firstItem="okP-kn-HC9" firstAttribute="centerX" secondItem="Vml-cS-1h9" secondAttribute="centerX" id="gzT-DO-n7W"/>
                                     <constraint firstItem="okP-kn-HC9" firstAttribute="top" secondItem="Vml-cS-1h9" secondAttribute="top" id="q56-vA-yeW"/>
                                     <constraint firstAttribute="height" constant="70" id="qPh-Cd-1Fo"/>
