@@ -17,12 +17,16 @@ import SwipeCellKit
 // Bridges iOS11's UIContextualAction and SwipeCellKit's SwipeAction classes
 struct SwipeBridgingAction {
     
+    // Title of the action
     var title: String?
+    // Icon image showing what the action does
     var image: UIImage?
+    // System style of the action, destrcutive or normal
     var style: SwipeStyle
+    // The background colour showing behind the action
     var backgroundColor: UIColor? = nil
+    // Closure to perform when the user selects an action, returns if it was successful
     var handler: (() -> Bool)?
-    
     
     init(title: String?, image: UIImage?, style: SwipeStyle, handler: (() -> Bool)?) {
         self.title = title
@@ -31,8 +35,12 @@ struct SwipeBridgingAction {
         self.handler = handler
     }
     
-
+    
     @available(iOS 11.0, *)
+    /// Creates an iOS11+ UIContextualAction class to provide for the native syste frameowrk method trailingSwipeActionsConfigurationForRowAt:
+    ///
+    ///
+    /// - Returns: a UIContextual action class with properties passed from this object
     func contextualAction() -> UIContextualAction {
         
         func contextualStyle() -> UIContextualAction.Style {
@@ -54,6 +62,9 @@ struct SwipeBridgingAction {
         return action
     }
     
+    /// Creates a SwipeCellKit SwipeAction class for supporting swipable cells iOS10 and below
+    ///
+    /// - Returns: a SwipeAction class with the properties on this object applied to it
     func swipeAction() -> SwipeAction {
         
         func swipeStyle() -> SwipeActionStyle {
@@ -83,6 +94,13 @@ struct SwipeBridgingAction {
 
 extension ToolkitTableViewController {
     
+    
+    /// Creates a swipeable action for exporting a document
+    ///
+    /// - Parameters:
+    ///   - directory: the tool(directory) the user is exporting
+    ///   - indexPath: the index path of the row that was swiped
+    /// - Returns: A compatible swipeAction for iOS10/11 support
     func addExportOptionIfAvailible(with directory: Directory, at indexPath: IndexPath) -> SwipeBridgingAction? {
         //Export
         let exportFile = directory.attachments?.first?.url.flatMap({ (url) -> URL? in
@@ -163,6 +181,12 @@ extension ToolkitTableViewController {
         return exportOption
     }
     
+    /// Creates a swipeable action for adding a note to a tool
+    ///
+    /// - Parameters:
+    ///   - directory: the tool(directory) the user is adding a note to
+    ///   - indexPath: the index path of the row that was swiped
+    /// - Returns: A compatible swipeAction for iOS10/11 support
     func addNoteOption(for directory: Directory, at indexPath: IndexPath) -> SwipeBridgingAction {
         //Note
         let noteOptionTitle = (ProgressManager().note(for: directory.identifier) == nil) ? "ADD NOTE" : "EDIT NOTE"
@@ -186,7 +210,12 @@ extension ToolkitTableViewController {
         return noteOption
     }
     
-    
+    /// Creates a swipeable action for tagging a tool a 'critical'
+    ///
+    /// - Parameters:
+    ///   - directory: the tool(directory) the user is tagging as critical
+    ///   - indexPath: the index path of the row that was swiped
+    /// - Returns: A compatible swipeAction for iOS10/11 support
     func addCriticalToolOption(for directory: Directory, at indexPath: IndexPath) -> SwipeBridgingAction? {
         //If it's marked as critical by DMS don't let them change it
         let _criticalTool = directory.metadata?["critical_path"] as? Bool ?? false
@@ -225,6 +254,8 @@ extension ToolkitTableViewController {
     }
 }
 
+
+// Use new iOS11 trailingSwipeActionsConfigurationForRowAt swipe methods if availible
 @available(iOS 11.0, *)
 extension ToolkitTableViewController {
     
@@ -243,12 +274,12 @@ extension ToolkitTableViewController {
             // Note
             actions.append(addNoteOption(for: directory, at: indexPath).contextualAction())
         
-            //Critical too
+            // Critical
             if let criticalToolOption = addCriticalToolOption(for: directory, at: indexPath) {
                 actions.append(criticalToolOption.contextualAction())
             }
 
-            //Actions
+            // Actions
             let swipeActions = UISwipeActionsConfiguration(actions: actions)
             swipeActions.performsFirstActionWithFullSwipe = false
             
@@ -260,9 +291,8 @@ extension ToolkitTableViewController {
     }
 }
 
-
+// iOS10 and below use SwipeCellKit methods
 extension ToolkitTableViewController: SwipeTableViewCellDelegate {
-    
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         
@@ -278,12 +308,11 @@ extension ToolkitTableViewController: SwipeTableViewCellDelegate {
             // Note
             actions.append(addNoteOption(for: directory, at: indexPath).swipeAction())
             
-            //Critical too
+            // Critical
             if let criticalToolOption = addCriticalToolOption(for: directory, at: indexPath) {
                 actions.append(criticalToolOption.swipeAction())
             }
         
-            
             return actions
         }
         
