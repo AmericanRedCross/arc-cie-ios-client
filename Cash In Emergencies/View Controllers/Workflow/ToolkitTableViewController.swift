@@ -10,6 +10,7 @@ import UIKit
 import ThunderTable
 import DMSSDK
 import QuickLook
+import ThunderBasics
 
 class ToolkitTableViewController: TableViewController {
 
@@ -98,6 +99,7 @@ class ToolkitTableViewController: TableViewController {
                                 
                                 for tool in _tools {
                                     let toolView = Tool(with: tool)
+                                    toolView.parentHierarchy = _module.metadata?["hierarchy"] as? String
                                     rows.append(toolView)
                                 }
                             }
@@ -164,13 +166,17 @@ class ToolkitTableViewController: TableViewController {
     }
     
     @objc func indexDidRefresh() {
-        
-        reload { [weak self] (error) in
+        DispatchQueue.main.async {
+            MDCHUDActivityView.start(in: self.view.window)
+            
+        }
+        self.reload { [weak self] (error) in
             if error == nil {
+                
+                MDCHUDActivityView.finish(in: self?.view.window)
                 self?.redraw()
             }
         }
-        
     }
     
     func reload(with completionHandler: ((Error?) -> Void)?) {

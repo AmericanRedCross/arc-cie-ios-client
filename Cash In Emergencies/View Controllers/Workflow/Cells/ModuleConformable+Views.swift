@@ -252,6 +252,8 @@ class Tool: ModuleConformable, Row {
     
     var internalModule: Directory?
     
+    var parentHierarchy: String?
+    
     lazy var progressManager = ProgressManager()
     
     var isCriticalTool: Bool {
@@ -311,7 +313,7 @@ class Tool: ModuleConformable, Row {
                 _cell.toolImageView.image = _firstAttachment.mimeImage()
             }
             
-            _cell.toolImageView.tintColor = UIColor(hexString: "ED1B2D")
+            _cell.toolImageView.tintColor = parentHierarchy.flatMap({ ModuleColourUtility.colour(for: $0) }) ?? UIColor(hexString: "ED1B2D")
             
             _cell.criticalToolStackView.isHidden = true
             _cell.toolCriticalToolButton.isHidden = true
