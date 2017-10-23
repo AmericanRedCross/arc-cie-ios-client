@@ -245,8 +245,14 @@ class ToolkitTableViewController: TableViewController {
             if let removalIndex = expandedModuleIdentifiers.index(of: moduleID) {
                 expandedModuleIdentifiers.remove(at: removalIndex)
             }
+            if let moduleTitle = module.directoryTitle, let hierarchy = module.metadata?["hierarchy"] as? String {
+                Tracker.trackEventWith("\(hierarchy) \(moduleTitle)", action: "Collapsed", label: nil, value: nil)
+            }
         } else {
             expandedModuleIdentifiers.append(moduleID)
+            if let moduleTitle = module.directoryTitle, let hierarchy = module.metadata?["hierarchy"] as? String {
+                Tracker.trackEventWith("\(hierarchy) \(moduleTitle)", action: "Expanded", label: nil, value: nil)
+            }
         }
         
         standardDataSource = displayableModuleObjects
@@ -342,6 +348,8 @@ extension ToolkitTableViewController: UISearchBarDelegate {
             redraw()
             return
         }
+        
+        Tracker.trackEventWith("Search", action: searchText, label: nil, value: nil)
         
         ToolIndexManager.shared.searchTools(using: searchText) { (error, tools) in
             

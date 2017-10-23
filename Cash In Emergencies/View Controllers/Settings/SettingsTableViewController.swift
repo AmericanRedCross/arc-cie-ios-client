@@ -74,6 +74,12 @@ class SettingsTableViewController: UITableViewController {
         changeLanguageSubtitleLabel?.text = NSLocalizedString("SETTINGS_LANGUAGE_LABEL_SUBTITLE", value: "Downloads the App Content in another Language", comment: "Subtitle Label of cell that presents options for changing language")
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Tracker.trackPage("Settings")
+    }
+    
     func redraw() {
         
         let currentTimestamp = contentController.currentBundleTimestamp
@@ -154,6 +160,8 @@ class SettingsTableViewController: UITableViewController {
         resetDataAlert.addAction(UIAlertAction(title: NSLocalizedString("SETTINGS_ALERT_RESET_BUTTON_CANCEL", value: "Cancel", comment: "Button to abort the resetting of user data"), style: .cancel, handler: nil))
         
         present(resetDataAlert, animated: true, completion: nil)
+        
+        Tracker.trackEventWith("Settings", action: "Reset all data", label: nil, value: nil)
     }
     
     
@@ -197,6 +205,8 @@ class SettingsTableViewController: UITableViewController {
             
             player.play()
         }
+        
+        Tracker.trackPage("Tutorial video")
     }
     
     /// Presents an action sheet with available languages that the user can select
@@ -223,6 +233,8 @@ class SettingsTableViewController: UITableViewController {
         }
         
         showDetailViewController(languagePicker, sender: self)
+        
+        Tracker.trackEventWith("Settings", action: "Change Language", label: nil, value: nil)
     }
     
     /// Dismisses the tutorial video on devices running iOS 10 when the video finishes playing

@@ -39,6 +39,8 @@ class ExportTableViewController: UITableViewController {
         } else {
             presentError(ExportError.genericError)
         }
+        
+        Tracker.trackEventWith("Export content", action: "Export Critical Progress", label: nil, value: nil)
     }
     
     @IBAction func handleExportEntireProgress(_ sender: UIButton) {
@@ -57,6 +59,8 @@ class ExportTableViewController: UITableViewController {
         } else {
             presentError(ExportError.genericError)
         }
+        
+        Tracker.trackEventWith("Export content", action: "Export Entire Progress", label: nil, value: nil)
     }
     
     @IBAction func handleExportEntireToolkit(_ sender: UIButton) {
@@ -65,6 +69,7 @@ class ExportTableViewController: UITableViewController {
         if let _url = toolkitURL {
             showShareSheetFor(url: _url)
         }
+        Tracker.trackEventWith("Export content", action: "Export Entire Toolkit", label: nil, value: nil)
     }
     
     @IBAction func handleExportCriticalPathTools(_ sender: UIButton) {
@@ -72,6 +77,8 @@ class ExportTableViewController: UITableViewController {
         if let _url = toolkitURL {
             showShareSheetFor(url: _url)
         }
+        
+        Tracker.trackEventWith("Export content", action: "Export Critical Path Tools", label: nil, value: nil)
     }
     
     func showShareSheetFor(url: URL) {

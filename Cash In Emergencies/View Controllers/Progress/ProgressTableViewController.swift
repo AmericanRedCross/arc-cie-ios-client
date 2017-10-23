@@ -58,6 +58,8 @@ class ProgressTableViewController: TableViewController {
         if needsReload {
             redraw()
         }
+        
+        Tracker.trackPage("Progress")
     }
     
     @objc func valuesChanged() {
