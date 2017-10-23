@@ -253,7 +253,7 @@ class ToolkitTableViewController: TableViewController {
         redraw()
     }
     
-    func handleLoadMarkdown(for contentPath: String) {
+    func handleLoadMarkdown(for contentPath: String, with attachedFile: FileDescriptor? = nil) {
         
         let contentURL = ContentManager().fileUrl(from: contentPath)
         
@@ -265,10 +265,16 @@ class ToolkitTableViewController: TableViewController {
             
             let markdown = String(data: jsonFileData, encoding: .utf8)
             
-            if let _markdownNavView = UIStoryboard(name: "Document_Viewing", bundle: Bundle.main).instantiateViewController(withIdentifier: "markdownNavigationControllerIdentifier") as? UINavigationController, let markdownView = _markdownNavView.viewControllers.first as? MarkdownViewController {
+            if let _markdownNavView = UIStoryboard(name: "Document_Viewing", bundle: Bundle.main).instantiateViewController(withIdentifier: "markdownNavigationControllerIdentifier") as? UINavigationController, let markdownViewContainer = _markdownNavView.viewControllers.first as? DocumentViewerContainerViewController {
+                
+                markdownViewContainer.attachedFile = attachedFile
+                
+                let _ = markdownViewContainer.view
+                
+                let markdownView = markdownViewContainer.childViewControllers.first as? MarkdownViewController
                 
                 if let _markdown = markdown {
-                    markdownView.loadMarkdown(string: _markdown)
+                    markdownView!.loadMarkdown(string: _markdown)
                 }
                 presentingView.showDetailViewController(_markdownNavView, sender: self)
             }

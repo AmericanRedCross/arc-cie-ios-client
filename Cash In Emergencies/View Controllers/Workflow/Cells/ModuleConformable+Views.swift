@@ -58,7 +58,9 @@ class ModuleView: ModuleConformable, Row {
         
         if let _tableView = toolkitTableViewController, let _moduleContent = internalModule?.content {
             
-            _tableView.handleLoadMarkdown(for: _moduleContent)
+            let attachedFile = internalModule?.attachments?.first
+            
+            _tableView.handleLoadMarkdown(for: _moduleContent, with: attachedFile)
         }
     }
     
@@ -140,7 +142,9 @@ class Step: ModuleConformable, Row {
         
         if let _tableView = toolkitTableViewController, let _moduleContent = internalModule?.content {
             
-            _tableView.handleLoadMarkdown(for: _moduleContent)
+            let attachedFile = internalModule?.attachments?.first
+            
+            _tableView.handleLoadMarkdown(for: _moduleContent, with: attachedFile)
         }
     }
 }
