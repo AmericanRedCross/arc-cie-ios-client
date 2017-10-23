@@ -24,10 +24,19 @@ class ProgressManager {
     /// Defaults to save the values under
     let defaults = UserDefaults.standard
     
+    
     /// Toggles the "checked" state for a module identifier and saves the state of all checked modules to user defaults
     ///
     /// - Parameter moduleIdentifier: The identifier of the module to toggle on/off
     func toggle(moduleIdentifier: Int) {
+        
+        // Always call the module changed notification after a toggle occurs
+        defer {
+            let notificationName = NSNotification.Name("ModulePropertyChanged")
+            NotificationCenter.default.post(name: notificationName, object: self, userInfo: [
+                "moduleIdentifier": moduleIdentifier
+                ])
+        }
         
         guard var _checkedModulesArray = defaults.array(forKey: checkedModulesIdentifier) as? [Int] else {
             defaults.set([moduleIdentifier], forKey: checkedModulesIdentifier)
@@ -41,11 +50,6 @@ class ProgressManager {
         }
         
         defaults.set(_checkedModulesArray, forKey: checkedModulesIdentifier)
-        
-        let notificationName = NSNotification.Name("ModulePropertyChanged")
-        NotificationCenter.default.post(name: notificationName, object: self, userInfo: [
-            "moduleIdentifier": moduleIdentifier
-            ])
     }
     
     /// Determines the current state of a checkable view.
