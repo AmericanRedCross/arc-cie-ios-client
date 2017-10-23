@@ -361,10 +361,7 @@ class Tool: ModuleConformable, Row {
                 _cell.toolCheckableButton.isSelected = progressManager.checkState(for: _moduleIdentifier)
             }
             
-            // Hack, however if we don't call this the cells appear at the wrong height and we get graphical layout bugs :(
-            // TODO: Find fix for this
-            
-            _cell.layoutSubviews()
+            _cell.layoutIfNeeded()
         }
     }
     
