@@ -22,6 +22,8 @@
 	<string>1</string>
 	<key>DMSSDKBaseURL</key>
 	<string>https://cie.arc.cubeapis.com/api/</string>
+	<key>GoogleTrackingId</key>
+	<string></string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
