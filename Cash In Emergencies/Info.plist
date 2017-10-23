@@ -21,7 +21,7 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>DMSSDKBaseURL</key>
-	<string>https://cie.arc.cubeapis.com/api/</string>
+	<string></string>
 	<key>GoogleTrackingId</key>
 	<string></string>
 	<key>ITSAppUsesNonExemptEncryption</key>
