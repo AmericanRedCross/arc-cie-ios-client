@@ -57,7 +57,7 @@ extension ProgressViewModel: Row {
         guard let progressCell = cell as? ProgressTableViewCell else { return }
         
         progressCell.criticalToolsTitleLabel.text = NSLocalizedString("PROGRESS_CELL_CRITICALTOOLS_TITLE", value: "CRITICAL TOOLS", comment: "Title displayed beneath count of critical tools completed")
-        progressCell.criticalToolsValueLabel.text = String(format: NSLocalizedString("PROGRESS_CELL_CRITICALTOOLS_COMPLETIONCOUNT", value: "%lu/%lu", comment: "Displays the count of critical tools completed out of a maximum number. Example '1/20'"), arguments: [self.numberOfCompletedCriticalTools, self.numberOfSubSteps])
+        progressCell.criticalToolsValueLabel.text = String(format: NSLocalizedString("PROGRESS_CELL_CRITICALTOOLS_COMPLETIONCOUNT", value: "%lu/%lu", comment: "Displays the count of critical tools completed out of a maximum number. Example '1/20'"), arguments: [self.numberOfCompletedCriticalTools, self.numberOfCriticalTools])
         progressCell.subStepsTitleLabel.text = NSLocalizedString("PROGRESS_CELL_SUBSTEPS_TITLE", value: "SUB-STEPS", comment: "Title displayed beneath count of substeps completed")
         progressCell.subStepsValueLabel.text = String(format: NSLocalizedString("PROGRESS_CELL_SUBSTEPS_COMPLETIONCOUNT", value: "%lu/%lu", comment: "Displays the count of substeps completed out of a maximum number. Example '1/20'"), arguments: [self.numberOfCompletedSubSteps, self.numberOfSubSteps])
         
