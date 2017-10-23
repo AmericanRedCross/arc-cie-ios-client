@@ -110,6 +110,10 @@ extension ToolkitTableViewController {
         let exportTitle = exportFile == nil ? NSLocalizedString("WORKFLOW_TOOL_BUTTON_DOWNLOAD", value: "DOWNLOAD", comment: "Button that downloads a tool") : NSLocalizedString("WORKFLOW_TOOL_BUTTON_OPEN", value: "OPEN", comment: "Button that opens a tool that was already downloaded")
         var exportOption = SwipeBridgingAction(title: exportTitle, image: #imageLiteral(resourceName: "swipe_action_export"), style: .normal) { () -> Bool in
             
+            if let attachment = directory.attachments?.first, let toolTitle = attachment.title {
+                Tracker.trackEventWith(toolTitle, action: "Download", label: nil, value: nil)
+            }
+            
             if let _url = directory.attachments?.first?.url {
                 
                 //Load it up if we already have it
@@ -223,7 +227,6 @@ extension ToolkitTableViewController {
         if !_criticalTool  {
             
             //If its not marked as critical by user, give option
-            //TODO: User critical handling
             
             let progressManager = ProgressManager()
             
@@ -239,6 +242,10 @@ extension ToolkitTableViewController {
                     ToolIndexManager.shared.indexTool(directory, completionHandler: { error in
                         self.reload(with: nil)
                     })
+                }
+                
+                if let tool = directory.attachments?.first, let toolTitle = tool.title {
+                    Tracker.trackEventWith(toolTitle, action: progressManager.userCriticalTool(for: directory.identifier) ? "Unmarked as critical" : "Marked as critical", label: nil, value: nil)
                 }
                 
                 return true

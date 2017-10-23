@@ -56,6 +56,8 @@ class NoteAddViewController: UIViewController {
                 textView?.text = text
             }
         }
+        
+        Tracker.trackPage("Note editor")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -103,6 +105,8 @@ class NoteAddViewController: UIViewController {
         dismissWarning.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         present(dismissWarning, animated: true, completion: completionHandler)
+        
+        Tracker.trackEventWith("Note editor", action: "Cancel", label: nil, value: nil)
     }
     
     @IBAction func handleSaveButton(_ sender: UIButton) {
@@ -112,6 +116,8 @@ class NoteAddViewController: UIViewController {
             ProgressManager().save(note: _inputText, for: moduleIdentifier)
             dismiss(animated: true, completion: completionHandler)
         }
+        
+        Tracker.trackEventWith("Note editor", action: "Done", label: nil, value: nil)
     }
 }
 

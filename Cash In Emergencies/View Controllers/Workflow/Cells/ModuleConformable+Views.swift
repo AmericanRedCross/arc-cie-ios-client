@@ -59,6 +59,9 @@ class ModuleView: ModuleConformable, Row {
         if let _tableView = toolkitTableViewController, let _moduleContent = internalModule?.content {
             
             _tableView.handleLoadMarkdown(for: _moduleContent)
+            if let moduleTitle = internalModule?.directoryTitle, let hierarchy = internalModule?.metadata?["hierarchy"] as? String {
+                Tracker.trackEventWith("\(hierarchy) \(moduleTitle)", action: "View roadmap", label: nil, value: nil)
+            }
         }
     }
     
@@ -141,6 +144,9 @@ class Step: ModuleConformable, Row {
         if let _tableView = toolkitTableViewController, let _moduleContent = internalModule?.content {
             
             _tableView.handleLoadMarkdown(for: _moduleContent)
+            if let moduleTitle = internalModule?.directoryTitle, let hierarchy = internalModule?.metadata?["hierarchy"] as? String {
+                Tracker.trackEventWith("\(hierarchy) \(moduleTitle)", action: "View roadmap", label: nil, value: nil)
+            }
         }
     }
 }
@@ -224,6 +230,10 @@ class SubStep: ModuleConformable, Row {
             
             checkView.isSelected = !checkView.isSelected
         }
+        
+        if let moduleTitle = internalModule?.directoryTitle, let hierarchy = internalModule?.metadata?["hierarchy"] as? String {
+            Tracker.trackEventWith("\(hierarchy) \(moduleTitle)", action: checkView.isSelected == true ? "Checked" : "Unchecked", label: nil, value: nil)
+        }
     }
     
     //Actions
@@ -245,6 +255,11 @@ class SubStep: ModuleConformable, Row {
                     _tableView.tableView.reloadRows(at: [indexPath], with: .automatic)
                 }
             })
+            
+            if let moduleTitle = internalModule.directoryTitle, let hierarchy = internalModule.metadata?["hierarchy"] as? String {
+                let moduleIdentifier = internalModule.identifier
+                Tracker.trackEventWith("\(hierarchy) \(moduleTitle)", action: ProgressManager().note(for: moduleIdentifier) != nil ? "Add note" : "Edit note", label: nil, value: nil)
+            }
         }
     }
 }
@@ -374,6 +389,10 @@ class Tool: ModuleConformable, Row {
             progressManager.toggle(moduleIdentifier: _moduleIdentifier)
             
             checkView.isSelected = !checkView.isSelected
+        }
+        
+        if let moduleTitle = internalModule?.directoryTitle, let hierarchy = internalModule?.metadata?["hierarchy"] as? String {
+            Tracker.trackEventWith("\(hierarchy) \(moduleTitle)", action: checkView.isSelected == true ? "Checked" : "Unchecked", label: nil, value: nil)
         }
     }
 }

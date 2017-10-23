@@ -41,6 +41,8 @@ class WorkflowViewController: UIViewController {
                 addChildViewController(onboarding)
             }
         }
+        
+        Tracker.trackPage("Workflow")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -101,9 +103,11 @@ class WorkflowViewController: UIViewController {
         if criticalToolsButton.isSelected {
             toolkitTableViewController?.showCriticalToolsOnly()
             toolkitTableViewController?.searchBar.setHeight(0)
+            Tracker.trackEventWith("Workflow", action: "Critical tools", label: nil, value: nil)
         } else {
             toolkitTableViewController?.redraw()
             toolkitTableViewController?.searchBar.setHeight(56)
+            Tracker.trackEventWith("Workflow", action: "Toolkit", label: nil, value: nil)
         }
     }
 }

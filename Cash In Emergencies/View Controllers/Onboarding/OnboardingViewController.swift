@@ -51,6 +51,8 @@ class OnboardingViewController: UIViewController {
             present(playerView, animated: true, completion: nil)
             
             player.play()
+            
+            Tracker.trackEventWith("Pre-Onboarding", action: "Watch video", label: nil, value: nil)
         }
     }
     
@@ -92,6 +94,8 @@ class OnboardingViewController: UIViewController {
         }, repeats: true)
         
         handleDownloadBundle()
+        
+        Tracker.trackEventWith("Pre-Onboarding", action: "Skip", label: nil, value: nil)
         
         titleLabel?.text = NSLocalizedString("WELCOME_TITLE", value: "Welcome to the Cash in Emergencies toolkit", comment: "Text welcoming the user to the app")
         subtitleLabel?.text = NSLocalizedString("WELCOME_SUBTITLE", value: "Watch our quick tutorial to find out how it can help you support those affected by emergencies", comment: "Text asking the user to watch the tutorial")

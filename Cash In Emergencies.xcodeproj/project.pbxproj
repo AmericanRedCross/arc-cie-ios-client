@@ -25,6 +25,9 @@
 		492F84721F84D49300BDD72D /* ThunderBasics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492F84301F84D44900BDD72D /* ThunderBasics.framework */; };
 		492F84731F84D49300BDD72D /* ThunderBasics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 492F84301F84D44900BDD72D /* ThunderBasics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4933B3F51F9E03CD009F77EC /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4933B3E11F9DFD52009F77EC /* libGoogleAnalyticsServices.a */; };
+		494285FD1F9E272D0075DDD1 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 494285F51F9E272D0075DDD1 /* CoreData.framework */; };
+		494285FF1F9E27340075DDD1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 494285FE1F9E27340075DDD1 /* SystemConfiguration.framework */; };
+		494286011F9E27460075DDD1 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 494286001F9E27460075DDD1 /* libsqlite3.tbd */; };
 		495A90141F5EE02800843EEE /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 495A900B1F5EE02800843EEE /* libc++.tbd */; };
 		496C49CC1F4EE6FA00AD05D1 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 496C49CB1F4EE6FA00AD05D1 /* Settings.storyboard */; };
 		496C49D11F4EEDA300AD05D1 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C49D01F4EEDA300AD05D1 /* SettingsTableViewController.swift */; };
@@ -250,6 +253,9 @@
 		4933B3F11F9DFD74009F77EC /* GAITrackedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
 		4933B3F21F9DFD74009F77EC /* GAI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
 		4933B3F31F9DFD74009F77EC /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProduct.h; sourceTree = "<group>"; };
+		494285F51F9E272D0075DDD1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		494285FE1F9E27340075DDD1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		494286001F9E27460075DDD1 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		495A900B1F5EE02800843EEE /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		496C49CB1F4EE6FA00AD05D1 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		496C49D01F4EEDA300AD05D1 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -299,6 +305,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				494286011F9E27460075DDD1 /* libsqlite3.tbd in Frameworks */,
+				4912BABA1F5ED21900AD7100 /* libz.tbd in Frameworks */,
+				494285FF1F9E27340075DDD1 /* SystemConfiguration.framework in Frameworks */,
+				494285FD1F9E272D0075DDD1 /* CoreData.framework in Frameworks */,
 				FF72F6951F98FAEE00912E04 /* SwipeCellKit.framework in Frameworks */,
 				FF72F6941F98FAE900912E04 /* SwipeCellKit.framework in Frameworks */,
 				492F846A1F84D48D00BDD72D /* ThunderTable.framework in Frameworks */,
@@ -308,7 +318,6 @@
 				492F84721F84D49300BDD72D /* ThunderBasics.framework in Frameworks */,
 				495A90141F5EE02800843EEE /* libc++.tbd in Frameworks */,
 				496E46751F96057F003F34B8 /* DMSSDK.framework in Frameworks */,
-				4912BABA1F5ED21900AD7100 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,6 +336,9 @@
 		4912BAB01F5ED21900AD7100 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				494286001F9E27460075DDD1 /* libsqlite3.tbd */,
+				494285FE1F9E27340075DDD1 /* SystemConfiguration.framework */,
+				494285F51F9E272D0075DDD1 /* CoreData.framework */,
 				495A900B1F5EE02800843EEE /* libc++.tbd */,
 				4912BAB91F5ED21900AD7100 /* libz.tbd */,
 			);
