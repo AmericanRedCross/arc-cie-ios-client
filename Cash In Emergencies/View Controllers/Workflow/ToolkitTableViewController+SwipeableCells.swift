@@ -294,6 +294,9 @@ extension ToolkitTableViewController: SwipeTableViewCellDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         
+        // Only provide actions for swipes on the right side of the cell
+        guard orientation == .right else { return nil }
+        
         if let _toolDisplayed = data[indexPath.section].rows[indexPath.row] as? Tool, let directory = _toolDisplayed.module() {
             
             var actions = [SwipeAction]()
