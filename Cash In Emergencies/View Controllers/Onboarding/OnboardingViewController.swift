@@ -116,7 +116,7 @@ class OnboardingViewController: UIViewController {
     /// Initiates a download of the latest bundle from the server
     func handleDownloadBundle() {
         
-        contentManager.getBundleInformation(for: "1") { (result) in
+        contentManager.getBundleInformation(for: "1", language: nil) { (result) in
             
             switch result {
             case .success(let bundleInfo):
@@ -131,6 +131,9 @@ class OnboardingViewController: UIViewController {
                         case .success:
                             NotificationCenter.default.post(name: NSNotification.Name("ContentControllerBundleDidUpdate"), object: nil)
                             self.hasDownloadedBundle = true
+                            if let _interval = bundleInfo.publishDate?.timeIntervalSince1970 {
+                                UserDefaults.standard.set(_interval, forKey: "CurrentBundleTimestamp")
+                            }
                         case .failure:
                             self.handleErrorDownloading()
                         }

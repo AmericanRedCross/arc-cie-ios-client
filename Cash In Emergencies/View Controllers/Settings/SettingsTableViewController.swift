@@ -293,7 +293,9 @@ class SettingsTableViewController: UITableViewController {
     
     /// Downloads the latest bundle information and sets it to the `bundleInformation` variable. This causes the view to reload on completion
     func getBundleInformation() {
-        contentController.getBundleInformation(for: "1") { [weak self] (result) in
+        
+        let language = UserDefaults.standard.string(forKey: "ContentOverrideLanguage")
+        contentController.getBundleInformation(for: "1", language: language) { [weak self] (result) in
             
             switch result {
             case .success(let information):
