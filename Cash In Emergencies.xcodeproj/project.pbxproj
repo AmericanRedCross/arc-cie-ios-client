@@ -57,6 +57,8 @@
 		49FE8D881F419F6900B73731 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49FE8D861F419F6900B73731 /* Main.storyboard */; };
 		49FE8D8A1F419F6900B73731 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49FE8D891F419F6900B73731 /* Assets.xcassets */; };
 		49FE8D8D1F419F6900B73731 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49FE8D8B1F419F6900B73731 /* LaunchScreen.storyboard */; };
+		FF4EF29D1F9F462900CD79DF /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4EF29B1F9F461500CD79DF /* Crashlytics.framework */; };
+		FF4EF29E1F9F462900CD79DF /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4EF29C1F9F461500CD79DF /* Fabric.framework */; };
 		FF5CF3221F910BAC00DF7C5D /* ToolkitTableViewController+SwipeableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5CF3211F910BAC00DF7C5D /* ToolkitTableViewController+SwipeableCells.swift */; };
 		FF5CF33D1F94DDD000DF7C5D /* UIViewController+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5CF33C1F94DDD000DF7C5D /* UIViewController+Error.swift */; };
 		FF7024751F9E0641006C99B7 /* DocumentViewerContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7024741F9E0641006C99B7 /* DocumentViewerContainerViewController.swift */; };
@@ -289,6 +291,8 @@
 		49FE8D8C1F419F6900B73731 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		49FE8D8E1F419F6900B73731 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FF0BF03E1F96658C006235CB /* onboarding_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = onboarding_video.mp4; sourceTree = "<group>"; };
+		FF4EF29B1F9F461500CD79DF /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		FF4EF29C1F9F461500CD79DF /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		FF5CF3211F910BAC00DF7C5D /* ToolkitTableViewController+SwipeableCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToolkitTableViewController+SwipeableCells.swift"; sourceTree = "<group>"; };
 		FF5CF33C1F94DDD000DF7C5D /* UIViewController+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Error.swift"; sourceTree = "<group>"; };
 		FF7024741F9E0641006C99B7 /* DocumentViewerContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewerContainerViewController.swift; sourceTree = "<group>"; };
@@ -322,6 +326,8 @@
 				492F84721F84D49300BDD72D /* ThunderBasics.framework in Frameworks */,
 				495A90141F5EE02800843EEE /* libc++.tbd in Frameworks */,
 				496E46751F96057F003F34B8 /* DMSSDK.framework in Frameworks */,
+				FF4EF29D1F9F462900CD79DF /* Crashlytics.framework in Frameworks */,
+				FF4EF29E1F9F462900CD79DF /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +351,8 @@
 				494285F51F9E272D0075DDD1 /* CoreData.framework */,
 				495A900B1F5EE02800843EEE /* libc++.tbd */,
 				4912BAB91F5ED21900AD7100 /* libz.tbd */,
+				FF4EF29B1F9F461500CD79DF /* Crashlytics.framework */,
+				FF4EF29C1F9F461500CD79DF /* Fabric.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -608,6 +616,7 @@
 				49FE8D7C1F419F6900B73731 /* Frameworks */,
 				49FE8D7D1F419F6900B73731 /* Resources */,
 				496E5D421F41E31900E4B90A /* Embed Frameworks */,
+				FF4EF29A1F9F45E000CD79DF /* Fabric */,
 			);
 			buildRules = (
 			);
@@ -809,6 +818,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		FF4EF29A1F9F45E000CD79DF /* Fabric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Fabric;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 1cac797080a8e727fc6daa971fe3ec2cfee45af0 dfb66e6e27e50a4cb689524475414db629aa099acdfbd216765bcd391f668257";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		49FE8D7B1F419F6900B73731 /* Sources */ = {
@@ -1016,7 +1042,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = UPSZGU42YP;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Cash In Emergencies/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1041,7 +1067,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = UPSZGU42YP;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Cash In Emergencies/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
