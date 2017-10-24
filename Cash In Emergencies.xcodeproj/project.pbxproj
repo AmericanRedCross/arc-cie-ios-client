@@ -59,6 +59,8 @@
 		49FE8D8D1F419F6900B73731 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49FE8D8B1F419F6900B73731 /* LaunchScreen.storyboard */; };
 		FF5CF3221F910BAC00DF7C5D /* ToolkitTableViewController+SwipeableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5CF3211F910BAC00DF7C5D /* ToolkitTableViewController+SwipeableCells.swift */; };
 		FF5CF33D1F94DDD000DF7C5D /* UIViewController+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5CF33C1F94DDD000DF7C5D /* UIViewController+Error.swift */; };
+		FF7024751F9E0641006C99B7 /* DocumentViewerContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7024741F9E0641006C99B7 /* DocumentViewerContainerViewController.swift */; };
+		FF70247E1F9E444E006C99B7 /* FileExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF70247D1F9E444E006C99B7 /* FileExporter.swift */; };
 		FF72F6921F98FAC300912E04 /* SwipeableToolTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF72F6901F98FAC300912E04 /* SwipeableToolTableViewCell.swift */; };
 		FF72F6931F98FAC300912E04 /* SwipeableToolTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF72F6911F98FAC300912E04 /* SwipeableToolTableViewCell.xib */; };
 		FF72F6941F98FAE900912E04 /* SwipeCellKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF72F6851F98F98900912E04 /* SwipeCellKit.framework */; };
@@ -289,6 +291,8 @@
 		FF0BF03E1F96658C006235CB /* onboarding_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = onboarding_video.mp4; sourceTree = "<group>"; };
 		FF5CF3211F910BAC00DF7C5D /* ToolkitTableViewController+SwipeableCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToolkitTableViewController+SwipeableCells.swift"; sourceTree = "<group>"; };
 		FF5CF33C1F94DDD000DF7C5D /* UIViewController+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Error.swift"; sourceTree = "<group>"; };
+		FF7024741F9E0641006C99B7 /* DocumentViewerContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewerContainerViewController.swift; sourceTree = "<group>"; };
+		FF70247D1F9E444E006C99B7 /* FileExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExporter.swift; sourceTree = "<group>"; };
 		FF72F67F1F98F98900912E04 /* SwipeCellKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwipeCellKit.xcodeproj; path = SwipeCellKit/SwipeCellKit.xcodeproj; sourceTree = SOURCE_ROOT; };
 		FF72F6901F98FAC300912E04 /* SwipeableToolTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableToolTableViewCell.swift; sourceTree = "<group>"; };
 		FF72F6911F98FAC300912E04 /* SwipeableToolTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwipeableToolTableViewCell.xib; sourceTree = "<group>"; };
@@ -408,6 +412,7 @@
 				49C2DE8A1F502C7000DCFBB5 /* Utilities.swift */,
 				FF5CF33C1F94DDD000DF7C5D /* UIViewController+Error.swift */,
 				FFAEB1CC1F8F8A2000B079B4 /* ModuleColourUtility.swift */,
+				FF70247D1F9E444E006C99B7 /* FileExporter.swift */,
 			);
 			path = "Utilities + Extensions";
 			sourceTree = "<group>";
@@ -427,6 +432,7 @@
 			children = (
 				498F45431F7CFA2000E8824C /* Document_Viewing.storyboard */,
 				498F45451F7CFB4600E8824C /* MarkdownViewController.swift */,
+				FF7024741F9E0641006C99B7 /* DocumentViewerContainerViewController.swift */,
 			);
 			path = "Markdown Viewing";
 			sourceTree = "<group>";
@@ -817,6 +823,7 @@
 				FF72F6921F98FAC300912E04 /* SwipeableToolTableViewCell.swift in Sources */,
 				49BF8DD81F73C5BC00A1890F /* ModuleStepTableViewCell.swift in Sources */,
 				49A787131F84EB4D0076ABB7 /* ToolIndexManager.swift in Sources */,
+				FF7024751F9E0641006C99B7 /* DocumentViewerContainerViewController.swift in Sources */,
 				498F45461F7CFB4600E8824C /* MarkdownViewController.swift in Sources */,
 				49BCFFF21F4487EB00F68A40 /* OnboardingViewController.swift in Sources */,
 				4971222C1F4C2CF3000786AE /* WorkflowViewController.swift in Sources */,
@@ -831,6 +838,7 @@
 				49FE8D831F419F6900B73731 /* AppDelegate.swift in Sources */,
 				492F83DD1F83A96000BDD72D /* NoteAddViewController.swift in Sources */,
 				49A418601F73EA96004C1F61 /* ModuleSubStepTableViewCell.swift in Sources */,
+				FF70247E1F9E444E006C99B7 /* FileExporter.swift in Sources */,
 				FF82CCE41F8CC38E009FCC5B /* ProgressTableViewController.swift in Sources */,
 				497DF1921F74FC5800367A94 /* ToolTableViewCell.swift in Sources */,
 				490DBE841F911B05001E632A /* ExportTableViewController.swift in Sources */,

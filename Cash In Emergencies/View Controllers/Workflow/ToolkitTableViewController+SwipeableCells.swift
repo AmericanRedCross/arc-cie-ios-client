@@ -103,81 +103,25 @@ extension ToolkitTableViewController {
     /// - Returns: A compatible swipeAction for iOS10/11 support
     func addExportOptionIfAvailible(with directory: Directory, at indexPath: IndexPath) -> SwipeBridgingAction? {
         //Export
-        let exportFile = directory.attachments?.first?.url.flatMap({ (url) -> URL? in
-            return ContentManager().localFileURL(for: url)
-        })
+        
+        guard let attachmentUrl = directory.attachments?.first?.url else {
+            return nil
+            
+        }
+        
+        let exportFile = ContentManager().localFileURL(for: attachmentUrl)
         
         let exportTitle = exportFile == nil ? NSLocalizedString("WORKFLOW_TOOL_BUTTON_DOWNLOAD", value: "DOWNLOAD", comment: "Button that downloads a tool") : NSLocalizedString("WORKFLOW_TOOL_BUTTON_OPEN", value: "OPEN", comment: "Button that opens a tool that was already downloaded")
         var exportOption = SwipeBridgingAction(title: exportTitle, image: #imageLiteral(resourceName: "swipe_action_export"), style: .normal) { () -> Bool in
-            
+        
             if let attachment = directory.attachments?.first, let toolTitle = attachment.title {
                 Tracker.trackEventWith(toolTitle, action: "Download", label: nil, value: nil)
             }
+        
+            FileExporter.exportFile(attachmentUrl, in: self, updateHandler: nil, completionHandler: { (done) in
+            })
             
-            if let _url = directory.attachments?.first?.url {
-                
-                //Load it up if we already have it
-                if let _localFile = exportFile {
-                    
-                    let quickLookView = QLPreviewController()
-                    self.displayableURL = _localFile
-                    quickLookView.dataSource = self
-                    quickLookView.currentPreviewItemIndex = 0
-                    
-                    OperationQueue.main.addOperation({
-                        self.present(quickLookView, animated: true, completion: nil)
-                    })
-                    
-
-                    return true
-                }
-                
-                // Show a loading indicator
-                DispatchQueue.main.async {
-                    self.view.isUserInteractionEnabled = false
-                    self.parent?.view.isUserInteractionEnabled = false
-                    self.navigationController?.view.isUserInteractionEnabled = false
-                    self.tabBarController?.view.isUserInteractionEnabled = false
-                    MDCHUDActivityView.start(in: self.view.window, text: NSLocalizedString("WORKFLOW_TOOL_INDICATOR_DOWNLOADING", value: "Downloading", comment: "Displayed below a loading indicator while a document is downloading"))
-                }
-                
-                //Download it instead
-                ContentManager().downloadDocumentFile(from: _url, progress: { (progress, bytesDownloaded, totalBytes) in
-                    
-                }, completion: { (result) in
-                    
-                    // Finish loading indicator
-                    DispatchQueue.main.async {
-                        self.view.isUserInteractionEnabled = true
-                        self.parent?.view.isUserInteractionEnabled = true
-                        self.navigationController?.view.isUserInteractionEnabled = true
-                        self.tabBarController?.view.isUserInteractionEnabled = true
-                        MDCHUDActivityView.finish(in: self.view.window)
-                    }
-                    
-                    switch result {
-                    case .success(let downloadedFileURL):
-                        
-                        let quickLookView = QLPreviewController()
-                        self.displayableURL = downloadedFileURL
-                        quickLookView.dataSource = self
-                        quickLookView.currentPreviewItemIndex = 0
-                        
-                        
-                        OperationQueue.main.addOperation({
-                            self.tableView.reloadRows(at: [indexPath], with: .automatic)
-                            self.present(quickLookView, animated: true, completion: nil)
-                        })
-                    
-                        return
-                        
-                    case .failure(let error):
-                        print(error)
-                        return
-                    }
-                })
-        }
-        return true
+            return true
     }
         
         exportOption.backgroundColor = UIColor(red: 237.0/255.0, green: 27.0/255.0, blue: 46.0/255.0, alpha: 1.0)

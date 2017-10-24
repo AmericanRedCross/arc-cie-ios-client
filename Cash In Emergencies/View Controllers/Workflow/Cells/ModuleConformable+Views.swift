@@ -58,10 +58,12 @@ class ModuleView: ModuleConformable, Row {
         
         if let _tableView = toolkitTableViewController, let _moduleContent = internalModule?.content {
             
-            _tableView.handleLoadMarkdown(for: _moduleContent)
             if let moduleTitle = internalModule?.directoryTitle, let hierarchy = internalModule?.metadata?["hierarchy"] as? String {
                 Tracker.trackEventWith("\(hierarchy) \(moduleTitle)", action: "View roadmap", label: nil, value: nil)
             }
+            let attachedFile = internalModule?.attachments?.first
+            
+            _tableView.handleLoadMarkdown(for: _moduleContent, with: attachedFile)
         }
     }
     
@@ -143,10 +145,12 @@ class Step: ModuleConformable, Row {
         
         if let _tableView = toolkitTableViewController, let _moduleContent = internalModule?.content {
             
-            _tableView.handleLoadMarkdown(for: _moduleContent)
             if let moduleTitle = internalModule?.directoryTitle, let hierarchy = internalModule?.metadata?["hierarchy"] as? String {
                 Tracker.trackEventWith("\(hierarchy) \(moduleTitle)", action: "View roadmap", label: nil, value: nil)
             }
+            let attachedFile = internalModule?.attachments?.first
+            
+            _tableView.handleLoadMarkdown(for: _moduleContent, with: attachedFile)
         }
     }
 }
