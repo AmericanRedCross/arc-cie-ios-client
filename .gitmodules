@@ -16,7 +16,7 @@
 	branch = feature/xcode9
 [submodule "DMSSDK"]
 	path = DMSSDK
-	url = git@bitbucket.org:3sidedcube/arc-dmssdk-ios-framework.git
+url=https://github.com/3sidedcube/dmssdk-ios-framework.git
 	branch = develop
 [submodule "SwipeCellKit"]
 	path = SwipeCellKit
