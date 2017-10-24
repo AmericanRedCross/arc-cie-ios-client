@@ -9,6 +9,9 @@
 import UIKit
 import DMSSDK
 import CoreSpotlight
+import Fabric
+import Crashlytics
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,6 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             gai.dispatchInterval = 20
         }
         
+        // Fabric setup
+        Fabric.with([Crashlytics.self, Answers.self])
+
         return true
     }
 

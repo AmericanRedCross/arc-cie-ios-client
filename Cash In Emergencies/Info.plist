@@ -22,6 +22,26 @@
 	<string>1</string>
 	<key>DMSSDKBaseURL</key>
 	<string></string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string></string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Answers</string>
+			</dict>
+		</array>
+	</dict>
 	<key>GoogleTrackingId</key>
 	<string></string>
 	<key>ITSAppUsesNonExemptEncryption</key>
