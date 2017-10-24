@@ -14,6 +14,9 @@ class ARCNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationBar.titleTextAttributes = [
+            NSAttributedStringKey.foregroundColor : UIColor.white
+        ]
         
         // Add Export and Settings options on our two main view controllers
         if let topVc = topViewController, topVc is WorkflowViewController || topVc is ProgressTableViewController {
