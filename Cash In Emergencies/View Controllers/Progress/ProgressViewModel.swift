@@ -33,7 +33,7 @@ struct ProgressViewModel {
     // The overall compeltion of a module, the value is between 0 and 100
     // At the moment only critical tools count towards the overall total
     var percentageComplete: Int {
-        guard numberOfCriticalTools > 0 else { return 0}
+        guard numberOfCriticalTools > 0 else { return 0 }
         return Int((Float(numberOfCompletedCriticalTools) / Float(numberOfCriticalTools)) * 100.0)
     }
 }

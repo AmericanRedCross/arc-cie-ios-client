@@ -34,6 +34,7 @@ class ModuleColourUtility {
     /// - Parameter moduleHierarchy: a string of the hierarchy of the module i.e "2"
     /// - Returns: a specified hardcoded colour or a fallback colour
     class func colour(for moduleHierarchy: String) -> UIColor {
+    
         switch moduleHierarchy {
             
         case "1": return UIColor(hexString: "9D9FA2")
@@ -43,6 +44,13 @@ class ModuleColourUtility {
         case "5": return UIColor(hexString: "0079A7")
             
         default:
+            // Loop back through the colours by moduling by 5 
+            let hierarchyInt = Int(moduleHierarchy)
+            let moduleHierarchyAbove5 = hierarchyInt.flatMap({ ($0 % 5) + 1 }).flatMap({ String($0) })
+            
+            if let moduleHierarchyAbove5 = moduleHierarchyAbove5 {
+                return ModuleColourUtility.colour(for: moduleHierarchyAbove5)
+            }
             return fallBackColour
         }
     }
