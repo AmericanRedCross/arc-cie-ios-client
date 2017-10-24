@@ -133,28 +133,34 @@ class ExportTableViewController: UITableViewController {
         }
         
         //Set base URL
-        var url = URL(string: baseURLString)?.appendingPathComponent("projects/1/files/export")
+        let url = URL(string: baseURLString)?.appendingPathComponent("projects/1/files/export")
         
         guard let _url = url else {
             return nil
         }
         
+        var itemsToAppend = [URLQueryItem]()
+        
         //Add language if required
         if let language = UserDefaults.standard.string(forKey: "ContentOverrideLanguage") {
-            if let _newURL = URL(string: "\(_url.absoluteString)?language=\(language)") {
-                url = _newURL
-            }
+            itemsToAppend.append(URLQueryItem(name: "language", value: language))
         }
         
         //Add critical only if required
         if onlyCritical == true {
             
-            if let _criticalURL = URL(string: "\(_url.absoluteString)&meta=critical_path&value=true") {
-                url = _criticalURL
-            }
+            itemsToAppend.append(URLQueryItem(name: "meta", value: "critical_path"))
+            itemsToAppend.append(URLQueryItem(name: "value", value: "true"))
         }
         
-        return url
+        var components = URLComponents(string: _url.absoluteString)
+        components?.queryItems = itemsToAppend
+
+        if let componentsURLString = components?.string {
+            return URL(string: componentsURLString)
+        }
+        
+        return _url
     }
 }
 
