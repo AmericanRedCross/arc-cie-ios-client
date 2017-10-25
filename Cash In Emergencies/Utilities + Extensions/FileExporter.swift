@@ -10,70 +10,42 @@ import UIKit
 import DMSSDK
 import ThunderBasics
 
-
+// Utility class for downloading and getting files from disk
 class FileExporter {
     
-    
-    class func exportFile(_ file: URL, in viewController: UIViewController, updateHandler: ((CGFloat) -> Void)?,  completionHandler: ((Bool) -> Void)?) {
+    /// Gets a file from a provided url either by searching for it locally on disk and returning the local file address, or if not available locally, downloads over the network, saving it to disk and returning its new local file url
+    ///
+    /// - Parameters:
+    ///   - file: the file url of the remote resource where the file is located.
+    ///   - updateHandler: A closure which reports the progress of the download if the file needs to be downloaded
+    ///   - completionHandler: A closure which returns the local file url of the requested file, or nil if it can't be exported
+    class func exportFile(_ file: URL, updateHandler: ((CGFloat) -> Void)?,  completionHandler: ((URL?) -> Void)?) {
         
-            //Load it up if we already have it
-            if let localFile = ContentManager().localFileURL(for: file) {
-                
-                let documentController = UIDocumentInteractionController(url: localFile)
-                
-                OperationQueue.main.addOperation({
-                    
-                    documentController.presentOptionsMenu(from: viewController.view.frame, in: viewController.view, animated: true)
-                })
-                
-                completionHandler?(true)
-                return
-            }
+        //Load it up if we already have it
+        if let localFile = ContentManager().localFileURL(for: file) {
+            
+            updateHandler?(1.0)
+            completionHandler?(localFile)
+            return
+        }
         
         // We don't have the file downloaded so lets start downloading it
-        
-            // Show a loading indicator
-            DispatchQueue.main.async {
-                viewController.view.isUserInteractionEnabled = false
-                viewController.parent?.view.isUserInteractionEnabled = false
-                viewController.navigationController?.view.isUserInteractionEnabled = false
-                viewController.tabBarController?.view.isUserInteractionEnabled = false
-                MDCHUDActivityView.start(in: viewController.view.window, text: NSLocalizedString("WORKFLOW_TOOL_INDICATOR_DOWNLOADING", value: "Downloading", comment: "Displayed below a loading indicator while a document is downloading"))
-            }
+        //Download it instead
+        ContentManager().downloadDocumentFile(from: file, progress: { (progress, bytesDownloaded, totalBytes) in
             
-            //Download it instead
-            ContentManager().downloadDocumentFile(from: file, progress: { (progress, bytesDownloaded, totalBytes) in
+            updateHandler?(progress)
+        }, completion: { (result) in
+            
+            switch result {
+            case .success(let downloadedFileURL):
                 
-                updateHandler?(progress)
-            }, completion: { (result) in
+                completionHandler?(downloadedFileURL)
+                return
                 
-                // Finish loading indicator
-                DispatchQueue.main.async {
-                    viewController.view.isUserInteractionEnabled = true
-                    viewController.parent?.view.isUserInteractionEnabled = true
-                    viewController.navigationController?.view.isUserInteractionEnabled = true
-                    viewController.tabBarController?.view.isUserInteractionEnabled = true
-                    MDCHUDActivityView.finish(in: viewController.view.window)
-                }
-                
-                switch result {
-                case .success(let downloadedFileURL):
-                    
-                    let documentcontroller = UIDocumentInteractionController(url: downloadedFileURL)
-                    
-                    OperationQueue.main.addOperation({
-
-                        documentcontroller.presentOptionsMenu(from: viewController.view.frame, in: viewController.view, animated: true)
-                        completionHandler?(true)
-                        return
-                    })
-                    
-                    return
-                    
-                case .failure(let error):
-                    completionHandler?(false)
-                    return
-                }
-            })
-        }
+            case .failure(_):
+                completionHandler?(nil)
+                return
+            }
+        })
+    }
 }

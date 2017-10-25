@@ -32,6 +32,8 @@ class ToolkitTableViewController: TableViewController {
     /// The data source calculated to display only critical tools. Prevents recreating where unecessary
     private var criticalToolsDataSource: [Section]?
     
+    var documentController: UIDocumentInteractionController?
+    
     /// Value that stores the content Offset of the tableView before dispearing so it can be restored later to avoid the tableView jumping
     var previousContentOffset: CGPoint? = nil
 
