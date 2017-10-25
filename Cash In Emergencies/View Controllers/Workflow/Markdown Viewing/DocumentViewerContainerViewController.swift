@@ -102,7 +102,7 @@ class DocumentViewerContainerViewController: UIViewController {
                     if let localFileUrl = localFileUrl {
                         self.documentController = UIDocumentInteractionController(url: localFileUrl)
                         self.documentController?.delegate = self
-                        self.documentController?.presentOptionsMenu(from: self.view.frame, in: self.view, animated: true)
+                         self.documentController?.presentPreview(animated: true)
                     }
                 })
         }
