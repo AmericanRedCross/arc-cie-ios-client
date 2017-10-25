@@ -32,6 +32,7 @@ class DocumentViewerContainerViewController: UIViewController {
     
     @IBOutlet weak var attachedFileViewHeightConstraint: NSLayoutConstraint!
     
+    var documentController: UIDocumentInteractionController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,17 +79,41 @@ class DocumentViewerContainerViewController: UIViewController {
         super.viewWillAppear(animated)
         if let window = self.parent?.view.window {
             MDCHUDActivityView.start(in: window, text: "Loading document")
-
         }
     }
     
     @IBAction func pressedExport(_ sender: Any) {
         if let url = attachedFile?.url {
-            FileExporter.exportFile(url, in: self, updateHandler: { (progress) in
-                DispatchQueue.main.async {
-                    self.downloadProgressView.progress = Double(progress * 100)
-                }
-            }, completionHandler: nil)
+            
+            if let window = self.parent?.view.window {
+                MDCHUDActivityView.start(in: window, text: "Exporting document")
+            }
+            
+            self.toggleUserInteraction(on: false)
+            FileExporter.exportFile(url, updateHandler: { (progress) in
+                    DispatchQueue.main.async {
+                        self.downloadProgressView.progress = Double(progress * 100)
+                    }
+                }, completionHandler: { (localFileUrl) in
+                    if let window = self.parent?.view.window {
+                        MDCHUDActivityView.finish(in: window)
+                    }
+                    self.toggleUserInteraction(on: true)
+                    if let localFileUrl = localFileUrl {
+                        self.documentController = UIDocumentInteractionController(url: localFileUrl)
+                        self.documentController?.delegate = self
+                        self.documentController?.presentOptionsMenu(from: self.view.frame, in: self.view, animated: true)
+                    }
+                })
         }
     }
 }
+
+
+extension DocumentViewerContainerViewController: UIDocumentInteractionControllerDelegate {
+    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
+        return self
+    }
+}
+    
+

@@ -118,11 +118,28 @@ extension ToolkitTableViewController {
                 Tracker.trackEventWith(toolTitle, action: "Download", label: nil, value: nil)
             }
         
-            FileExporter.exportFile(attachmentUrl, in: self, updateHandler: nil, completionHandler: { (done) in
+            DispatchQueue.main.async {
+                MDCHUDActivityView.start(in: self.view.window, text: "Exporting document")
+                 self.toggleUserInteraction(on: false)
+            }
+           
+            
+            FileExporter.exportFile(attachmentUrl, updateHandler: nil, completionHandler: { (localFileUrl) in
+                
+                DispatchQueue.main.async {
+                    MDCHUDActivityView.finish(in: self.view.window)
+                    self.toggleUserInteraction(on: true)
+                    if let localFileUrl = localFileUrl {
+                        self.documentController = UIDocumentInteractionController(url: localFileUrl)
+                        self.documentController?.delegate = self
+                        self.documentController?.presentOptionsMenu(from: self.view.frame, in: self.view, animated: true)
+                        
+                    }
+                }
             })
             
             return true
-    }
+        }
         
         exportOption.backgroundColor = UIColor(red: 237.0/255.0, green: 27.0/255.0, blue: 46.0/255.0, alpha: 1.0)
         return exportOption
@@ -269,5 +286,11 @@ extension ToolkitTableViewController: SwipeTableViewCellDelegate {
         }
         
         return nil
+    }
+}
+
+extension ToolkitTableViewController: UIDocumentInteractionControllerDelegate {
+    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
+        return self
     }
 }
