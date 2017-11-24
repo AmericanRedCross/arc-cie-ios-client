@@ -1,3 +1,23 @@
-[submodule "ARCDM"]
-	path = ARCDM
-	url = git@bitbucket.org:3sidedcube/arc-dm-ios-framework.git
+[submodule "ThunderBasics"]
+	path = ThunderBasics
+	url = https://github.com/3sidedcube/iOS-ThunderBasics.git
+	branch = develop
+[submodule "ThunderTable"]
+	path = ThunderTable
+	url = https://github.com/3sidedcube/iOS-ThunderTable.git
+	branch = feature/swift
+[submodule "ThunderRequest"]
+	path = ThunderRequest
+	url = https://github.com/3sidedcube/iOS-ThunderRequest.git
+	branch = develop
+[submodule "MarkdownView"]
+	path = MarkdownView
+	url = https://github.com/keitaoouchi/MarkdownView.git
+	branch = feature/xcode9
+[submodule "DMSSDK"]
+	path = DMSSDK
+url=https://github.com/3sidedcube/dmssdk-ios-framework.git
+	branch = develop
+[submodule "SwipeCellKit"]
+	path = SwipeCellKit
+	url = https://github.com/SwipeCellKit/SwipeCellKit.git

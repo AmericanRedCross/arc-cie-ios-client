@@ -7,15 +7,31 @@
 //
 
 import UIKit
+import DMSSDK
+import CoreSpotlight
+import Fabric
+import Crashlytics
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+        //Google Analytics
+        let googleAnalyticsCode = Bundle.main.object(forInfoDictionaryKey: "GoogleTrackingId")
+        
+        if let _gaCode = googleAnalyticsCode as? String {
+            let gai = GAI()
+            gai.tracker(withTrackingId: _gaCode)
+            gai.dispatchInterval = 20
+        }
+        
+        // Fabric setup
+        Fabric.with([Crashlytics.self, Answers.self])
+
         return true
     }
 
