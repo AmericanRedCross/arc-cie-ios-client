@@ -27,7 +27,7 @@ Each feature of the app is split into its own directory. The core view controlle
 
 ## Pre-requisites
 
-This project requires the [DMSDK](https://github.com/3sidedcube/dmssdk-ios-framework/) to function, this can be located in the `DMSSDK` folder.
+This project requires the [DMSDK](https://github.com/AmericanRedCross/dmssdk-ios-framework/) to function, this can be located in the `DMSSDK` folder.
 
 Xcode 9.0 or higher is required to run this project
 
