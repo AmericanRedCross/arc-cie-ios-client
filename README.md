@@ -9,7 +9,8 @@ The `DMSSDK` is attached a submodule of this repository. The `DMSSDK` is the bra
 
 ## Usage
 
-Clone this repository ensuring that you initialise the DMSSDK submodule.
+Clone this repository ensuring that you initialise the DMSSDK submodule.   
+For example: `git submodule update --init --recursive`
 
 Open the project in Xcode 9 or greater.
 
